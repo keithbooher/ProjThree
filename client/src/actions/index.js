@@ -8,3 +8,12 @@ export const fetchUser = () => async dispatch => {
     //getting a notification. dispatch an action containing the response, which is the identity of the user 
     dispatch({ type: FETCH_USER, payload: res.data});
 };
+
+//takes token to our back end api
+export const handleToken = (token) => async dispatch => {
+    //response to this post request is our user model
+    const res = await axios.post('/api/stripe', token);
+
+    
+    dispatch({ type: FETCH_USER, payload: res.data });
+}
