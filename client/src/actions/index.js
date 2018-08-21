@@ -10,10 +10,12 @@ export const fetchUser = () => async dispatch => {
 };
 
 //takes token to our back end api
-export const handleToken = (token) => async dispatch => {
+export const handleToken = (token, amount) => async dispatch => {
     //response to this post request is our user model
-    const res = await axios.post('/api/stripe', token);
-
+    const res = await axios.post('/api/stripe', token, amount);
+    console.log('token', token);
+    console.log('amount', amount);
+    
     
     dispatch({ type: FETCH_USER, payload: res.data });
 }

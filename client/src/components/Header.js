@@ -9,14 +9,25 @@ class Header extends Component {
             case null:
                 return;
             case false: 
-                return <li><a href="/auth/google">Login With Google</a></li>
+                return [
+                <li key="5"><a href="/auth/google">Login With Google</a></li>,
+                <li key="6"><a href="/gallery">Visit Gallery</a></li>                
+            ]
             default: 
                 return [
                     <li key="1"><Payments /></li>,
+                    <li><a href="/gallery">Explore Art</a></li>,                    
+                    // <li key="3" style={{margin: '0 10px'}}>
+                    //     Credits: {this.props.auth.credits}
+                    // </li>,
                     <li key="3" style={{margin: '0 10px'}}>
-                        Credits: {this.props.auth.credits}
+                        {this.props.auth.firstName}
                     </li>,
-                    <li key="2"><a href='/api/logout'>Logout</a></li>
+                    <li key="4" style={{margin: '0 10px'}}>
+                        Total: {this.props.amount}
+                    </li>,
+                    <li key="2"><a href='/api/logout'>Logout</a></li>,
+                    console.log('this.props.auth', this.props.auth)
             ];
         }
     }
@@ -30,7 +41,7 @@ class Header extends Component {
                         to={this.props.auth ? '/surveys' : '/' }                        
                         className="left brand-logo"
                     >
-                        Emaily
+                        Gallery
                     </Link>
                     <ul className="right">
                         { this.renderContent() }

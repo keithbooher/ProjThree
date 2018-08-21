@@ -35,6 +35,7 @@ passport.use(
         //A query for looking through the user collection. find the frst record inside that collection with a google id of profile.id
         // A query reaching out to the mongo data base is an asyncrous opporation and to deal with that, we get a promise. So we chained on a .then that was called within existing user if found
         const existingUser = await User.findOne({ googleId: profile.id })
+            console.log(profile)
             // existing user is a model instance that represesnts a user that was found
             if(existingUser) {
                 //we already have a record with the given profile id
@@ -42,7 +43,7 @@ passport.use(
             }
             //we dont have a user record with this id, make a new record
             //model instance
-            const user = await new User({ googleId: profile.id }).save()
+            const user = await new User({ googleId: profile.id, firstName: profile.name.givenName }).save()
             //model instance
             //just came back from database so it has all the most up to date info 
             done(null, user);

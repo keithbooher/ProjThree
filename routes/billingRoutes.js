@@ -4,17 +4,22 @@ const requireLogin = require('../middlewares/requireLogin')
 
 module.exports = app => {
     app.post('/api/stripe', requireLogin, async (req, res) => {
+        const token = req.body.data.token;
+        const amount = req.body.data.amount;
         //creating the charge here
         const charge = await stripe.charges.create({
-            amount: 500,
+            amount: amount,
             currency: 'usd',
             description: '$5 for 5 credit',
-            source: req.body.id
+            source: token  //req.body.id
         });
 
         req.user.credits += 5;
         const user = await req.user.save();
 
+        console.log('token', token)
+        console.log('amount', amount)
+        
         res.send(user);
     });
 };
