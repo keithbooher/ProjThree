@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Gallery = props => {
+    console.log(props.route)
     return (
         <div style={{  }}> 
             <br/>

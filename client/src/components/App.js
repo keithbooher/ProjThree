@@ -41,7 +41,7 @@ class App extends Component {
         const updatedAmount = this.state.amount + 1
         this.setState({ amount:updatedAmount})
     }
-
+ 
 
     render() {
         return (
@@ -54,11 +54,7 @@ class App extends Component {
                         />
                         <Route exact path="/" component={Landing} />
                         <Route exact path="/surveys" component={Dashboard} />
-                        <Route exact path="/gallery"> 
-                            <Gallery 
-                                clicked={this.clicked}
-                            />
-                        </Route>                        
+                        <Route exact path="/gallery"  render={(routeProps) => (<Gallery clicked={this.clicked} />)} />                        
                         
                     </div>
                 </BrowserRouter>
