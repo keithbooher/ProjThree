@@ -44,9 +44,12 @@ passport.use(
             //we dont have a user record with this id, make a new record
             //model instance
             const user = await new User({ googleId: profile.id, firstName: profile.name.givenName }).save()
+
             //model instance
             //just came back from database so it has all the most up to date info 
             done(null, user);
             
     })
 );
+
+// console.log(user)

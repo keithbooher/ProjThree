@@ -1,0 +1,31 @@
+    loadUser = () => {
+        // rzQ00LDh0z5_wxxP0vPNUF7MjAWKWvLz
+        // https://api.mlab.com/api/1/databases/my-db/collections/my-coll?apiKey=myAPIKey
+        // gallery-prod
+        // https://api.mlab.com/api/1/databases/gallery-prod/collections/users?apiKey=rzQ00LDh0z5_wxxP0vPNUF7MjAWKWvLz
+        
+
+        fetch("https://api.mlab.com/api/1/databases/gallery-prod/collections/users?apiKey=rzQ00LDh0z5_wxxP0vPNUF7MjAWKWvLz")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                console.log(result[0].googleId)
+            this.setState({
+                isLoaded: true,
+                user: result[0].googleId
+            });
+
+        console.log("state", this.state.user)            
+
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+            this.setState({
+                isLoaded: true,
+                error
+            });
+            }
+        )
+    };

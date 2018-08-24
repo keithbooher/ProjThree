@@ -3,9 +3,17 @@ const { Schema } = mongoose; // same as ----> const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     googleId: String,
-    firstName: String
+    firstName: String,
+    admin: {
+        type: Boolean,
+        default: false
+    }
 });
 
 
 //creating model class
-mongoose.model('users', userSchema);
+
+const User = mongoose.model('users', userSchema);
+
+
+module.exports = User;

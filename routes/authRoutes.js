@@ -1,4 +1,5 @@
 const passport = require('passport');
+const userController = require('../controllers/userController.js')
 
 module.exports = (app) => {
 
@@ -30,5 +31,8 @@ module.exports = (app) => {
     app.get('/api/current_user', (req, res) => {
         res.send(req.user);
     })
+
+
+    
 
 };
