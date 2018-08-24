@@ -17,21 +17,44 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.loadProducts();
+        // this.loadProducts();
         this.props.fetchUser();
-        this.currentUser();
+        this.loadCurrentUser();        
+
     }
 
-    loadProducts = () => {
-        API.getProducts()
-            .then(res => this.setState({ products: res.data }))
-            .catch(err => console.log(err));
+    // loadProducts = () => {
+    //     API.getProducts()
+    //         .then(res => this.setState({ products: res.data }))
+    //         .catch(err => console.log(err));
+    // };
+
+
+    loadCurrentUser = () => {
+        fetch("/api/current_user")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                console.log(result)
+            this.setState({
+                isLoaded: true,
+                user: result
+            });
+
+        console.log("state", this.state.user)            
+
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+            this.setState({
+                isLoaded: true,
+                error
+            });
+            }
+        )
     };
-
-    currentUser() {
-        this.setState({ user: this.props.auth }) // not populating the user state correctly
-        console.log('user',this.state.user)
-    }
 
 
     clicked = (name) => {
@@ -62,5 +85,6 @@ class App extends Component {
         );
     };
 };
+
 
 export default connect(null, actions) (App);

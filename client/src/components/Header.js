@@ -17,9 +17,6 @@ class Header extends Component {
                 return [
                     <li key="1"><Payments /></li>,
                     <li><a href="/gallery">Explore Art</a></li>,                    
-                    // <li key="3" style={{margin: '0 10px'}}>
-                    //     Credits: {this.props.auth.credits}
-                    // </li>,
                     <li key="3" style={{margin: '0 10px'}}>
                         {this.props.auth.firstName}
                     </li>,
@@ -30,6 +27,10 @@ class Header extends Component {
                     console.log('this.props.auth', this.props.auth)
             ];
         }
+    }
+
+    renderAdminContent () {
+        
     }
 
     render() {
