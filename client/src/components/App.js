@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import API from "../utils/API";
 
-import Header from './Header';
+import Header from './Navs/Header';
 import Landing from './Landing';
-import Gallery from './Gallery';
+import Gallery from './Gallery/Gallery';
 const Dashboard = () => <h2>Dashboard</h2>
 
 class App extends Component {
