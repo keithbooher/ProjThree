@@ -32,6 +32,12 @@ app.use(passport.session());
 // when we require the authroutes file it returns a function. We the then immediately invoke the function with the app object (express)
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+// require('./routes/api')(app);
+
+// Routes
+const routes = require("./routes");
+app.use(routes);
+
 
 if (process.env.NODE_ENV === 'production') {
     // Express will serve up production assets
