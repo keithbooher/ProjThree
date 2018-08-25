@@ -32,7 +32,9 @@ module.exports = (app) => {
         res.send(req.user);
     })
 
-
+    app.get('/api/current_user/:id', (req, res) => {
+        res.send(req.user);
+    })
     
 
 };

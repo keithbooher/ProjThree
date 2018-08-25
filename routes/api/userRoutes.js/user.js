@@ -4,11 +4,13 @@ const userController = require("../../controllers/userController");
 
 
 router.route("/current_user")
-.get(userController.findAll);
+.get(userController.findAll)
+.post(userController.create);
 
 
-router
-  .route("/:id")
+
+router.route(":id")
+  .get(userController.findById)  
   .put(userController.update);
 
 
