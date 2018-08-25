@@ -77,8 +77,7 @@ class App extends Component {
                         />
                         <Route exact path="/" component={Landing} />
                         <Route exact path="/surveys" component={Dashboard} />
-                        <Route exact path="/gallery"  render={(routeProps) => (<Gallery clicked={this.clicked} />)} />                        
-                        
+                        <Route exact path="/gallery"  render={(routeProps) => (<Gallery clicked={this.clicked} />)} />
                     </div>
                 </BrowserRouter>
             </div>
