@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux';
-import * as actions from '../actions';
-import API from "../utils/API";
+import * as actions from '../../actions';
+import API from "../../utils/API";
 
-import Header from './Navs/Header';
-<<<<<<< HEAD
-import Landing from './Landing';
-import Gallery from './Gallery';
+import Header from '../../components/Navs/Header';
+// import Landing from '../../components/Landing';
+// import Gallery from '../../components/Gallery';
 const Dashboard = () => <h2>Dashboard</h2>
 
 class App extends Component {
@@ -36,11 +35,13 @@ class App extends Component {
         .then(res => res.json())
         .then(
             (result) => {
-                console.log('result',result)
+                console.log(result)
             this.setState({
                 isLoaded: true,
                 user: result
-            });    
+            });
+
+        console.log("state", this.state.user)            
 
             },
             // Note: it's important to handle errors here
@@ -74,26 +75,15 @@ class App extends Component {
                             key="1"
                             amount={this.state.amount}
                         />
-                        <Route exact path="/" component={Landing} />
+                        {/* <Route exact path="/" component={Landing} />
                         <Route exact path="/surveys" component={Dashboard} />
-                        <Route exact path="/gallery"  render={(routeProps) => (<Gallery clicked={this.clicked} />)} />
+                        <Route exact path="/gallery"  render={(routeProps) => (<Gallery clicked={this.clicked} />)} /> */}
                     </div>
                 </BrowserRouter>
-=======
-import Home from '../pages/Home'
-import Gallery from './Gallery/Gallery';
-
-const App = () => (
-    <div className="container">
-        <BrowserRouter>
-            <div>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/surveys" component={Home} />
-                {/* <Route exact path="/gallery"  render={(routeProps) => (<Gallery clicked={this.clicked} />)} /> */}
->>>>>>> master
             </div>
-        </BrowserRouter>
-    </div>
-)
+        );
+    };
+};
 
-export default App;
+
+export default connect(null, actions) (App);
