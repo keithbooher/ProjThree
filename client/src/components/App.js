@@ -7,6 +7,7 @@ import API from "../utils/API";
 import Header from './Header';
 import Landing from './Landing';
 import Gallery from './Gallery';
+import Modal from './submitModal';
 const Dashboard = () => <h2>Dashboard</h2>
 
 class App extends Component {
@@ -81,6 +82,7 @@ class App extends Component {
                         
                     </div>
                 </BrowserRouter>
+                <Modal />
             </div>
         );
     };
