@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import Payments from './Payments';
+import Payments from '../Payments';
 
 class Header extends Component {
     renderContent() {
@@ -16,7 +16,7 @@ class Header extends Component {
             default: 
                 return [
                     <li key="1"><Payments /></li>,
-                    <li><a href="/gallery">Explore Art</a></li>,                    
+                    <li key="7"><a href="/gallery">Explore Art</a></li>,                    
                     <li key="3" style={{margin: '0 10px'}}>
                         {this.props.auth.firstName}
                     </li>,

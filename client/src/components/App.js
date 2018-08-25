@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import API from "../utils/API";
 
-import Header from './Header';
+import Header from './Navs/Header';
 import Landing from './Landing';
 import Gallery from './Gallery';
 const Dashboard = () => <h2>Dashboard</h2>
@@ -35,13 +35,11 @@ class App extends Component {
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result)
+                console.log('result',result)
             this.setState({
                 isLoaded: true,
                 user: result
-            });
-
-        console.log("state", this.state.user)            
+            });    
 
             },
             // Note: it's important to handle errors here
