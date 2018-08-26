@@ -18,11 +18,16 @@ export default {
     return axios.post("/api/products", productData);
   },
   // Saves a book to the database
-  changeUser: function(productData) {
-    return axios.put("/api/current_user", id);
+  changeUser: function(_id) {
+    return axios.put("/api/current_user/" + _id, true);
   },
   // Gets current user
   getUser: function() {
     return axios.get("/api/current_user");
+  },
+  // Gets current user
+  createUser: function(stuff) {
+    console.log("API")
+    return axios.post("/api/current_user", stuff);
   },
 }; 
