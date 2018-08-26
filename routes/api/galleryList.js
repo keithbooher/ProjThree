@@ -9,10 +9,6 @@ router.route("/")
   .post(artController.create);
 
 
-  router.route("/current_user")
-  .get(userController.findAll);
-
-
 // Matches with "/api/products/:id"
 router
   .route("/:id")
