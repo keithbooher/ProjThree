@@ -1,5 +1,5 @@
 const passport = require('passport');
-const userController = require('../controllers/userController.js')
+// const userController = require('../controllers/userController.js')
 
 module.exports = (app) => {
 
