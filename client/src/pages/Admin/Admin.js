@@ -26,9 +26,7 @@ class Admin extends Component {
                 isLoaded: true,
                 user: result
             });
-
-        console.log("state", this.state.user)            
-
+            this.checkUser();
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -45,14 +43,25 @@ class Admin extends Component {
     componentDidMount() {
         this.props.fetchUser();
         this.loadCurrentUser();     
-        // console.log("user", this.state.user)   
+        console.log("user", this.state.user)   
 
+    }
+
+    checkUser() {
+        // console.log("test", this.state.user)
+        if (this.state.user.admin === true) {
+            console.log("admin")
+            return true
+        } else {
+            console.log("nonAdmin")   
+            return false         
+        }
     }
 
 
     changeUserStatus = () => {
         const currentUser = this.state.user._id
-
+        // const boolean = true
         API.changeUser(currentUser)
             .then( console.log("success"))
             .catch(err => console.log(err));

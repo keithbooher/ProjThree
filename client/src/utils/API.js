@@ -17,17 +17,20 @@ export default {
   saveProduct: function(productData) {
     return axios.post("/api/products", productData);
   },
+
+
+  
   // Saves a book to the database
-  changeUser: function(_id) {
-    return axios.put("/api/current_user/" + _id, true);
+  changeUser: function(_id, boolean) {
+    return axios.put("/api/user/" + _id, boolean);
   },
   // Gets current user
-  getUser: function() {
-    return axios.get("/api/current_user");
+  getUser: function(_id) {
+    return axios.get("/api/user/"  + _id);
   },
   // Gets current user
   createUser: function(stuff) {
     console.log("API")
-    return axios.post("/api/current_user", stuff);
+    return axios.post("/api/user", stuff);
   },
 }; 

@@ -5,6 +5,7 @@ import * as actions from '../../actions';
 import API from "../../utils/API";
 
 import Header from '../../components/Navs/Header';
+import AdminHeader from '../../components/Navs/AdminHeader';
 // import Landing from '../../components/Landing';
 // import Gallery from '../../components/Gallery';
 const Dashboard = () => <h2>Dashboard</h2>
@@ -77,13 +78,7 @@ class App extends Component {
             <div className="container">
                 <BrowserRouter>
                     <div>
-                        <Header 
-                            key="1"
-                            amount={this.state.amount}
-                        />
-                        {/* <Route exact path="/" component={Landing} />
-                        <Route exact path="/surveys" component={Dashboard} />
-                        <Route exact path="/gallery"  render={(routeProps) => (<Gallery clicked={this.clicked} />)} /> */}
+                        {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
                     </div>
                 </BrowserRouter>
             </div>
