@@ -35,11 +35,17 @@ class App extends Component {
         .then(res => res.json())
         .then(
             (result) => {
-                console.log(result)
-            this.setState({
-                isLoaded: true,
-                user: result
-            });
+                this.setState({
+                    isLoaded: true,
+                    user: result
+                });
+
+                console.log('result', result)
+                let currentUser=this.state.user
+                API.createUser(currentUser)
+                .then( console.log("success"))
+                .catch(err => console.log(err));
+
 
         console.log("state", this.state.user)            
 
