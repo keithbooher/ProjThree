@@ -26,7 +26,7 @@ class Header extends Component {
                     <li key="2"><a href='/admin'>Become An Admin</a></li>,
                     <li key="8"><a href='/api/logout'>Logout</a></li>,
                     
-                    console.log('this.props.auth', this.props.auth)
+                    // console.log('this.props.auth', this.props.auth)
             ];
         }
     }
