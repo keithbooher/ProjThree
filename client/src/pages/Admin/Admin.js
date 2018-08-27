@@ -27,7 +27,7 @@ class Admin extends Component {
                 user: result
             });
 
-        console.log("state", this.state.user)            
+        console.log("AYEEEEEEEE", this.state.user)            
 
             },
             // Note: it's important to handle errors here
@@ -43,6 +43,7 @@ class Admin extends Component {
     };
 
     componentDidMount() {
+        console.log("COMPONENT MOUNTED")
         this.props.fetchUser();
         this.loadCurrentUser();     
         // console.log("user", this.state.user)   
@@ -51,10 +52,11 @@ class Admin extends Component {
 
 
     changeUserStatus = () => {
+        console.log("STATEEEEEEEEE", this.state.user)
         const currentUser = this.state.user._id
 
         API.changeUser(currentUser)
-            .then( console.log("success"))
+            .then(console.log("success"))
             .catch(err => console.log(err));
     }
 
