@@ -21,12 +21,16 @@ export default {
 
   
   // Saves a book to the database
-  changeUser: function(_id, boolean) {
-    return axios.put("/api/user/" + _id, boolean);
+  changeUser: function(_id) {
+    return axios.put("/api/user/" + _id);
   },
   // Gets current user
-  getUser: function(_id) {
-    return axios.get("/api/user/"  + _id);
+  getUser: function() {
+    return axios.get("/api/user");
+  },
+
+  getUserById: function() {
+    return axios.get("/api/user/:id");
   },
   // Gets current user
   createUser: function(stuff) {
