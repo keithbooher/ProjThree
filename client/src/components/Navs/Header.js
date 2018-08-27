@@ -24,7 +24,7 @@ class Header extends Component {
                         Total: {this.props.amount}
                     </li>,
                     <li key="2"><a href='/admin'>Become An Admin</a></li>,
-                    <li key="2"><a href='/api/logout'>Logout</a></li>,
+                    <li key="8"><a href='/api/logout'>Logout</a></li>,
                     
                     console.log('this.props.auth', this.props.auth)
             ];
