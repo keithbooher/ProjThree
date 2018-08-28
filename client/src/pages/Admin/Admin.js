@@ -5,6 +5,18 @@ import * as actions from '../../actions';
 import API from "../../utils/API";
 
 import Header from '../../components/Navs/Header';
+import Form from '../../components/Form/Form';
+import FormBtn from '../../components/Form/FormBtn';
+import FormGroup from '../../components/Form/FormGroup';
+import Input from '../../components/Form/Input';
+import Label from '../../components/Form/Label';
+import TextArea from '../../components/Form/TextArea';
+
+
+
+
+
+
 // import Landing from '../../components/Landing';
 // import Gallery from '../../components/Gallery';
 const Dashboard = () => <h2>Dashboard</h2>
@@ -62,7 +74,6 @@ class Admin extends Component {
         }
     }
 
-
     changeUserStatus = () => {
         console.log("STATEEEEEEEEE", this.state.user)
         const currentUser = this.state.user._id
@@ -72,11 +83,36 @@ class Admin extends Component {
             .catch(err => console.log(err));
     }
 
+    // Function to handle form input
+    handleInputChange = event => {
+        let { name, value } = event.target;
+        this.setState({[name] : value})
+    };
+
+    // Function to handle form submit
+    handleFormSubmit = event => {
+        event.preventDefault();
+        let { category } = this.state;
+        let query = { category }
+        this.getArticles(query)
+    }
 
     render() {
         return (
             <div className="container">
                 <Header />
+                <Form>
+                    <FormGroup>
+                        <Label htmlFor="category"> What do you sell in your shop? </Label>
+                        <Input 
+                            onChange={this.handleInputChange}
+                            type="filter"
+                            name="category"
+                            value={this.state.category}
+                            placeholder="Catergory of Art"
+                        />
+                    </FormGroup>
+                </Form>
                 <button onClick={() => this.changeUserStatus()}>Become an Admin</button>
             </div>
         );
