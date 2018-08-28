@@ -15,16 +15,7 @@ class Header extends Component {
             ]
             default: 
                 return [
-                    <li key="1"><Payments /></li>,
-                    <li><a href="/gallery">Explore Art</a></li>,                    
-                    <li key="3" style={{margin: '0 10px'}}>
-                        {this.props.auth.firstName}
-                    </li>,
-                    <li key="4" style={{margin: '0 10px'}}>
-                        Total: {this.props.amount}
-                    </li>,
-                    <li key="2"><a href='/api/logout'>Logout</a></li>,
-                    console.log('this.props.auth', this.props.auth)
+                    <li key="1">Admin!</li>,
             ];
         }
     }
