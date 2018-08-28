@@ -17,6 +17,9 @@ export default {
   saveProduct: function(productData) {
     return axios.post("/api/products", productData);
   },
+
+
+  
   // Saves a book to the database
   changeUser: function(_id) {
     return axios.put("/api/user/" + _id);

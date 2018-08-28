@@ -16,8 +16,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    console.log("user controller")
-    
     db.User
       .create(req.body)
       .then(dbModel => res.json(dbModel))
@@ -25,9 +23,9 @@ module.exports = {
   },
   update: function(req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({_id:req.params.id}, {admin: true})
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => res.status(422).json(err));      
   },
   remove: function(req, res) {
     db.User
