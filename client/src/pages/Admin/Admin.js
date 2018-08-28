@@ -5,12 +5,7 @@ import * as actions from '../../actions';
 import API from "../../utils/API";
 
 import Header from '../../components/Navs/Header';
-import Form from '../../components/Form/Form';
-import FormBtn from '../../components/Form/FormBtn';
-import FormGroup from '../../components/Form/FormGroup';
-import Input from '../../components/Form/Input';
-import Label from '../../components/Form/Label';
-import TextArea from '../../components/Form/TextArea';
+import { Form, Input, FormBtn, FormGroup, Label } from "../../components/Form";
 
 
 
