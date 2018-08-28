@@ -5,12 +5,8 @@ import * as actions from '../actions';
 import API from "../utils/API";
 
 import Header from './Navs/Header';
-<<<<<<< HEAD
-import Home from '../pages/Home';
-=======
 import Admin from '../pages/Admin'
 import Home from '../pages/Home'
->>>>>>> master
 import Gallery from './Gallery/Gallery';
 import Modal from './submitModal';
 
