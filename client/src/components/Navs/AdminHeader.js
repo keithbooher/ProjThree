@@ -16,6 +16,8 @@ class Header extends Component {
             default: 
                 return [
                     <li key="1">Admin!</li>,
+                    <li key="8"><a href='/api/logout'>Logout</a></li>,
+                    
             ];
         }
     }
