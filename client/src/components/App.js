@@ -21,7 +21,7 @@ const App = () => (
                 {/* <Route exact path="/gallery"  render={(routeProps) => (<Gallery clicked={this.clicked} />)} /> */}
             </div>
         </BrowserRouter>
-        <Modal />
+        {/* <Modal /> */}
     </div>
 )
 
