@@ -1,10 +1,11 @@
 .missionStatement{
-    background: peachpuff;
+    background: rgb(179,111,63, .7);
     color: black;
-    margin-top: 200px;
+    margin-top: -100px;
     position: relative;
     left: 12%;
-    font-size: 20px;
+    font-size: 30px;
     padding: 20px;
     font-weight: bold;
+    /* opacity: .5; */
 }

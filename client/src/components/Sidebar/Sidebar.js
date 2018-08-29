@@ -7,7 +7,7 @@ class Sidebar extends Component {
     render(){
         return(
             <div class = "sideBar">
-                <h4>Explore the Gutter</h4>
+                <h5 className="sidebarTitle">Explore the Gutter</h5>
                 <UnorderedList>
                     <List/>
                     <List/>
