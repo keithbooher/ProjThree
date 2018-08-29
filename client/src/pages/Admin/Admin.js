@@ -20,7 +20,22 @@ class Admin extends Component {
     state = {
         amount: 0,
         products: [],
-        user: {}
+        user: {},
+        borders: ['dotted',
+            'dashed',
+            'solid',
+            'double',
+            'groove',
+            'ridge',
+            'inset' ,
+            'outset',
+            'none',
+            'hidden'],
+        borderRadius: [10,20,30,40,50,60,70,80,90],
+        borderColor: '',
+        backgroundImage:'',
+        textColor:'', 
+        backGroundColor:'',
     }
 
     loadCurrentUser = () => {
@@ -94,21 +109,23 @@ class Admin extends Component {
 
     render() {
         return (
-            <div className="container">
-                <Header />
-                <Form>
-                    <FormGroup>
-                        <Label htmlFor="category"> What do you sell in your shop? </Label>
-                        <Input 
-                            onChange={this.handleInputChange}
-                            type="filter"
-                            name="category"
-                            value={this.state.category}
-                            placeholder="Catergory of Art"
-                        />
-                    </FormGroup>
-                </Form>
-                <button onClick={() => this.changeUserStatus()}>Become an Admin</button>
+            <div>
+                <Header />                
+                <div className="container">
+                    <Form>
+                        <FormGroup>
+                            <Label htmlFor="category"> What do you sell in your shop? </Label>
+                            <Input 
+                                onChange={this.handleInputChange}
+                                type="filter"
+                                name="category"
+                                value={this.state.category}
+                                placeholder="Catergory of Art"
+                            />
+                        </FormGroup>
+                    </Form>
+                    <button onClick={() => this.changeUserStatus()}>Become an Admin</button>
+                </div>
             </div>
         );
     };
