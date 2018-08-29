@@ -22,9 +22,10 @@ class App extends Component {
     componentDidMount() {
         // this.loadProducts();
         this.props.fetchUser();
-        this.loadCurrentUser();        
-
+        this.loadCurrentUser();     
     }
+
+
 
     // loadProducts = () => {
     //     API.getProducts()
@@ -81,7 +82,7 @@ class App extends Component {
                 {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
                 <Row>
                     <Col size="sm-2 offset-'sm-11">
-                        <SideBar/>
+                        <SideBar user={this.state.user}/>
                     </Col>
                 </Row>
 
