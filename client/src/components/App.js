@@ -21,7 +21,10 @@ const App = () => (
                 <Route exact path="/submit" component={Form} />
                 
                 {/* <Route exact path="/gallery"  render={(routeProps) => (<Gallery clicked={this.clicked} />)} /> */}
+
             </div>
+
+           
         </BrowserRouter>
         {/* <Modal /> */}
     </div>
