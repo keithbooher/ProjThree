@@ -12,7 +12,7 @@ import Modal from './submitModal';
 import Form from '../pages/Form';
 
 const App = () => (
-    <div className="container">
+    <div>
         <BrowserRouter>
             <div>
                 <Route exact path="/" component={Home} />

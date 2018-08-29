@@ -111,7 +111,7 @@ class Admin extends Component {
         return (
             <div>
                 <Header />                
-                <div className="container" style={background}>
+                <div className="container">
                     <Form>
                         <FormGroup>
                             <Label htmlFor="category"> What do you sell in your shop? </Label>

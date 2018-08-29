@@ -77,19 +77,23 @@ class App extends Component {
 
     render() {
         return (
-            
-                <BrowserRouter>
+            <div>
+                {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
+
+                <div className="container">
+                    <BrowserRouter>
                     <div>
-                        {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
-                        <SideBar/>
-                        <Row>
-                            <Col size="sm-10 offset-'sm-1">
-                                <MissionStatement/>
-                            </Col>
-                        </Row>
-                    </div>
-                    
-                </BrowserRouter>
+                            <SideBar/>
+                            <Row>
+                                <Col size="sm-10 offset-'sm-1">
+                                    <MissionStatement/>
+                                </Col>
+                            </Row>
+                </div>
+                        
+                    </BrowserRouter>
+            </div>
+            </div>
         );
     };
 };
