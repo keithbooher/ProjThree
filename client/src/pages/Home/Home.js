@@ -79,17 +79,21 @@ class App extends Component {
         return (
             <div>
                 {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
+                <Row>
+                    <Col size="sm-2 offset-'sm-11">
+                        <SideBar/>
+                    </Col>
+                </Row>
 
                 <div className="container">
                     <BrowserRouter>
                     <div>
-                            <SideBar/>
-                            <Row>
-                                <Col size="sm-10 offset-'sm-1">
-                                    <MissionStatement/>
-                                </Col>
-                            </Row>
-                </div>
+                        <Row>
+                            <Col size="sm-10 offset-'sm-1">
+                                <MissionStatement/>
+                            </Col>
+                        </Row>
+                    </div>
                         
                     </BrowserRouter>
             </div>
