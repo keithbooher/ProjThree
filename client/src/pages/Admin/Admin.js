@@ -38,6 +38,7 @@ class Admin extends Component {
         backGroundColor:'',
     }
 
+
     loadCurrentUser = () => {
         fetch("/api/current_user")
         .then(res => res.json())

@@ -1,8 +1,8 @@
 import React from "react";
 
 const UnorderedListItem = props =>
-  <li className="list-group-item">
+  <ul className="list-group-item">
     {props.children}
-  </li>;
+  </ul>;
 
   export default UnorderedListItem;
