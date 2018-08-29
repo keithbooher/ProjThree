@@ -35,7 +35,7 @@ class Header extends Component {
                         to={this.props.auth ? '/surveys' : '/' }                        
                         className="left brand-logo"
                     >
-                        Gallery
+                        Art Gutter
                     </Link>
                     <ul className="right">
                         { this.renderContent() }
