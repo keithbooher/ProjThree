@@ -1,11 +1,11 @@
 .missionStatement{
-    background: rgb(179,111,63, .7);
+    background: rgb(179,111,63, .6);
     color: black;
-    margin-top: -100px;
+    margin-top: -200px;
     position: relative;
     left: 12%;
     font-size: 30px;
     padding: 20px;
     font-weight: bold;
-    /* opacity: .5; */
+    border-radius: 10px;
 }
