@@ -7,7 +7,11 @@ const userSchema = new Schema({
     admin: {
         type: Boolean,
         default: false
-    }
+    },
+    product: [{
+        type: Schema.Types.ObjectId,
+        ref: "product"
+      }]
 });
 
 
