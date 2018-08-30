@@ -15,6 +15,9 @@ class Header extends Component {
             ]
             default: 
                 return [
+                    <li key="4" style={{margin: '0 10px'}}>
+                        Total: {this.props.amount}
+                    </li>,
                     <li key="1">Admin!</li>,
                     <li key="8"><a href='/api/logout'>Logout</a></li>,
                     
@@ -32,7 +35,7 @@ class Header extends Component {
                 <div className="nav-wrapper">
                     <Link 
                         //if 'this.props.auth' returns a user then we go 'to/surveys', otherwise we go to '/'
-                        to={this.props.auth ? '/surveys' : '/' }                        
+                        to={this.props.auth ? '/home' : '/' }                        
                         className="left brand-logo"
                     >
                         Art Gutter

@@ -14,7 +14,6 @@ module.exports = app => {
             source: token  //req.body.id
         });
 
-        req.user.credits += 5;
         const user = await req.user.save();
 
         console.log('token', token)
