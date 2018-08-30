@@ -10,23 +10,22 @@ class Header extends Component {
                 return;
             case false: 
                 return [
-                <li key="5"><a href="/auth/google">Login With Google</a></li>,
-                <li key="6"><a href="/gallery">Visit Gallery</a></li>                
+                <li key="5"><a href="/auth/google">Login With Google</a></li>,              
+                console.log('this.props.auth', this.props.auth)
+                    
             ]
             default: 
                 return [
-                    <li key="1"><Payments /></li>,
-                    <li key="7"><a href="/gallery">Explore Art</a></li>,                    
+                    <li key="1"><Payments /></li>,                   
                     <li key="3" style={{margin: '0 10px'}}>
                         {this.props.auth.firstName}
                     </li>,
                     <li key="4" style={{margin: '0 10px'}}>
                         Total: {this.props.amount}
                     </li>,
-                    <li key="2"><a href='/admin'>Become An Admin</a></li>,
                     <li key="8"><a href='/api/logout'>Logout</a></li>,
                     
-                    // console.log('this.props.auth', this.props.auth)
+                    console.log('this.props.auth', this.props.auth)
             ];
         }
     }
@@ -41,10 +40,10 @@ class Header extends Component {
                 <div className="nav-wrapper">
                     <Link 
                         //if 'this.props.auth' returns a user then we go 'to/surveys', otherwise we go to '/'
-                        to={this.props.auth ? '/surveys' : '/' }                        
+                        to={this.props.auth ? '/home' : '/' }                        
                         className="left brand-logo"
                     >
-                        Gallery
+                        Art Gutter
                     </Link>
                     <ul className="right">
                         { this.renderContent() }

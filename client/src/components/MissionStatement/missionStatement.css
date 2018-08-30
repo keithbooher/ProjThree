@@ -1,0 +1,11 @@
+.missionStatement{
+    background: rgb(179,111,63, .6);
+    color: black;
+    margin-top: -200px;
+    position: relative;
+    left: 12%;
+    font-size: 30px;
+    padding: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+}
