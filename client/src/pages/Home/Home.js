@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import API from "../../utils/API";
@@ -10,7 +9,6 @@ import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
 // import Landing from '../../components/Landing';
 // import Gallery from '../../components/Gallery';
-const Dashboard = () => <h2>Dashboard</h2>
 
 class App extends Component {
     state = {
@@ -24,7 +22,6 @@ class App extends Component {
         this.props.fetchUser();
         this.loadCurrentUser();     
     }
-
 
 
     // loadProducts = () => {
@@ -87,17 +84,14 @@ class App extends Component {
                 </Row>
 
                 <div className="container">
-                    <BrowserRouter>
                     <div>
                         <Row>
                             <Col size="sm-10 offset-'sm-1">
                                 <MissionStatement/>
                             </Col>
                         </Row>
-                    </div>
-                        
-                    </BrowserRouter>
-            </div>
+                    </div>                        
+                </div>
             </div>
         );
     };

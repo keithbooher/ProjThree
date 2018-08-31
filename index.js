@@ -34,8 +34,13 @@ app.use(passport.session());
 // when we require the authroutes file it returns a function. We the then immediately invoke the function with the app object (express)
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+<<<<<<< HEAD
+=======
 require('./routes/api/galleryList')(app);
+>>>>>>> master
 require('./routes/api/user')(app);
+require('./routes/api/gallery')(app);
+
 
 
 
