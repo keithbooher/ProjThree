@@ -1,8 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter, Route} from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-import API from "../utils/API";
 
 import Home from '../pages/Home'
 import Trending from '../pages/Trending'

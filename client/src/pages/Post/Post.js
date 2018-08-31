@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import API from "../../utils/API";
-import MissionStatement from "../../components/MissionStatement/missionStatement";
 import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
+
+import "./Post.css";
+
 
 class Post extends Component {
     state = {
@@ -33,11 +34,22 @@ class Post extends Component {
 
     //  Function to handle form submit
     handleFormSubmit = event => {
-    event.preventDefault();
-    console.log(this.state)
-    let { title, price, img } = this.state;
-    let query = { title, price, img }
-    console.log(query);
+        event.preventDefault();
+        console.log(this.state)
+        let { title, price, img } = this.state;
+        let query = { title, price, img }
+        console.log(query);
+
+        const newProduct = {
+            title: this.state.title,
+            price: this.state.price,
+            img: this.state.img
+        }
+
+        API.saveProduct(newProduct)
+        .then( console.log("success"))
+        .catch(err => console.log(err));
+
     }
     
 
@@ -77,24 +89,30 @@ class Post extends Component {
         return (
             <div>
                 {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
-                <div size="sm-10 offset-'sm-1">
-                    <form>
-                        {}
-                        <div className="form-group">
-                        <label htmlFor="title">Title of work: </label>
-                            <input value={this.state.title} onChange={this.handleInputChange} type="text" className="form-control" id="title" name="title"  placeholder="Please enter a Title for your work"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="price">Price</label>
-                            <input value={this.state.price} onChange={this.handleInputChange} type="integer" className="form-control" id="price" name="price" placeholder="Please set a price for your work"/>
-                        </div>
-                        <div className="form-group">
-                        <label htmlFor="img">Example file input</label>
-                            <input value={this.state.img} onChange={this.handleInputChange} type="file" className="form-control-file" id="img" name="img"/>
-                        </div>
-                        <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
-                    </form>
-                </div> 
+                <Row>
+                    <Col size="sm-2 offset-'sm-11">
+                        <SideBar user={this.state.user}/>
+                    </Col>
+                </Row> 
+                <div className="container productForm">
+                    <div size="sm-10 offset-'sm-1">
+                        <form>
+                            <div className="form-group">
+                                <label className="title" htmlFor="title">Title of work: </label>
+                                <input value={this.state.title} onChange={this.handleInputChange} type="text" className="form-control titleInput" id="title" name="title"  placeholder="Please enter a Title for your work"/>
+                            </div>
+                            <div className="form-group">
+                                <label className="price" htmlFor="price">Price: </label>
+                                <input value={this.state.price} onChange={this.handleInputChange} type="integer" className="form-control priceInput" id="price" name="price" placeholder="Please set a price for your work"/>
+                            </div>
+                            <div className="form-group">
+                                <label className="imageFile" htmlFor="img">Image File</label>
+                                <input value={this.state.img} onChange={this.handleInputChange} type="file" className="form-control-file imageFileInput" id="img" name="img"/>
+                            </div>
+                            <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
+                        </form>
+                    </div> 
+                </div>
             </div>
         );
     };

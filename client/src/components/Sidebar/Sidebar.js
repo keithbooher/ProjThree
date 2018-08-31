@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect } from 'react-redux';
-import API from "../../utils/API";
 
 
 import List from "../List/List";
@@ -23,7 +22,7 @@ class Sidebar extends Component {
 
 
     loggedIn = () => {
-        if (Object.keys(this.state.user).length == 0) {
+        if (Object.keys(this.state.user).length === 0) {
             console.log("not logged in")
             return false
         } else {
@@ -72,7 +71,7 @@ class Sidebar extends Component {
 
     render(){
         return(
-            <div class = "sideBar">
+            <div className = "sideBar">
                 <h5 className="sidebarTitle">Explore the Gutter</h5>
                 <UnorderedList>
                     <List>

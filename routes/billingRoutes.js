@@ -10,7 +10,7 @@ module.exports = app => {
         const charge = await stripe.charges.create({
             amount: amount,
             currency: 'usd',
-            description: '$5 for 5 credit',
+            description: 'money for art',
             source: token  //req.body.id
         });
 
