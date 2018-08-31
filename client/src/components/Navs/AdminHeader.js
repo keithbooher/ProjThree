@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import Payments from './Payments';
+import "./nav.css"
 
 class Header extends Component {
     renderContent() {
@@ -15,10 +16,11 @@ class Header extends Component {
             ]
             default: 
                 return [
+                    <li className="admin" key="1">Admin!</li>,
+                    <li key="2"> <Payments /></li>,                    
                     <li key="4" style={{margin: '0 10px'}}>
                         Total: {this.props.amount}
                     </li>,
-                    <li key="1">Admin!</li>,
                     <li key="8"><a href='/api/logout'>Logout</a></li>,
                     
             ];

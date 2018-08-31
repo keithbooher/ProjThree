@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const artController = require("../../controllers/artController");
-const userController = require("../../controllers/userController");
+// const artController = require("../../controllers/artController");
+// const userController = require("../../controllers/userController");
 const User = require("../../models/User")
 
 
