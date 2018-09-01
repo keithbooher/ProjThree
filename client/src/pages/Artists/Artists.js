@@ -6,6 +6,12 @@ import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
+import Anchor from "../../components/Anchor/Anchor";
+import List from "../../components/List/List";
+import UnorderedList from "../../components/List/UnorderedList";
+
+import "./Artists.css"
+
 
 class Artists extends Component {
     state = {
@@ -26,8 +32,8 @@ class Artists extends Component {
     loadUsers = () => {
         console.log('test')
         API.getUser()
-            .then(res => this.setState({ users: res.body }))
-            .then(console.log(this.state.users))
+            .then(res => this.setState({ users: res.data }))
+            .then(res => console.log('res', res.data))
             .catch(err => console.log(err));
     };
 
@@ -71,7 +77,18 @@ class Artists extends Component {
                     </Col>
                 </Row> 
                 <div className="container">
-                 
+                {(this.state.users.map((user, i) => (
+                    <UnorderedList class="unorderedNameList">
+                        <List class="nameList">
+                            <Anchor 
+                                href={"/artist/" + user._id}
+                                text={user.firstName}
+                                class={"artistNames"}
+                            />
+                        </List>
+                    </UnorderedList>
+                    )
+                ))}
                 </div>
             </div>
         );

@@ -1,7 +1,7 @@
 import React from "react";
 
 const ListItem = props =>
-  <li className="list-group-item">
+  <li className={`${props.class} list-group-item`}>
     {props.children}
   </li>;
 

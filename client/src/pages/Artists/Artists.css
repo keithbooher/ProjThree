@@ -1,0 +1,13 @@
+.artistNames {
+    font-size: 50px;
+    color: black;
+}
+
+.list-group-item.unorderedNameList {
+    margin-left: 20%; 
+    background: rgba(76, 175, 80, 0);
+}
+
+.list-group-item.nameList {
+    background: rgba(76, 175, 80, 0);
+}

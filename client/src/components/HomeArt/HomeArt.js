@@ -3,25 +3,25 @@ import React from "react";
 const HomeArt = props =>(
    
     <div>
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src={props.imagePlaceholder} alt="First slide"/>
+        <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+            <div className="carousel-inner">
+                <div className="carousel-item active">
+                    <img className="d-block w-100" src={props.imagePlaceholder} alt="First slide"/>
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src={props.imagePlaceholder} alt="Second slide"/>
+                <div className="carousel-item">
+                    <img className="d-block w-100" src={props.imagePlaceholder} alt="Second slide"/>
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src={props.imagePlaceholder} alt="Third slide"/>
+                <div className="carousel-item">
+                    <img className="d-block w-100" src={props.imagePlaceholder} alt="Third slide"/>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
+            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
+            <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="sr-only">Next</span>
             </a>
         </div>
 
