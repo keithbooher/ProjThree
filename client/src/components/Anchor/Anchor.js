@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Anchor = (props) =>
-  <a href={`${props.href}`}> {props.text}</a>
+  <a className={`${props.class}`} href={`${props.href}`}> {props.text}</a>
 
   ;
 

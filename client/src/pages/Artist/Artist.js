@@ -6,6 +6,8 @@ import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import "./Artist.css"
 
 class Artist extends Component {
     state = {
@@ -62,8 +64,21 @@ class Artist extends Component {
                         <SideBar user={this.state.user}/>
                     </Col>
                 </Row> 
-                <div className="container">
-                 
+                <div className="container productContent">
+                    <Row>
+                        <Col size="sm-3" offset="sm-3" Class="productCard">
+                            <Card>
+                                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                                <CardBody>
+                                <CardTitle>Card title</CardTitle>
+                                <CardSubtitle>Card subtitle</CardSubtitle>
+                                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                                <Button>Button</Button>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row> 
+
                 </div>
             </div>
         );
