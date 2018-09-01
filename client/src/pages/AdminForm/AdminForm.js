@@ -86,6 +86,8 @@ class Admin extends Component {
         API.changeUser(currentUser)
             .then(console.log("success"))
             .catch(err => console.log(err));
+            window.location.reload();
+            
     }
 
     // Function to handle form input
@@ -125,6 +127,9 @@ class Admin extends Component {
                         </FormGroup>
                     </Form>
                     <button onClick={() => this.changeUserStatus()}>Become an Admin</button>
+
+
+                    <button><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_DW5XNKTvUAeODU0hK38cYryqiz6QGJFF&scope=read_write">Connect with Stripe</a></button>
                 </div>
             </div>
         );

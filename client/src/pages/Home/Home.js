@@ -9,12 +9,15 @@ import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
 // import Landing from '../../components/Landing';
 // import Gallery from '../../components/Gallery';
+import HomeArt from "../../components/HomeArt/HomeArt";
+import imagePlaceholder from "../../assets/images/placeholder.png"
 
 class App extends Component {
     state = {
         amount: 0,
         products: [],
-        user: {}
+        user: {},
+        imagePlaceholder
     }
 
     componentDidMount() {
@@ -41,7 +44,7 @@ class App extends Component {
                     user: result
                 });
 
-                console.log('result', result)
+                // console.log('result', result)
                 let currentUser=this.state.user
                 API.createUser(currentUser)
                 .then( console.log("success"))
@@ -88,6 +91,11 @@ class App extends Component {
                         <Row>
                             <Col size="sm-10 offset-'sm-1">
                                 <MissionStatement/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col size="sm-10 offset-'sm1">
+                                <HomeArt imagePlaceholder={this.state.imagePlaceholder}/>
                             </Col>
                         </Row>
                     </div>                        

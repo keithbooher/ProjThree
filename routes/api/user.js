@@ -9,7 +9,7 @@ module.exports = (app) => {
   // Find All
   app.get('/api/user', (req, res) => {
     User
-    .find(req.query)
+    .find(req.body)
     .sort({ firstName: -1 })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));

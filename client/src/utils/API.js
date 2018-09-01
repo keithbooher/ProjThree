@@ -33,7 +33,6 @@ export default {
   },
   // Gets current user
   createUser: function(stuff) {
-    console.log("API")
     return axios.post("/api/user", stuff);
   },
 }; 

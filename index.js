@@ -18,6 +18,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/galleryList");
 //running express and assigning it to a variable
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //making cookies last for thirty days
 app.use( 
@@ -36,13 +37,6 @@ require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 require('./routes/api/user')(app);
 require('./routes/api/gallery')(app);
-
-
-
-
-// Routes
-// const routes = require("./routes");
-// app.use(routes);
 
 
 if (process.env.NODE_ENV === 'production') {
