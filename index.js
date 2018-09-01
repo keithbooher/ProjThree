@@ -18,6 +18,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/galleryList");
 //running express and assigning it to a variable
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //making cookies last for thirty days
 app.use( 
@@ -34,19 +35,8 @@ app.use(passport.session());
 // when we require the authroutes file it returns a function. We the then immediately invoke the function with the app object (express)
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
-<<<<<<< HEAD
-=======
-require('./routes/api/galleryList')(app);
->>>>>>> master
 require('./routes/api/user')(app);
 require('./routes/api/gallery')(app);
-
-
-
-
-// Routes
-// const routes = require("./routes");
-// app.use(routes);
 
 
 if (process.env.NODE_ENV === 'production') {

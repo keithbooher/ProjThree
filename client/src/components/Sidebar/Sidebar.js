@@ -23,10 +23,10 @@ class Sidebar extends Component {
 
     loggedIn = () => {
         if (Object.keys(this.state.user).length === 0) {
-            console.log("not logged in")
+            // console.log("not logged in")
             return false
         } else {
-            console.log("logged in")
+            // console.log("logged in")
             return true
         }
     }
@@ -34,10 +34,10 @@ class Sidebar extends Component {
     adminStatus = () => {
         if(this.loggedIn() === true) {
             if (this.state.user.admin === false || null) {
-                console.log("not an admin")
+                // console.log("not an admin")
                 return false
             } else {
-                console.log("you are an admin")
+                // console.log("you are an admin")
                 return true
             }
         } else {
@@ -54,7 +54,7 @@ class Sidebar extends Component {
                 this.setState({
                     user: result
                 });
-            console.log("state", this.state.user)      
+            // console.log("state", this.state.user)      
             this.loggedIn();  
             },
             // Note: it's important to handle errors here

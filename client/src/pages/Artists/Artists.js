@@ -11,20 +11,25 @@ class Artists extends Component {
     state = {
         amount: 0,
         products: [],
-        user: {}
+        user: {},
+        users: [],
+        
     }
 
     componentDidMount() {
-        // this.loadProducts();
         this.props.fetchUser();
+        this.loadUsers();        
         this.loadCurrentUser();     
     }
 
-    // loadProducts = () => {
-    //     API.getProducts()
-    //         .then(res => this.setState({ products: res.data }))
-    //         .catch(err => console.log(err));
-    // };
+
+    loadUsers = () => {
+        console.log('test')
+        API.getUser()
+            .then(res => this.setState({ users: res.body }))
+            .then(console.log(this.state.users))
+            .catch(err => console.log(err));
+    };
 
     loadCurrentUser = () => {
         fetch("/api/current_user")
@@ -40,9 +45,7 @@ class Artists extends Component {
                 let currentUser=this.state.user
                 API.createUser(currentUser)
                 .then( console.log("success"))
-                .catch(err => console.log(err));
-
-                console.log("state", this.state.user)            
+                .catch(err => console.log(err));                         
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow

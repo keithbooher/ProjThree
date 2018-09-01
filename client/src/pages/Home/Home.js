@@ -41,7 +41,7 @@ class App extends Component {
                     user: result
                 });
 
-                console.log('result', result)
+                // console.log('result', result)
                 let currentUser=this.state.user
                 API.createUser(currentUser)
                 .then( console.log("success"))
