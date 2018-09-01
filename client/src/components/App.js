@@ -11,6 +11,8 @@ import Customize from '../pages/Customize'
 import Post from '../pages/Post'
 import Delete from '../pages/Delete'
 import Checkout from '../pages/Checkout'
+import Footer from "../components/Footer/Footer";
+import "./App.css";
 
 
 import Modal from './submitModal';
@@ -34,7 +36,7 @@ const App = () => (
                 
             </div>
         </BrowserRouter>
-        {/* <Modal /> */}
+        <Footer/>
     </div>
 )
 

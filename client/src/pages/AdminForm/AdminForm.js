@@ -86,6 +86,8 @@ class Admin extends Component {
         API.changeUser(currentUser)
             .then(console.log("success"))
             .catch(err => console.log(err));
+            window.location.reload();
+            
     }
 
     // Function to handle form input
