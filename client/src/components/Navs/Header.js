@@ -11,7 +11,7 @@ class Header extends Component {
             case false: 
                 return [
                 <li key="5"><a href="/auth/google">Login With Google</a></li>,              
-                console.log('this.props.auth', this.props.auth)
+                // console.log('this.props.auth', this.props.auth)
                     
             ]
             default: 
@@ -25,7 +25,7 @@ class Header extends Component {
                     </li>,
                     <li key="8"><a href='/api/logout'>Logout</a></li>,
                     
-                    console.log('this.props.auth', this.props.auth)
+                    // console.log('this.props.auth', this.props.auth)
             ];
         }
     }

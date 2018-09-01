@@ -11,7 +11,7 @@ class Artist extends Component {
     state = {
         amount: 0,
         products: [],
-        user: {}
+        user: {},
     }
 
     componentDidMount() {
@@ -20,11 +20,6 @@ class Artist extends Component {
         this.loadCurrentUser();     
     }
 
-    // loadProducts = () => {
-    //     API.getProducts()
-    //         .then(res => this.setState({ products: res.data }))
-    //         .catch(err => console.log(err));
-    // };
 
     loadCurrentUser = () => {
         fetch("/api/current_user")

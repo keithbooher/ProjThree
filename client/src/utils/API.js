@@ -28,13 +28,11 @@ export default {
   getUser: function() {
     return axios.get("/api/user");
   },
-
   getUserById: function() {
     return axios.get("/api/user/:id");
   },
   // Gets current user
   createUser: function(stuff) {
-    console.log("API")
     return axios.post("/api/user", stuff);
   },
 }; 
