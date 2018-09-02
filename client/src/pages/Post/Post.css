@@ -29,6 +29,10 @@
 }
 
 .productForm {
-    margin-top: -20%;
+    margin-top: -17%;
     width: 60%;
+}
+
+.form-group {
+    margin-left: 15%;
 }
