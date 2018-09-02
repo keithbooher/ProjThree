@@ -20,7 +20,7 @@ module.exports = (app) => {
       .catch(err => res.status(422).json(err));
   })
 
-  app.post('/api/product', (req, res) => {
+  app.post('/api/product/:id', (req, res) => {
     Product
       .create(req.body)
       .then(dbModel => res.json(dbModel))
