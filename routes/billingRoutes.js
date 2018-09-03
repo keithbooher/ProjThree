@@ -9,11 +9,11 @@ module.exports = app => {
 
         //creating the charge here
         const charge = await stripe.charges.create({
-            amount: 10000,
+            amount: req.body.price,
             currency: 'usd',
             description: 'money for art',
             source: req.body.id,
-            application_fee: 1000
+            application_fee: req.body.platform_fee
         }, {
             stripe_account: req.body.stripe_account
           });
@@ -44,16 +44,25 @@ module.exports = app => {
 
 };
 
+// *********************************************************************************************
+// ************ URL brought back from going through the stripe oAuth Process *******************
+// *********************************************************************************************
 // keibooher@gmail.com stripe that registered for our app returned: 
 // http://localhost:3000/api/stripe/?scope=read_write&code=ac_DW9PDT7JFl68eSv2yKHUMcMGyOmaKK1z
 
 
+// *************************************************
+// ******************* curl request ****************
+// *************************************************
 // $ curl https://connect.stripe.com/oauth/token 
 // -d client_secret=sk_test_uDaKbfwMIWARk54H2UiKxeIv 
 // -d code="ac_DWKaguXB4R7xSdaISIvDZKxLNtAZF8Y0" 
 // -d grant_type=authorization_code
 
 
+// ********************************************************
+// **************** Response to curl Request **************
+// ********************************************************
 // "access_token": "sk_test_UouLbnFMyZwBZXESXboDeWVS",
 // "livemode": false,
 // "refresh_token": "rt_DWKayariSj5HIMgtFOYrLOriq6hiSGPAfUj3Cyu3NwOVK5Kw",
