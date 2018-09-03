@@ -14,14 +14,45 @@ import "./Artist.css"
 class Artist extends Component {
     state = {
         amount: 0,
+        productIDs: [],
         products: [],
         user: {},
     }
 
     componentDidMount() {
-        // this.loadProducts();
         this.props.fetchUser();
-        this.loadCurrentUser();     
+        this.loadCurrentUser();    
+         
+    }
+
+    loadProductIds = () => {
+        const userProducts = this.state.user.product
+        const userProductsArray = [];
+        for (let i = 0; i < userProducts.length; i++) {
+            userProductsArray.push(userProducts[i])
+        }
+        console.log('userProductsArray', userProductsArray)
+        this.setState({ productIDs: userProductsArray })
+        this.loadUsersProducts()
+    }
+
+    loadUsersProducts = () => {
+        
+        const productIDs = this.state.productIDs
+        const productObjectsArray = [];
+        for (let i = 0; i < productIDs.length; i++) {
+            API.getProduct(productIDs[i])
+            .then(result => productObjectsArray.push(result.data))
+            .catch(err => console.log(err));
+        }
+        console.log('productObjectsArray', productObjectsArray)
+        this.setState({ products: productObjectsArray })
+        this.consolelog()
+    }
+
+    consolelog = () => {
+        console.log('productIDs', this.state.productIDs)
+        console.log('products', this.state.products)        
     }
 
 
@@ -41,7 +72,9 @@ class Artist extends Component {
                 .then( console.log("success"))
                 .catch(err => console.log(err));
 
-                console.log("state", this.state.user)            
+                console.log("state", this.state.user)    
+                this.loadProductIds();
+                        
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow

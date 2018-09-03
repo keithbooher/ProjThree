@@ -5,8 +5,8 @@ const productSchema = new Schema({
   productName: { type: String, required: true },
   price: { type: Number, required: true },
   img: String,
-  stripeAccount: Number,
-  associatedID: Number,
+  stripeAccount: String,
+  associatedID: String,
   platformFee: Number
 });
 
