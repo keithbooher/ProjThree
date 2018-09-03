@@ -28,25 +28,27 @@ class Post extends Component {
     //  Function to handle form input
     handleInputChange = event => {
     let { name, value } = event.target;
-    console.log(value)
+    // console.log(value)
     this.setState({[name] : value})
     };
 
     //  Function to handle form submit
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log(this.state)
+        // console.log(this.state)
         let { title, price, img } = this.state;
         let query = { title, price, img }
-        console.log(query);
+        // console.log(query);
+
+        const platformFee = (this.state.price * .1)
 
         const newProduct = {
-            title: this.state.title,
+            productName: this.state.title,
             price: this.state.price,
             img: this.state.img,
             stripeAccount: this.state.user.stripeAccount,
             associatedID: this.state.user._id,
-            platformFee: (this.state.price * .1)
+            platformFee: platformFee
         }
 
         API.saveProduct(this.state.user._id, newProduct)

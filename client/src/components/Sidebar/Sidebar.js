@@ -7,6 +7,8 @@ import UnorderedList from "../List/UnorderedList";
 import "./Sidebar.css";
 import Anchor from "../Anchor/Anchor"
 import AdminList from "../List/AdminList"
+import LoggedInList from "../List/LoggedInList"
+
 
 
 class Sidebar extends Component {
@@ -86,6 +88,7 @@ class Sidebar extends Component {
                             href="/artists"
                         />                   
                     </List>
+                    {this.adminStatus() ? <LoggedInList /> : ""}                    
                     {this.adminStatus() ? <AdminList /> : ""}
                     {this.adminStatus() ? "" :                     
                     <List>

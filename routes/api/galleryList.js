@@ -6,7 +6,7 @@ const Product = require("../../models/Product")
 
 module.exports = (app) =>{
 // db.Product
-app.post("/api/products", function(req, res, next) {
+app.post("/api/product", function(req, res, next) {
     console.log(req.body, 'Body');
     Product
     .create(req.body)
