@@ -19,8 +19,9 @@ module.exports = (app) => {
   app.get('/api/user/:id', (req, res) => {
     User
     .findById(req.params.id)
+    .then(dbModel => console.log(dbModel))
     .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
+    .catch(err => res.json(err));
   })
   
   // Create User

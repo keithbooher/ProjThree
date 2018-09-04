@@ -87,8 +87,7 @@ class Sidebar extends Component {
                             text="View All Our Artists"
                             href="/artists"
                         />                   
-                    </List>
-                    {this.adminStatus() ? <LoggedInList /> : ""}                    
+                    </List>                
                     {this.adminStatus() ? <AdminList /> : ""}
                     {this.adminStatus() ? "" :                     
                     <List>

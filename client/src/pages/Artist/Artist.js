@@ -16,12 +16,15 @@ class Artist extends Component {
         amount: 0,
         productIDs: [],
         products: [],
+        pageArtist: {},
         user: {},
     }
 
     componentDidMount() {
         this.props.fetchUser();
-        this.loadCurrentUser();    
+        // this.loadCurrentUser();   
+        // this.loadThispageArtist();
+        this.loadThispageArtist();
          
     }
 
@@ -37,7 +40,6 @@ class Artist extends Component {
     }
 
     loadUsersProducts = () => {
-        
         const productIDs = this.state.productIDs
         const productObjectsArray = [];
         for (let i = 0; i < productIDs.length; i++) {
@@ -55,40 +57,34 @@ class Artist extends Component {
         console.log('products', this.state.products)        
     }
 
+    loadThispageArtist = () => {
+        const url = window.location.href
+        console.log('url', url)
+        const splitURL = url.split('/')
+        console.log(splitURL[4])
+        const targetedID = splitURL[4]
 
-    loadCurrentUser = () => {
-        fetch("/api/current_user")
-        .then(res => res.json())
-        .then(
-            (result) => {
-                this.setState({
-                    isLoaded: true,
-                    user: result
-                });
-
-                console.log('result', result)
-                let currentUser=this.state.user
-                API.createUser(currentUser)
-                .then( console.log("success"))
-                .catch(err => console.log(err));
-
-                console.log("state", this.state.user)    
-                this.loadProductIds();
-                        
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-            this.setState({
-                isLoaded: true,
-                error
-            });
+        let users;
+        
+        API.getUser()
+        .then(res => { 
+            users = res.data 
+            console.log('users', users)
+            for (let i = 0; i < users.length; i++) {
+                // console.log('userID', users[i])
+                // console.log('targetedID', targetedID)
+                if(users[i]._id == targetedID) {
+                    this.setState({ user: users[i] })
+                    this.loadProductIds();
+                    console.log('success')
+                }
             }
-        )
-    };
+        })                      
+        .catch(err => console.log(err));
 
-
+        
+        
+    }
 
     render() {
         return (
