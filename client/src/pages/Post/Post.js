@@ -28,25 +28,30 @@ class Post extends Component {
     //  Function to handle form input
     handleInputChange = event => {
     let { name, value } = event.target;
-    console.log(value)
+    // console.log(value)
     this.setState({[name] : value})
     };
 
     //  Function to handle form submit
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log(this.state)
+        // console.log(this.state)
         let { title, price, img } = this.state;
         let query = { title, price, img }
-        console.log(query);
+        // console.log(query);
+
+        const platformFee = (this.state.price * .1)
 
         const newProduct = {
-            title: this.state.title,
+            productName: this.state.title,
             price: this.state.price,
-            img: this.state.img
+            img: this.state.img,
+            stripeAccount: this.state.user.stripeAccount,
+            associatedID: this.state.user._id,
+            platformFee: platformFee
         }
 
-        API.saveProduct(newProduct)
+        API.saveProduct(this.state.user._id, newProduct)
         .then( console.log("success"))
         .catch(err => console.log(err));
 
@@ -62,7 +67,6 @@ class Post extends Component {
                     isLoaded: true,
                     user: result
                 });
-
                 console.log('result', result)
                 let currentUser=this.state.user
                 API.createUser(currentUser)
@@ -109,7 +113,7 @@ class Post extends Component {
                                 <label className="imageFile" htmlFor="img">Image File</label>
                                 <input value={this.state.img} onChange={this.handleInputChange} type="file" className="form-control-file imageFileInput" id="img" name="img"/>
                             </div>
-                            <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
+                            <button type="submit" className="btn btn-primary form-group" onClick={this.handleFormSubmit}>Submit</button>
                         </form>
                     </div> 
                 </div>

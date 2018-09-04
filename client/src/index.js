@@ -7,6 +7,7 @@ import reduxThunk from 'redux-thunk';
 import './index.css';
 import App from './components/App';
 import reducers from './reducers';
+import 'bootstrap/dist/css/bootstrap.css';
 
 // Use the createStore helper to create a new instance of our redux Store
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));

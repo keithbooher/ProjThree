@@ -7,10 +7,10 @@ import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
-// import Landing from '../../components/Landing';
-// import Gallery from '../../components/Gallery';
 import HomeArt from "../../components/HomeArt/HomeArt";
 import imagePlaceholder from "../../assets/images/placeholder.png"
+import Card from "../../components/Card/Card";
+
 
 class App extends Component {
     state = {
@@ -98,7 +98,7 @@ class App extends Component {
                                 <HomeArt imagePlaceholder={this.state.imagePlaceholder}/>
                             </Col>
                         </Row>
-                    </div>                        
+                    </div>               
                 </div>
             </div>
         );
