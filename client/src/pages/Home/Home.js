@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import API from "../../utils/API";
@@ -8,15 +7,17 @@ import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
-// import Landing from '../../components/Landing';
-// import Gallery from '../../components/Gallery';
-const Dashboard = () => <h2>Dashboard</h2>
+import HomeArt from "../../components/HomeArt/HomeArt";
+import imagePlaceholder from "../../assets/images/placeholder.png"
+import Card from "../../components/Card/Card";
+
 
 class App extends Component {
     state = {
         amount: 0,
         products: [],
-        user: {}
+        user: {},
+        imagePlaceholder
     }
 
     componentDidMount() {
@@ -24,7 +25,6 @@ class App extends Component {
         this.props.fetchUser();
         this.loadCurrentUser();     
     }
-
 
 
     // loadProducts = () => {
@@ -44,7 +44,7 @@ class App extends Component {
                     user: result
                 });
 
-                console.log('result', result)
+                // console.log('result', result)
                 let currentUser=this.state.user
                 API.createUser(currentUser)
                 .then( console.log("success"))
@@ -87,17 +87,19 @@ class App extends Component {
                 </Row>
 
                 <div className="container">
-                    <BrowserRouter>
                     <div>
                         <Row>
                             <Col size="sm-10 offset-'sm-1">
                                 <MissionStatement/>
                             </Col>
                         </Row>
-                    </div>
-                        
-                    </BrowserRouter>
-            </div>
+                        <Row>
+                            <Col size="sm-10 offset-'sm1">
+                                <HomeArt imagePlaceholder={this.state.imagePlaceholder}/>
+                            </Col>
+                        </Row>
+                    </div>               
+                </div>
             </div>
         );
     };

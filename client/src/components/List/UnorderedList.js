@@ -1,7 +1,7 @@
 import React from "react";
 
 const UnorderedListItem = props =>
-  <ul className="list-group-item">
+  <ul className={`${props.class} list-group-item`}>
     {props.children}
   </ul>;
 

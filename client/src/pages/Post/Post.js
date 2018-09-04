@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import API from "../../utils/API";
-import MissionStatement from "../../components/MissionStatement/missionStatement";
 import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
 
+<<<<<<< HEAD
 let file;
+=======
+import "./Post.css";
+
+>>>>>>> master
 
 class Post extends Component {
   constructor () {
@@ -32,10 +35,11 @@ class Post extends Component {
     //  Function to handle form input
     handleInputChange = event => {
     let { name, value } = event.target;
-    console.log(value)
+    // console.log(value)
     this.setState({[name] : value})
     };
 
+<<<<<<< HEAD
     // //  Function to handle form submit
     // handleFormSubmit = event => {
     // event.preventDefault();
@@ -74,6 +78,31 @@ class Post extends Component {
     // }
     handleFileInput = (event) => {
       this.setState({file: event.target.files});
+=======
+    //  Function to handle form submit
+    handleFormSubmit = event => {
+        event.preventDefault();
+        // console.log(this.state)
+        let { title, price, img } = this.state;
+        let query = { title, price, img }
+        // console.log(query);
+
+        const platformFee = (this.state.price * .1)
+
+        const newProduct = {
+            productName: this.state.title,
+            price: this.state.price,
+            img: this.state.img,
+            stripeAccount: this.state.user.stripeAccount,
+            associatedID: this.state.user._id,
+            platformFee: platformFee
+        }
+
+        API.saveProduct(this.state.user._id, newProduct)
+        .then( console.log("success"))
+        .catch(err => console.log(err));
+
+>>>>>>> master
     }
     
 
@@ -86,7 +115,6 @@ class Post extends Component {
                     isLoaded: true,
                     user: result
                 });
-
                 console.log('result', result)
                 let currentUser=this.state.user
                 API.createUser(currentUser)
@@ -113,6 +141,7 @@ class Post extends Component {
         return (
             <div>
                 {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
+<<<<<<< HEAD
                 <div size="sm-10 offset-'sm-1">
                     <form>
                         {}
@@ -131,6 +160,32 @@ class Post extends Component {
                         <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
                     </form>
                 </div> 
+=======
+                <Row>
+                    <Col size="sm-2 offset-'sm-11">
+                        <SideBar user={this.state.user}/>
+                    </Col>
+                </Row> 
+                <div className="container productForm">
+                    <div size="sm-10 offset-'sm-1">
+                        <form>
+                            <div className="form-group">
+                                <label className="title" htmlFor="title">Title of work: </label>
+                                <input value={this.state.title} onChange={this.handleInputChange} type="text" className="form-control titleInput" id="title" name="title"  placeholder="Please enter a Title for your work"/>
+                            </div>
+                            <div className="form-group">
+                                <label className="price" htmlFor="price">Price: </label>
+                                <input value={this.state.price} onChange={this.handleInputChange} type="integer" className="form-control priceInput" id="price" name="price" placeholder="Please set a price for your work"/>
+                            </div>
+                            <div className="form-group">
+                                <label className="imageFile" htmlFor="img">Image File</label>
+                                <input value={this.state.img} onChange={this.handleInputChange} type="file" className="form-control-file imageFileInput" id="img" name="img"/>
+                            </div>
+                            <button type="submit" className="btn btn-primary form-group" onClick={this.handleFormSubmit}>Submit</button>
+                        </form>
+                    </div> 
+                </div>
+>>>>>>> master
             </div>
         );
     };

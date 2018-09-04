@@ -7,15 +7,15 @@ export default {
   },
   // Gets the book with the given id
   getProduct: function(id) {
-    return axios.get("/api/products/" + id);
+    return axios.get("/api/product/" + id);
   },
   // Deletes the book with the given id
   deleteProduct: function(id) {
     return axios.delete("/api/products/" + id);
   },
   // Saves a book to the database
-  saveProduct: function(productData) {
-    return axios.post("/api/products", productData);
+  saveProduct: function(id, productData) {
+    return axios.post("/api/product/" + id, productData);
   },
   saveImage: function(imageData, type) {
     return axios.post("/api/uploadImage", imageData, type)
@@ -31,13 +31,11 @@ export default {
   getUser: function() {
     return axios.get("/api/user");
   },
-
-  getUserById: function() {
-    return axios.get("/api/user/:id");
+  getUserById: function(id) {
+    return axios.get("/api/user/" + id);
   },
   // Gets current user
   createUser: function(stuff) {
-    console.log("API")
     return axios.post("/api/user", stuff);
   },
 }; 

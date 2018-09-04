@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import API from "../../utils/API";
 
 import Header from '../../components/Navs/Header';
 import { Form, Input, FormBtn, FormGroup, Label } from "../../components/Form";
+import {Row, Col} from "../../components/Grid"
+import SideBar from "../../components/Sidebar/Sidebar";
 
 
-
-
-
-
-// import Landing from '../../components/Landing';
-// import Gallery from '../../components/Gallery';
-const Dashboard = () => <h2>Dashboard</h2>
 
 class Admin extends Component {
     state = {
@@ -92,6 +86,8 @@ class Admin extends Component {
         API.changeUser(currentUser)
             .then(console.log("success"))
             .catch(err => console.log(err));
+            window.location.reload();
+            
     }
 
     // Function to handle form input
@@ -111,7 +107,12 @@ class Admin extends Component {
     render() {
         return (
             <div>
-                <Header />                
+                <Header />  
+                <Row>
+                    <Col size="sm-2 offset-'sm-11">
+                        <SideBar user={this.state.user}/>
+                    </Col>
+                </Row>              
                 <div className="container">
                     <Form>
                         <FormGroup>
@@ -126,6 +127,9 @@ class Admin extends Component {
                         </FormGroup>
                     </Form>
                     <button onClick={() => this.changeUserStatus()}>Become an Admin</button>
+
+
+                    <button><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_DW5XNKTvUAeODU0hK38cYryqiz6QGJFF&scope=read_write">Connect with Stripe</a></button>
                 </div>
             </div>
         );

@@ -34,10 +34,15 @@ function uploadToS3(file){
 
 module.exports = (app) =>{
 // db.Product
+<<<<<<< HEAD
 app.post("/api/products", function(req, res, next) {
     console.log(req.body);
     // console.log(req.files.file)
     // uploadToS3(req.files.file);
+=======
+app.post("/api/product", function(req, res, next) {
+    console.log(req.body, 'Body');
+>>>>>>> master
     Product
     .create(req.body)
     .then(dbModel => res.json(dbModel))

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import API from "../../utils/API";
-import MissionStatement from "../../components/MissionStatement/missionStatement";
 import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
@@ -64,6 +62,14 @@ class Checkout extends Component {
         return (
             <div>
                 {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
+                <Row>
+                    <Col size="sm-2 offset-'sm-11">
+                        <SideBar user={this.state.user}/>
+                    </Col>
+                </Row> 
+                <div className="container">
+                 
+                </div>
             </div>
         );
     };

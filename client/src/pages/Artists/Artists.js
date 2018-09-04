@@ -1,32 +1,41 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import API from "../../utils/API";
-import MissionStatement from "../../components/MissionStatement/missionStatement";
 import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
+import Anchor from "../../components/Anchor/Anchor";
+import List from "../../components/List/List";
+import UnorderedList from "../../components/List/UnorderedList";
+
+import "./Artists.css"
+
 
 class Artists extends Component {
     state = {
         amount: 0,
         products: [],
-        user: {}
+        user: {},
+        users: [],
+        
     }
 
     componentDidMount() {
-        // this.loadProducts();
         this.props.fetchUser();
+        this.loadUsers();        
         this.loadCurrentUser();     
     }
 
-    // loadProducts = () => {
-    //     API.getProducts()
-    //         .then(res => this.setState({ products: res.data }))
-    //         .catch(err => console.log(err));
-    // };
+
+    loadUsers = () => {
+        console.log('test')
+        API.getUser()
+            .then(res => this.setState({ users: res.data }))
+            .then(res => console.log('res', res.data))
+            .catch(err => console.log(err));
+    };
 
     loadCurrentUser = () => {
         fetch("/api/current_user")
@@ -42,9 +51,7 @@ class Artists extends Component {
                 let currentUser=this.state.user
                 API.createUser(currentUser)
                 .then( console.log("success"))
-                .catch(err => console.log(err));
-
-                console.log("state", this.state.user)            
+                .catch(err => console.log(err));                         
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -64,6 +71,25 @@ class Artists extends Component {
         return (
             <div>
                 {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
+                <Row>
+                    <Col size="sm-2 offset-'sm-11">
+                        <SideBar user={this.state.user}/>
+                    </Col>
+                </Row> 
+                <div className="container">
+                {(this.state.users.map((user, i) => (
+                    <UnorderedList class="unorderedNameList">
+                        <List class="nameList">
+                            <Anchor 
+                                href={"/artist/" + user._id}
+                                text={user.firstName}
+                                class={"artistNames"}
+                            />
+                        </List>
+                    </UnorderedList>
+                    )
+                ))}
+                </div>
             </div>
         );
     };

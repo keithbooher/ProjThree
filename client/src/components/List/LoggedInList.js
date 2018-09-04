@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
+
 import List from "../List/List";
 import Anchor from "../Anchor/Anchor"
+import API from "../../utils/API";
 
 
-class AdminList extends Component {
+class LoggedInSidebar extends Component {
 
     state = {
         user: {},
@@ -28,7 +30,7 @@ class AdminList extends Component {
                     user: result
                 });
 
-                // console.log('result', result)
+                console.log('result', result)
                 let currentUser=this.state.user                       
             },
             // Note: it's important to handle errors here
@@ -48,31 +50,13 @@ class AdminList extends Component {
             <div>
                 <List>
                     <Anchor 
-                        text="Customize Your Page"
-                        href="/customize"
-                    />                   
-                </List>
-                <List>
-                    <Anchor 
-                        text="Post New Art"
-                        href="/post"
-                    />                   
-                </List>
-                <List>
-                    <Anchor 
                         text="View your page"
-                        href={`/artist/${this.state.user._id}`} 
+                        href={`/artist/?${this.state.user._id}`} 
                     />                   
                 </List>
-                <List>
-                    <Anchor 
-                        text="Delete Products"
-                        href="/delete"
-                    />                   
-                </List> 
             </div>
         )
     }
 }
 
-export default connect(null, actions) (AdminList);
+export default connect(null, actions) (LoggedInSidebar);

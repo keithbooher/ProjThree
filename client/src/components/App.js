@@ -1,8 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter, Route} from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-import API from "../utils/API";
 
 import Home from '../pages/Home'
 import Trending from '../pages/Trending'
@@ -14,6 +11,8 @@ import Customize from '../pages/Customize'
 import Post from '../pages/Post'
 import Delete from '../pages/Delete'
 import Checkout from '../pages/Checkout'
+import Footer from "../components/Footer/Footer";
+import "./App.css";
 
 
 import Modal from './submitModal';
@@ -37,7 +36,7 @@ const App = () => (
                 
             </div>
         </BrowserRouter>
-        {/* <Modal /> */}
+        <Footer/>
     </div>
 )
 
