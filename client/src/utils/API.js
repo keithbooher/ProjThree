@@ -28,8 +28,8 @@ export default {
   getUser: function() {
     return axios.get("/api/user");
   },
-  getUserById: function() {
-    return axios.get("/api/user/:id");
+  getUserById: function(id) {
+    return axios.get("/api/user/" + id);
   },
   // Gets current user
   createUser: function(stuff) {

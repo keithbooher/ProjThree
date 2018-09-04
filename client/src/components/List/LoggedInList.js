@@ -51,7 +51,7 @@ class LoggedInSidebar extends Component {
                 <List>
                     <Anchor 
                         text="View your page"
-                        href={`/artist/${this.state.user._id}`} 
+                        href={`/artist/?${this.state.user._id}`} 
                     />                   
                 </List>
             </div>
