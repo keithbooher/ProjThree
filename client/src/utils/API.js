@@ -17,6 +17,9 @@ export default {
   saveProduct: function(productData) {
     return axios.post("/api/products", productData);
   },
+  saveImage: function(imageData, type) {
+    return axios.post("/api/uploadImage", imageData, type)
+  },
 
 
   

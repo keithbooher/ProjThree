@@ -9,14 +9,19 @@ import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
 
+let file;
+
 class Post extends Component {
-    state = {
-        amount: 0,
-        user: {},
-        title: "",
-        price: "",
-        img: ""
-    }
+  constructor () {
+    super();
+    this.state = {
+      amount: 0,
+      user: {},
+      title: "",
+      price: "",
+      file: null
+    };
+  }
 
     componentDidMount() {
         // this.loadProducts();
@@ -31,13 +36,44 @@ class Post extends Component {
     this.setState({[name] : value})
     };
 
-    //  Function to handle form submit
-    handleFormSubmit = event => {
-    event.preventDefault();
-    console.log(this.state)
-    let { title, price, img } = this.state;
-    let query = { title, price, img }
-    console.log(query);
+    // //  Function to handle form submit
+    // handleFormSubmit = event => {
+    // event.preventDefault();
+    // console
+    // const data = new FormData();
+    // let { title, price } = this.state;
+    // let query = { title, price };
+    // data.append("file", file);
+    // // data.append("price", price);
+    // // data.append("img", file);
+    // // query.appen
+    // d(data);
+    // console.log(data.file)
+    // console.log(query);
+    // API.saveImage(data);
+    // // API.saveProduct(query);
+    // }
+    handleFormSubmit = (event) => {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append('file', this.state.file[0]);
+      API.saveImage( formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(response => {
+        console.log("so far so good")
+      }).catch(error => {
+        console.log(error)
+      });
+    }
+
+    // handleFileInput = event => {
+    //   file = event.target.files[0]
+    //   console.log(file);
+    // }
+    handleFileInput = (event) => {
+      this.setState({file: event.target.files});
     }
     
 
@@ -82,15 +118,15 @@ class Post extends Component {
                         {}
                         <div className="form-group">
                         <label htmlFor="title">Title of work: </label>
-                            <input value={this.state.title} onChange={this.handleInputChange} type="text" className="form-control" id="title" name="title"  placeholder="Please enter a Title for your work"/>
+                            <input value={this.state.title} onChange={this.handleInputChange} type="text" className="form-control bg-white" id="title" name="title"  placeholder="Please enter a Title for your work"/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="price">Price</label>
-                            <input value={this.state.price} onChange={this.handleInputChange} type="integer" className="form-control" id="price" name="price" placeholder="Please set a price for your work"/>
+                            <input value={this.state.price} onChange={this.handleInputChange} type="integer" className="form-control bg-white" id="price" name="price" placeholder="Please set a price for your work"/>
                         </div>
                         <div className="form-group">
                         <label htmlFor="img">Example file input</label>
-                            <input value={this.state.img} onChange={this.handleInputChange} type="file" className="form-control-file" id="img" name="img"/>
+                            <input onChange={this.handleFileInput} type="file" className="form-control-file" id="img" name="img"/>
                         </div>
                         <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
                     </form>

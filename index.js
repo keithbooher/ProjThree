@@ -1,4 +1,7 @@
 const express = require('express');
+const fileupload = require('express-fileupload');
+const dotenv = require('dotenv');
+dotenv.config();
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -7,8 +10,11 @@ const keys = require('./config/keys');
 require('./models/User');
 require('./services/passport');
 
+const BUCKET_NAME = 'artgutter';
+const IAM_USER_KEY = process.env.AWS_ACCESS_KEY_ID;
+const IAM_USER_SECRET = process.env.AWS_SECRET_ACCESS_KEY;
 
-
+const AWS = require('aws-sdk')
 
 mongoose.connect(keys.mongoURI);
 
@@ -26,6 +32,8 @@ app.use(
         keys: [keys.cookieKey] 
     })
 )
+
+app.use(fileupload());
 
 //
 app.use(passport.initialize());
