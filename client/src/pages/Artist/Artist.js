@@ -16,14 +16,16 @@ let i = 0;
 class Artist extends Component {
     state = {
         amount: 0,
-        productIDs: null,
-        products: null,
+        productIDs: [],
+        products: [],
         pageArtist: {},
         user: {},
     }
     
     componentDidMount() {
         this.props.fetchUser();
+        // this.loadCurrentUser();   
+        // this.loadThispageArtist();
         this.loadThispageArtist();
     }
 
@@ -46,13 +48,30 @@ class Artist extends Component {
             .then(result => { this.setState({ products: this.state.products.concat(result)})})
             .catch(err => console.log(err));
         }
+        // console.log('productObjectsArray', productObjectsArray)
+        // this.setState({ products: productObjectsArray })
+        // this.consolelog()
+        // this.mapCards();
     }
 
+    // mapCards = () => {
+    //     console.log("WORKING", i++)
+    //     this.state.products.map((product, i) => {
+    //         console.log("PRODUCT", product.data)
+    //         return (
+    //         <Card
+    //             key={i}
+    //             image={product.img}
+    //             price={product.price}
+    //             productName={product.productName}
+    //             targetStripe={product.targetStripe}
+    //             platformFee={product.platformFee}
+    //         />
+    //         )}
+    //     )}
     consolelog = () => {
         console.log('productIDs', this.state.productIDs)
-        console.log('products', this.state.products) 
-        console.log('MAP', this.state.products.length)
-                 
+        console.log('products', this.state.products)        
     }
 
     loadThispageArtist = () => {
@@ -69,13 +88,14 @@ class Artist extends Component {
             users = res.data 
             console.log('users', users)
             for (let i = 0; i < users.length; i++) {
+                // console.log('userID', users[i])
+                // console.log('targetedID', targetedID)
                 if(users[i]._id == targetedID) {
                     this.setState({ user: users[i] })
                     this.loadProductIds();
                     console.log('success')
                 }
             }
-
         })                      
         .catch(err => console.log(err));
     }
@@ -92,19 +112,20 @@ class Artist extends Component {
                 <div className="container productContent">
                     <Row>
                         <Col size="sm-3" offset="sm-1" Class="productCard">
-                        {this.state.products ? 
-                            this.state.products.map((product, i) => (
-                                    <Card key={i}>
-                                        <CardImg top width="100%" src={product.img} alt="Card image cap" />
-                                        <CardBody>
-                                            <CardTitle>{product.productName}</CardTitle>
-                                            <CardSubtitle>{product.price}</CardSubtitle>
-                                            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                            <Payments price={product.price} targetStripe={product.stripeAccount} platformFee={product.platformFee}/>
-                                        </CardBody>
-                                    </Card>
-                            )) : " "} 
-
+                            {console.log("MAP STATE" ,this.state.products)}
+                            {this.state.products.map((product, i) => {
+                                console.log("PRODUCT", i, product.data)
+                                return (
+                                <Card
+                                    key={i}
+                                    image={product.data.img}
+                                    price={product.data.price}
+                                    productName={product.data.productName}
+                                    targetStripe={product.data.stripeAccount}
+                                    platformFee={product.data.platformFee}
+                                />
+                                )}
+                                )}
 
                         </Col>
                     </Row> 

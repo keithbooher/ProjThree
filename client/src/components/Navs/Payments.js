@@ -7,15 +7,17 @@ import * as actions from '../../actions';
 
 class Payments extends Component {
     render() {
+        // const targetStripeAccount = {
+        //     stripe_account:"acct_1D570wLWgPyrropm",
+        //     platform_fee: 1000,
+        //     price: this.props.price
+        // }
         const targetStripeAccount = {
-            stripe_account:"acct_1D570wLWgPyrropm",
-            platform_fee: 1000,
+            stripe_account: this.props.targetStripe,
+            platform_fee: this.props.platformFee,
             price: this.props.price
         }
-        // const targetStripeAccount = {
-        //     stripe_account: this.props.targetStripe,
-        //     platform_fee: this.props.platformFee
-        // }
+        console.log(targetStripeAccount)
         
         return (
             <StripeCheckout 

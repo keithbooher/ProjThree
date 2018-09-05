@@ -7,14 +7,9 @@ const Card = props => (
         <img className="card-img-top" src={props.image} alt={props.productName}></img>
         <div className="card-body">
             <h5 className="card-title">{props.productName}</h5>
-<<<<<<< HEAD
-            <p className="card-text">{props.price}</p>
-            <div>{props.children}</div>
-=======
-            <p className="card-text">${props.price}</p>
->>>>>>> master
+            <p className="card-text">${props.price * .01}</p>
         </div>
-        <Payments price={props.price} targetStripe={props.stripeAccount} platformFee={props.platformFee}/>
+        <Payments price={props.price} targetStripe={props.targetStripe} platformFee={props.platformFee}/>
     </div>
 );
 

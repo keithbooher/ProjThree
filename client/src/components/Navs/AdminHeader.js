@@ -20,9 +20,6 @@ class Header extends Component {
                     <li key="3" style={{margin: '0 10px'}}>
                         {this.props.auth.firstName}
                     </li>,                 
-                    <li key="4" style={{margin: '0 10px'}}>
-                        Total: {this.props.amount}
-                    </li>,
                     <li key="8"><a href='/api/logout'>Logout</a></li>,
                     
             ];

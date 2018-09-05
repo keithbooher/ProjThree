@@ -54,11 +54,13 @@ class Post extends Component {
         let query = { title, price, img }
         // console.log(query);
 
-        const platformFee = (this.state.price * .1)
+        const convertedPrice = this.state.price * 100;
+        const prePlatformFee = (this.state.price * .1);    
+        const platformFee = Math.round(prePlatformFee);
 
         const newProduct = {
             productName: this.state.title,
-            price: this.state.price,
+            price: convertedPrice,
             img: this.state.img,
             stripeAccount: this.state.user.stripeAccount,
             associatedID: this.state.user._id,
@@ -71,10 +73,7 @@ class Post extends Component {
       
     }
 
-    // handleFileInput = event => {
-    //   file = event.target.files[0]
-    //   console.log(file);
-    // }
+ 
     handleFileInput = (event) => {
       this.setState({file: event.target.files});
     }
@@ -114,7 +113,7 @@ class Post extends Component {
     render() {
         return (
             <div>
-                {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
+                {this.state.user.admin ? <AdminHeader/> : <Header key="1" />}
                 <Row>
                     <Col size="sm-2 offset-'sm-11">
                         <SideBar user={this.state.user}/>
