@@ -34,7 +34,10 @@ class Checkout extends Component {
         API.getProduct(targetedID)
         .then(result => console.log('result', result.data))        
         .then(result => {
-            this.setState({ product: result.data })})
+            console.log("RESULT", result.data)
+            this.setState({ product: this.state.product.concat(result.data)})
+            console.log("STATE", this.state.product[0])
+        })
         .catch(err => console.log(err));
 
     }
