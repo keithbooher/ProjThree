@@ -11,7 +11,7 @@ import Payment from "../../components/Navs/Payments";
 
 class Checkout extends Component {
     state = {
-        product: null,
+        product: [],
         user: {}
     }
 
@@ -22,7 +22,7 @@ class Checkout extends Component {
 
     componentDidMount() {
         this.props.fetchUser();
-        this.consolelog()   
+        // this.consolelog()   
     }
 
     loadThisProduct = () => {
@@ -32,6 +32,7 @@ class Checkout extends Component {
         const targetedID = splitURL[4]
 
         API.getProduct(targetedID)
+        .then(result => console.log('result', result.data))        
         .then(result => {
             this.setState({ product: result.data })})
         .catch(err => console.log(err));
