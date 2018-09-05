@@ -125,15 +125,15 @@ class Artist extends Component {
                             ))} */}
                             {console.log("MAP STATE" ,this.state.products)}
                             {this.state.products.map((product, i) => {
-                                console.log("PRODUCT", product.data)
+                                console.log("PRODUCT", i, product.data)
                                 return (
                                 <Card
                                     key={i}
-                                    image={product.img}
-                                    price={product.price}
-                                    productName={product.productName}
-                                    targetStripe={product.targetStripe}
-                                    platformFee={product.platformFee}
+                                    image={product.data.img}
+                                    price={product.data.price}
+                                    productName={product.data.productName}
+                                    targetStripe={product.data.targetStripe}
+                                    platformFee={product.data.platformFee}
                                 />
                                 )}
                                 )}
