@@ -8,6 +8,8 @@ import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import Payments from '../../components/Navs/Payments';
+// import Card from '../../components/Card/Card';
+
 
 import "./Artist.css"
 
@@ -54,7 +56,7 @@ class Artist extends Component {
 
     consolelog = () => {
         console.log('productIDs', this.state.productIDs)
-        console.log('products', this.state.products)        
+        console.log('products', this.state.products[0])          
     }
 
     loadThispageArtist = () => {
@@ -79,6 +81,7 @@ class Artist extends Component {
                     console.log('success')
                 }
             }
+
         })                      
         .catch(err => console.log(err));
 
@@ -110,15 +113,15 @@ class Artist extends Component {
                                 </Card>
                             ))} */}
 
-                            <Card>
+                            {/* <Card>
                                 <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
                                 <CardBody>
-                                    <CardTitle>stuff</CardTitle>
+                                    <CardTitle>{this.state.products[0].productName}</CardTitle>
                                     <CardSubtitle>Card subtitle</CardSubtitle>
                                     <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                    <Payments price={10000}/>
+                                    <Payments price={10000} />
                                 </CardBody>
-                            </Card>
+                            </Card> */}
  
 
                         </Col>

@@ -20,9 +20,9 @@ export default {
 
 
   
-  // Saves a book to the database
-  changeUser: function(_id) {
-    return axios.put("/api/user/" + _id);
+  // change a user to admin
+  changetoAdmin: function(_id, stripe) {
+    return axios.put("/api/user/" + _id, stripe);
   },
   // Gets current user
   getUser: function() {
