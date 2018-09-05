@@ -1,31 +1,33 @@
-    loadUser = () => {
-        // rzQ00LDh0z5_wxxP0vPNUF7MjAWKWvLz
-        // https://api.mlab.com/api/1/databases/my-db/collections/my-coll?apiKey=myAPIKey
-        // gallery-prod
-        // https://api.mlab.com/api/1/databases/gallery-prod/collections/users?apiKey=rzQ00LDh0z5_wxxP0vPNUF7MjAWKWvLz
+     // request.post(`https://connect.stripe.com/oauth/token/?client_secret=sk_test_uDaKbfwMIWARk54H2UiKxeIv&code="${targetQueryCode}"&grant_type=authorization_code`, function(error, response, body) {
+        //     console.log("RESPONSE======= ", response);
+        //     // console.log("BODY======= ", body);
+            
+        // })
+
+        // request.post(`https://connect.stripe.com/oauth/token -d client_secret=sk_test_uDaKbfwMIWARk54H2UiKxeIv -d code="${targetQueryCode}" -d grant_type=authorization_code`, function(error, response, body) {
+        //     console.log("BODY======= ", body);
+        //     console.log("RESPONSE======= ", response);             
+        // })
+
         
+        // var options = {
+        //     url:`https://connect.stripe.com/oauth/token`,
+        //     data: 'client_secret=sk_test_uDaKbfwMIWARk54H2UiKxeIv',
+        //     data: `code="${targetQueryCode}"`,
+        //     data: 'grant_type=authorization_code'
+        // };
+         
+        // curl.request(options, function (err, data) {
+        //     console.log('data', data)
+        // });
 
-        fetch("https://api.mlab.com/api/1/databases/gallery-prod/collections/users?apiKey=rzQ00LDh0z5_wxxP0vPNUF7MjAWKWvLz")
-        .then(res => res.json())
-        .then(
-            (result) => {
-                console.log(result[0].googleId)
-            this.setState({
-                isLoaded: true,
-                user: result[0].googleId
-            });
 
-        console.log("state", this.state.user)            
+        // curl
 
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-            this.setState({
-                isLoaded: true,
-                error
-            });
-            }
-        )
-    };
+        // .post('https://connect.stripe.com/oauth/token')
+        // .then(({statusCode, body, headers}) => {
+        //     console.log(statusCode, body, headers)
+        // })
+        // .catch((e) => {
+        //     console.log(e);
+        // });

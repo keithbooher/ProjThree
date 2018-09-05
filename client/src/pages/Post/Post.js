@@ -35,23 +35,6 @@ class Post extends Component {
     this.setState({[name] : value})
     };
 
-    // //  Function to handle form submit
-    // handleFormSubmit = event => {
-    // event.preventDefault();
-    // console
-    // const data = new FormData();
-    // let { title, price } = this.state;
-    // let query = { title, price };
-    // data.append("file", file);
-    // // data.append("price", price);
-    // // data.append("img", file);
-    // // query.appen
-    // d(data);
-    // console.log(data.file)
-    // console.log(query);
-    // API.saveImage(data);
-    // // API.saveProduct(query);
-    // }
     handleFormSubmit = (event) => {
       event.preventDefault();
       const formData = new FormData();
@@ -65,12 +48,32 @@ class Post extends Component {
       }).catch(error => {
         console.log(error)
       });
+
+        // console.log(this.state)
+        let { title, price, img } = this.state;
+        let query = { title, price, img }
+        // console.log(query);
+
+        const convertedPrice = this.state.price * 100;
+        const prePlatformFee = (this.state.price * .1);    
+        const platformFee = Math.round(prePlatformFee);
+
+        const newProduct = {
+            productName: this.state.title,
+            price: convertedPrice,
+            img: this.state.img,
+            stripeAccount: this.state.user.stripeAccount,
+            associatedID: this.state.user._id,
+            platformFee: platformFee
+        }
+
+        API.saveProduct(this.state.user._id, newProduct)
+        .then( console.log("success"))
+        .catch(err => console.log(err));
+      
     }
 
-    // handleFileInput = event => {
-    //   file = event.target.files[0]
-    //   console.log(file);
-    // }
+ 
     handleFileInput = (event) => {
       this.setState({file: event.target.files});
     }
@@ -110,7 +113,12 @@ class Post extends Component {
     render() {
         return (
             <div>
-                {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
+                {this.state.user.admin ? <AdminHeader/> : <Header key="1" />}
+                <Row>
+                    <Col size="sm-2 offset-'sm-11">
+                        <SideBar user={this.state.user}/>
+                    </Col>
+                </Row> 
                 <div size="sm-10 offset-'sm-1">
                     <form>
                         {}
@@ -126,7 +134,7 @@ class Post extends Component {
                         <label htmlFor="img">Example file input</label>
                             <input onChange={this.handleFileInput} type="file" className="form-control-file" id="img" name="img"/>
                         </div>
-                        <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
+                        <button type="submit" className="btn btn-primary submitBtn" onClick={this.handleFormSubmit}>Submit</button>
                     </form>
                 </div> 
             </div>

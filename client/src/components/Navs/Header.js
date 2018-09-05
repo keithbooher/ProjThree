@@ -17,11 +17,11 @@ class Header extends Component {
             default: 
                 return [
                     <li key="4" style={{margin: '0 10px'}}>
-                        Total: {this.props.amount}
+                        {this.props.auth.firstName}
                     </li>,
                     <li key="8"><a href='/api/logout'>Logout</a></li>,
                     
-                    // console.log('this.props.auth', this.props.auth)
+                    console.log('this.props.auth', this.props.auth)
             ];
         }
     }
