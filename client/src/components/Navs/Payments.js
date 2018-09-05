@@ -27,6 +27,8 @@ class Payments extends Component {
                 amount={this.props.price}
                 token={(token)=> this.props.handleToken(Object.assign(targetStripeAccount, token))}
                 stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                shippingAddress={true}
+                billingAddress={true}
             >
             <button className="btn">
                 checkout
