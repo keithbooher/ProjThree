@@ -24,8 +24,6 @@ class Artist extends Component {
     
     componentDidMount() {
         this.props.fetchUser();
-        // this.loadCurrentUser();   
-        // this.loadThispageArtist();
         this.loadThispageArtist();
     }
 
@@ -48,27 +46,8 @@ class Artist extends Component {
             .then(result => { this.setState({ products: this.state.products.concat(result)})})
             .catch(err => console.log(err));
         }
-        // console.log('productObjectsArray', productObjectsArray)
-        // this.setState({ products: productObjectsArray })
-        // this.consolelog()
-        // this.mapCards();
     }
 
-    // mapCards = () => {
-    //     console.log("WORKING", i++)
-    //     this.state.products.map((product, i) => {
-    //         console.log("PRODUCT", product.data)
-    //         return (
-    //         <Card
-    //             key={i}
-    //             image={product.img}
-    //             price={product.price}
-    //             productName={product.productName}
-    //             targetStripe={product.targetStripe}
-    //             platformFee={product.platformFee}
-    //         />
-    //         )}
-    //     )}
     consolelog = () => {
         console.log('productIDs', this.state.productIDs)
         console.log('products', this.state.products)        
@@ -121,11 +100,7 @@ class Artist extends Component {
                                     image={product.data.img}
                                     price={product.data.price}
                                     productName={product.data.productName}
-<<<<<<< HEAD
                                     targetStripe={product.data.stripeAccount}
-=======
-                                    targetStripe={product.data.targetStripe}
->>>>>>> master
                                     platformFee={product.data.platformFee}
                                 />
                                 )}

@@ -2,6 +2,9 @@ const keys = require('../config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
 const requireLogin = require('../middlewares/requireLogin');
 const { exec } = require('child_process');
+const fetch = require('node-fetch');
+
+// const axios = require('axios');
 
 
 module.exports = app => {
@@ -20,11 +23,11 @@ module.exports = app => {
           });
         const user = await req.user.save();
 
-
         console.log('req.body', req.body)
         
         res.send(user);
     });
+
 
     app.get('/api/stripe', (req, res) => {
         //  res.redirect('/')
@@ -42,16 +45,10 @@ module.exports = app => {
           const targetedStripeAccount = splitItUpAgain[0].slice(0,21)
           console.log('test', targetedStripeAccount)
 
-          res.send("Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " + targetedStripeAccount)
             
-          //take sent account number and paste into form field for stripe account as a user
-          
-        //   app.get('/api/current_user', (req, res) => {
-        //     res.json(req.user);
-        // })
 
-          // fetch current user
-          // and then do a put route to update the current user's target stripe accout id in our database
+          res.send("Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " + targetedStripeAccount); //.redirect("/adminform")
+            
         });
     })
 };

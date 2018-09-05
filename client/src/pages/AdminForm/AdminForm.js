@@ -86,8 +86,9 @@ class Admin extends Component {
     handleFormSubmit = event => {
   
         const currentUser = this.state.user._id     
-        const stripeAccount = this.state.stripe
-        console.log('stripeAccount', stripeAccount)  
+        const stripeAccount = {'stripeAccount': this.state.stripe}
+        console.log('stripeAccount', stripeAccount) 
+        console.log('currentUser', currentUser) 
 
         API.changetoAdmin(currentUser, stripeAccount)
         .then(console.log("success"))
