@@ -35,7 +35,7 @@ module.exports = (app) => {
   // Update User
   app.put('/api/user/:id', (req, res) => {
     User
-    .findOneAndUpdate({ _id: req.params.id }, {admin: true, stripeAccount: req.body})
+    .findOneAndUpdate({ _id: req.params.id }, {admin: true, stripeAccount: req.body.stripeAccount})
     .then(console.log('req.body', req))
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
