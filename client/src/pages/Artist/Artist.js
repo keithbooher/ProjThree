@@ -121,7 +121,11 @@ class Artist extends Component {
                                     image={product.data.img}
                                     price={product.data.price}
                                     productName={product.data.productName}
+<<<<<<< HEAD
                                     targetStripe={product.data.stripeAccount}
+=======
+                                    targetStripe={product.data.targetStripe}
+>>>>>>> master
                                     platformFee={product.data.platformFee}
                                 />
                                 )}
