@@ -16,18 +16,20 @@ import "./Artist.css"
 class Artist extends Component {
     state = {
         amount: 0,
-        productIDs: [],
-        products: [],
+        productIDs: null,
+        products: null,
         pageArtist: {},
         user: {},
     }
 
+    constructor(props) {
+        super(props);
+        this.loadThispageArtist();
+      }
+
     componentDidMount() {
         this.props.fetchUser();
         // this.loadCurrentUser();   
-        // this.loadThispageArtist();
-        this.loadThispageArtist();
-         
     }
 
     loadProductIds = () => {
@@ -56,7 +58,9 @@ class Artist extends Component {
 
     consolelog = () => {
         console.log('productIDs', this.state.productIDs)
-        console.log('products', this.state.products[0])          
+        console.log('products', this.state.products) 
+        console.log('MAP', this.state.products.length)
+                 
     }
 
     loadThispageArtist = () => {
@@ -101,17 +105,19 @@ class Artist extends Component {
                 <div className="container productContent">
                     <Row>
                         <Col size="sm-3" offset="sm-1" Class="productCard">
-                            {/* {this.state.products.map((product, i) => (
-                                <Card key={i}>
-                                    <CardImg top width="100%" src={`${product.img}`} alt="Card image cap" />
-                                    <CardBody>
-                                        <CardTitle>{product.productName}</CardTitle>
-                                        <CardSubtitle>{product.price}</CardSubtitle>
-                                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                        <Payments price={product.price} targetStripe={product.stripeAccount} platformFee={product.platformFee}/>
-                                    </CardBody>
-                                </Card>
-                            ))} */}
+                        {this.state.products ? 
+                            this.state.products.map((product, i) => (
+                                    <Card key={i}>
+                                        <CardImg top width="100%" src={product.img} alt="Card image cap" />
+                                        <CardBody>
+                                            <CardTitle>{product.productName}</CardTitle>
+                                            <CardSubtitle>{product.price}</CardSubtitle>
+                                            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                                            <Payments price={product.price} targetStripe={product.stripeAccount} platformFee={product.platformFee}/>
+                                        </CardBody>
+                                    </Card>
+                            )) : " "} 
+
 
                             {/* <Card>
                                 <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />

@@ -43,7 +43,7 @@ module.exports = app => {
           console.log('test', targetedStripeAccount)
 
           res.send("Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " + targetedStripeAccount)
-
+            
           //take sent account number and paste into form field for stripe account as a user
           
         //   app.get('/api/current_user', (req, res) => {
