@@ -4,6 +4,9 @@ const userController = require("../../controllers/userController");
 const Product = require("../../models/Product")
 
 
+
+
+
 module.exports = (app) =>{
 // db.Product
 app.post("/api/product", function(req, res, next) {
@@ -11,8 +14,18 @@ app.post("/api/product", function(req, res, next) {
     Product
     .create(req.body)
     .then(dbModel => res.json(dbModel))
-    .catch(err => res.json(err));
+    .catch(e)
     res.end();
-})
+}),
+
+app.post("/api/uploadImage", function(req, res){
+  console.log(req.files, "gallerylist awwwwwww yeah")
+
+  uploadToS3(req.files.file);
+  res.end()
+});
 
 }
+
+
+
