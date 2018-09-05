@@ -1,8 +1,36 @@
 const router = require("express").Router();
 
+const AWS = require('aws-sdk')
 
 const Product = require("../../models/Product");
 const User = require("../../models/User");
+
+const BUCKET_NAME = 'artgutter';
+const IAM_USER_KEY = process.env.AWS_ACCESS_KEY_ID;
+const IAM_USER_SECRET = process.env.AWS_SECRET_ACCESS_KEY;
+
+function uploadToS3(file){
+  let s3bucket = new AWS.S3({
+    accessKeyId: IAM_USER_KEY,
+    secretAccessKey: IAM_USER_SECRET,
+    Bucket: BUCKET_NAME
+  });
+  s3bucket.createBucket(function(){
+    var params = {
+      Bucket: BUCKET_NAME,
+      Key: file.name,
+      Body: file.data
+    };
+    s3bucket.upload(params, function(err, data){
+      if(err){
+        console.log('error in callback');
+        console.log(err);
+      }
+      console.log('success');
+      console.log(data);
+    })
+  })
+}
 
 
 // Defining methods for the ProductsController
@@ -47,6 +75,14 @@ module.exports = (app) => {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   })
+
+  app.post("/api/uploadImage", function(req, res){
+    console.log(req.files, "gallerylist awwwwwww yeah")
+  
+    uploadToS3(req.files.file);
+    res.end()
+  });
+  
 };
 
 
