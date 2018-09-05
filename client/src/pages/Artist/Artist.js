@@ -11,6 +11,7 @@ import Payments from '../../components/Navs/Payments';
 import Card from '../../components/Card';
 
 import "./Artist.css"
+let i = 0;
 
 class Artist extends Component {
     state = {
@@ -41,18 +42,33 @@ class Artist extends Component {
 
     loadUsersProducts = () => {
         const productIDs = this.state.productIDs
-        const productObjectsArray = [];
+        // const productObjectsArray = [];
         for (let i = 0; i < productIDs.length; i++) {
             API.getProduct(productIDs[i])
-            .then(result => productObjectsArray.push(result.data))
+            .then(result => { this.setState({ products: this.state.products.concat(result)})})
             .catch(err => console.log(err));
         }
-        console.log('productObjectsArray', productObjectsArray)
-        this.setState({ products: productObjectsArray })
+        // console.log('productObjectsArray', productObjectsArray)
+        // this.setState({ products: productObjectsArray })
         // this.consolelog()
-
+        // this.mapCards();
     }
 
+    // mapCards = () => {
+    //     console.log("WORKING", i++)
+    //     this.state.products.map((product, i) => {
+    //         console.log("PRODUCT", product.data)
+    //         return (
+    //         <Card
+    //             key={i}
+    //             image={product.img}
+    //             price={product.price}
+    //             productName={product.productName}
+    //             targetStripe={product.targetStripe}
+    //             platformFee={product.platformFee}
+    //         />
+    //         )}
+    //     )}
     consolelog = () => {
         console.log('productIDs', this.state.productIDs)
         console.log('products', this.state.products)        
@@ -107,7 +123,22 @@ class Artist extends Component {
                                     </CardBody>
                                 </Card>
                             ))} */}
-                            {console.log("MAP STATE" ,this.state)}
+                            {console.log("MAP STATE" ,this.state.products)}
+                            {this.state.products.map((product, i) => {
+                                console.log("PRODUCT", product.data)
+                                return (
+                                <Card
+                                    key={i}
+                                    image={product.img}
+                                    price={product.price}
+                                    productName={product.productName}
+                                    targetStripe={product.targetStripe}
+                                    platformFee={product.platformFee}
+                                />
+                                )}
+                                )}
+
+                            {/* {this.state.products ? console.log("found something") : console.log("nothing here")}
                             {this.state.products.map((product, i) => {
                                 console.log("PRODUCT", product)
                                 return (
@@ -120,7 +151,7 @@ class Artist extends Component {
                                     platformFee={product.platformFee}
                                 />
                             )}
-                            )}                   
+                            )}                    */}
                             {/* <Card>
                                 <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
                                 <CardBody>
