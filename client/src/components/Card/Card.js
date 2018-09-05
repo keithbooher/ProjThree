@@ -1,14 +1,20 @@
 import React from 'react';
+import Payments from '../../components/Navs/Payments';
 
 
 const Card = props => (
-    <div className="card" style="">
-        <img className="card-img-top" src="..." alt="Card image cap"></img>
+    <div className="card">
+        <img className="card-img-top" src={props.image} alt={props.productName}></img>
         <div className="card-body">
             <h5 className="card-title">{props.productName}</h5>
+<<<<<<< HEAD
             <p className="card-text">{props.price}</p>
             <div>{props.children}</div>
+=======
+            <p className="card-text">${props.price}</p>
+>>>>>>> master
         </div>
+        <Payments price={props.price} targetStripe={props.stripeAccount} platformFee={props.platformFee}/>
     </div>
 );
 

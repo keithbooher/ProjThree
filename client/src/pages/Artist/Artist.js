@@ -6,12 +6,12 @@ import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+// import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import Payments from '../../components/Navs/Payments';
-// import Card from '../../components/Card/Card';
-
+import Card from '../../components/Card';
 
 import "./Artist.css"
+let i = 0;
 
 class Artist extends Component {
     state = {
@@ -21,15 +21,10 @@ class Artist extends Component {
         pageArtist: {},
         user: {},
     }
-
-    constructor(props) {
-        super(props);
-        this.loadThispageArtist();
-      }
-
+    
     componentDidMount() {
         this.props.fetchUser();
-        // this.loadCurrentUser();   
+        this.loadThispageArtist();
     }
 
     loadProductIds = () => {
@@ -45,15 +40,12 @@ class Artist extends Component {
 
     loadUsersProducts = () => {
         const productIDs = this.state.productIDs
-        const productObjectsArray = [];
+        // const productObjectsArray = [];
         for (let i = 0; i < productIDs.length; i++) {
             API.getProduct(productIDs[i])
-            .then(result => productObjectsArray.push(result.data))
+            .then(result => { this.setState({ products: this.state.products.concat(result)})})
             .catch(err => console.log(err));
         }
-        console.log('productObjectsArray', productObjectsArray)
-        this.setState({ products: productObjectsArray })
-        this.consolelog()
     }
 
     consolelog = () => {
@@ -77,8 +69,6 @@ class Artist extends Component {
             users = res.data 
             console.log('users', users)
             for (let i = 0; i < users.length; i++) {
-                // console.log('userID', users[i])
-                // console.log('targetedID', targetedID)
                 if(users[i]._id == targetedID) {
                     this.setState({ user: users[i] })
                     this.loadProductIds();
@@ -88,9 +78,6 @@ class Artist extends Component {
 
         })                      
         .catch(err => console.log(err));
-
-        
-        
     }
 
     render() {
@@ -118,17 +105,6 @@ class Artist extends Component {
                                     </Card>
                             )) : " "} 
 
-
-                            {/* <Card>
-                                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-                                <CardBody>
-                                    <CardTitle>{this.state.products[0].productName}</CardTitle>
-                                    <CardSubtitle>Card subtitle</CardSubtitle>
-                                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                    <Payments price={10000} />
-                                </CardBody>
-                            </Card> */}
- 
 
                         </Col>
                     </Row> 
