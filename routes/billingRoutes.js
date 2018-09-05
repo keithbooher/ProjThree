@@ -17,13 +17,13 @@ module.exports = app => {
             currency: 'usd',
             description: 'money for art',
             source: req.body.id,
-            application_fee: req.body.platform_fee
+            application_fee: req.body.platform_fee,
         }, {
             stripe_account: req.body.stripe_account
           });
         const user = await req.user.save();
 
-        console.log('req.body', req.body)
+        console.log('req.body', req.body.card)
         
         res.send(user);
     });

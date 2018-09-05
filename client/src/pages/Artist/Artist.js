@@ -27,6 +27,7 @@ class Artist extends Component {
         this.loadThispageArtist();
     }
 
+
     loadProductIds = () => {
         const userProducts = this.state.user.product
         const userProductsArray = [];
@@ -78,6 +79,7 @@ class Artist extends Component {
         })                      
         .catch(err => console.log(err));
     }
+
 
     render() {
         return (
