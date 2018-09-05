@@ -32,7 +32,7 @@ const App = () => (
                 <Route exact path="/customize" component={Customize} />
                 <Route exact path="/post" component={Post} />
                 <Route exact path="/delete" component={Delete} />
-                <Route exact path="/checkout" component={Checkout} />
+                <Route exact path="/checkout/:id" component={Checkout} />
                 
             </div>
         </BrowserRouter>
