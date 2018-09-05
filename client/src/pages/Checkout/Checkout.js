@@ -11,7 +11,7 @@ import Payment from "../../components/Navs/Payments";
 
 class Checkout extends Component {
     state = {
-        product: null,
+        product: [],
         user: {}
     }
 
@@ -22,7 +22,7 @@ class Checkout extends Component {
 
     componentDidMount() {
         this.props.fetchUser();
-        this.consolelog()   
+        // this.consolelog()   
     }
 
     loadThisProduct = () => {
@@ -33,7 +33,10 @@ class Checkout extends Component {
 
         API.getProduct(targetedID)
         .then(result => {
-            this.setState({ product: result.data })})
+            console.log("RESULT", result.data)
+            this.setState({ product: this.state.product.concat(result.data)})
+            console.log("STATE", this.state.product[0])
+        })
         .catch(err => console.log(err));
 
     }
