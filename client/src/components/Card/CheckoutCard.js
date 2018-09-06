@@ -2,7 +2,7 @@ import React from 'react';
 import Payments from '../../components/Navs/Payments';
 
 
-const Card = props => (
+const CheckoutCard = props => (
     <div className="card">
         <img className="card-img-top" src={props.image} alt={props.productName}></img>
         <div className="card-body">
@@ -15,4 +15,4 @@ const Card = props => (
 );
 
 
-export default Card;
+export default CheckoutCard;

@@ -19,7 +19,6 @@ class Artists extends Component {
         products: [],
         user: {},
         users: [],
-        
     }
 
     componentDidMount() {

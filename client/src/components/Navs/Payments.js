@@ -7,15 +7,17 @@ import * as actions from '../../actions';
 
 class Payments extends Component {
     render() {
+        // const targetStripeAccount = {
+        //     stripe_account:"acct_1D570wLWgPyrropm",
+        //     platform_fee: 1000,
+        //     price: this.props.price
+        // }
         const targetStripeAccount = {
-            stripe_account:"acct_1D570wLWgPyrropm",
-            platform_fee: 1000,
+            stripe_account: this.props.targetStripe,
+            platform_fee: this.props.platformFee,
             price: this.props.price
         }
-        // const targetStripeAccount = {
-        //     stripe_account: this.props.targetStripe,
-        //     platform_fee: this.props.platformFee
-        // }
+        console.log(targetStripeAccount)
         
         return (
             <StripeCheckout 
@@ -25,6 +27,8 @@ class Payments extends Component {
                 amount={this.props.price}
                 token={(token)=> this.props.handleToken(Object.assign(targetStripeAccount, token))}
                 stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                shippingAddress={true}
+                billingAddress={true}
             >
             <button className="btn">
                 checkout

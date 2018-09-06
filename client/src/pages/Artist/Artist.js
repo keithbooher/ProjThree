@@ -6,10 +6,12 @@ import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+// import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import Payments from '../../components/Navs/Payments';
+import Card from '../../components/Card';
 
 import "./Artist.css"
+let i = 0;
 
 class Artist extends Component {
     state = {
@@ -19,14 +21,12 @@ class Artist extends Component {
         pageArtist: {},
         user: {},
     }
-
+    
     componentDidMount() {
         this.props.fetchUser();
-        // this.loadCurrentUser();   
-        // this.loadThispageArtist();
         this.loadThispageArtist();
-         
     }
+
 
     loadProductIds = () => {
         const userProducts = this.state.user.product
@@ -41,15 +41,12 @@ class Artist extends Component {
 
     loadUsersProducts = () => {
         const productIDs = this.state.productIDs
-        const productObjectsArray = [];
+        // const productObjectsArray = [];
         for (let i = 0; i < productIDs.length; i++) {
             API.getProduct(productIDs[i])
-            .then(result => productObjectsArray.push(result.data))
+            .then(result => { this.setState({ products: this.state.products.concat(result)})})
             .catch(err => console.log(err));
         }
-        console.log('productObjectsArray', productObjectsArray)
-        this.setState({ products: productObjectsArray })
-        this.consolelog()
     }
 
     consolelog = () => {
@@ -81,10 +78,8 @@ class Artist extends Component {
             }
         })                      
         .catch(err => console.log(err));
-
-        
-        
     }
+
 
     render() {
         return (
@@ -98,28 +93,21 @@ class Artist extends Component {
                 <div className="container productContent">
                     <Row>
                         <Col size="sm-3" offset="sm-1" Class="productCard">
-                            {this.state.products.map((product, i) => (
-                                <Card key={i}>
-                                    <CardImg top width="100%" src={`${product.img}`} alt="Card image cap" />
-                                    <CardBody>
-                                        <CardTitle>{product.productName}</CardTitle>
-                                        <CardSubtitle>{product.price}</CardSubtitle>
-                                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                        <Payments price={product.price} targetStripe={product.stripeAccount} platformFee={product.platformFee}/>
-                                    </CardBody>
-                                </Card>
-                            ))}
-
-                            {/* <Card>
-                                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-                                <CardBody>
-                                    <CardTitle>stuff</CardTitle>
-                                    <CardSubtitle>Card subtitle</CardSubtitle>
-                                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                                    <Payments price={10000}/>
-                                </CardBody>
-                            </Card>
-  */}
+                            {console.log("MAP STATE" ,this.state.products)}
+                            {this.state.products.map((product, i) => {
+                                console.log("PRODUCT", i, product.data)
+                                return (
+                                <Card
+                                    key={i}
+                                    image={product.data.img}
+                                    price={product.data.price}
+                                    productName={product.data.productName}
+                                    targetStripe={product.data.stripeAccount}
+                                    platformFee={product.data.platformFee}
+                                    productID={product.data._id}
+                                />
+                                )}
+                                )}
 
                         </Col>
                     </Row> 
