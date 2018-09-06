@@ -19,6 +19,7 @@ body {
 }
 
 .footer {
-    position: absolute;
+    position: relative;
+    display: hidden;
     bottom:0;
 }
