@@ -20,7 +20,7 @@ module.exports = app => {
             stripe_account: req.body.stripe_account
           });
         const user = await req.user.save();
-
+        console.log("LOOK HERE", req.body)
         let name = req.body.card.name
         let email = req.body.email
         let addressCity = req.body.card.address_city
@@ -46,7 +46,7 @@ module.exports = app => {
         // setup email data with unicode symbols
         let mailOptions = {
             from: '"Art Gutter" <groupthreebootcamp@gmail.com>', // sender address
-            to: req.body.email, // list of receivers
+            to: email, // list of receivers
             subject: `Art Gutter order for ${name}`, // Subject line
             text: 'Hello world?', // plain text body
             html: `<b>Hello ${name},<br>Thanks for shopping with Art Gutter!<br>Your order will be shipped to:<br>${addressLine}<br>${addressCity} ${addressState}, ${addressZip}</b>` // html body
