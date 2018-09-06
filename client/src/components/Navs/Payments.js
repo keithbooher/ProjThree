@@ -17,6 +17,7 @@ class Payments extends Component {
             platform_fee: this.props.platformFee,
             price: this.props.price,
             artistEmail: this.props.artistEmail,
+            currentUserEmail:this.props.currentUserEmail,
             productName: this.props.productName
         }
         console.log(targetStripeAccount)
