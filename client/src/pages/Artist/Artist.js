@@ -98,7 +98,7 @@ class Artist extends Component {
                 <div className="container productContent">
                     <Row>
                         <Col size="sm-3" offset="sm-1" Class="productCard">
-                            {/* {this.state.products.map((product, i) => (
+                            {this.state.products.map((product, i) => (
                                 <Card key={i}>
                                     <CardImg top width="100%" src={`${product.img}`} alt="Card image cap" />
                                     <CardBody>
@@ -108,9 +108,9 @@ class Artist extends Component {
                                         <Payments price={product.price} targetStripe={product.stripeAccount} platformFee={product.platformFee}/>
                                     </CardBody>
                                 </Card>
-                            ))} */}
+                            ))}
 
-                            <Card>
+                            {/* <Card>
                                 <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
                                 <CardBody>
                                     <CardTitle>stuff</CardTitle>
@@ -119,7 +119,7 @@ class Artist extends Component {
                                     <Payments price={10000}/>
                                 </CardBody>
                             </Card>
- 
+  */}
 
                         </Col>
                     </Row> 
