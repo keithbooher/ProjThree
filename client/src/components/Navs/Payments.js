@@ -15,7 +15,8 @@ class Payments extends Component {
         const targetStripeAccount = {
             stripe_account: this.props.targetStripe,
             platform_fee: this.props.platformFee,
-            price: this.props.price
+            price: this.props.price,
+            artistEmail: this.props.artistEmail
         }
         console.log(targetStripeAccount)
         
@@ -29,6 +30,7 @@ class Payments extends Component {
                 stripeKey={process.env.REACT_APP_STRIPE_KEY}
                 shippingAddress={true}
                 billingAddress={true}
+                email={this.props.currentUserEmail}
             >
             <button className="btn">
                 checkout

@@ -3,9 +3,7 @@ const stripe = require('stripe')(keys.stripeSecretKey);
 const requireLogin = require('../middlewares/requireLogin');
 const { exec } = require('child_process');
 const fetch = require('node-fetch');
-
-// const axios = require('axios');
-
+const nodemailer = require('nodemailer')
 
 module.exports = app => {
     app.post('/api/stripe', requireLogin, async (req, res) => {
@@ -23,7 +21,44 @@ module.exports = app => {
           });
         const user = await req.user.save();
 
-        console.log('req.body', req.body.card)
+        console.log('req.body', req.body)
+
+        // NODEMAILER
+        // ==================================================================
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: 'groupthreebootcamp@gmail.com', // generated ethereal user
+                pass: 'project3#' // generated ethereal password
+            },
+            tls:{
+                rejectUnauthorized: false
+            }
+        });
+    
+        // setup email data with unicode symbols
+        let mailOptions = {
+            from: '"Art Gutter" <groupthreebootcamp@gmail.com>', // sender address
+            to: 'danielt812@gmail.com', // list of receivers
+            subject: 'Hello ✔', // Subject line
+            text: 'Hello world?', // plain text body
+            html: '<b>Hello world?</b>' // html body
+        };
+    
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);
+            // Preview only available when sending through an Ethereal account
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    
+            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+        });
         
         res.send(user);
     });
@@ -47,8 +82,17 @@ module.exports = app => {
 
             
 
-          res.send("Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " + targetedStripeAccount); //.redirect("/adminform")
+             res.send("Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " + targetedStripeAccount); //.redirect("/adminform")
             
+            // res.sendFile("C:\Users\Keith\Desktop\School\group activity\proj3\ProjThree\views\stripe.html")
+            //   res.write(<a href="/adminform"> click here to go back to the Admin Form</a>)
+            //   res.end();
+
+            // var html = fs.readFileSync('../views/stripe.html', 'utf8')
+            // res.render('test', { html: html })
+            // res.send(html)
+
+            // res.render('../views/stripe.html', {root: __dirname })
         });
     })
 };
