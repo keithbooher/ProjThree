@@ -3,7 +3,14 @@ const stripe = require('stripe')(keys.stripeSecretKey);
 const requireLogin = require('../middlewares/requireLogin');
 const { exec } = require('child_process');
 const fetch = require('node-fetch');
+<<<<<<< HEAD
 const nodemailer = require('nodemailer')
+=======
+const nodemailer = require('nodemailer');
+
+// const axios = require('axios');
+
+>>>>>>> master
 
 module.exports = app => {
     app.post('/api/stripe', requireLogin, async (req, res) => {
@@ -21,11 +28,26 @@ module.exports = app => {
           });
         const user = await req.user.save();
 
+<<<<<<< HEAD
         console.log('req.body', req.body)
+=======
+        let name = req.body.card.name
+        let email = req.body.email
+        let addressCity = req.body.card.address_city
+        let addressCountry = req.body.card.address_country
+        let addressLine = req.body.card.address_line1
+        let addressState = req.body.card.address_state
+        let addressZip = req.body.card.address_zip
+        let cardBrand = req.body.card.brand
+        let expMonth = req.body.card.exp_month
+        let expYear = req.body.card.exp_year
+        let cardDigits = req.body.card.last4
+>>>>>>> master
 
         // NODEMAILER
         // ==================================================================
         let transporter = nodemailer.createTransport({
+<<<<<<< HEAD
             host: 'smtp.gmail.com',
             port: 587,
             secure: false, // true for 465, false for other ports
@@ -35,16 +57,29 @@ module.exports = app => {
             },
             tls:{
                 rejectUnauthorized: false
+=======
+            service: 'gmail',
+            auth: {
+                user: 'groupthreebootcamp@gmail.com', // generated ethereal user
+                pass: 'project3#' // generated ethereal password
+>>>>>>> master
             }
         });
     
         // setup email data with unicode symbols
         let mailOptions = {
             from: '"Art Gutter" <groupthreebootcamp@gmail.com>', // sender address
+<<<<<<< HEAD
             to: 'danielt812@gmail.com', // list of receivers
             subject: 'Hello ✔', // Subject line
             text: 'Hello world?', // plain text body
             html: '<b>Hello world?</b>' // html body
+=======
+            to: req.body.email, // list of receivers
+            subject: `Art Gutter order for ${name}`, // Subject line
+            text: 'Hello world?', // plain text body
+            html: `<b>Hello ${name},<br>Thanks for shopping with Art Gutter!<br>Your order will be shipped to:<br>${addressLine}<br>${addressCity} ${addressState}, ${addressZip}</b>` // html body
+>>>>>>> master
         };
     
         // send mail with defined transport object
