@@ -62,6 +62,7 @@ class Post extends Component {
             productName: this.state.title,
             price: convertedPrice,
             img: this.state.img,
+            email: this.state.user.email,
             stripeAccount: this.state.user.stripeAccount,
             associatedID: this.state.user._id,
             platformFee: platformFee
