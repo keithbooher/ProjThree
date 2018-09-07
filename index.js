@@ -63,7 +63,7 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 
-socket = io.listen(process.env.PORT);
+// socket = io.listen(process.env.PORT);
 
 //making a production port or a dev port
 const PORT = process.env.PORT || 5000;
