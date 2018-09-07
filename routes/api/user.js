@@ -41,6 +41,17 @@ module.exports = (app) => {
     .catch(err => res.status(422).json(err));
   })
 
+    // remove user product
+    app.put('/api/user/product/:id', (req, res) => {
+      console.log(req)      
+      console.log('req.body.productID', req.body.productID)
+      User
+      .findOneAndUpdate({ _id: req.params.id }, { $pull: {product: req.body.productID}})
+      .then(console.log('req.body', req))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+    })
+
   // Find user by id and delete document
   app.delete('/api/user/:id', (req, res) => {
     User

@@ -9,7 +9,6 @@ const Card = props => (
             <h5 className="card-title">{props.productName}</h5>
             <p className="card-text">${props.price * .01}</p>
         </div>
-        <a href={`/checkout/${props.productID}`}>Buy This Item</a>
         <Payments 
         price={props.price} 
         targetStripe={props.targetStripe} 
