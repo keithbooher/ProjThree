@@ -70,8 +70,8 @@ module.exports = (app) => {
 
   app.delete('/api/product/:id', (req, res) => {
     Product
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
+      .deleteOne({ _id: req.params.id })
+      // .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   })

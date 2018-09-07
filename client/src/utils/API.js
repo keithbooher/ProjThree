@@ -11,7 +11,8 @@ export default {
   },
   // Deletes the book with the given id
   deleteProduct: function(id) {
-    return axios.delete("/api/products/" + id);
+    console.log('id', id)  
+    return axios.delete("/api/product/" + id);
   },
   // Saves a book to the database
   saveProduct: function(id, productData) {
@@ -38,4 +39,7 @@ export default {
   createUser: function(stuff) {
     return axios.post("/api/user", stuff);
   },
+  deleteUsersProduct: function(userID, productID) {
+    return axios.put('/api/user/product/' + userID, productID )
+  }
 }; 
