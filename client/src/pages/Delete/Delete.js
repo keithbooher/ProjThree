@@ -119,7 +119,25 @@ class Delete extends Component {
           <Row>
             <Col size="sm-3" offset="sm-1" Class="productCard">
               {console.log("MAP STATE", this.state.products)}
-              {this.state.products.map((product, i) => {
+              {this.state.productIDs
+                ? this.state.products.map((product, i) => {
+                    return (
+                      <DeleteCard
+                        key={i}
+                        image={product.data.img}
+                        price={product.data.price}
+                        productName={product.data.productName}
+                        artistEmail={product.data.email}
+                        currentUserEmail={this.state.currentUser.email}
+                        targetStripe={product.data.stripeAccount}
+                        platformFee={product.data.platformFee}
+                        productID={product.data._id}
+                        deleteProduct={this.deleteProduct}
+                      />
+                    );
+                  })
+                : ""}
+              {/* {this.state.products.map((product, i) => {
                 console.log("PRODUCT", i, product.data._id);
                 return (
                   <DeleteCard
@@ -135,7 +153,7 @@ class Delete extends Component {
                     deleteProduct={this.deleteProduct}
                   />
                 );
-              })}
+              })} */}
             </Col>
           </Row>
         </div>

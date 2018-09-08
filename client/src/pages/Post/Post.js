@@ -6,7 +6,7 @@ import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-
+import $ from "jquery";
 import "./Post.css";
 
 class Post extends Component {
@@ -17,7 +17,11 @@ class Post extends Component {
       user: {},
       title: "",
       price: "",
-      file: null
+      img: "",
+      file: null,
+      alertTitle: "hide",
+      alertPrice: "hide",
+      alertImg: "hide"
     };
   }
 
@@ -31,57 +35,63 @@ class Post extends Component {
   handleInputChange = event => {
     let { name, value } = event.target;
     // console.log(value)
+
     this.setState({ [name]: value });
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("file", this.state.file[0]);
-    API.saveImage(formData, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    })
-      .then(response => {
-        console.log("so far so good");
-        this.setState({ file: null }, console.log("NEWER STATE", this.state));
-        // console.log("EVENT TARGET VALUE: ", event.target.value);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
     // console.log(this.state)
-    let { title, price, img } = this.state;
-    let query = { title, price, img };
-    // console.log(query);
+    if (!this.state.title.trim()) {
+      console.log("yo mane");
+      this.setState({ alertTitle: "show" });
+    } else if (!this.state.price.trim()) {
+      console.log("yo mane");
+      this.setState({ alertPrice: "show" });
+    } else if (!this.state.file) {
+      console.log("yo mane");
+      this.setState({ alertImg: "show" });
+    } else {
+      const formData = new FormData();
+      formData.append("file", this.state.file[0]);
+      API.saveImage(formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      })
+        .then(response => {
+          console.log("so far so good");
+          console.log(response.data);
+          this.setState({ img: response.data });
+          // console.log(query);
 
-    const convertedPrice = this.state.price;
-    const prePlatformFee = this.state.price * 0.05;
-    const platformFee = Math.round(prePlatformFee);
+          const convertedPrice = this.state.price * 100;
+          const prePlatformFee = this.state.price * 0.05;
+          const platformFee = Math.round(prePlatformFee);
 
-    const newProduct = {
-      productName: this.state.title,
-      price: convertedPrice,
-      img: this.state.img,
-      email: this.state.user.email,
-      stripeAccount: this.state.user.stripeAccount,
-      associatedID: this.state.user._id,
-      platformFee: platformFee,
-      date: Date.now()
-    };
-
-    API.saveProduct(this.state.user._id, newProduct)
-      .then(
-        console.log("success"),
-        this.setState({
-          title: "",
-          price: "",
-          file: null
+          const newProduct = {
+            productName: this.state.title,
+            price: convertedPrice,
+            img: this.state.img,
+            stripeAccount: this.state.user.stripeAccount,
+            associatedID: this.state.user._id,
+            platformFee: platformFee
+          };
+          API.saveProduct(this.state.user._id, newProduct)
+            .then(
+              console.log("success"),
+              this.setState({
+                title: "",
+                price: "",
+                file: null
+              })
+            )
+            .catch(err => console.log(err));
         })
-      )
-      .catch(err => console.log(err));
+        .catch(error => {
+          console.log(error);
+        });
+    }
   };
 
   handleFileInput = event => {
@@ -202,6 +212,15 @@ class Post extends Component {
                 Submit
               </button>
             </form>
+            <div class={this.state.alertTitle}>
+              <h3>Please title me</h3>
+            </div>
+            <div class={this.state.alertPrice}>
+              <h3>Please price me</h3>
+            </div>
+            <div class={this.state.alertImg}>
+              <h3>Please show me</h3>
+            </div>
           </Col>
         </Row>
       </div>
