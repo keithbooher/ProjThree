@@ -7,7 +7,7 @@ import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
 // import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
-import Payments from '../../components/Navs/Payments';
+// import Payments from '../../components/Navs/Payments';
 import Card from '../../components/Card';
 
 import "./Artist.css"
