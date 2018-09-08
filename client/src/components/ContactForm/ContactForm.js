@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContactUs= props=>(
+const ContactForm= props=>(
     <div className="contactUs">
         <form>
 
@@ -18,4 +18,4 @@ const ContactUs= props=>(
     </div>
 )
 
-export default ContactUs;
+export default ContactForm;
