@@ -6,7 +6,7 @@ import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-
+import $ from "jquery";
 import "./Post.css";
 
 class Post extends Component {
@@ -17,7 +17,12 @@ class Post extends Component {
       user: {},
       title: "",
       price: "",
-      file: null
+      description: "", 
+      img: "",
+      file: null,
+      alertTitle: "hide",
+      alertPrice: "hide",
+      alertImg: "hide",
     };
   }
 
@@ -31,16 +36,32 @@ class Post extends Component {
   handleInputChange = event => {
     let { name, value } = event.target;
     // console.log(value)
+
     this.setState({ [name]: value });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
+      // console.log(this.state)
+    if (!this.state.title.trim()){
+      console.log("yo mane")
+      this.setState({alertTitle: "show"})
+    }
+    else if (!this.state.price.trim()){
+      console.log("yo mane")
+      this.setState({alertPrice: "show"})
+    }
+    else if (!this.state.file){
+      console.log("yo mane")
+      this.setState({alertImg: "show"})
+    }
+    else{
+
     const formData = new FormData();
-    formData.append("file", this.state.file[0]);
-    API.saveImage(formData, {
+    formData.append('file', this.state.file[0]);
+    API.saveImage( formData, {
       headers: {
-        "Content-Type": "multipart/form-data"
+        'Content-Type': 'multipart/form-data'
       }
     })
       .then(response => {
@@ -53,7 +74,7 @@ class Post extends Component {
       });
 
     // console.log(this.state)
-    let { title, price, img } = this.state;
+    let { title, price, img, description } = this.state;
     let query = { title, price, img };
     // console.log(query);
 
@@ -65,6 +86,7 @@ class Post extends Component {
       productName: this.state.title,
       price: convertedPrice,
       img: this.state.img,
+      description: this.state.description,
       email: this.state.user.email,
       stripeAccount: this.state.user.stripeAccount,
       associatedID: this.state.user._id,
@@ -78,11 +100,18 @@ class Post extends Component {
         this.setState({
           title: "",
           price: "",
+          description: "",
           file: null
         })
-      )
-      .catch(err => console.log(err));
-  };
+      ).catch(error => {
+      console.log(error)
+    });
+  }
+
+
+
+    
+  }
 
   handleFileInput = event => {
     this.setState({ file: event.target.files });
@@ -187,6 +216,18 @@ class Post extends Component {
               />
             </div>
             <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <input
+                value={this.state.description}
+                onChange={this.handleInputChange}
+                type="integer"
+                className="form-control bg-white"
+                id="description"
+                name="description"
+                placeholder="Please describe median, thought processes and any other information you find valuable to your customers"
+              />
+            </div>
+            <div className="form-group">
               <label htmlFor="img">Example file input</label>
               <input
                 onChange={this.handleFileInput}
@@ -204,6 +245,15 @@ class Post extends Component {
               Submit
             </button>
           </form>
+          <div class={this.state.alertTitle} >
+            <h3>Please title me</h3>
+          </div>
+          <div class={this.state.alertPrice} >
+            <h3>Please price me</h3>
+          </div>
+          <div class={this.state.alertImg} >
+            <h3>Please show me</h3>
+          </div>
         </div>
       </div>
     );

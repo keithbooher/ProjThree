@@ -6,6 +6,7 @@ const productSchema = new Schema({
   price: { type: Number, required: true },
   img: String,
   email: String,
+  description: String,
   stripeAccount: String,
   associatedID: String,
   platformFee: Number,
