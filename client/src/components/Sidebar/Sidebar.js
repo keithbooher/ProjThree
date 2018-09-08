@@ -8,9 +8,10 @@ import Anchor from "../Anchor/Anchor";
 import AdminList from "../List/AdminList";
 import LoggedInList from "../List/LoggedInList";
 
+
 class Sidebar extends Component {
   state = {
-    user: {}
+    user: {},
   };
 
   componentDidMount() {
