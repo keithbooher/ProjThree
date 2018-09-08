@@ -6,7 +6,6 @@ import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-import $ from "jquery";
 import "./Post.css";
 import {
   BrowserRouter as Router,
@@ -50,58 +49,39 @@ class Post extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     // console.log(this.state)
-    if (!this.state.title.trim()) {
-      console.log("yo mane");
-      this.setState({ alertTitle: "show" });
-    } else if (!this.state.price.trim()) {
-      console.log("yo mane");
-      this.setState({ alertPrice: "show" });
-    } else if (!this.state.file) {
-      console.log("yo mane");
-      this.setState({ alertImg: "show" });
-    } else {
-      const formData = new FormData();
-      formData.append("file", this.state.file[0]);
-      API.saveImage(formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      })
-        .then(response => {
-          console.log("so far so good");
-          console.log(response.data);
-          this.setState({ img: response.data });
-          // console.log(query);
+    let { title, price, img, description } = this.state;
+    // console.log(query);
 
-          const convertedPrice = this.state.price * 100;
-          const prePlatformFee = this.state.price * 0.05;
-          const platformFee = Math.round(prePlatformFee);
+    const convertedPrice = this.state.price;
+    const prePlatformFee = this.state.price * 0.05;
+    const platformFee = Math.round(prePlatformFee);
 
-          const newProduct = {
-            productName: this.state.title,
-            price: convertedPrice,
-            img: this.state.img,
-            stripeAccount: this.state.user.stripeAccount,
-            associatedID: this.state.user._id,
-            platformFee: platformFee
-          };
-          API.saveProduct(this.state.user._id, newProduct)
-            .then(
-              console.log("success"),
-              this.setState({
-                title: "",
-                price: "",
-                file: null
-              }),
-              window.location.replace(`/artist/${this.state.user._id}`)
-            )
-            .catch(err => console.log(err));
+    const newProduct = {
+      productName: this.state.title,
+      price: convertedPrice,
+      img: this.state.img,
+      description: this.state.description,
+      email: this.state.user.email,
+      stripeAccount: this.state.user.stripeAccount,
+      associatedID: this.state.user._id,
+      platformFee: platformFee,
+      date: Date.now()
+    };
+
+    API.saveProduct(this.state.user._id, newProduct)
+      .then(
+        console.log("success"),
+        this.setState({
+          title: "",
+          price: "",
+          description: "",
+          file: null
         })
         .catch(error => {
           console.log(error);
-        });
+        }))
     }
-  };
+  
 
   handleFileInput = event => {
     this.setState({ file: event.target.files });
@@ -233,9 +213,10 @@ class Post extends Component {
           </Col>
         </Row>
       </div>
-    );
+    )
   }
 }
+
 
 export default connect(
   null,

@@ -4,7 +4,6 @@ import * as actions from "../../actions";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import Header from "../../components/Navs/Header";
-import { Form, Input, FormBtn, FormGroup, Label } from "../../components/Form";
 import { Row, Col } from "../../components/Grid";
 import SideBar from "../../components/Sidebar/Sidebar";
 import "./AdminForm.css";
@@ -74,7 +73,7 @@ class Admin extends Component {
 
   //  Function to handle form input
   handleInputChange = event => {
-    let { name, value } = event.target;
+    let { value } = event.target;
     console.log(value);
     this.setState({ stripe: value });
   };
