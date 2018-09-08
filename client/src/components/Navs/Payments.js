@@ -14,8 +14,12 @@ class Payments extends Component {
         // }
         const targetStripeAccount = {
             stripe_account: this.props.targetStripe,
-            platform_fee: this.props.platformFee,
-            price: this.props.price
+            platform_fee: this.props.platformFee *100,
+            price: this.props.price * 100,
+            artistEmail: this.props.artistEmail,
+            currentUserEmail:this.props.currentUserEmail,
+            productName: this.props.productName,
+            image: this.props.image
         }
         console.log(targetStripeAccount)
         
@@ -24,11 +28,12 @@ class Payments extends Component {
                 //somehow am going to have to set this equal to a variable that equals the total of a shopping cart of a customer in future projects
                 name="Gallery"
                 description="Money For Art"
-                amount={this.props.price}
+                amount={(this.props.price + this.props.platformFee) * 100}
                 token={(token)=> this.props.handleToken(Object.assign(targetStripeAccount, token))}
                 stripeKey={process.env.REACT_APP_STRIPE_KEY}
                 shippingAddress={true}
                 billingAddress={true}
+                email={this.props.currentUserEmail}
             >
             <button className="btn">
                 checkout

@@ -40,8 +40,9 @@ module.exports = (app) => {
   app.get('/api/product', (req, res) => {
     console.log(req)
     Product
-      .find(req.query)
-      .sort({ productName: -1 })
+      .find(req.body)
+      .sort({ datePosted: -1 })
+      .limit(20)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   })
@@ -73,8 +74,8 @@ module.exports = (app) => {
 
   app.delete('/api/product/:id', (req, res) => {
     Product
-      .findById({ _id: req.params.id })
-      .then(dbModel => dbModel.remove())
+      .deleteOne({ _id: req.params.id })
+      // .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   })

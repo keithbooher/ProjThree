@@ -41,9 +41,12 @@ passport.use(
                 //we already have a record with the given profile id
                 return done(null, existingUser);
             }
+            console.log('accessToken', accessToken)
+            console.log('refreshToken', refreshToken)
+            console.log('profile', profile.emails[0].value)
             //we dont have a user record with this id, make a new record
             //model instance
-            const user = await new User({ googleId: profile.id, firstName: profile.name.givenName }).save()
+            const user = await new User({ googleId: profile.id, firstName: profile.name.givenName, email: profile.emails[0].value }).save()
 
             //model instance
             //just came back from database so it has all the most up to date info 

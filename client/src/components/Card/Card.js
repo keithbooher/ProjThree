@@ -7,10 +7,18 @@ const Card = props => (
         <img className="card-img-top" src={props.image} alt={props.productName}></img>
         <div className="card-body">
             <h5 className="card-title">{props.productName}</h5>
-            <p className="card-text">${props.price * .01}</p>
+            <p className="card-text">${props.price + props.platformFee}</p>
         </div>
-        <a href={`/checkout/${props.productID}`}>Buy This Item</a>
-        <Payments price={props.price} targetStripe={props.targetStripe} platformFee={props.platformFee}/>
+        <Payments 
+        price={props.price} 
+        targetStripe={props.targetStripe} 
+        platformFee={props.platformFee} 
+        currentUserEmail={props.currentUserEmail} 
+        artistEmail={props.artistEmail} 
+        currentUserEmail={props.currentUserEmail} 
+        productName={props.productName}
+        image={props.image}        
+        />
     </div>
 );
 

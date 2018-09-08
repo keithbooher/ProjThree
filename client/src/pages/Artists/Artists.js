@@ -32,7 +32,7 @@ class Artists extends Component {
         console.log('test')
         API.getUser()
             .then(res => this.setState({ users: res.data }))
-            .then(res => console.log('res', res.data))
+            .then(res => console.log('res', this.state.users))
             .catch(err => console.log(err));
     };
 

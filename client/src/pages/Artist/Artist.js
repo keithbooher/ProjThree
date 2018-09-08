@@ -7,7 +7,7 @@ import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
 // import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
-import Payments from '../../components/Navs/Payments';
+// import Payments from '../../components/Navs/Payments';
 import Card from '../../components/Card';
 
 import "./Artist.css"
@@ -20,10 +20,12 @@ class Artist extends Component {
         products: [],
         pageArtist: {},
         user: {},
+        currentUser: {}
     }
     
     componentDidMount() {
         this.props.fetchUser();
+        this.loadCurrentUser();
         this.loadThispageArtist();
     }
 
@@ -81,6 +83,31 @@ class Artist extends Component {
     }
 
 
+    loadCurrentUser = () => {
+        fetch("/api/current_user")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    currentUser: result
+                });
+        console.log("current user: ", this.state.currentUser)            
+
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+            this.setState({
+                isLoaded: true,
+                error
+            });
+            }
+        )
+    };
+
+
     render() {
         return (
             <div>
@@ -102,6 +129,8 @@ class Artist extends Component {
                                     image={product.data.img}
                                     price={product.data.price}
                                     productName={product.data.productName}
+                                    artistEmail={product.data.email}
+                                    currentUserEmail={this.state.currentUser.email}
                                     targetStripe={product.data.stripeAccount}
                                     platformFee={product.data.platformFee}
                                     productID={product.data._id}

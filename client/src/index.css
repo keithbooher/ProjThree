@@ -7,18 +7,14 @@ body {
     max-width: 100%;
 }
 
-.sideBar{
-    position: sticky;
-    background: skyblue;
-    margin-top: 125px;
+
+
+.sidebarTitle{
     margin-left: 5%;
 }
 
-.sidebarTitle{
-        margin-left: 5%;
-}
-
 .footer {
-    position: absolute;
+    position: relative;
+    display: none;
     bottom:0;
 }
