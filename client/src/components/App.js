@@ -13,7 +13,11 @@ import Delete from "../pages/Delete";
 import Checkout from "../pages/Checkout";
 import Footer from "../components/Footer/Footer";
 import "./App.css";
+<<<<<<< HEAD
+import $ from "jquery";
+=======
 import ContactUs from "../pages/ContactUs/ContactUs";
+>>>>>>> master
 
 import Modal from "./submitModal";
 

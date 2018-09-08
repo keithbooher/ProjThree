@@ -9,7 +9,7 @@ const BUCKET_NAME = 'artgutter';
 const IAM_USER_KEY = process.env.AWS_ACCESS_KEY_ID;
 const IAM_USER_SECRET = process.env.AWS_SECRET_ACCESS_KEY;
 
-function uploadToS3(file){
+function uploadToS3(file, cb){
   let s3bucket = new AWS.S3({
     accessKeyId: IAM_USER_KEY,
     secretAccessKey: IAM_USER_SECRET,
@@ -18,7 +18,7 @@ function uploadToS3(file){
   s3bucket.createBucket(function(){
     var params = {
       Bucket: BUCKET_NAME,
-      Key: file.name,
+      Key: String(Date.now()),
       Body: file.data
     };
     s3bucket.upload(params, function(err, data){
@@ -27,8 +27,10 @@ function uploadToS3(file){
         console.log(err);
       }
       console.log('success');
-      console.log(data);
+      // console.log(data);
+      cb(data.Location)
     })
+    // console.log(data)
   })
 }
 
@@ -36,6 +38,7 @@ function uploadToS3(file){
 // Defining methods for the ProductsController
 module.exports = (app) => {
   app.get('/api/product', (req, res) => {
+    console.log(req)
     Product
       .find(req.body)
       .sort({ datePosted: -1 })
@@ -80,8 +83,10 @@ module.exports = (app) => {
   app.post("/api/uploadImage", function(req, res){
     console.log(req.files, "gallerylist awwwwwww yeah")
   
-    uploadToS3(req.files.file);
-    res.end()
+    uploadToS3(req.files.file, function(data){
+      res.send(data)
+    })
+    // res.end()
   });
   
 };
