@@ -71,7 +71,7 @@ class Sidebar extends Component {
         <h5 className="sidebarTitle">Explore the Gutter</h5>
         <UnorderedList>
           <List>
-            <Anchor text="View Top Trending Art" href="/trending" />
+            <Anchor text="View Newest Art" href="/new" />
           </List>
           <List>
             <Anchor text="View All Our Artists" href="/artists" />
