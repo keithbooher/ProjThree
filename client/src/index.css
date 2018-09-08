@@ -9,3 +9,12 @@ body {
 
 
 
+.sidebarTitle{
+    margin-left: 5%;
+}
+
+.footer {
+    position: relative;
+    display: none;
+    bottom:0;
+}
