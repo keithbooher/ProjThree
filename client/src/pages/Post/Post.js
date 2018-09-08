@@ -55,17 +55,19 @@ class Post extends Component {
         // console.log(query);
 
         const convertedPrice = this.state.price * 100;
-        const prePlatformFee = (this.state.price);    
+        const prePlatformFee = (this.state.price * 10);    
         const platformFee = Math.round(prePlatformFee);
+
 
         const newProduct = {
             productName: this.state.title,
-            price: convertedPrice + platformFee,
+            price: convertedPrice,
             img: this.state.img,
             email: this.state.user.email,
             stripeAccount: this.state.user.stripeAccount,
             associatedID: this.state.user._id,
-            platformFee: platformFee
+            platformFee: platformFee,
+            date: Date.now()
         }
 
         API.saveProduct(this.state.user._id, newProduct)
