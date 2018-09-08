@@ -15,8 +15,6 @@ import Footer from "../components/Footer/Footer";
 import "./App.css";
 import ContactUs from "../pages/ContactUs/ContactUs";
 
-import Modal from "./submitModal";
-
 const App = () => (
   <div>
     <BrowserRouter>
@@ -32,7 +30,7 @@ const App = () => (
         <Route exact path="/post" component={Post} />
         <Route exact path="/delete" component={Delete} />
         <Route exact path="/checkout/:id" component={Checkout} />
-        <Route exact path="/contactus" component={ContactUs}/>
+        {/* <Route exact path="/contactus" component={ContactUs} /> */}
       </div>
     </BrowserRouter>
     <Footer />

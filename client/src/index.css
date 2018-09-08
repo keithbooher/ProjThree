@@ -18,3 +18,14 @@ body {
     display: none;
     bottom:0;
 }
+
+.form-group {
+    margin: 0;
+}
+
+.postForm {
+    width: 45em;
+    background: white;
+    margin: 3em;
+    padding: 3em;
+}

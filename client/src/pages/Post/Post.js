@@ -155,56 +155,55 @@ class Post extends Component {
       <div>
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
         <Row>
-          <Col size="sm-2 offset-'sm-11">
+          <Col size="sm-3 offset-'sm-11">
             <SideBar user={this.state.user} />
           </Col>
+          <Col size="sm-9 offset-'sm-1">
+            <form className="postForm">
+              <div className="form-group">
+                <label htmlFor="title">Title of work: </label>
+                <input
+                  value={this.state.title}
+                  onChange={this.handleInputChange}
+                  type="text"
+                  className="form-control bg-white"
+                  id="title"
+                  name="title"
+                  placeholder="Please enter a Title for your work"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="price">Price</label>
+                <input
+                  value={this.state.price}
+                  onChange={this.handleInputChange}
+                  type="integer"
+                  className="form-control bg-white"
+                  id="price"
+                  name="price"
+                  placeholder="Please set a price for your work"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="img">Example file input</label>
+                <input
+                  onChange={this.handleFileInput}
+                  type="file"
+                  className="form-control-file"
+                  id="img"
+                  name="img"
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary submitBtn"
+                onClick={this.handleFormSubmit}
+              >
+                Submit
+              </button>
+            </form>
+          </Col>
         </Row>
-        <div size="sm-10 offset-'sm-1">
-          <form>
-            {}
-            <div className="form-group">
-              <label htmlFor="title">Title of work: </label>
-              <input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                type="text"
-                className="form-control bg-white"
-                id="title"
-                name="title"
-                placeholder="Please enter a Title for your work"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="price">Price</label>
-              <input
-                value={this.state.price}
-                onChange={this.handleInputChange}
-                type="integer"
-                className="form-control bg-white"
-                id="price"
-                name="price"
-                placeholder="Please set a price for your work"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="img">Example file input</label>
-              <input
-                onChange={this.handleFileInput}
-                type="file"
-                className="form-control-file"
-                id="img"
-                name="img"
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn btn-primary submitBtn"
-              onClick={this.handleFormSubmit}
-            >
-              Submit
-            </button>
-          </form>
-        </div>
       </div>
     );
   }
