@@ -15,11 +15,11 @@ body {
 }
 
 .sidebarTitle{
-        margin-left: 5%;
+    margin-left: 5%;
 }
 
 .footer {
     position: relative;
-    display: hidden;
+    display: none;
     bottom:0;
 }

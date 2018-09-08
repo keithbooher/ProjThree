@@ -21,7 +21,7 @@ module.exports = app => {
       }
     );
     const user = await req.user.save();
-    console.log("LOOK HERE", req.body);
+    // console.log("LOOK HERE", req.body);
     let name = req.body.card.name;
     let artistEmail = req.body.artistEmail;
     let currentUserEmail = req.body.currentUserEmail;
@@ -41,7 +41,7 @@ module.exports = app => {
       service: "gmail",
       auth: {
         user: "groupthreebootcamp@gmail.com", // generated ethereal user
-        pass: "project3#" // generated ethereal password
+        pass: process.env.EmailPassword // generated ethereal password
       }
     });
 
