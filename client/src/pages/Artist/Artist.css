@@ -6,3 +6,11 @@
 .productCard {
     margin-left: 20%;
 }
+
+.checked {
+    color: orange;
+}
+
+.hover:hover {
+    cursor: pointer
+}

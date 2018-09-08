@@ -15,11 +15,6 @@ class Checkout extends Component {
         product: [],
         user: {},
         noResults: false,
-        name: '',
-        address: '',
-        state: '',
-        city: '',
-        zipcode: ''
     }
 
     componentWillMount() {
@@ -100,8 +95,7 @@ class Checkout extends Component {
 
     handleFormSubmit = event => {
        event.preventDefault();
-       let {name, address, state, city, zipcode} = this.state;
-       let query = { name, address, state, city, zipcode }
+    //    let {name, address, state, city, zipcode} = this.state;
        console.log('test')
    }
 

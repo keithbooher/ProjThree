@@ -6,7 +6,6 @@ import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-import $ from "jquery";
 import "./Post.css";
 
 class Post extends Component {
@@ -75,7 +74,6 @@ class Post extends Component {
 
     // console.log(this.state)
     let { title, price, img, description } = this.state;
-    let query = { title, price, img };
     // console.log(query);
 
     const convertedPrice = this.state.price;

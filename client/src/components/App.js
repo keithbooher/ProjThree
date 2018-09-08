@@ -15,8 +15,6 @@ import Footer from "../components/Footer/Footer";
 import "./App.css";
 import ContactUs from "../pages/ContactUs/ContactUs";
 
-import Modal from "./submitModal";
-
 const App = () => (
   <div>
     <BrowserRouter>

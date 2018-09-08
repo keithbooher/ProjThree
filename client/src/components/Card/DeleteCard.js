@@ -1,6 +1,4 @@
 import React from 'react';
-import Payments from '../../components/Navs/Payments';
-
 
 const DeleteCard = props => (
     <div className="card">
