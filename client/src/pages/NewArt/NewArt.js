@@ -61,7 +61,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
+                {this.state.currentUser.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
                 <Row>
                     <Col size="sm-2 offset-'sm-11">
                         <SideBar user={this.state.user}/>
@@ -77,14 +77,14 @@ class Home extends Component {
                                 return (
                                 <Card
                                     key={i}
-                                    image={product.data.img}
-                                    price={product.data.price}
-                                    productName={product.data.productName}
-                                    artistEmail={product.data.email}
+                                    image={product.img}
+                                    price={product.price}
+                                    productName={product.productName}
+                                    artistEmail={product.email}
                                     currentUserEmail={this.state.currentUser.email}
-                                    targetStripe={product.data.stripeAccount}
-                                    platformFee={product.data.platformFee}
-                                    productID={product.data._id}
+                                    targetStripe={product.stripeAccount}
+                                    platformFee={product.platformFee}
+                                    productID={product._id}
                                 />
                                 )}
                                 )}
