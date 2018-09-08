@@ -17,6 +17,7 @@ class Post extends Component {
       user: {},
       title: "",
       price: "",
+      description: "", 
       img: "",
       file: null,
       alertTitle: "hide",
@@ -62,33 +63,47 @@ class Post extends Component {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
-    }).then(response => {
-      console.log("so far so good")
-      console.log(response.data)
-      this.setState({img: response.data})
-      // console.log(query);
+    })
+      .then(response => {
+        console.log("so far so good");
+        this.setState({ file: null }, console.log("NEWER STATE", this.state));
+        // console.log("EVENT TARGET VALUE: ", event.target.value);
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
-      const convertedPrice = this.state.price * 100;
-      const prePlatformFee = (this.state.price * .05);    
-      const platformFee = Math.round(prePlatformFee);
+    // console.log(this.state)
+    let { title, price, img, description } = this.state;
+    let query = { title, price, img };
+    // console.log(query);
 
-      const newProduct = {
-          productName: this.state.title,
-          price: convertedPrice,
-          img: this.state.img,
-          stripeAccount: this.state.user.stripeAccount,
-          associatedID: this.state.user._id,
-          platformFee: platformFee
-      }
-      API.saveProduct(this.state.user._id, newProduct)
-      .then( console.log("success"),
-      this.setState({
-        title: "",
-        price: "",
-        file: null
-      }))
-      .catch(err => console.log(err));
-    }).catch(error => {
+    const convertedPrice = this.state.price;
+    const prePlatformFee = this.state.price * 0.05;
+    const platformFee = Math.round(prePlatformFee);
+
+    const newProduct = {
+      productName: this.state.title,
+      price: convertedPrice,
+      img: this.state.img,
+      description: this.state.description,
+      email: this.state.user.email,
+      stripeAccount: this.state.user.stripeAccount,
+      associatedID: this.state.user._id,
+      platformFee: platformFee,
+      date: Date.now()
+    };
+
+    API.saveProduct(this.state.user._id, newProduct)
+      .then(
+        console.log("success"),
+        this.setState({
+          title: "",
+          price: "",
+          description: "",
+          file: null
+        })
+      ).catch(error => {
       console.log(error)
     });
   }
@@ -198,6 +213,18 @@ class Post extends Component {
                 id="price"
                 name="price"
                 placeholder="Please set a price for your work"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <input
+                value={this.state.description}
+                onChange={this.handleInputChange}
+                type="integer"
+                className="form-control bg-white"
+                id="description"
+                name="description"
+                placeholder="Please describe median, thought processes and any other information you find valuable to your customers"
               />
             </div>
             <div className="form-group">

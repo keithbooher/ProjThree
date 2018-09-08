@@ -4,7 +4,8 @@ const requireLogin = require("../middlewares/requireLogin");
 const { exec } = require("child_process");
 const fetch = require("node-fetch");
 const nodemailer = require("nodemailer");
-const User = require("../models/User")
+const Order = require("../models/Order")
+
 var request = require('request');
 
 module.exports = app => {
@@ -23,6 +24,8 @@ module.exports = app => {
       }
     );
     const user = await req.user.save();
+
+    console.log('req.body', req.body)
     // console.log("LOOK HERE", req.body);
     let name = req.body.card.name;
     let artistEmail = req.body.artistEmail;
@@ -36,6 +39,27 @@ module.exports = app => {
     let expMonth = req.body.card.exp_month;
     let expYear = req.body.card.exp_year;
     let cardDigits = req.body.card.last4;
+
+    const productName = req.body.productName;
+    const price = req.body.price;
+    const firstName = req.body.firstName;
+
+
+    const orderObject = {
+      productName: productName,
+      price: price,
+      img: null,
+      userEmail: currentUserEmail,
+      userName: firstName,
+      artistEmail: artistEmail,
+      city: addressCity,
+      country: addressCountry,
+      address: addressLine,
+      state: addressState,
+      zip: addressZip,
+      last4: cardDigits,
+      dateOrdered: Date.now()
+    }
 
     // NODEMAILER
     // ==================================================================
@@ -68,6 +92,11 @@ module.exports = app => {
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     });
+
+    Order
+    .create(orderObject)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.json(err));
 
     res.send(user);
   });
