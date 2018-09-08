@@ -19,7 +19,8 @@ class Payments extends Component {
             artistEmail: this.props.artistEmail,
             currentUserEmail:this.props.currentUserEmail,
             productName: this.props.productName,
-            image: this.props.image
+            image: this.props.image,
+            firstName: this.props.firstName
         }
         console.log(targetStripeAccount)
         

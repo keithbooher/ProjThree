@@ -17,6 +17,7 @@ class Post extends Component {
       user: {},
       title: "",
       price: "",
+      description: "", 
       file: null
     };
   }
@@ -53,7 +54,7 @@ class Post extends Component {
       });
 
     // console.log(this.state)
-    let { title, price, img } = this.state;
+    let { title, price, img, description } = this.state;
     let query = { title, price, img };
     // console.log(query);
 
@@ -65,6 +66,7 @@ class Post extends Component {
       productName: this.state.title,
       price: convertedPrice,
       img: this.state.img,
+      description: this.state.description,
       email: this.state.user.email,
       stripeAccount: this.state.user.stripeAccount,
       associatedID: this.state.user._id,
@@ -78,6 +80,7 @@ class Post extends Component {
         this.setState({
           title: "",
           price: "",
+          description: "",
           file: null
         })
       )
@@ -184,6 +187,18 @@ class Post extends Component {
                 id="price"
                 name="price"
                 placeholder="Please set a price for your work"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <input
+                value={this.state.description}
+                onChange={this.handleInputChange}
+                type="integer"
+                className="form-control bg-white"
+                id="description"
+                name="description"
+                placeholder="Please describe median, thought processes and any other information you find valuable to your customers"
               />
             </div>
             <div className="form-group">
