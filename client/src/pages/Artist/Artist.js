@@ -120,12 +120,7 @@ class Artist extends Component {
     }
 
 
-    render() {
-
- 
-        
-    
-        
+    render() {    
 
         return (
             <div>

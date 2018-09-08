@@ -6,14 +6,8 @@ import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
+import $ from "jquery";
 import "./Post.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-  Link
-} from "react-router-dom";
 
 class Post extends Component {
   constructor() {
@@ -23,12 +17,12 @@ class Post extends Component {
       user: {},
       title: "",
       price: "",
-      description: "",
+      description: "", 
       img: "",
       file: null,
       alertTitle: "hide",
       alertPrice: "hide",
-      alertImg: "hide"
+      alertImg: "hide",
     };
   }
 
@@ -46,10 +40,42 @@ class Post extends Component {
     this.setState({ [name]: value });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
+      // console.log(this.state)
+    if (!this.state.title.trim()){
+      console.log("yo mane")
+      this.setState({alertTitle: "show"})
+    }
+    else if (!this.state.price.trim()){
+      console.log("yo mane")
+      this.setState({alertPrice: "show"})
+    }
+    else if (!this.state.file){
+      console.log("yo mane")
+      this.setState({alertImg: "show"})
+    }
+    else{
+
+    const formData = new FormData();
+    formData.append('file', this.state.file[0]);
+    API.saveImage( formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then(response => {
+        console.log("so far so good");
+        this.setState({ file: null }, console.log("NEWER STATE", this.state));
+        // console.log("EVENT TARGET VALUE: ", event.target.value);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
     // console.log(this.state)
     let { title, price, img, description } = this.state;
+    let query = { title, price, img };
     // console.log(query);
 
     const convertedPrice = this.state.price;
@@ -77,11 +103,15 @@ class Post extends Component {
           description: "",
           file: null
         })
-        .catch(error => {
-          console.log(error);
-        }))
-    }
-  
+      ).catch(error => {
+      console.log(error)
+    });
+  }
+
+
+
+    
+  }
 
   handleFileInput = event => {
     this.setState({ file: event.target.files });
@@ -154,69 +184,81 @@ class Post extends Component {
       <div>
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
         <Row>
-          <Col size="sm-3 offset-'sm-11">
+          <Col size="sm-2 offset-'sm-11">
             <SideBar user={this.state.user} />
           </Col>
-          <Col size="sm-9 offset-'sm-1">
-            <form className="postForm">
-              <div className="form-group">
-                <label htmlFor="title">Title of work: </label>
-                <input
-                  value={this.state.title}
-                  onChange={this.handleInputChange}
-                  type="text"
-                  className="form-control bg-white"
-                  id="title"
-                  name="title"
-                  placeholder="Please enter a Title for your work"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="price">Price</label>
-                <input
-                  value={this.state.price}
-                  onChange={this.handleInputChange}
-                  type="integer"
-                  className="form-control bg-white"
-                  id="price"
-                  name="price"
-                  placeholder="Please set a price for your work"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="img">Example file input</label>
-                <input
-                  onChange={this.handleFileInput}
-                  type="file"
-                  className="form-control-file"
-                  id="img"
-                  name="img"
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn btn-primary submitBtn"
-                onClick={this.handleFormSubmit}
-              >
-                Submit
-              </button>
-            </form>
-            <div className={this.state.alertTitle}>
-              <h3>Please title me</h3>
-            </div>
-            <div className={this.state.alertPrice}>
-              <h3>Please price me</h3>
-            </div>
-            <div className={this.state.alertImg}>
-              <h3>Please show me</h3>
-            </div>
-          </Col>
         </Row>
+        <div size="sm-10 offset-'sm-1">
+          <form>
+            {}
+            <div className="form-group">
+              <label htmlFor="title">Title of work: </label>
+              <input
+                value={this.state.title}
+                onChange={this.handleInputChange}
+                type="text"
+                className="form-control bg-white"
+                id="title"
+                name="title"
+                placeholder="Please enter a Title for your work"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="price">Price</label>
+              <input
+                value={this.state.price}
+                onChange={this.handleInputChange}
+                type="integer"
+                className="form-control bg-white"
+                id="price"
+                name="price"
+                placeholder="Please set a price for your work"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <input
+                value={this.state.description}
+                onChange={this.handleInputChange}
+                type="integer"
+                className="form-control bg-white"
+                id="description"
+                name="description"
+                placeholder="Please describe median, thought processes and any other information you find valuable to your customers"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="img">Example file input</label>
+              <input
+                onChange={this.handleFileInput}
+                type="file"
+                className="form-control-file"
+                id="img"
+                name="img"
+              />
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary submitBtn"
+              onClick={this.handleFormSubmit}
+            >
+              Submit
+            </button>
+          </form>
+          <div class={this.state.alertTitle} >
+            <h3>Please title me</h3>
+          </div>
+          <div class={this.state.alertPrice} >
+            <h3>Please price me</h3>
+          </div>
+          <div class={this.state.alertImg} >
+            <h3>Please show me</h3>
+          </div>
+        </div>
       </div>
-    )
+    );
   }
 }
-
 
 export default connect(
   null,
