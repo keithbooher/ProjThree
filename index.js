@@ -19,15 +19,15 @@ const AWS = require("aws-sdk");
 mongoose.connect(keys.mongoURI);
 
 // Connect to the Mongo DB for our gallery collection
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/galleryList");
+// Mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/galleryList");
 mongoose.connect("mongodb://localhost/galleryList");
 
-//running express and assigning it to a variable
+// Running express and assigning it to a variable
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-//making cookies last for thirty days
+// Making cookies last for thirty days
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -37,11 +37,11 @@ app.use(
 
 app.use(fileupload());
 
-//
+// Passport init
 app.use(passport.initialize());
 app.use(passport.session());
 
-// when we require the authroutes file it returns a function. We the then immediately invoke the function with the app object (express)
+// When we require the authroutes file it returns a function. We the then immediately invoke the function with the app object (express)
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 require("./routes/api/user")(app);
@@ -62,7 +62,7 @@ if (process.env.NODE_ENV === "production") {
 
 // socket = io.listen(process.env.PORT);
 
-//making a production port or a dev port
+// Making a production port or a dev port
 const PORT = process.env.PORT || 5000;
-//making express listen input
+// Making express listen input
 app.listen(PORT);
