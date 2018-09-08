@@ -43,7 +43,7 @@ module.exports = app => {
       service: "gmail",
       auth: {
         user: "groupthreebootcamp@gmail.com", // generated ethereal user
-        pass: "project3#" // generated ethereal password
+        pass: process.env.EmailPassword // generated ethereal password
       }
     });
 
