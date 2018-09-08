@@ -39,5 +39,9 @@ export default {
   },
   deleteUsersProduct: function(userID, productID) {
     return axios.put("/api/user/product/" + userID, productID);
+  },
+
+  contactUsForm: function(data){
+    return axios.post("/api/contactus", data);
   }
 };

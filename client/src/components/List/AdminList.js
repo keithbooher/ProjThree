@@ -70,12 +70,7 @@ class AdminList extends Component {
                         href="/delete"
                     />                   
                 </List> 
-                <List>
-                    <Anchor 
-                        text="Contact Us"
-                        href="/contactUs"
-                    />                   
-                </List>                 
+             
             </div>
         )
     }

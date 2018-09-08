@@ -1,0 +1,10 @@
+.contactUs{
+    margin: 25px;
+    padding: 10px;
+    background: rgb(255, 255, 255, 0.8);
+}
+
+#submit-btn{
+    background: #EE6E73;
+    margin-top: 10px;
+}
