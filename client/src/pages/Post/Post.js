@@ -73,7 +73,14 @@ class Post extends Component {
     };
 
     API.saveProduct(this.state.user._id, newProduct)
-      .then(console.log("success"))
+      .then(
+        console.log("success"),
+        this.setState({
+          title: "",
+          price: "",
+          file: null
+        })
+      )
       .catch(err => console.log(err));
   };
 
@@ -108,19 +115,6 @@ class Post extends Component {
           });
         }
       );
-
-    API.saveProduct(this.state.user._id, newProduct)
-      .then(
-        this.setState(
-          {
-            title: "",
-            price: "",
-            file: null
-          },
-          console.log("Updated state", this.state)
-        )
-      )
-      .catch(err => console.log(err));
   };
 
   handleFileInput = event => {
