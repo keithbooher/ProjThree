@@ -74,20 +74,20 @@ class Artists extends Component {
           <Col size="sm-2 offset-'sm-11">
             <SideBar user={this.state.user} />
           </Col>
+          <Col size="sm-10 offset-'sm-1">
+            {this.state.users.map((user, i) => (
+              <UnorderedList class="unorderedNameList" key={i}>
+                <List class="nameList">
+                  <Anchor
+                    href={"/artist/" + user._id}
+                    text={user.firstName}
+                    class={"artistNames"}
+                  />
+                </List>
+              </UnorderedList>
+            ))}
+          </Col>
         </Row>
-        <div className="container">
-          {this.state.users.map((user, i) => (
-            <UnorderedList class="unorderedNameList" key={i}>
-              <List class="nameList">
-                <Anchor
-                  href={"/artist/" + user._id}
-                  text={user.firstName}
-                  class={"artistNames"}
-                />
-              </List>
-            </UnorderedList>
-          ))}
-        </div>
       </div>
     );
   }
