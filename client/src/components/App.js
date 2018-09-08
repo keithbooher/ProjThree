@@ -13,6 +13,7 @@ import Delete from "../pages/Delete";
 import Checkout from "../pages/Checkout";
 import Footer from "../components/Footer/Footer";
 import "./App.css";
+import $ from "jquery";
 import ContactUs from "../pages/ContactUs/ContactUs";
 
 import Modal from "./submitModal";
@@ -32,7 +33,7 @@ const App = () => (
         <Route exact path="/post" component={Post} />
         <Route exact path="/delete" component={Delete} />
         <Route exact path="/checkout/:id" component={Checkout} />
-        <Route exact path="/contactus" component={ContactUs}/>
+        {/* <Route exact path="/contactus" component={ContactUs} /> */}
       </div>
     </BrowserRouter>
     <Footer />
