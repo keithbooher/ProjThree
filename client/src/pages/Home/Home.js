@@ -8,7 +8,9 @@ import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
 import HomeArt from "../../components/HomeArt/HomeArt";
-import imagePlaceholder from "../../assets/images/placeholder.png"
+import firstImage from "../../assets/images/art-1.jpeg";
+import secondImage from "../../assets/images/art-2.jpg";
+import thirdImage from "../../assets/images/art-3.jpg";
 import Card from "../../components/Card/Card";
 
 
@@ -17,7 +19,9 @@ class App extends Component {
         amount: 0,
         products: [],
         user: {},
-        imagePlaceholder
+        firstImage,
+        secondImage,
+        thirdImage
     }
 
     componentDidMount() {
@@ -95,7 +99,13 @@ class App extends Component {
                         </Row>
                         <Row>
                             <Col size="sm-10 offset-'sm1">
-                                <HomeArt imagePlaceholder={this.state.imagePlaceholder}/>
+                                <HomeArt 
+                                    imagePlaceholder={this.state.imagePlaceholder}
+                                    firstImage={this.state.firstImage}
+                                    secondImage={this.state.secondImage}
+                                    thirdImage={this.state.thirdImage}
+
+                                           />
                             </Col>
                         </Row>
                     </div>               
