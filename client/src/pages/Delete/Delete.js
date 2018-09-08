@@ -96,7 +96,7 @@ class Delete extends Component {
         productID = { productID: this.state.user.product[i] };
 
         API.deleteUsersProduct(this.state.user._id, productID)
-          .then(console.log("success"))
+          .then(console.log("success"), window.location.reload())
           .catch(err => console.log(err));
       }
     }

@@ -8,6 +8,13 @@ import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import $ from "jquery";
 import "./Post.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+  Link
+} from "react-router-dom";
 
 class Post extends Component {
   constructor() {
@@ -205,21 +212,29 @@ class Post extends Component {
                   name="img"
                 />
               </div>
-              <button
+              {/* <button
                 type="submit"
                 className="btn btn-primary submitBtn"
                 onClick={this.handleFormSubmit}
+              > */}
+              <Link
+                type="submit"
+                className="btn btn-primary submitBtn"
+                onClick={this.handleFormSubmit}
+                to="/"
               >
                 Submit
-              </button>
+              </Link>
+              {/* Submit
+              </button> */}
             </form>
-            <div class={this.state.alertTitle}>
+            <div className={this.state.alertTitle}>
               <h3>Please title me</h3>
             </div>
-            <div class={this.state.alertPrice}>
+            <div className={this.state.alertPrice}>
               <h3>Please price me</h3>
             </div>
-            <div class={this.state.alertImg}>
+            <div className={this.state.alertImg}>
               <h3>Please show me</h3>
             </div>
           </Col>
