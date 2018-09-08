@@ -92,7 +92,8 @@ class Post extends Component {
                 title: "",
                 price: "",
                 file: null
-              })
+              }),
+              window.location.replace(`/artist/${this.state.user._id}`)
             )
             .catch(err => console.log(err));
         })
@@ -212,21 +213,13 @@ class Post extends Component {
                   name="img"
                 />
               </div>
-              {/* <button
+              <button
                 type="submit"
                 className="btn btn-primary submitBtn"
                 onClick={this.handleFormSubmit}
-              > */}
-              <Link
-                type="submit"
-                className="btn btn-primary submitBtn"
-                onClick={this.handleFormSubmit}
-                to="/"
               >
                 Submit
-              </Link>
-              {/* Submit
-              </button> */}
+              </button>
             </form>
             <div className={this.state.alertTitle}>
               <h3>Please title me</h3>

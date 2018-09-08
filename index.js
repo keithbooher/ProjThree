@@ -13,6 +13,8 @@ require("./services/passport");
 const BUCKET_NAME = "artgutter";
 const IAM_USER_KEY = process.env.AWS_ACCESS_KEY_ID;
 const IAM_USER_SECRET = process.env.AWS_SECRET_ACCESS_KEY;
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
+console.log(EMAIL_PASSWORD);
 
 const AWS = require("aws-sdk");
 
