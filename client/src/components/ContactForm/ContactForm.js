@@ -1,4 +1,5 @@
 import React from "react";
+import"./contactForm.css";
 
 const ContactForm= props=>(
     <div className="contactUs">
@@ -13,8 +14,8 @@ const ContactForm= props=>(
 
             <label id= "contact-message">Message</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
-        
         </form>
+        <button type="button" class="btn btn-info" id= "submit-btn">Submit</button>
     </div>
 )
 

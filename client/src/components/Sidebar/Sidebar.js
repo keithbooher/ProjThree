@@ -76,6 +76,7 @@ class Sidebar extends Component {
           <List>
             <Anchor text="View All Our Artists" href="/artists" />
           </List>
+
           {this.adminStatus() ? <AdminList /> : ""}
           {this.adminStatus() ? (
             ""
@@ -87,6 +88,12 @@ class Sidebar extends Component {
               />
             </List>
           )}
+          <List>
+            <Anchor 
+                text="Contact Us"
+                href="/contactUs"
+            />                   
+          </List>           
         </UnorderedList>
       </div>
     );

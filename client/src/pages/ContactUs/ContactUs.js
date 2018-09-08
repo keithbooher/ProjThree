@@ -50,6 +50,10 @@ class ContactUs extends Component{
             {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
             <div className="container">
                 <div className="row">
+                    <div className="col-md-2"/>
+                    <h4 className="contactTitle">Contact Us</h4>
+                </div>
+                <div className="row">
                     <div className="col-md-2">
                     <SideBar user={this.state.user}/>
                     </div>
