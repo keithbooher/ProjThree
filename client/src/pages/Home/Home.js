@@ -88,28 +88,20 @@ class App extends Component {
                     <Col size="sm-2 offset-'sm-11">
                         <SideBar user={this.state.user}/>
                     </Col>
+                                                                          
+                    <Col size="sm-8 offset-'sm-1">
+                        <MissionStatement/>
+                        <HomeArt 
+                            imagePlaceholder={this.state.imagePlaceholder}
+                            firstImage={this.state.firstImage}
+                            secondImage={this.state.secondImage}
+                            thirdImage={this.state.thirdImage}
+                                    />
+                    </Col>
                 </Row>
 
-                <div className="container">
-                    <div>
-                        <Row>
-                            <Col size="sm-10 offset-'sm-1">
-                                <MissionStatement/>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col size="sm-10 offset-'sm1">
-                                <HomeArt 
-                                    imagePlaceholder={this.state.imagePlaceholder}
-                                    firstImage={this.state.firstImage}
-                                    secondImage={this.state.secondImage}
-                                    thirdImage={this.state.thirdImage}
-
-                                           />
-                            </Col>
-                        </Row>
-                    </div>               
-                </div>
+                              
+                
             </div>
         );
     };
