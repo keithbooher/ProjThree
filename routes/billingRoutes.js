@@ -115,16 +115,28 @@ module.exports = app => {
       const splitItUp = returnData.split('"stripe_user_id": "');
       const splitItUpAgain = splitItUp[1].split('""scope":');
       const targetedStripeAccount = splitItUpAgain[0].slice(0, 21);
-      console.log("test", targetedStripeAccount);
+      // console.log("test", req.user);
 
       res.send(
         "Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " +
           targetedStripeAccount
-      );
+      ); 
+
+
+
+      // User
+      // .findOneAndUpdate({ _id: currentuser }, {admin: true, stripeAccount: targetedStripeAccount})
+      // .then(console.log('req.body', req))
+      // .then(dbModel => res.json(dbModel))
+      // .catch(err => res.status(422).json(err));
+      
+      //.redirect("/adminform")
 
       //.redirect("/adminform")
     });
   });
+
+
 };
 
 // *********************************************************************************************

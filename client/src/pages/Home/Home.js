@@ -11,7 +11,6 @@ import HomeArt from "../../components/HomeArt/HomeArt";
 import firstImage from "../../assets/images/art-1.jpeg";
 import secondImage from "../../assets/images/art-2.jpg";
 import thirdImage from "../../assets/images/art-3.jpg";
-import Card from "../../components/Card/Card";
 
 
 class App extends Component {

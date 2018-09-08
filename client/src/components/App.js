@@ -16,8 +16,6 @@ import "./App.css";
 import $ from "jquery";
 import ContactUs from "../pages/ContactUs/ContactUs";
 
-import Modal from "./submitModal";
-
 const App = () => (
   <div>
     <BrowserRouter>

@@ -9,9 +9,10 @@ import SideBar from "../../components/Sidebar/Sidebar";
 // import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 // import Payments from '../../components/Navs/Payments';
 import Card from '../../components/Card';
+import Star from '../../components/Star/Star';
+
 
 import "./Artist.css"
-let i = 0;
 
 class Artist extends Component {
     state = {
@@ -72,7 +73,7 @@ class Artist extends Component {
             for (let i = 0; i < users.length; i++) {
                 // console.log('userID', users[i])
                 // console.log('targetedID', targetedID)
-                if(users[i]._id == targetedID) {
+                if(users[i]._id === targetedID) {
                     this.setState({ user: users[i] })
                     this.loadProductIds();
                     console.log('success')
@@ -107,8 +108,25 @@ class Artist extends Component {
         )
     };
 
+     star = (id) => {
+
+        console.log("id", id)
+        const starInQuestion = document.getElementById(`star${id}`);
+        if(starInQuestion.classList.contains('checked')) {
+            starInQuestion.classList.remove('checked');
+        } else {
+            starInQuestion.classList.add('checked');
+        }
+    }
+
 
     render() {
+
+ 
+        
+    
+        
+
         return (
             <div>
                 {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
@@ -118,6 +136,21 @@ class Artist extends Component {
                     </Col>
                 </Row> 
                 <div className="container productContent">
+
+                    <Row>
+                        <Col size="sm-3" offset="sm-1" Class="productCard">
+                            <Star 
+                                idOne={1}
+                                idTwo={2}
+                                idThree={3}
+                                idFour={4}
+                                idFive={5}
+                                star={this.star}
+                                
+                            />
+                        </Col>
+                    </Row> 
+
                     <Row>
                         <Col size="sm-3" offset="sm-1" Class="productCard">
                             {console.log("MAP STATE" ,this.state.products)}
