@@ -8,7 +8,8 @@ const productSchema = new Schema({
   email: String,
   stripeAccount: String,
   associatedID: String,
-  platformFee: Number
+  platformFee: Number,
+  datePosted: Date 
 });
 
 const Product = mongoose.model("product", productSchema);

@@ -55,12 +55,12 @@ class Post extends Component {
         // console.log(query);
 
         const convertedPrice = this.state.price * 100;
-        const prePlatformFee = (this.state.price * .1);    
+        const prePlatformFee = (this.state.price);    
         const platformFee = Math.round(prePlatformFee);
 
         const newProduct = {
             productName: this.state.title,
-            price: convertedPrice,
+            price: convertedPrice + platformFee,
             img: this.state.img,
             email: this.state.user.email,
             stripeAccount: this.state.user.stripeAccount,

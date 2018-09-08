@@ -1,30 +1,21 @@
 import React from "react";
-
+import {Carousel} from 'react-bootstrap'
 const HomeArt = props =>(
    
-    <div>
-        <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-            <div className="carousel-inner">
-                <div className="carousel-item active">
-                    <img className="d-block w-100" src={props.imagePlaceholder} alt="First slide"/>
-                </div>
-                <div className="carousel-item">
-                    <img className="d-block w-100" src={props.imagePlaceholder} alt="Second slide"/>
-                </div>
-                <div className="carousel-item">
-                    <img className="d-block w-100" src={props.imagePlaceholder} alt="Third slide"/>
-                </div>
-            </div>
-            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="sr-only">Previous</span>
-            </a>
-            <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="sr-only">Next</span>
-            </a>
-        </div>
+    <div className="carousel">
+        <Carousel>
+        <Carousel.Item>
+            <img width={900} height={400} alt="900x500" src={props.firstImage} />
+            <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+            <img width={900} height={400} alt="900x500" src={props.secondImage}/>
+        </Carousel.Item>
 
+        </Carousel>;
     </div>
 
 )

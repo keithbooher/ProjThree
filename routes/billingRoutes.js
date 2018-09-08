@@ -4,6 +4,8 @@ const requireLogin = require("../middlewares/requireLogin");
 const { exec } = require("child_process");
 const fetch = require("node-fetch");
 const nodemailer = require("nodemailer");
+const User = require("../models/User")
+var request = require('request');
 
 module.exports = app => {
   app.post("/api/stripe", requireLogin, async (req, res) => {
@@ -70,6 +72,8 @@ module.exports = app => {
     res.send(user);
   });
 
+  let target;
+
   app.get("/api/stripe", (req, res) => {
     //  res.redirect('/')
     const url = req.originalUrl;
@@ -79,27 +83,36 @@ module.exports = app => {
     var cmd = `curl https://connect.stripe.com/oauth/token -d client_secret=sk_test_uDaKbfwMIWARk54H2UiKxeIv -d code="${targetQueryCode}" -d grant_type=authorization_code`;
 
     exec(cmd, function(error, stdout, stderr) {
-      console.log(`stdout: ${stdout}`);
+    //   console.log(`stdout: ${stdout}`);
       const returnData = stdout;
       const splitItUp = returnData.split('"stripe_user_id": "');
       const splitItUpAgain = splitItUp[1].split('""scope":');
       const targetedStripeAccount = splitItUpAgain[0].slice(0, 21);
       console.log("test", targetedStripeAccount);
 
+
+    // request({url: '/api/current_user', json: true}, function(err, res, json) {
+    //     if (err) {
+    //       throw err;
+    //     }
+    //     console.log('json', json);
+    //     console.log('res', res)
+    //   })
+      
+
+    //   User
+    //   .findOneAndUpdate({ _id: req.params.id }, {admin: true, stripeAccount: targetedStripeAccount})
+    //   .then(console.log('req.body', req))
+    //   .then(dbModel => res.json(dbModel))
+    //   .catch(err => res.status(422).json(err));
+
       res.send(
         "Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " +
           targetedStripeAccount
-      ); //.redirect("/adminform")
+      ); 
+      
+      //.redirect("/adminform")
 
-      // res.sendFile("C:\Users\Keith\Desktop\School\group activity\proj3\ProjThree\views\stripe.html")
-      //   res.write(<a href="/adminform"> click here to go back to the Admin Form</a>)
-      //   res.end();
-
-      // var html = fs.readFileSync('../views/stripe.html', 'utf8')
-      // res.render('test', { html: html })
-      // res.send(html)
-
-      // res.render('../views/stripe.html', {root: __dirname })
     });
   });
 };
