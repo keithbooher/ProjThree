@@ -2,7 +2,7 @@ import React from "react";
 import {Carousel} from 'react-bootstrap'
 const HomeArt = props =>(
    
-    <div>
+    <div className="carousel">
         <Carousel>
         <Carousel.Item>
             <img width={900} height={400} alt="900x500" src={props.firstImage} />
