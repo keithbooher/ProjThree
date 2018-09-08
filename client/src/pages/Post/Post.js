@@ -54,8 +54,8 @@ class Post extends Component {
         let query = { title, price, img }
         // console.log(query);
 
-        const convertedPrice = this.state.price * 100;
-        const prePlatformFee = (this.state.price * 10);    
+        const convertedPrice = this.state.price;
+        const prePlatformFee = (this.state.price * .05);    
         const platformFee = Math.round(prePlatformFee);
 
 

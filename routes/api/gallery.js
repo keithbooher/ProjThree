@@ -38,7 +38,8 @@ module.exports = (app) => {
   app.get('/api/product', (req, res) => {
     Product
       .find(req.body)
-      .sort({ data: -1 })
+      .sort({ datePosted: -1 })
+      .limit(20)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   })
