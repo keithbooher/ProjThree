@@ -6,8 +6,9 @@ module.exports = app => {
   app.get(
     "/auth/google",
     passport.authenticate("google", {
+      prompt: 'select_account',
       //asking google to give us profile information and email
-      scope: ["profile", "email"]
+      scope: ["profile", "email"],      
     })
   );
 
