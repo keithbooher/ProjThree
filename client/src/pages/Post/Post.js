@@ -52,25 +52,6 @@ class Post extends Component {
         console.log(error);
       });
 
-<<<<<<< HEAD
-    // console.log(this.state)
-    let { title, price, img } = this.state;
-    let query = { title, price, img };
-    // console.log(query);
-
-    const convertedPrice = this.state.price * 100;
-    const prePlatformFee = this.state.price;
-    const platformFee = Math.round(prePlatformFee);
-
-    const newProduct = {
-      productName: this.state.title,
-      price: convertedPrice + platformFee,
-      img: this.state.img,
-      email: this.state.user.email,
-      stripeAccount: this.state.user.stripeAccount,
-      associatedID: this.state.user._id,
-      platformFee: platformFee
-=======
         // console.log(this.state)
         let { title, price, img } = this.state;
         let query = { title, price, img }
@@ -131,7 +112,6 @@ class Post extends Component {
             });
             }
         )
->>>>>>> master
     };
 
     API.saveProduct(this.state.user._id, newProduct)
