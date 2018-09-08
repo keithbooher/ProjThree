@@ -6,12 +6,17 @@ import SideBar from "../../components/Sidebar/Sidebar";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
-import {Row, Col} from "../../components/Grid"
+import API from "../../utils/API";
+
 
 class ContactUs extends Component{
     state={
         currentUser:{},
-        user: {}
+        user: {},
+        name: "",
+        email: "",
+        subject: "",
+        textBody: ""
     }
     componentDidMount() {
         this.props.fetchUser();
@@ -42,6 +47,52 @@ class ContactUs extends Component{
             }
         )
     };    
+
+    handleInputChange = event => {
+        // Getting the value and name of the input which triggered the change
+        let value = event.target.value;
+        const name = event.target.name;
+
+        if (name === "subject") {
+            value = value.substring(0, 25);
+          }
+        // Updating the input's state
+        this.setState({
+          [name]: value
+        });
+      };
+    
+    submitContactForm = event =>{
+
+        
+        console.log("button Works");
+        console.log(this.state.name);
+        console.log(this.state.email);
+        console.log(this.state.subject);
+        console.log(this.state.textBody);
+
+        let formData={
+            name: this.state.name,
+            email: this.state.email,
+            subject: this.state.subject,
+            text: this.state.textBody
+        }
+        console.log(formData)
+
+        API.contactUsForm(formData).then(
+            console.log("It did it")
+        )
+
+
+        this.setState({
+            name: "",
+            email: "",
+            textBody: "",
+            subject: ""
+        })
+
+          };
+                
     
 
     render(){
@@ -58,7 +109,13 @@ class ContactUs extends Component{
                     <SideBar user={this.state.user}/>
                     </div>
                     <div className="col-md-10">
-                    <ContactForm/>
+                    <ContactForm 
+                        name={this.state.name}
+                        email={this.state.email}
+                        subject={this.state.subject}
+                        textBody={this.state.textBody}
+                        submit={this.submitContactForm}
+                        onChange={this.handleInputChange}/>
                     </div>
                 </div>
             </div>
