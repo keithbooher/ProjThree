@@ -89,11 +89,8 @@ class Sidebar extends Component {
             </List>
           )}
           <List>
-            <Anchor 
-                text="Contact Us"
-                href="/contactUs"
-            />                   
-          </List>           
+            <Anchor text="Contact Us" href="/contactUs" />
+          </List>
         </UnorderedList>
       </div>
     );
