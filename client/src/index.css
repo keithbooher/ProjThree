@@ -3,7 +3,7 @@ body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover cover;
     max-width: 100%;
 }
 
@@ -17,4 +17,15 @@ body {
     position: relative;
     display: none;
     bottom:0;
+}
+
+.form-group {
+    margin: 0;
+}
+
+.postForm {
+    width: 45em;
+    background: white;
+    margin: 3em;
+    padding: 3em;
 }

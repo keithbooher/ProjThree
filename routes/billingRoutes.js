@@ -4,9 +4,9 @@ const requireLogin = require("../middlewares/requireLogin");
 const { exec } = require("child_process");
 const fetch = require("node-fetch");
 const nodemailer = require("nodemailer");
-const Order = require("../models/Order")
+const Order = require("../models/Order");
 
-var request = require('request');
+var request = require("request");
 
 module.exports = app => {
   app.post("/api/stripe", requireLogin, async (req, res) => {
@@ -25,7 +25,7 @@ module.exports = app => {
     );
     const user = await req.user.save();
 
-    console.log('req.body', req.body)
+    console.log("req.body", req.body);
     // console.log("LOOK HERE", req.body);
     let name = req.body.card.name;
     let artistEmail = req.body.artistEmail;
@@ -44,7 +44,6 @@ module.exports = app => {
     const price = req.body.price;
     const firstName = req.body.firstName;
 
-
     const orderObject = {
       productName: productName,
       price: price,
@@ -59,7 +58,7 @@ module.exports = app => {
       zip: addressZip,
       last4: cardDigits,
       dateOrdered: Date.now()
-    }
+    };
 
     // NODEMAILER
     // ==================================================================
@@ -67,7 +66,7 @@ module.exports = app => {
       service: "gmail",
       auth: {
         user: "groupthreebootcamp@gmail.com", // generated ethereal user
-        pass: process.env.EmailPassword // generated ethereal password
+        pass: process.env.EMAIL_PASSWORD // generated ethereal password
       }
     });
 
@@ -93,10 +92,9 @@ module.exports = app => {
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     });
 
-    Order
-    .create(orderObject)
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.json(err));
+    Order.create(orderObject)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.json(err));
 
     res.send(user);
   });
@@ -112,7 +110,7 @@ module.exports = app => {
     var cmd = `curl https://connect.stripe.com/oauth/token -d client_secret=sk_test_uDaKbfwMIWARk54H2UiKxeIv -d code="${targetQueryCode}" -d grant_type=authorization_code`;
 
     exec(cmd, function(error, stdout, stderr) {
-    //   console.log(`stdout: ${stdout}`);
+      //   console.log(`stdout: ${stdout}`);
       const returnData = stdout;
       const splitItUp = returnData.split('"stripe_user_id": "');
       const splitItUpAgain = splitItUp[1].split('""scope":');
@@ -134,6 +132,7 @@ module.exports = app => {
       
       //.redirect("/adminform")
 
+      //.redirect("/adminform")
     });
   });
 
