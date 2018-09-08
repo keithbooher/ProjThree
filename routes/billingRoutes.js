@@ -90,22 +90,6 @@ module.exports = app => {
       const targetedStripeAccount = splitItUpAgain[0].slice(0, 21);
       console.log("test", targetedStripeAccount);
 
-
-    // request({url: '/api/current_user', json: true}, function(err, res, json) {
-    //     if (err) {
-    //       throw err;
-    //     }
-    //     console.log('json', json);
-    //     console.log('res', res)
-    //   })
-      
-
-    //   User
-    //   .findOneAndUpdate({ _id: req.params.id }, {admin: true, stripeAccount: targetedStripeAccount})
-    //   .then(console.log('req.body', req))
-    //   .then(dbModel => res.json(dbModel))
-    //   .catch(err => res.status(422).json(err));
-
       res.send(
         "Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " +
           targetedStripeAccount

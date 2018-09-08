@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
-import Trending from "../pages/Trending";
+import NewArt from "../pages/NewArt";
 import AdminForm from "../pages/AdminForm";
 import Artists from "../pages/Artists";
 import Artist from "../pages/Artist";
@@ -22,7 +22,7 @@ const App = () => (
       <div>
         <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
-        <Route exact path="/trending" component={Trending} />
+        <Route exact path="/new" component={NewArt} />
         <Route exact path="/adminform" component={AdminForm} />
         <Route exact path="/artists" component={Artists} />
         <Route exact path="/artist/:id" component={Artist} />

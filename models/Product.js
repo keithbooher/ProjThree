@@ -9,7 +9,10 @@ const productSchema = new Schema({
   stripeAccount: String,
   associatedID: String,
   platformFee: Number,
-  datePosted: Date 
+  datePosted: {
+    type: Date,
+    default: Date.now
+  } 
 });
 
 const Product = mongoose.model("product", productSchema);

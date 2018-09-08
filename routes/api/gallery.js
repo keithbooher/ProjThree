@@ -37,8 +37,9 @@ function uploadToS3(file){
 module.exports = (app) => {
   app.get('/api/product', (req, res) => {
     Product
-      .find(req.query)
-      .sort({ productName: -1 })
+      .find(req.body)
+      .sort({ datePosted: -1 })
+      .limit(20)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   })

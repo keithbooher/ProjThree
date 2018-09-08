@@ -52,6 +52,7 @@ class Post extends Component {
         console.log(error);
       });
 
+<<<<<<< HEAD
     // console.log(this.state)
     let { title, price, img } = this.state;
     let query = { title, price, img };
@@ -69,6 +70,68 @@ class Post extends Component {
       stripeAccount: this.state.user.stripeAccount,
       associatedID: this.state.user._id,
       platformFee: platformFee
+=======
+        // console.log(this.state)
+        let { title, price, img } = this.state;
+        let query = { title, price, img }
+        // console.log(query);
+
+        const convertedPrice = this.state.price;
+        const prePlatformFee = (this.state.price * .05);    
+        const platformFee = Math.round(prePlatformFee);
+
+
+        const newProduct = {
+            productName: this.state.title,
+            price: convertedPrice,
+            img: this.state.img,
+            email: this.state.user.email,
+            stripeAccount: this.state.user.stripeAccount,
+            associatedID: this.state.user._id,
+            platformFee: platformFee,
+            date: Date.now()
+        }
+
+        API.saveProduct(this.state.user._id, newProduct)
+        .then( console.log("success"))
+        .catch(err => console.log(err));
+      
+    }
+
+ 
+    handleFileInput = (event) => {
+      this.setState({file: event.target.files});
+    }
+    
+
+    loadCurrentUser = () => {
+        fetch("/api/current_user")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    user: result
+                });
+                console.log('result', result)
+                let currentUser=this.state.user
+                API.createUser(currentUser)
+                .then( console.log("success"))
+                .catch(err => console.log(err));
+
+                console.log("state", this.state.user)            
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+            this.setState({
+                isLoaded: true,
+                error
+            });
+            }
+        )
+>>>>>>> master
     };
 
     API.saveProduct(this.state.user._id, newProduct)
