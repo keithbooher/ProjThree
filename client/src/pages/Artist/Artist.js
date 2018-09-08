@@ -128,9 +128,11 @@ class Artist extends Component {
                                     key={i}
                                     image={product.data.img}
                                     price={product.data.price}
+                                    description={product.data.description}
                                     productName={product.data.productName}
                                     artistEmail={product.data.email}
                                     currentUserEmail={this.state.currentUser.email}
+                                    currentUserName={this.state.currentUser.firstName}
                                     targetStripe={product.data.stripeAccount}
                                     platformFee={product.data.platformFee}
                                     productID={product.data._id}

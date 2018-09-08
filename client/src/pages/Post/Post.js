@@ -17,6 +17,7 @@ class Post extends Component {
       user: {},
       title: "",
       price: "",
+      description: "",
       img: "",
       file: null,
       alertTitle: "hide",
