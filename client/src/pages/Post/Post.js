@@ -6,7 +6,7 @@ import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
-
+import $ from "jquery";
 import "./Post.css";
 
 
@@ -18,7 +18,11 @@ class Post extends Component {
       user: {},
       title: "",
       price: "",
-      file: null
+      img: "",
+      file: null,
+      alertTitle: "hide",
+      alertPrice: "hide",
+      alertImg: "hide",
     };
   }
 
@@ -37,6 +41,21 @@ class Post extends Component {
 
     handleFormSubmit = (event) => {
       event.preventDefault();
+        // console.log(this.state)
+      if (!this.state.title.trim()){
+        console.log("yo mane")
+        this.setState({alertTitle: "show"})
+      }
+      else if (!this.state.price.trim()){
+        console.log("yo mane")
+        this.setState({alertPrice: "show"})
+      }
+      else if (!this.state.file){
+        console.log("yo mane")
+        this.setState({alertImg: "show"})
+      }
+      else{
+
       const formData = new FormData();
       formData.append('file', this.state.file[0]);
       API.saveImage( formData, {
@@ -45,13 +64,8 @@ class Post extends Component {
         }
       }).then(response => {
         console.log("so far so good")
-      }).catch(error => {
-        console.log(error)
-      });
-
-        // console.log(this.state)
-        let { title, price, img } = this.state;
-        let query = { title, price, img }
+        console.log(response.data)
+        this.setState({img: response.data})
         // console.log(query);
 
         const convertedPrice = this.state.price * 100;
@@ -66,10 +80,16 @@ class Post extends Component {
             associatedID: this.state.user._id,
             platformFee: platformFee
         }
-
         API.saveProduct(this.state.user._id, newProduct)
         .then( console.log("success"))
         .catch(err => console.log(err));
+      }).catch(error => {
+        console.log(error)
+      });
+    }
+
+
+
       
     }
 
@@ -118,25 +138,35 @@ class Post extends Component {
                     <Col size="sm-2 offset-'sm-11">
                         <SideBar user={this.state.user}/>
                     </Col>
-                </Row> 
-                <div size="sm-10 offset-'sm-1">
-                    <form>
-                        {}
-                        <div className="form-group">
-                        <label htmlFor="title">Title of work: </label>
-                            <input value={this.state.title} onChange={this.handleInputChange} type="text" className="form-control bg-white" id="title" name="title"  placeholder="Please enter a Title for your work"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="price">Price</label>
-                            <input value={this.state.price} onChange={this.handleInputChange} type="integer" className="form-control bg-white" id="price" name="price" placeholder="Please set a price for your work"/>
-                        </div>
-                        <div className="form-group">
-                        <label htmlFor="img">Example file input</label>
-                            <input onChange={this.handleFileInput} type="file" className="form-control-file" id="img" name="img"/>
-                        </div>
-                        <button type="submit" className="btn btn-primary submitBtn" onClick={this.handleFormSubmit}>Submit</button>
-                    </form>
-                </div> 
+                 
+                  <Col class="formArea" size="sm-10 offset-'sm-1">
+                      <form>
+                          {}
+                          <div className="form-group">
+                          <label htmlFor="title">Title of work: </label>
+                              <input value={this.state.title} onChange={this.handleInputChange} type="text" className="form-control bg-white" id="title" name="title"  placeholder="Please enter a Title for your work"/>
+                          </div>
+                          <div className="form-group">
+                              <label htmlFor="price">Price</label>
+                              <input value={this.state.price} onChange={this.handleInputChange} type="integer" className="form-control bg-white" id="price" name="price" placeholder="Please set a price for your work"/>
+                          </div>
+                          <div className="form-group">
+                          <label htmlFor="img">Example file input</label>
+                              <input onChange={this.handleFileInput} type="file" className="form-control-file" id="img" name="img"/>
+                          </div>
+                          <button type="submit" className="btn btn-primary submitBtn" onClick={this.handleFormSubmit}>Submit</button>
+                      </form>
+                      <div class={this.state.alertTitle} >
+                        <h3>Please title me</h3>
+                      </div>
+                      <div class={this.state.alertPrice} >
+                        <h3>Please price me</h3>
+                      </div>
+                      <div class={this.state.alertImg} >
+                        <h3>Please show me</h3>
+                      </div>
+                  </Col> 
+                </Row>
             </div>
         );
     };
