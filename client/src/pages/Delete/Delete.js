@@ -7,9 +7,9 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 // import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
-import DeleteCard from '../../components/Card/DeleteCard';
+import DeleteCard from "../../components/Card/DeleteCard";
 
-import "./Delete.css"
+import "./Delete.css";
 
 class Delete extends Component {
   state = {
