@@ -2,11 +2,8 @@ const keys = require("../config/keys");
 const stripe = require("stripe")(keys.stripeSecretKey);
 const requireLogin = require("../middlewares/requireLogin");
 const { exec } = require("child_process");
-const fetch = require("node-fetch");
 const nodemailer = require("nodemailer");
 const Order = require("../models/Order");
-
-var request = require("request");
 
 module.exports = app => {
   app.post("/api/stripe", requireLogin, async (req, res) => {
@@ -120,23 +117,19 @@ module.exports = app => {
       res.send(
         "Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " +
           targetedStripeAccount
-      ); 
-
-
+      );
 
       // User
       // .findOneAndUpdate({ _id: currentuser }, {admin: true, stripeAccount: targetedStripeAccount})
       // .then(console.log('req.body', req))
       // .then(dbModel => res.json(dbModel))
       // .catch(err => res.status(422).json(err));
-      
+
       //.redirect("/adminform")
 
       //.redirect("/adminform")
     });
   });
-
-
 };
 
 // *********************************************************************************************
