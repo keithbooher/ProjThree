@@ -7,7 +7,7 @@ const Order = require("../models/Order");
 
 module.exports = app => {
   app.post("/api/stripe", requireLogin, async (req, res) => {
-    //creating the charge here
+    // Creating the charge here
     const charge = await stripe.charges.create(
       {
         amount: req.body.price,
@@ -62,21 +62,21 @@ module.exports = app => {
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "groupthreebootcamp@gmail.com", // generated ethereal user
-        pass: process.env.EMAIL_PASSWORD // generated ethereal password
+        user: "groupthreebootcamp@gmail.com",
+        pass: process.env.EMAIL_PASSWORD
       }
     });
 
     // setup email data with unicode symbols
     let mailOptions = {
-      from: '"Art Gutter" <groupthreebootcamp@gmail.com>', // sender address
-      to: `${artistEmail}, ${currentUserEmail}`, // list of receivers
+      from: '"Art Gutter" <groupthreebootcamp@gmail.com>', // Sender address
+      to: `${artistEmail}, ${currentUserEmail}`, // List of receivers
       subject: `Art Gutter order for ${name}`, // Subject line
-      text: "Hello world?", // plain text body
+      text: "Hello world?", // Plain text body
       html: `<b>Hello ${name},<br>Thanks for shopping with Art Gutter!<br>Your order will be shipped to:<br>${addressLine}<br>${addressCity} ${addressState}, ${addressZip}<br>If you have any Questions about your order contact the artist here: ${artistEmail}<br> If problems persist, feel free to reach out to us at ArtGutter@gmail.com</b>` // html body
     };
 
-    // send mail with defined transport object
+    // Send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         return console.log(error);
@@ -107,7 +107,7 @@ module.exports = app => {
     var cmd = `curl https://connect.stripe.com/oauth/token -d client_secret=sk_test_uDaKbfwMIWARk54H2UiKxeIv -d code="${targetQueryCode}" -d grant_type=authorization_code`;
 
     exec(cmd, function(error, stdout, stderr) {
-      //   console.log(`stdout: ${stdout}`);
+      // console.log(`stdout: ${stdout}`);
       const returnData = stdout;
       const splitItUp = returnData.split('"stripe_user_id": "');
       const splitItUpAgain = splitItUp[1].split('""scope":');
