@@ -103,7 +103,7 @@ class Post extends Component {
           console.log(error);
         });
     }
-  };
+  }
 
   handleFileInput = event => {
     this.setState({ file: event.target.files });
