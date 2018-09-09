@@ -47,61 +47,74 @@ class Post extends Component {
     this.setState({ [name]: value });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
-    // console.log(this.state)
-    if (!this.state.title.trim()) {
-      console.log("yo mane");
-      this.setState({ alertTitle: "show" });
-    } else if (!this.state.price.trim()) {
-      console.log("yo mane");
-      this.setState({ alertPrice: "show" });
-    } else if (!this.state.file) {
-      console.log("yo mane");
-      this.setState({ alertImg: "show" });
-    } else {
-      const formData = new FormData();
-      formData.append("file", this.state.file[0]);
-      API.saveImage(formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      })
-        .then(response => {
-          console.log("so far so good");
-          console.log(response.data);
-          this.setState({ img: response.data });
-          // console.log(query);
-
-          const convertedPrice = this.state.price * 100;
-          const prePlatformFee = this.state.price * 0.05;
-          const platformFee = Math.round(prePlatformFee);
-
-          const newProduct = {
-            productName: this.state.title,
-            price: convertedPrice,
-            img: this.state.img,
-            stripeAccount: this.state.user.stripeAccount,
-            associatedID: this.state.user._id,
-            platformFee: platformFee
-          };
-          API.saveProduct(this.state.user._id, newProduct)
-            .then(
-              console.log("success"),
-              this.setState({
-                title: "",
-                price: "",
-                file: null
-              }),
-              window.location.replace(`/artist/${this.state.user._id}`)
-            )
-            .catch(err => console.log(err));
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      // console.log(this.state)
+    if (!this.state.title.trim()){
+      console.log("yo mane")
+      this.setState({alertTitle: "show"})
     }
-  };
+    else if (!this.state.price.trim()){
+      console.log("yo mane")
+      this.setState({alertPrice: "show"})
+    }
+    else if (!this.state.file){
+      console.log("yo mane")
+      this.setState({alertImg: "show"})
+    }
+    else{
+
+    const formData = new FormData();
+    formData.append('file', this.state.file[0]);
+    API.saveImage( formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then(response => {
+        console.log("so far so good");
+        this.setState({ file: null }, console.log("NEWER STATE", this.state));
+        // console.log("EVENT TARGET VALUE: ", event.target.value);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    // console.log(this.state)
+    let { title, price, img, description } = this.state;
+    let query = { title, price, img };
+    // console.log(query);
+
+    const convertedPrice = this.state.price;
+    const prePlatformFee = this.state.price * 0.05;
+    const platformFee = Math.round(prePlatformFee);
+
+    const newProduct = {
+      productName: this.state.title,
+      price: convertedPrice,
+      img: this.state.img,
+      description: this.state.description,
+      email: this.state.user.email,
+      stripeAccount: this.state.user.stripeAccount,
+      associatedID: this.state.user._id,
+      platformFee: platformFee,
+      date: Date.now()
+    };
+
+    API.saveProduct(this.state.user._id, newProduct)
+      .then(
+        console.log("success"),
+        this.setState({
+          title: "",
+          price: "",
+          description: "",
+          file: null
+        })
+      ).catch(error => {
+      console.log(error)
+    });
+  }
+};
 
   handleFileInput = event => {
     this.setState({ file: event.target.files });
@@ -203,6 +216,22 @@ class Post extends Component {
                   placeholder="Please set a price for your work"
                 />
               </div>
+
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <input
+                value={this.state.description}
+                onChange={this.handleInputChange}
+                type="integer"
+                className="form-control bg-white"
+                id="description"
+                name="description"
+                placeholder="Please describe median, thought processes and any other information you find valuable to your customers"
+              />
+            </div>
+            
+
+
               <div className="form-group">
                 <label htmlFor="img">Example file input</label>
                 <input
