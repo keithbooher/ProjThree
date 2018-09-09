@@ -106,11 +106,7 @@ class Post extends Component {
       ).catch(error => {
       console.log(error)
     });
-  }
-
-
-
-    
+  }   
   }
 
   handleFileInput = event => {
