@@ -7,7 +7,7 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import Payment from "../../components/Navs/Payments";
-import { Form, Input, FormBtn, FormGroup, Label } from "../../components/Form";
+import { Form, Input, FormGroup, Label } from "../../components/Form";
 
 class Checkout extends Component {
   state = {

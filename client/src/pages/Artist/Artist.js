@@ -83,7 +83,6 @@ class Artist extends Component {
         .catch(err => console.log(err));
     }
 
-
     loadCurrentUser = () => {
         fetch("/api/current_user")
         .then(res => res.json())
@@ -119,14 +118,7 @@ class Artist extends Component {
         }
     }
 
-
     render() {
-
- 
-        
-    
-        
-
         return (
             <div>
                 {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
@@ -134,10 +126,6 @@ class Artist extends Component {
                     <Col size="sm-2 offset-'sm-11">
                         <SideBar user={this.state.user}/>
                     </Col>
-                </Row> 
-                <div className="container productContent">
-
-                    <Row>
                         <Col size="sm-3" offset="sm-1" Class="productCard">
                             <Star 
                                 idOne={1}
@@ -145,8 +133,7 @@ class Artist extends Component {
                                 idThree={3}
                                 idFour={4}
                                 idFive={5}
-                                star={this.star}
-                                
+                                star={this.star} 
                             />
                         </Col>
                     </Row> 
@@ -172,12 +159,9 @@ class Artist extends Component {
                                 />
                                 )}
                                 )}
-
                         </Col>
                     </Row> 
-
                 </div>
-            </div>
         );
     };
 };

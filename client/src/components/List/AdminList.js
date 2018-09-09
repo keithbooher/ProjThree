@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 import List from "../List/List";
-import Anchor from "../Anchor/Anchor";
+// import Anchor from "../Anchor/Anchor";
 import { Link } from "react-router-dom";
 
 class AdminList extends Component {
@@ -27,7 +27,7 @@ class AdminList extends Component {
           });
 
           // console.log('result', result)
-          let currentUser = this.state.user;
+          // let currentUser = this.state.user;
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
