@@ -17,7 +17,7 @@ const orderSchema = new Schema({
   dateOrdered: {
     type: Date,
     default: Date.now
-  } 
+  }
 });
 
 const Order = mongoose.model("order", orderSchema);
