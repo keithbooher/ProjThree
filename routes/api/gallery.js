@@ -80,14 +80,14 @@ module.exports = (app) => {
       .catch(err => res.status(422).json(err));
   })
 
-  // app.post("/api/uploadImage", function(req, res){
-  //   console.log(req.files, "gallerylist awwwwwww yeah")
+  app.post("/api/uploadImage", function(req, res){
+    console.log(req.files, "gallerylist awwwwwww yeah")
   
-  //   uploadToS3(req.files.file, function(data){
-  //     res.send(data)
-  //   })
-  //   // res.end()
-  // });
+    uploadToS3(req.files.file, function(data){
+      res.send(data)
+    })
+    // res.end()
+  });
   
 };
 
