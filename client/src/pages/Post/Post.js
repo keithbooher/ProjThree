@@ -44,29 +44,29 @@ class Post extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    // console.log(this.state)
-    if (!this.state.title.trim()) {
-      console.log("yo mane");
-      this.setState({ alertTitle: "show" });
-    } else if (!this.state.price.trim()) {
-      console.log("yo mane");
-      this.setState({ alertPrice: "show" });
-    } else if (!this.state.file) {
-      console.log("yo mane");
-      this.setState({ alertImg: "show" });
-    } else {
-      const formData = new FormData();
-      formData.append("file", this.state.file[0]);
-      // API.saveImage(formData, {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data"
-      //   }
-      // })
-        .then(response => {
-          console.log("so far so good");
-          console.log(response.data);
-          this.setState({ img: response.data });
-          // console.log(query);
+    // // console.log(this.state)
+    // if (!this.state.title.trim()) {
+    //   console.log("yo mane");
+    //   this.setState({ alertTitle: "show" });
+    // } else if (!this.state.price.trim()) {
+    //   console.log("yo mane");
+    //   this.setState({ alertPrice: "show" });
+    // } else if (!this.state.file) {
+    //   console.log("yo mane");
+    //   this.setState({ alertImg: "show" });
+    // } else {
+    //   const formData = new FormData();
+    //   formData.append("file", this.state.file[0]);
+    //   API.saveImage(formData, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data"
+    //     }
+    //   })
+    //     .then(response => {
+    //       console.log("so far so good");
+    //       console.log(response.data);
+    //       this.setState({ img: response.data });
+    //       // console.log(query);
 
           let { title, price, img, description } = this.state;
           let query = { title, price, img };
@@ -99,10 +99,10 @@ class Post extends Component {
               // window.location.replace(`/artist/${this.state.user._id}`)
             )
             .catch(err => console.log(err));
-        })
-        .catch(error => {
-          console.log(error);
-        });
+        // })
+        // .catch(error => {
+        //   console.log(error);
+        // });
     }
   };
 
