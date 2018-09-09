@@ -68,7 +68,10 @@ class Post extends Component {
           this.setState({ img: response.data });
           // console.log(query);
 
-          const convertedPrice = this.state.price * 100;
+          let { title, price, img, description } = this.state;
+          let query = { title, price, img };
+
+          const convertedPrice = this.state.price;
           const prePlatformFee = this.state.price * 0.05;
           const platformFee = Math.round(prePlatformFee);
 
@@ -76,10 +79,14 @@ class Post extends Component {
             productName: this.state.title,
             price: convertedPrice,
             img: this.state.img,
+            description: this.state.description,
+            email: this.state.user.email,
             stripeAccount: this.state.user.stripeAccount,
             associatedID: this.state.user._id,
-            platformFee: platformFee
+            platformFee: platformFee,
+            date: Date.now()
           };
+
           API.saveProduct(this.state.user._id, newProduct)
             .then(
               console.log("success"),
@@ -178,6 +185,7 @@ class Post extends Component {
           </Col>
           <Col size="sm-9 offset-'sm-1">
             <form className="postForm">
+            {/* Title of Art */}
               <div className="form-group">
                 <label htmlFor="title">Title of work: </label>
                 <input
@@ -190,6 +198,7 @@ class Post extends Component {
                   placeholder="Please enter a Title for your work"
                 />
               </div>
+              {/* Price of Art */}
               <div className="form-group">
                 <label htmlFor="price">Price</label>
                 <input
@@ -202,6 +211,20 @@ class Post extends Component {
                   placeholder="Please set a price for your work"
                 />
               </div>
+              {/* Description of Art */}
+              <div className="form-group">
+                <label htmlFor="description">Description</label>
+                <input
+                  value={this.state.description}
+                  onChange={this.handleInputChange}
+                  type="integer"
+                  className="form-control bg-white"
+                  id="description"
+                  name="description"
+                  placeholder="Please describe median, thought processes and any other information you find valuable to your customers"
+                />
+              </div>
+              {/* Image file of Art */}
               <div className="form-group">
                 <label htmlFor="img">Example file input</label>
                 <input
