@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import Payments from './Payments';
 import "./nav.css"
 
 class Header extends Component {

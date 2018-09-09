@@ -6,7 +6,6 @@ import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-import $ from "jquery";
 import "./Post.css";
 import {
   BrowserRouter as Router,
@@ -49,6 +48,7 @@ class Post extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+
       // console.log(this.state)
     if (!this.state.title.trim()){
       console.log("yo mane")
@@ -83,6 +83,7 @@ class Post extends Component {
     // console.log(this.state)
     let { title, price, img, description } = this.state;
     let query = { title, price, img };
+
     // console.log(query);
 
     const convertedPrice = this.state.price;
@@ -110,11 +111,13 @@ class Post extends Component {
           description: "",
           file: null
         })
+
       ).catch(error => {
       console.log(error)
     });
   }
 };
+
 
   handleFileInput = event => {
     this.setState({ file: event.target.files });
@@ -262,9 +265,10 @@ class Post extends Component {
           </Col>
         </Row>
       </div>
-    );
+    )
   }
 }
+
 
 export default connect(
   null,
