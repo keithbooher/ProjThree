@@ -8,9 +8,10 @@ import Anchor from "../Anchor/Anchor";
 import AdminList from "../List/AdminList";
 import { Link } from "react-router-dom";
 
+
 class Sidebar extends Component {
   state = {
-    user: {}
+    user: {},
   };
 
   componentDidMount() {

@@ -70,14 +70,23 @@ class ContactUs extends Component{
         console.log(this.state.email);
         console.log(this.state.subject);
         console.log(this.state.textBody);
+        let name = this.state.name
+        let email = this.state.email
+        let subject = this.state.subject
+        let textBody = this.state.textBody
 
         let formData={
-            name: this.state.name,
-            email: this.state.email,
-            subject: this.state.subject,
-            text: this.state.textBody
+            name: name,
+            email: email,
+            subject: subject,
+            text: textBody
         }
         console.log(formData)
+
+        if(!name || !email || !subject || !textBody){
+            alert("Please fill out all fields");
+        } else{
+
 
         API.contactUsForm(formData).then(
             console.log("It did it")
@@ -90,7 +99,7 @@ class ContactUs extends Component{
             textBody: "",
             subject: ""
         })
-
+    }
           };
                 
     
@@ -102,7 +111,7 @@ class ContactUs extends Component{
             <div className="container">
                 <div className="row">
                     <div className="col-md-2"/>
-                    <h4 className="contactTitle">Contact Us</h4>
+                    <h2 className="contactTitle">Contact Us</h2>
                 </div>
                 <div className="row">
                     <div className="col-md-2">
