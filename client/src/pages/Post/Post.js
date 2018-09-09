@@ -57,11 +57,11 @@ class Post extends Component {
     } else {
       const formData = new FormData();
       formData.append("file", this.state.file[0]);
-      API.saveImage(formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      })
+      // API.saveImage(formData, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data"
+      //   }
+      // })
         .then(response => {
           console.log("so far so good");
           console.log(response.data);
