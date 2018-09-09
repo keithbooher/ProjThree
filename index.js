@@ -20,8 +20,8 @@ const AWS = require("aws-sdk");
 mongoose.connect(keys.mongoURI);
 
 // Connect to the Mongo DB for our gallery collection
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/galleryList");
-mongoose.connect("mongodb://localhost/galleryList");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/galleryList");
+// mongoose.connect("mongodb://localhost/galleryList");
 
 // Running express and assigning it to a variable
 const app = express();
