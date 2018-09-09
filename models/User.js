@@ -19,10 +19,11 @@ const userSchema = new Schema({
         type: String,
         default: " "
     },
-    rating: [{
+    rating: [String],
+    averageRating: { 
         type: Number,
         default: 5
-    }],
+    },
     product: [{
         type: Schema.Types.ObjectId,
         ref: "product"

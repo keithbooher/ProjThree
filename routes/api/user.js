@@ -41,6 +41,24 @@ module.exports = (app) => {
     .catch(err => res.status(422).json(err));
   })
 
+  // Update User Rating
+  app.put('/api/user/rating/:id', (req, res) => {
+    User
+    .findOneAndUpdate({ _id: req.params.id }, { $push: {rating: req.body.rating}})
+    .then(console.log('req.body', req))
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  })
+
+    // Update User AVERAGE Rating
+    app.put('/api/user/averageRating/:id', (req, res) => {
+      User
+      .findOneAndUpdate({ _id: req.params.id }, { averageRating: req.body.averageRating})
+      .then(console.log('req.body', req))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+    })
+
     // remove user product
     app.put('/api/user/product/:id', (req, res) => {
       console.log(req)      
