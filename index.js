@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const AWS = require("aws-sdk");
 const keys = require("./config/keys");
 require("./models/User");
 require("./services/passport");
@@ -13,13 +14,12 @@ require("./services/passport");
 const BUCKET_NAME = "artgutter";
 const IAM_USER_KEY = process.env.AWS_ACCESS_KEY_ID;
 const IAM_USER_SECRET = process.env.AWS_SECRET_ACCESS_KEY;
-
-const AWS = require("aws-sdk");
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 
 mongoose.connect(keys.mongoURI);
 
 // Connect to the Mongo DB for our gallery collection
-// Mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/galleryList");
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/galleryList");
 mongoose.connect("mongodb://localhost/galleryList");
 
 // Running express and assigning it to a variable
@@ -46,6 +46,8 @@ require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 require("./routes/api/user")(app);
 require("./routes/api/gallery")(app);
+require("./routes/contactUsRoute")(app);
+``;
 
 if (process.env.NODE_ENV === "production") {
   // Express will serve up production assets

@@ -2,14 +2,12 @@ const keys = require("../config/keys");
 const stripe = require("stripe")(keys.stripeSecretKey);
 const requireLogin = require("../middlewares/requireLogin");
 const { exec } = require("child_process");
-const fetch = require("node-fetch");
 const nodemailer = require("nodemailer");
-const User = require("../models/User")
-var request = require('request');
+const Order = require("../models/Order");
 
 module.exports = app => {
   app.post("/api/stripe", requireLogin, async (req, res) => {
-    //creating the charge here
+    // Creating the charge here
     const charge = await stripe.charges.create(
       {
         amount: req.body.price,
@@ -23,6 +21,8 @@ module.exports = app => {
       }
     );
     const user = await req.user.save();
+
+    console.log("req.body", req.body);
     // console.log("LOOK HERE", req.body);
     let name = req.body.card.name;
     let artistEmail = req.body.artistEmail;
@@ -37,26 +37,46 @@ module.exports = app => {
     let expYear = req.body.card.exp_year;
     let cardDigits = req.body.card.last4;
 
+    const productName = req.body.productName;
+    const price = req.body.price;
+    const firstName = req.body.firstName;
+
+    const orderObject = {
+      productName: productName,
+      price: price,
+      img: null,
+      userEmail: currentUserEmail,
+      userName: firstName,
+      artistEmail: artistEmail,
+      city: addressCity,
+      country: addressCountry,
+      address: addressLine,
+      state: addressState,
+      zip: addressZip,
+      last4: cardDigits,
+      dateOrdered: Date.now()
+    };
+
     // NODEMAILER
     // ==================================================================
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "groupthreebootcamp@gmail.com", // generated ethereal user
-        pass: process.env.EmailPassword // generated ethereal password
+        user: "groupthreebootcamp@gmail.com",
+        pass: process.env.EMAIL_PASSWORD
       }
     });
 
     // setup email data with unicode symbols
     let mailOptions = {
-      from: '"Art Gutter" <groupthreebootcamp@gmail.com>', // sender address
-      to: `${artistEmail}, ${currentUserEmail}`, // list of receivers
+      from: '"Art Gutter" <groupthreebootcamp@gmail.com>', // Sender address
+      to: `${artistEmail}, ${currentUserEmail}`, // List of receivers
       subject: `Art Gutter order for ${name}`, // Subject line
-      text: "Hello world?", // plain text body
+      text: "Hello world?", // Plain text body
       html: `<b>Hello ${name},<br>Thanks for shopping with Art Gutter!<br>Your order will be shipped to:<br>${addressLine}<br>${addressCity} ${addressState}, ${addressZip}<br>If you have any Questions about your order contact the artist here: ${artistEmail}<br> If problems persist, feel free to reach out to us at ArtGutter@gmail.com</b>` // html body
     };
 
-    // send mail with defined transport object
+    // Send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         return console.log(error);
@@ -68,6 +88,10 @@ module.exports = app => {
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     });
+
+    Order.create(orderObject)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.json(err));
 
     res.send(user);
   });
@@ -83,20 +107,27 @@ module.exports = app => {
     var cmd = `curl https://connect.stripe.com/oauth/token -d client_secret=sk_test_uDaKbfwMIWARk54H2UiKxeIv -d code="${targetQueryCode}" -d grant_type=authorization_code`;
 
     exec(cmd, function(error, stdout, stderr) {
-    //   console.log(`stdout: ${stdout}`);
+      // console.log(`stdout: ${stdout}`);
       const returnData = stdout;
       const splitItUp = returnData.split('"stripe_user_id": "');
       const splitItUpAgain = splitItUp[1].split('""scope":');
       const targetedStripeAccount = splitItUpAgain[0].slice(0, 21);
-      console.log("test", targetedStripeAccount);
+      // console.log("test", req.user);
 
       res.send(
         "Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " +
           targetedStripeAccount
-      ); 
-      
+      );
+
+      // User
+      // .findOneAndUpdate({ _id: currentuser }, {admin: true, stripeAccount: targetedStripeAccount})
+      // .then(console.log('req.body', req))
+      // .then(dbModel => res.json(dbModel))
+      // .catch(err => res.status(422).json(err));
+
       //.redirect("/adminform")
 
+      //.redirect("/adminform")
     });
   });
 };

@@ -1,3 +1,7 @@
+.postForm {
+    border: solid #000000 1px;
+}
+
 .title {
     color: black;
     font-weight: bold;
@@ -33,11 +37,15 @@
     width: 60%;
 }
 
-.form-group {
-    margin-left: 15%;
+::-webkit-input-placeholder {
+    font-style: italic;
 }
-
-.submitBtn {
-    margin-left: 15%;
-
+:-moz-placeholder {
+    font-style: italic;  
+}
+::-moz-placeholder {
+    font-style: italic;  
+}
+:-ms-input-placeholder {
+    font-style: italic; 
 }

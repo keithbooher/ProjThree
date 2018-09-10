@@ -6,13 +6,14 @@ const productSchema = new Schema({
   price: { type: Number, required: true },
   img: String,
   email: String,
+  description: String,
   stripeAccount: String,
   associatedID: String,
   platformFee: Number,
   datePosted: {
     type: Date,
     default: Date.now
-  } 
+  }
 });
 
 const Product = mongoose.model("product", productSchema);

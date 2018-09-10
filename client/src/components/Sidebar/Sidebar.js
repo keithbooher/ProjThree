@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import List from "../List/List";
 import UnorderedList from "../List/UnorderedList";
 import "./Sidebar.css";
-import Anchor from "../Anchor/Anchor";
+// import Anchor from "../Anchor/Anchor";
 import AdminList from "../List/AdminList";
-import LoggedInList from "../List/LoggedInList";
+import { Link } from "react-router-dom";
+
 
 class Sidebar extends Component {
   state = {
-    user: {}
+    user: {},
   };
 
   componentDidMount() {
@@ -71,29 +72,32 @@ class Sidebar extends Component {
         <h5 className="sidebarTitle">Explore the Gutter</h5>
         <UnorderedList>
           <List>
-            <Anchor text="View Newest Art" href="/new" />
+            <Link to="/new">New Art</Link>
           </List>
           <List>
-            <Anchor text="View All Our Artists" href="/artists" />
+            <Link to="/artists">View All Artists</Link>
           </List>
+
           {this.adminStatus() ? <AdminList /> : ""}
           {this.adminStatus() ? (
             ""
           ) : (
             <List>
-              <Anchor
-                text="Become Admin"
-                href={this.loggedIn() ? "/adminform" : "/auth/google"}
-              />
+              <Link to={this.loggedIn() ? "/adminform" : "/auth/google"}>
+                Become Admin
+              </Link>
             </List>
           )}
+          <List>
+            <Link to="/contactUs">Contact Us</Link>
+          </List>
         </UnorderedList>
       </div>
     );
   }
 }
 
-// telling this component if we are logged in or not and what to show occordingly
+// Telling this component if we are logged in or not and what to show occordingly
 function mapStateToProps({ auth }) {
   return { auth };
 }
