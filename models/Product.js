@@ -13,7 +13,7 @@ const productSchema = new Schema({
   datePosted: {
     type: Date,
     default: Date.now
-  } 
+  }
 });
 
 const Product = mongoose.model("product", productSchema);

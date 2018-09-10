@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import List from "../List/List";
 import UnorderedList from "../List/UnorderedList";
 import "./Sidebar.css";
-import Anchor from "../Anchor/Anchor";
+// import Anchor from "../Anchor/Anchor";
 import AdminList from "../List/AdminList";
 import { Link } from "react-router-dom";
 
@@ -97,7 +97,7 @@ class Sidebar extends Component {
   }
 }
 
-// telling this component if we are logged in or not and what to show occordingly
+// Telling this component if we are logged in or not and what to show occordingly
 function mapStateToProps({ auth }) {
   return { auth };
 }

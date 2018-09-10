@@ -88,7 +88,6 @@ class Artist extends Component {
         .catch(err => console.log(err));
     }
 
-
     loadCurrentUser = () => {
         fetch("/api/current_user")
         .then(res => res.json())
@@ -177,7 +176,6 @@ class Artist extends Component {
 
 
     render() {    
-
         return (
             <div>
                 {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
@@ -204,6 +202,7 @@ class Artist extends Component {
                                                         {this.isRateStateFilled() ? <button onClick={() => this.submitRating()} >Submit Rating</button> : ' '}
                                                     </div>
                             }          
+
                         </Col>
                     </Row> }
 
@@ -229,12 +228,10 @@ class Artist extends Component {
                                 />
                                 )}
                                 )}
-
                         </Col>
                     </Row> 
-
                 </div>
-            </div>
+          </div>
         );
     };
 };
