@@ -13,7 +13,6 @@ import Delete from "../pages/Delete";
 // import Checkout from "../pages/Checkout";
 import Footer from "../components/Footer/Footer";
 import "./App.css";
-// import $ from "jquery";
 import ContactUs from "../pages/ContactUs/ContactUs";
 
 const App = () => (

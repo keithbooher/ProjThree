@@ -47,7 +47,7 @@ require("./routes/billingRoutes")(app);
 require("./routes/api/user")(app);
 require("./routes/api/gallery")(app);
 require("./routes/contactUsRoute")(app);
-``;
+
 
 if (process.env.NODE_ENV === "production") {
   // Express will serve up production assets
