@@ -1,11 +1,13 @@
-.artistsGrid {
+.homeGrid {
     display: grid;
     grid-template-columns: 5% repeat(4, 1fr) 5%;
-    grid-template-rows: 20vh repeat(2, 1fr) 20vh;
+    grid-template-rows: 20vh repeat(4, 1fr) 20vh;
     grid-template-areas:
     "header header header header header header"
-    ". sidebar maincontent maincontent maincontent ."
-    ". sidebar maincontent maincontent maincontent ."
+    ". sidebar ms ms ms ."
+    ". sidebar ms ms ms ."
+    ". cs cs cs cs ."
+    ". cs cs cs cs ."
     "footer footer footer footer footer footer";
     grid-gap: 2rem
 }
@@ -14,10 +16,19 @@
     grid-area: header
 }
 
-.mainContent {
-    grid-area: maincontent
+.sideBar {
+    grid-area: sidebar;
+}
+
+.missionStatement {
+    grid-area: ms
+}
+
+.carousel {
+    grid-area: cs
 }
 
 .footer {
     grid-area: footer
 }
+

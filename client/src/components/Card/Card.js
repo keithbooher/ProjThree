@@ -3,7 +3,7 @@ import Payments from "../Payments/Payments";
 import "./Card.css";
 
 const Card = props => (
-  <div className="card">
+  <div className="artCard">
     <img className="card-img-top" src={props.image} alt={props.productName} />
     <div className="card-body">
       <h5 className="card-title">{props.productName}</h5>

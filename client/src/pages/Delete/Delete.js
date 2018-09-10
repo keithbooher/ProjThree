@@ -6,9 +6,7 @@ import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-// import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
 import DeleteCard from "../../components/Card/DeleteCard";
-
 import "./Delete.css";
 
 class Delete extends Component {
@@ -102,58 +100,35 @@ class Delete extends Component {
 
   render() {
     return (
-      <div>
+      <div className="deleteGrid">
         {this.state.user.admin ? (
           <AdminHeader amount={this.state.amount} />
         ) : (
           <Header key="1" amount={this.state.amount} />
         )}
-        <Row>
-          <Col size="sm-2 offset-'sm-11">
-            <SideBar user={this.state.user} />
-          </Col>
-        </Row>
-        <div className="container productContent">
-          <Row>
-            <Col size="sm-3" offset="sm-1" Class="productCard">
-              {console.log("MAP STATE", this.state.products)}
-              {this.state.productIDs
-                ? this.state.products.map((product, i) => {
-                    return (
-                      <DeleteCard
-                        key={i}
-                        image={product.data.img}
-                        price={product.data.price}
-                        productName={product.data.productName}
-                        artistEmail={product.data.email}
-                        currentUserEmail={this.state.currentUser.email}
-                        targetStripe={product.data.stripeAccount}
-                        platformFee={product.data.platformFee}
-                        productID={product.data._id}
-                        deleteProduct={this.deleteProduct}
-                      />
-                    );
-                  })
-                : ""}
-              {/* {this.state.products.map((product, i) => {
-                console.log("PRODUCT", i, product.data._id);
-                return (
-                  <DeleteCard
-                    key={i}
-                    image={product.data.img}
-                    price={product.data.price}
-                    productName={product.data.productName}
-                    artistEmail={product.data.email}
-                    currentUserEmail={this.state.currentUser.email}
-                    targetStripe={product.data.stripeAccount}
-                    platformFee={product.data.platformFee}
-                    productID={product.data._id}
-                    deleteProduct={this.deleteProduct}
-                  />
-                );
-              })} */}
-            </Col>
-          </Row>
+        <SideBar user={this.state.user} />
+        <div className="productContent">
+          <div className="productCard">
+            {console.log("MAP STATE", this.state.products)}
+            {this.state.productIDs
+              ? this.state.products.map((product, i) => {
+                  return (
+                    <DeleteCard
+                      key={i}
+                      image={product.data.img}
+                      price={product.data.price}
+                      productName={product.data.productName}
+                      artistEmail={product.data.email}
+                      currentUserEmail={this.state.currentUser.email}
+                      targetStripe={product.data.stripeAccount}
+                      platformFee={product.data.platformFee}
+                      productID={product.data._id}
+                      deleteProduct={this.deleteProduct}
+                    />
+                  );
+                })
+              : ""}
+          </div>
         </div>
       </div>
     );
