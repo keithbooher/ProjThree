@@ -36,17 +36,17 @@ class Artists extends Component {
 
         for (let i = 0; i < userRatingsArray.length; i++) {
           let rating = userRatingsArray[i]
-          let convertRating = parseInt(rating)
+          let convertRating = parseInt(rating, 16)
           pushedRatings.push(convertRating)
           console.log('rating', rating)
         }
 
-        var sum, avg = 0;
+        // var sum, avg = 0;
         let average = pushedRatings.reduce((a,b) => a + b, 0) / pushedRatings.length;
-        let firstName = this.state.users[i].firstName;
+        // let firstName = this.state.users[i].firstName;
 
         let averageRounded = average.toFixed(1)
-        let parsed = parseInt(averageRounded)
+        let parsed = parseInt(averageRounded, 16)
 
         const averageRatingObject = {
           averageRating: parsed
