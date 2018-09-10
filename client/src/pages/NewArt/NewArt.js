@@ -72,15 +72,20 @@ class Home extends Component {
             console.log("PRODUCT", i, product.data);
             return (
               <Card
-                key={i}
-                image={product.img}
-                price={product.price}
-                productName={product.productName}
-                artistEmail={product.email}
-                currentUserEmail={this.state.currentUser.email}
-                targetStripe={product.stripeAccount}
-                platformFee={product.platformFee}
-                productID={product._id}
+              key={i}
+              image={product.img}
+              price={product.price}
+              productName={product.productName}
+              artistEmail={product.email}
+              artistName={product.artistName}
+              artistID={product.associatedID}
+              description={product.description}
+              currentUserEmail={this.state.currentUser.email}
+              targetStripe={product.stripeAccount}
+              platformFee={product.platformFee}
+              productID={product._id}
+              sold={product.sold}
+              quantity={product.quantity}
               />
             );
           })}

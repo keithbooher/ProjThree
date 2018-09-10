@@ -6,7 +6,9 @@ const productSchema = new Schema({
   price: { type: Number, required: true },
   img: String,
   email: String,
+  artistName: String,
   description: String,
+  quantity: Number,
   stripeAccount: String,
   associatedID: String,
   sold: {

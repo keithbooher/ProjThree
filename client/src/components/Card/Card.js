@@ -7,10 +7,12 @@ const Card = props => (
     <img className="card-img-top" src={props.image} alt={props.productName} />
     <div className="card-body">
       <h5 className="card-title">{props.productName}</h5>
+      <p className="card-text">${props.price + props.platformFee}</p>      
       <p className="card-text">{props.description}</p>
-      <p className="card-text">${props.price + props.platformFee}</p>
+      <a href={`/artist/${props.artistID}`}>{props.artistName}</a>    
+      <p className="card-text">Quantity: {props.quantity}</p>        
     </div>
-    {props.sold ? "SOLD" :     
+    {props.sold ? "SOLD OUT" :     
     <Payments
       price={props.price}
       targetStripe={props.targetStripe}

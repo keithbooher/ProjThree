@@ -96,9 +96,27 @@ module.exports = app => {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
 
-    Product.findOneAndUpdate({ _id: productID }, { sold: true })
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
+    Product.findOne({ _id: productID }, function (err, product) {
+      if (err) return handleError(err);
+
+      const subtractedValue= product.quantity -1;
+      console.log('subtractedValue', subtractedValue);
+      console.log('quantity', product.quantity);
+
+      Product.findOneAndUpdate({ _id: productID }, { quantity: subtractedValue })
+      .then(dbModel => {
+        console.log(dbModel.quantity)
+        if(subtractedValue === 0){
+          Product.findOneAndUpdate({ _id: productID }, { sold: true })
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+        }
+      })
+      .catch(err => res.json(err));      
+      
+    });
+
+
 
     res.send(user);
   });
