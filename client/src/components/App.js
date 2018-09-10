@@ -10,7 +10,7 @@ import Product from "../pages/Product";
 import Customize from "../pages/Customize";
 import Post from "../pages/Post";
 import Delete from "../pages/Delete";
-import Checkout from "../pages/Checkout";
+// import Checkout from "../pages/Checkout";
 import Footer from "../components/Footer/Footer";
 import "./App.css";
 import ContactUs from "../pages/ContactUs/ContactUs";
@@ -29,7 +29,7 @@ const App = () => (
         <Route exact path="/customize" component={Customize} />
         <Route exact path="/post" component={Post} />
         <Route exact path="/delete" component={Delete} />
-        <Route exact path="/checkout/:id" component={Checkout} />
+        {/* <Route exact path="/checkout/:id" component={Checkout} /> */}
         <Route exact path="/contactus" component={ContactUs} />
       </div>
     </BrowserRouter>

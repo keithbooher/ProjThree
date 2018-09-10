@@ -6,6 +6,7 @@ import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
+
 import "./Post.css";
 import { Redirect } from "react-router-dom";
 
@@ -67,8 +68,8 @@ class Post extends Component {
           this.setState({ img: response.data });
           // console.log(query);
 
-          let { title, price, img, description } = this.state;
-          let query = { title, price, img };
+          // let { title, price, img, description } = this.state;
+          // let query = { title, price, img };
 
           const convertedPrice = this.state.price;
           const prePlatformFee = this.state.price * 0.05;
@@ -173,7 +174,7 @@ class Post extends Component {
 
   render() {
     if (this.state.toDashboard === true) {
-      return <Redirect to={`/artist/${this.state.user._id}`} />
+      return <Redirect to={`/artist/${this.state.user._id}`} />;
     }
     return (
       <div>
@@ -184,22 +185,22 @@ class Post extends Component {
           </Col>
           <Col size="sm-9 offset-'sm-1">
             <form className="postForm">
-            {/* Title of Art */}
+              {/* Title of Art */}
               <div className="form-group">
-                <label htmlFor="title">Title of work: </label>
+                <label htmlFor="title">Title: </label>
                 <input
                   value={this.state.title}
                   onChange={this.handleInputChange}
-                  type="text"
+                  type="integer"
                   className="form-control bg-white"
                   id="title"
                   name="title"
-                  placeholder="Please enter a Title for your work"
+                  placeholder="example: &quot;The Starry Night&quot;"
                 />
               </div>
               {/* Price of Art */}
               <div className="form-group">
-                <label htmlFor="price">Price</label>
+                <label htmlFor="price">Price: </label>
                 <input
                   value={this.state.price}
                   onChange={this.handleInputChange}
@@ -207,25 +208,26 @@ class Post extends Component {
                   className="form-control bg-white"
                   id="price"
                   name="price"
-                  placeholder="Please set a price for your work"
+                  placeholder="example: 100"
                 />
               </div>
               {/* Description of Art */}
               <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <input
+                <label htmlFor="description">Description: </label>
+                <textarea
                   value={this.state.description}
                   onChange={this.handleInputChange}
-                  type="integer"
+                  rows="10"
+                  type="text"
                   className="form-control bg-white"
                   id="description"
                   name="description"
-                  placeholder="Please describe median, thought processes and any other information you find valuable to your customers"
+                  placeholder="example: &quot;The village is painted with dark colors but the brightly lit windows create a sense of comfort.&quot;"
                 />
               </div>
               {/* Image file of Art */}
               <div className="form-group">
-                <label htmlFor="img">Example file input</label>
+                <label htmlFor="img">Image File: </label>
                 <input
                   onChange={this.handleFileInput}
                   type="file"

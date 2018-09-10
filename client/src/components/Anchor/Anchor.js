@@ -6,4 +6,3 @@ export const Anchor = (props) =>
   ;
 
 export default Anchor
-  
