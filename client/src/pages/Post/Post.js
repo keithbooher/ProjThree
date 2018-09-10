@@ -68,7 +68,7 @@ class Post extends Component {
       this.setState({ alertImg: "show" });
     } else {
       const formData = new FormData();
-      //state file is being
+      //state file is being added upon forminput
       formData.append("file", this.state.file[0]);
       API.saveImage(formData, {
         headers: {
@@ -121,7 +121,7 @@ class Post extends Component {
           console.log(error);
         });
     }
-  }
+  };
 
   handleFileInput = event => {
     this.setState({ file: event.target.files });
@@ -194,7 +194,7 @@ class Post extends Component {
       return <Redirect to={`/artist/${this.state.user._id}`} />;
     }
     return (
-      <div>
+      <div className="postGrid">
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
         <Row>
           <Col size="sm-3 offset-'sm-11">

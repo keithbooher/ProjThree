@@ -1,3 +1,10 @@
 .admin {
     margin-right: 10px;
 }
+
+.nav-wrapper {
+    background: #4776e6;
+    background: -webkit-linear-gradient(to right, #4776e6, #8e54e9);
+    background: linear-gradient(to right, #4776e6, #8e54e9);
+    border-bottom: solid 2px #000000;
+}
