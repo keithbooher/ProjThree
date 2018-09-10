@@ -21,7 +21,9 @@ class Artist extends Component {
         products: [],
         pageArtist: {},
         user: {},
-        currentUser: {}
+        currentUser: {},
+        rating: 0,
+        ratingSubmitted: false
     }
     
     componentDidMount() {
@@ -47,7 +49,10 @@ class Artist extends Component {
         // const productObjectsArray = [];
         for (let i = 0; i < productIDs.length; i++) {
             API.getProduct(productIDs[i])
-            .then(result => { this.setState({ products: this.state.products.concat(result)})})
+            .then(result => { 
+                this.setState({ products: this.state.products.concat(result)})
+                this.isThisTheCurrentUsersPage();        
+            })
             .catch(err => console.log(err));
         }
     }
@@ -108,17 +113,69 @@ class Artist extends Component {
     };
 
      star = (id) => {
-
+         let rating = 0;
         console.log("id", id)
         const starInQuestion = document.getElementById(`star${id}`);
         if(starInQuestion.classList.contains('checked')) {
-            starInQuestion.classList.remove('checked');
+            for (let i = id+1; i <= 5; i++) {
+                document.getElementById(`star${i}`).classList.remove('checked');
+                rating = id                
+            }
+        } else if(!starInQuestion.classList.contains('checked')) {
+            for (let i = 1; i <= id; i++) {
+                document.getElementById(`star${i}`).classList.add('checked')
+                rating = i                
+            }
+        }
+        console.log('rating', rating)
+
+        const ratingObject = {
+            rating: rating
+        }
+
+        this.setState({ rating: ratingObject})
+
+        console.log('rating state', ratingObject)
+
+        this.isRateStateFilled();
+
+    }
+
+    submitRating = () => {
+        const currentUser = this.state.user._id;
+        const ratingState = this.state.rating
+        
+        API.changeRating(currentUser, ratingState)
+        .then(this.setState({ ratingSubmitted: true}))
+        .catch(err => console.log(err));
+    }
+
+    isRateStateFilled = () => {
+        if(this.state.rating) {
+            console.log("YOOOOOOOOOOOOOOOO", this.state.rating)
+            return true
         } else {
-            starInQuestion.classList.add('checked');
+            return false
         }
     }
 
-    render() {
+    isThisTheCurrentUsersPage = () => {
+        const url = window.location.href
+        console.log('url', url)
+        const splitURL = url.split('/')
+        console.log(splitURL[4])
+        const targetedID = splitURL[4]
+        console.log(splitURL[4])
+        
+        if( targetedID === this.state.currentUser._id) {
+           return true
+        } else {
+            return false
+        }
+    }
+
+
+    render() {    
         return (
             <div>
                 {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
@@ -126,17 +183,29 @@ class Artist extends Component {
                     <Col size="sm-2 offset-'sm-11">
                         <SideBar user={this.state.user}/>
                     </Col>
+                </Row> 
+                <div className="container productContent">
+
+                    {this.isThisTheCurrentUsersPage() ? " " :                     <Row>
                         <Col size="sm-3" offset="sm-1" Class="productCard">
-                            <Star 
-                                idOne={1}
-                                idTwo={2}
-                                idThree={3}
-                                idFour={4}
-                                idFive={5}
-                                star={this.star} 
-                            />
+                        {this.state.ratingSubmitted ? <h4>Thank you for submitting your feedback</h4> : 
+                                                    <div>
+                                                            <Star 
+                                                            idOne={1}
+                                                            idTwo={2}
+                                                            idThree={3}
+                                                            idFour={4}
+                                                            idFive={5}
+                                                            star={this.star}
+                                                        />
+                                                    
+                                                        {this.isRateStateFilled() ? <button onClick={() => this.submitRating()} >Submit Rating</button> : ' '}
+                                                    </div>
+                            }          
+
                         </Col>
-                    </Row> 
+                    </Row> }
+
 
                     <Row>
                         <Col size="sm-3" offset="sm-1" Class="productCard">
@@ -162,6 +231,7 @@ class Artist extends Component {
                         </Col>
                     </Row> 
                 </div>
+          </div>
         );
     };
 };

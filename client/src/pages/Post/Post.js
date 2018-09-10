@@ -6,7 +6,7 @@ import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-// import $ from "jquery";
+
 import "./Post.css";
 import { Redirect } from "react-router-dom";
 

@@ -8,6 +8,7 @@ export const Star = (props) =>
         <span id="star3" onClick={() => props.star(props.idThree)} className={`fa fa-star hover ${props.checked}`}></span>
         <span id="star4" onClick={() => props.star(props.idFour)} className={`fa fa-star hover ${props.checked}`}></span>
         <span id="star5" onClick={() => props.star(props.idFive)} className={`fa fa-star hover ${props.checked}`}></span>
+  
   </div>;
 
   export default Star;

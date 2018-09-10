@@ -17,20 +17,60 @@ class Artists extends Component {
     amount: 0,
     products: [],
     user: {},
-    users: []
+    users: [],
+    userRatings: []
   };
 
   componentDidMount() {
     this.props.fetchUser();
-    this.loadUsers();
     this.loadCurrentUser();
+  }
+
+  userRatings = () => {
+    const users = this.state.users;
+
+    for (let i = 0; i < users.length; i++) {
+      console.log("*****USER****", users[i].firstName)
+      let pushedRatings = []
+      let userRatingsArray = users[i].rating
+
+        for (let i = 0; i < userRatingsArray.length; i++) {
+          let rating = userRatingsArray[i]
+          let convertRating = parseInt(rating)
+          pushedRatings.push(convertRating)
+          console.log('rating', rating)
+        }
+
+        var sum, avg = 0;
+        let average = pushedRatings.reduce((a,b) => a + b, 0) / pushedRatings.length;
+        let firstName = this.state.users[i].firstName;
+
+        let averageRounded = average.toFixed(1)
+        let parsed = parseInt(averageRounded)
+
+        const averageRatingObject = {
+          averageRating: parsed
+      }
+
+      const currentUser = users[i]
+      console.log('currentUser', currentUser)
+      console.log('averageRatingObject', averageRatingObject)
+      
+
+      API.averageRating(currentUser._id, averageRatingObject)
+      .then(console.log('success'))
+      .catch(err => console.log(err));
+
+    }
   }
 
   loadUsers = () => {
     console.log("test");
     API.getUser()
-      .then(res => this.setState({ users: res.data }))
-      .then(res => console.log("res", this.state.users))
+      .then(res => {
+        this.setState({ users: res.data })
+        this.userRatings()
+      })
       .catch(err => console.log(err));
   };
 
@@ -43,12 +83,9 @@ class Artists extends Component {
             isLoaded: true,
             user: result
           });
-
           console.log("result", result);
-          let currentUser = this.state.user;
-          API.createUser(currentUser)
-            .then(console.log("success"))
-            .catch(err => console.log(err));
+          this.loadUsers();
+          
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -65,6 +102,7 @@ class Artists extends Component {
   render() {
     return (
       <div>
+        {console.log('users ratings state: ', this.state.userRatings)}
         {this.state.user.admin ? (
           <AdminHeader amount={this.state.amount} />
         ) : (
@@ -80,7 +118,7 @@ class Artists extends Component {
                 <List class="nameList">
                   <Anchor
                     href={"/artist/" + user._id}
-                    text={user.firstName}
+                    text={user.firstName + " " + user.averageRating}
                     class={"artistNames"}
                   />
                 </List>
