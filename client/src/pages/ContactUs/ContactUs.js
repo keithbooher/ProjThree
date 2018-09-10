@@ -6,7 +6,7 @@ import ContactForm from "../../components/ContactForm/ContactForm";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import API from "../../utils/API";
-import "./ContactUs.css";
+import "./Contact.css";
 
 class ContactUs extends Component {
   state = {
