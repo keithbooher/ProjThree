@@ -4,6 +4,8 @@ const requireLogin = require("../middlewares/requireLogin");
 const { exec } = require("child_process");
 const nodemailer = require("nodemailer");
 const Order = require("../models/Order");
+const Product = require("../models/Product");
+
 
 module.exports = app => {
   app.post("/api/stripe", requireLogin, async (req, res) => {
@@ -36,6 +38,7 @@ module.exports = app => {
     let expMonth = req.body.card.exp_month;
     let expYear = req.body.card.exp_year;
     let cardDigits = req.body.card.last4;
+    let productID = req.body.productID;
 
     const productName = req.body.productName;
     const price = req.body.price;
@@ -92,6 +95,10 @@ module.exports = app => {
     Order.create(orderObject)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
+
+    Product.findOneAndUpdate({ _id: productID }, { sold: true })
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
 
     res.send(user);
   });
