@@ -104,10 +104,7 @@ class Artists extends Component {
       <div>
         {console.log('users ratings state: ', this.state.userRatings)}
         {this.state.user.admin ? (
-          <AdminHeader amount={this.state.amount} />
-        ) : (
-          <Header key="1" amount={this.state.amount} />
-        )}
+          <AdminHeader />) : (<Header key="1" />)}
         <Row>
           <Col size="sm-2 offset-'sm-11">
             <SideBar user={this.state.user} />
