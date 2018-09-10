@@ -19,10 +19,13 @@ class Post extends Component {
       title: "",
       price: "",
       description: "",
+      quantity: null,
       img: "",
       file: null,
       alertTitle: "hide",
       alertPrice: "hide",
+      alertDescription: "hide",
+      alertQuantity: "hide",      
       alertImg: "hide",
       toDashboard: false
     };
@@ -51,12 +54,21 @@ class Post extends Component {
     } else if (!this.state.price.trim()) {
       console.log("yo mane");
       this.setState({ alertPrice: "show" });
-    } else if (!this.state.file) {
+    } 
+    else if (!this.state.description.trim()) {
+      console.log("yo mane");
+      this.setState({ alertDescription: "show" });
+    }
+    else if (!this.state.quantity.trim()) {
+      console.log("yo mane");
+      this.setState({ alertQuantity: "show" });
+    }
+    else if (!this.state.file) {
       console.log("yo mane");
       this.setState({ alertImg: "show" });
     } else {
       const formData = new FormData();
-      //state file is being added upon forminput 
+      //state file is being
       formData.append("file", this.state.file[0]);
       API.saveImage(formData, {
         headers: {
@@ -67,6 +79,10 @@ class Post extends Component {
           console.log("so far so good");
           console.log(response.data);
           this.setState({ img: response.data });
+          // console.log(query);
+
+          // let { title, price, img, description } = this.state;
+          // let query = { title, price, img };
 
           const convertedPrice = this.state.price;
           const prePlatformFee = this.state.price * 0.05;
@@ -78,6 +94,8 @@ class Post extends Component {
             img: this.state.img,
             description: this.state.description,
             email: this.state.user.email,
+            artistName: this.state.user.firstName,
+            quantity: this.state.quantity,            
             stripeAccount: this.state.user.stripeAccount,
             associatedID: this.state.user._id,
             platformFee: platformFee,
@@ -90,6 +108,8 @@ class Post extends Component {
               this.setState({
                 title: "",
                 price: "",
+                description: "",
+                quantity: "",
                 file: null,
                 toDashboard: true
               })
@@ -219,7 +239,20 @@ class Post extends Component {
                   className="form-control bg-white"
                   id="description"
                   name="description"
-                  placeholder="example: &quot;The village is painted with dark colors but the brightly lit windows create a sense of comfort.&quot;" 
+                  placeholder="example: &quot;The village is painted with dark colors but the brightly lit windows create a sense of comfort.&quot;"
+                />
+              </div>
+              {/* Quantity of Art */}
+              <div className="form-group">
+                <label htmlFor="description">Quantity: </label>
+                <input
+                  value={this.state.quantity}
+                  onChange={this.handleInputChange}
+                  type="integer"
+                  className="form-control bg-white"
+                  id="quantity"
+                  name="quantity"
+                  placeholder="Enter Quantity"
                 />
               </div>
               {/* Image file of Art */}
@@ -246,6 +279,12 @@ class Post extends Component {
             </div>
             <div className={this.state.alertPrice}>
               <h3>Please price me</h3>
+            </div>
+            <div className={this.state.alertDescription}>
+              <h3>Please describe me</h3>
+            </div>
+            <div className={this.state.alertQuantity}>
+              <h3>Please enter quantity</h3>
             </div>
             <div className={this.state.alertImg}>
               <h3>Please show me</h3>

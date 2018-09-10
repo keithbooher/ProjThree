@@ -226,6 +226,7 @@ class Artist extends Component {
                                     platformFee={product.data.platformFee}
                                     productID={product.data._id}
                                     sold={product.data.sold}
+                                    quantity={product.data.quantity}
                                 />
                                 )}
                                 )}

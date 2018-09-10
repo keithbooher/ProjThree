@@ -81,10 +81,15 @@ class Home extends Component {
                                     price={product.price}
                                     productName={product.productName}
                                     artistEmail={product.email}
+                                    artistName={product.artistName}
+                                    artistID={product.associatedID}
+                                    description={product.description}
                                     currentUserEmail={this.state.currentUser.email}
                                     targetStripe={product.stripeAccount}
                                     platformFee={product.platformFee}
                                     productID={product._id}
+                                    sold={product.sold}
+                                    quantity={product.quantity}
                                 />
                                 )}
                                 )}
