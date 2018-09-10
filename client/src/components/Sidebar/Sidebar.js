@@ -8,10 +8,9 @@ import "./Sidebar.css";
 import AdminList from "../List/AdminList";
 import { Link } from "react-router-dom";
 
-
 class Sidebar extends Component {
   state = {
-    user: {},
+    user: {}
   };
 
   componentDidMount() {
@@ -69,26 +68,30 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="sideBar">
-        <h5 className="sidebarTitle">Explore the Gutter</h5>
+        <h5 className="sideBarTitle">Explore the Gutter</h5>
         <UnorderedList>
           <List>
-            <Link to="/new">New Art</Link>
+            <Link to="/new" className="sideBarLink">
+              New Art
+            </Link>
           </List>
           <List>
-            <Link to="/artists">View All Artists</Link>
+            <Link to="/artists" className="sideBarLink">
+              View All Artists
+            </Link>
           </List>
 
           {this.adminStatus() ? <AdminList /> : ""}
           {this.adminStatus() ? (
             ""
           ) : (
-            <List>
+            <List className="sideBarLink">
               <Link to={this.loggedIn() ? "/adminform" : "/auth/google"}>
                 Become Admin
               </Link>
             </List>
           )}
-          <List>
+          <List className="sideBarLink">
             <Link to="/contactUs">Contact Us</Link>
           </List>
         </UnorderedList>

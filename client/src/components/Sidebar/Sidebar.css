@@ -1,13 +1,20 @@
-.sideBar{
-    position: sticky;
-    background: skyblue;
-    margin-left: 5%;
-    border-radius: 25px;
-
+.sideBarTitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    background: #4776e6;
+    background: -webkit-linear-gradient(to right, #4776e6, #8e54e9);
+    background: linear-gradient(to right, #4776e6, #8e54e9);
+    border: solid 2px #000000;
+    margin-bottom: 0;
 }
 
-.sidebarTitle{
-        margin-left: 5%;
-        text-align: center;
-        padding: 5%;
+.sideBarListItem {
+    text-align: center;
+    padding: 1rem;
+    border-left: solid 2px #000000;
+    border-right: solid 2px #000000;
+    border-bottom: solid 2px #000000;
 }

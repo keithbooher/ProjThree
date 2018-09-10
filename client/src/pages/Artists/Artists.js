@@ -37,18 +37,19 @@ class Artists extends Component {
 
       for (let i = 0; i < userRatingsArray.length; i++) {
         let rating = userRatingsArray[i];
-        let convertRating = parseInt(rating, 16);
+        let convertRating = parseInt(rating);
         pushedRatings.push(convertRating);
         console.log("rating", rating);
       }
 
-      // var sum, avg = 0;
+      var sum,
+        avg = 0;
       let average =
         pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
-      // let firstName = this.state.users[i].firstName;
+      let firstName = this.state.users[i].firstName;
 
       let averageRounded = average.toFixed(1);
-      let parsed = parseInt(averageRounded, 16);
+      let parsed = parseInt(averageRounded);
 
       const averageRatingObject = {
         averageRating: parsed
@@ -68,6 +69,7 @@ class Artists extends Component {
     console.log("test");
     API.getUser()
       .then(res => {
+        console.log(this.state);
         this.setState({ users: res.data });
         this.userRatings();
       })
@@ -100,30 +102,23 @@ class Artists extends Component {
 
   render() {
     return (
-      <div>
+      <div className="artistsGrid">
         {console.log("users ratings state: ", this.state.userRatings)}
-        {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
-        <Row>
-          <Col size="sm-2 offset-'sm-11">
-            <SideBar user={this.state.user} />
-          </Col>
-          <Col size="sm-10 offset-'sm-1">
-            {this.state.users.map((user, i) => (
-              <UnorderedList class="unorderedNameList" key={i}>
-                <List class="nameList">
-                  <Link to={`/artist/${user._id}`} className="artistNames">
-                    {`${user.firstName} ${user.averageRating}`}
-                  </Link>
-                  {/* <Anchor
-                    href={"/artist/" + user._id}
-                    text={user.firstName + " " + user.averageRating}
-                    class={"artistNames"}
-                  /> */}
-                </List>
-              </UnorderedList>
-            ))}
-          </Col>
-        </Row>
+        {this.state.user.admin ? (
+          <AdminHeader amount={this.state.amount} className="header" />
+        ) : (
+          <Header key="1" amount={this.state.amount} className="header" />
+        )}
+        <SideBar user={this.state.user} />
+        <UnorderedList className="main">
+          {this.state.users.map((user, i) => (
+            <List className="nameList" key={i}>
+              <Link to={`/artist/${user._id}`} className="artistNames">
+                {`${user.firstName} ${user.averageRating}`}
+              </Link>
+            </List>
+          ))}
+        </UnorderedList>
       </div>
     );
   }
