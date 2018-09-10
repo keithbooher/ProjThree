@@ -225,6 +225,7 @@ class Artist extends Component {
                                     targetStripe={product.data.stripeAccount}
                                     platformFee={product.data.platformFee}
                                     productID={product.data._id}
+                                    sold={product.data.sold}
                                 />
                                 )}
                                 )}

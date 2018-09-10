@@ -9,6 +9,10 @@ const productSchema = new Schema({
   description: String,
   stripeAccount: String,
   associatedID: String,
+  sold: {
+    type: Boolean,
+    default: false
+  },
   platformFee: Number,
   datePosted: {
     type: Date,
