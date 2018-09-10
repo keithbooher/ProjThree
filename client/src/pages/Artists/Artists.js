@@ -6,7 +6,7 @@ import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-import Anchor from "../../components/Anchor/Anchor";
+// import Anchor from "../../components/Anchor/Anchor";
 import List from "../../components/List/List";
 import UnorderedList from "../../components/List/UnorderedList";
 import { Link } from "react-router-dom";

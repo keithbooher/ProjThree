@@ -84,10 +84,10 @@ class App extends Component {
         <SideBar user={this.state.user} />
         <MissionStatement />
         <HomeArt
-            imagePlaceholder={this.state.imagePlaceholder}
-            firstImage={this.state.firstImage}
-            secondImage={this.state.secondImage}
-            thirdImage={this.state.thirdImage}
+          imagePlaceholder={this.state.imagePlaceholder}
+          firstImage={this.state.firstImage}
+          secondImage={this.state.secondImage}
+          thirdImage={this.state.thirdImage}
         />
       </div>
     );

@@ -10,6 +10,7 @@ const Card = props => (
       <p className="card-text">{props.description}</p>
       <p className="card-text">${props.price + props.platformFee}</p>
     </div>
+    {props.sold ? "SOLD" :     
     <Payments
       price={props.price}
       targetStripe={props.targetStripe}
@@ -17,9 +18,11 @@ const Card = props => (
       currentUserEmail={props.currentUserEmail}
       artistEmail={props.artistEmail}
       productName={props.productName}
+      productID={props.productID}
       image={props.image}
       firstName={props.currentUserName}
-    />
+    />}
+
   </div>
 );
 

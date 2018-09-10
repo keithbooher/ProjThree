@@ -7,10 +7,10 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 
-import "./Post.css";
+import "./UserSettings.css";
 import { Redirect } from "react-router-dom";
 
-class Post extends Component {
+class UserSettings extends Component {
   constructor() {
     super();
     this.state = {
@@ -56,7 +56,7 @@ class Post extends Component {
       this.setState({ alertImg: "show" });
     } else {
       const formData = new FormData();
-      //state file is being added upon forminput
+      //state file is being added upon forminput 
       formData.append("file", this.state.file[0]);
       API.saveImage(formData, {
         headers: {
@@ -67,33 +67,18 @@ class Post extends Component {
           console.log("so far so good");
           console.log(response.data);
           this.setState({ img: response.data });
+          // console.log(query);
 
-          const convertedPrice = this.state.price;
-          const prePlatformFee = this.state.price * 0.05;
-          const platformFee = Math.round(prePlatformFee);
-
-          const newProduct = {
-            productName: this.state.title,
-            price: convertedPrice,
+          const NewProfilePic = {
             img: this.state.img,
-            description: this.state.description,
-            email: this.state.user.email,
-            stripeAccount: this.state.user.stripeAccount,
-            associatedID: this.state.user._id,
-            platformFee: platformFee,
-            date: Date.now()
           };
 
-          API.saveProduct(this.state.user._id, newProduct)
+          API.saveProfilePic(this.state.user._id, NewProfilePic)
             .then(
               console.log("success"),
               this.setState({
-                title: "",
-                price: "",
                 file: null,
-                toDashboard: true
               })
-              // window.location.replace(`/artist/${this.state.user._id}`)
             )
             .catch(err => console.log(err));
         })
@@ -101,7 +86,7 @@ class Post extends Component {
           console.log(error);
         });
     }
-  };
+  }
 
   handleFileInput = event => {
     this.setState({ file: event.target.files });
@@ -117,12 +102,6 @@ class Post extends Component {
             user: result
           });
           console.log("result", result);
-          let currentUser = this.state.user;
-          API.createUser(currentUser)
-            .then(console.log("success"))
-            .catch(err => console.log(err));
-
-          console.log("state", this.state.user);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -152,7 +131,6 @@ class Post extends Component {
           console.log("result", result);
           let currentUser = this.state.user;
           API.createUser(currentUser)
-            .then(console.log("success"))
             .catch(err => console.log(err));
 
           console.log("state", this.state.user);
@@ -174,78 +152,38 @@ class Post extends Component {
       return <Redirect to={`/artist/${this.state.user._id}`} />;
     }
     return (
-      <div className="postGrid">
+      <div>
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
-        <SideBar user={this.state.user} />
-        <form className="postForm">
-          {/* Title of Art */}
-          <div className="form-group">
-            <label htmlFor="title">Title: </label>
-            <input
-              value={this.state.title}
-              onChange={this.handleInputChange}
-              type="integer"
-              className="form-control bg-white"
-              id="title"
-              name="title"
-              placeholder="example: &quot;The Starry Night&quot;"
-            />
-          </div>
-          {/* Price of Art */}
-          <div className="form-group">
-            <label htmlFor="price">Price: </label>
-            <input
-              value={this.state.price}
-              onChange={this.handleInputChange}
-              type="integer"
-              className="form-control bg-white"
-              id="price"
-              name="price"
-              placeholder="example: 100"
-            />
-          </div>
-          {/* Description of Art */}
-          <div className="form-group">
-            <label htmlFor="description">Description: </label>
-            <textarea
-              value={this.state.description}
-              onChange={this.handleInputChange}
-              rows="10"
-              type="text"
-              className="form-control bg-white"
-              id="description"
-              name="description"
-              placeholder="example: &quot;The village is painted with dark colors but the brightly lit windows create a sense of comfort.&quot;"
-            />
-          </div>
-          {/* Image file of Art */}
-          <div className="form-group">
-            <label htmlFor="img">Image File: </label>
-            <input
-              onChange={this.handleFileInput}
-              type="file"
-              className="form-control-file"
-              id="img"
-              name="img"
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-primary submitBtn"
-            onClick={this.handleFormSubmit}
-          >
-            Submit
-          </button>
-        </form>
-        <div className={this.state.alertTitle}>
-          <h3>Please title me</h3>
-        </div>
-        <div className={this.state.alertPrice}>
-          <h3>Please price me</h3>
-        </div>
-        <div className={this.state.alertImg}>
-          <h3>Please show me</h3>
-        </div>
+        <Row>
+          <Col size="sm-3 offset-'sm-11">
+            <SideBar user={this.state.user} />
+          </Col>
+          <Col size="sm-9 offset-'sm-1">
+            <form className="postForm">
+              {/* User Profile Pic */}
+              <div className="form-group">
+                <label htmlFor="img">Image File: </label>
+                <input
+                  onChange={this.handleFileInput}
+                  type="file"
+                  className="form-control-file"
+                  id="img"
+                  name="img"
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary submitBtn"
+                onClick={this.handleFormSubmit}
+              >
+                Submit
+              </button>
+            </form>
+            <div className={this.state.alertImg}>
+              <h3>Please show me</h3>
+            </div>
+          </Col>
+        </Row>
       </div>
     );
   }
@@ -254,4 +192,4 @@ class Post extends Component {
 export default connect(
   null,
   actions
-)(Post);
+)(UserSettings);
