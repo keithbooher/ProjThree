@@ -1,4 +1,23 @@
 .carouselImage {
-    height: 100%;
+    height: -webkit-fill-available !important;
     width: 100%;
+}
+
+.carousel-caption {
+    background: rgb(128, 128, 128, .4);
+    border-radius: 25px;
+}
+
+.carousel-caption h3 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.carousel {
+    border: solid 1.2px #ffffff;
 }
