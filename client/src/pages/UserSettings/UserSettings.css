@@ -1,0 +1,32 @@
+.postForm {
+    border: solid #000000 1px;
+}
+
+
+.imageFile {
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.imageFileInput {
+    background-color: white;    
+}
+
+.productForm {
+    margin-top: -17%;
+    width: 60%;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+:-moz-placeholder {
+    font-style: italic;  
+}
+::-moz-placeholder {
+    font-style: italic;  
+}
+:-ms-input-placeholder {
+    font-style: italic; 
+}

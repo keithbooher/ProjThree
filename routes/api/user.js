@@ -54,6 +54,16 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
     })
 
+    // Update User Profile Pic
+    app.put("/api/user/pic/:id", (req, res) => {
+      console.log('req.body*******', req.body)
+      User
+      .findOneAndUpdate({ _id: req.params.id }, { img: req.body.img})
+      .then(console.log('req.body', req))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+    })
+
     // remove user product
     app.put('/api/user/product/:id', (req, res) => {
       console.log(req)      

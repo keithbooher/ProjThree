@@ -40,6 +40,9 @@ export default {
   deleteUsersProduct: function(userID, productID) {
     return axios.put("/api/user/product/" + userID, productID);
   },
+  saveProfilePic: function(userID, img) {
+    return axios.put("/api/user/pic/" + userID, img);
+  },
   changeRating: function(userID, productID) {
     return axios.put("/api/user/rating/" + userID, productID);
   },

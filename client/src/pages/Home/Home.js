@@ -82,7 +82,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                {this.state.user.admin ? <AdminHeader amount={this.state.amount}/> : <Header key="1" amount={this.state.amount}/>}
+                {this.state.user.admin ? <AdminHeader /> : <Header key="1"/>}
                 <Row>
                     <Col size="sm-2 offset-'sm-11">
                         <SideBar user={this.state.user}/>

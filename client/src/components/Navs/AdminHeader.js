@@ -16,6 +16,9 @@ class Header extends Component {
             default: 
                 return [
                     <li className="admin" key="1">Admin!</li>,
+                    <li key="4" style={{margin: '0 10px'}}>
+                        <a href="/usersettings">Settings</a>
+                    </li>,  
                     <li key="3" style={{margin: '0 10px'}}>
                         {this.props.auth.firstName}
                     </li>,                 
