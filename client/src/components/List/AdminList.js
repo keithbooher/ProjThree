@@ -54,6 +54,9 @@ class AdminList extends Component {
           <Link to={`/artist/${this.state.user._id}`}>View Your Page</Link>
         </List>
         <List>
+          <Link to="/inventory">Manage Inventory</Link>
+        </List>
+        <List>
           <Link to="/delete">Delete Products</Link>
         </List>
       </div>

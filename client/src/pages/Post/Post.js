@@ -14,12 +14,11 @@ class Post extends Component {
   constructor() {
     super();
     this.state = {
-      amount: 0,
       user: {},
       title: "",
       price: "",
       description: "",
-      quantity: null,
+      quantity: 0,
       img: "",
       file: null,
       alertTitle: "hide",
@@ -196,11 +195,9 @@ class Post extends Component {
     return (
       <div className="postGrid">
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
-        <Row>
-          <Col size="sm-3 offset-'sm-11">
+
             <SideBar user={this.state.user} />
-          </Col>
-          <Col size="sm-9 offset-'sm-1">
+
             <form className="postForm">
               {/* Title of Art */}
               <div className="form-group">
@@ -289,8 +286,6 @@ class Post extends Component {
             <div className={this.state.alertImg}>
               <h3>Please show me</h3>
             </div>
-          </Col>
-        </Row>
       </div>
     );
   }

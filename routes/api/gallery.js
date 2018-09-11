@@ -68,6 +68,24 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
   });
 
+    // Update User Profile Pic
+    app.put("/api/updatequantity/:id", (req, res) => {
+      console.log('req.body*******', req.body)
+      Product
+      .findOneAndUpdate({ _id: req.params.id }, { quantity: req.body.quantity})
+      .then(console.log('req.body', req))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+    })
+
+    // Change sold value back to false
+    app.put("/api/updatesold/:id", (req, res) => {
+      Product.findOneAndUpdate({ _id: req.params.id }, { sold: false })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    })
+          
+
   app.delete("/api/product/:id", (req, res) => {
     Product.deleteOne({ _id: req.params.id })
       // .then(dbModel => dbModel.remove())

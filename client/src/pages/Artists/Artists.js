@@ -50,6 +50,13 @@ class Artists extends Component {
 
       let averageRounded = average.toFixed(1);
       let parsed = parseInt(averageRounded);
+      console.log('parsed', parsed)
+
+      if(!parsed){
+        (console.log('parsed test'))
+        parsed=5
+        this.setState()
+      }
 
       const averageRatingObject = {
         averageRating: parsed
@@ -114,7 +121,7 @@ class Artists extends Component {
           {this.state.users.map((user, i) => (
             <List className="nameList" key={i}>
               <Link to={`/artist/${user._id}`} className="artistNames">
-                {`${user.firstName} ${user.averageRating}`}
+                {`${user.firstName} ${!user.averageRating ? 5 : user.averageRating}`}
               </Link>
             </List>
           ))}
