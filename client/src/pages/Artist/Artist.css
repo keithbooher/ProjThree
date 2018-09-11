@@ -13,3 +13,8 @@
 .productContent {
     grid-area: cards
 }
+
+.productCard {
+    display: flex;
+    justify-content: space-evenly;
+}

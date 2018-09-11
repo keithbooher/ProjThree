@@ -14,8 +14,26 @@
     grid-area: header
 }
 
-.mainContent {
-    grid-area: maincontent
+.ArtistUL {
+    grid-area: maincontent;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    background-color: #000000;
+    border: solid 1px #ffffff;
+    border-radius: 25px;
+}
+
+.ArtistListItem a:hover {
+    text-decoration: none;
+}
+
+.ArtistListItem a {
+    font-size: 1.4rem;
+}
+
+.ArtistListItem {
+    margin-top: 1rem;
 }
 
 .footer {

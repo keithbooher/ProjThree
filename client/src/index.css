@@ -5,12 +5,20 @@
 }
 
 body {
-    background: #0F2027 !important;
+    background: #212121 !important;
 }
 
 .footer {
+    text-align: center;
     position: relative;
     bottom:0;
+    background: #000000;
+    border-top: solid 1px #ffffff;
+}
+
+.footer h6 {
+    margin: 0;
+    padding: 1.5rem;
 }
 
 .form-group {

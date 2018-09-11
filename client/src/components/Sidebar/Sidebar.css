@@ -22,9 +22,26 @@
 }
 
 .sideBarListItem a {
-    font-size: 1.2rem
+    color: aqua;
+    font-size: 1.2rem;
+    font-weight: 600
 }
 
 .sideBarListItem a:hover {
     text-decoration: none;
+    color: #ff00ff !important;
+    transition: all 1s;
+    text-shadow: #ffffff 1px 1px;
+    -webkit-animation: glow 1.5s ease-in-out infinite alternate;
+    -moz-animation: glow 1.5s ease-in-out infinite alternate;
+    animation: glow 1.5s ease-in-out infinite alternate;
 }
+
+@-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #8e54e9, 0 0 70px #8e54e9, 0 0 80px #8e54e9, 0 0 100px #8e54e9, 0 0 150px #8e54e9;
+    }
+    to {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #8e54e9, 0 0 35px #8e54e9, 0 0 40px #8e54e9, 0 0 50px #8e54e9, 0 0 75px #8e54e9;
+    }
+  }
