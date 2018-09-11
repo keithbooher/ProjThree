@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import NewArt from "../pages/NewArt";
 import AdminForm from "../pages/AdminForm";
-import {Artists} from "../pages/Artists";
+import Artists from "../pages/Artists";
 import Artist from "../pages/Artist";
 import Product from "../pages/Product";
 import Customize from "../pages/Customize";

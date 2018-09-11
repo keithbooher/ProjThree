@@ -29,8 +29,8 @@ class Artists extends Component {
   loadUsers = () => {
     console.log("test");
     API.getUser()
-      .then(res => this.setState({ users : res.data }))
-      .then(res => console.log("res", res.data))
+      .then(res => this.setState({ users: res.data }))
+      .then(res => console.log("res", this.state.users))
       .catch(err => console.log(err));
   };
 
@@ -88,7 +88,6 @@ class Artists extends Component {
             ))}
           </Col>
         </Row>
-        {/* <h1>{this.state.users}</h1> */}
       </div>
     );
   }
