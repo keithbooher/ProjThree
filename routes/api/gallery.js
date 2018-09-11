@@ -3,14 +3,17 @@ const AWS = require("aws-sdk");
 const Product = require("../../models/Product");
 const User = require("../../models/User");
 
+const keys = require("../../config/keys");
+
+
 const BUCKET_NAME = "artgutter";
-const IAM_USER_KEY = process.env.AWS_ACCESS_KEY_ID;
-const IAM_USER_SECRET = process.env.AWS_SECRET_ACCESS_KEY;
+// const IAM_USER_KEY = process.env.AWS_ACCESS_KEY_ID;
+// const IAM_USER_SECRET = process.env.AWS_SECRET_ACCESS_KEY;
 
 function uploadToS3(file, cb) {
   let s3bucket = new AWS.S3({
-    accessKeyId: IAM_USER_KEY,
-    secretAccessKey: IAM_USER_SECRET,
+    accessKeyId: keys.AWS_ACCESS_KEY_ID,
+    secretAccessKey: keys.AWS_SECRET_ACCESS_KEY,
     Bucket: BUCKET_NAME
   });
   s3bucket.createBucket(function() {
