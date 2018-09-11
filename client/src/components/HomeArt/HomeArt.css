@@ -25,3 +25,7 @@
 .carousel {
     border: solid 1.2px #ffffff;
 }
+
+.carousel-inner {
+    background: #000000;
+}

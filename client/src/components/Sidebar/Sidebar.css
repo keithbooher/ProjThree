@@ -4,9 +4,9 @@
     font-weight: bold;
     color: #000000;
     text-align: center;
-    background: #4776e6;
-    background: -webkit-linear-gradient(to right, #4776e6, #8e54e9);
-    background: linear-gradient(to right, #4776e6, #8e54e9);
+    background: #2b5876;
+    background: -webkit-linear-gradient(to right, #2b5876, #4e4376);
+    background: linear-gradient(to right, #2b5876, #4e4376);
     border: solid 2px #ffffff;
     margin-bottom: 0;
     /* text-shadow: #c0c0c0 1px 1px; */
@@ -25,6 +25,10 @@
     color: #00ffff;
     font-size: 1.2rem;
     font-weight: 600
+}
+
+.sideBarListItem a:focus {
+    text-decoration: none;
 }
 
 .sideBarListItem a:hover {
