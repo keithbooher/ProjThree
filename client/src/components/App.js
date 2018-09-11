@@ -15,6 +15,7 @@ import Delete from "../pages/Delete";
 import Footer from "../components/Footer/Footer";
 import "./App.css";
 import ContactUs from "../pages/ContactUs/ContactUs";
+import ManageInventory from "../pages/ManageInventory/ManageInventory";
 
 const App = () => (
   <div>
@@ -28,7 +29,8 @@ const App = () => (
         <Route exact path="/artist/:id" component={Artist} />
         <Route exact path="/product/:id" component={Product} />
         <Route exact path="/customize" component={Customize} />
-        <Route exact path="/usersettings" component={UserSettings} />
+        <Route exact path="/usersettings" component={UserSettings} />    
+        <Route exact path="/inventory" component={ManageInventory} />                    
         <Route exact path="/post" component={Post} />
         <Route exact path="/delete" component={Delete} />
         {/* <Route exact path="/checkout/:id" component={Checkout} /> */}
