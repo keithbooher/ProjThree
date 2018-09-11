@@ -44,14 +44,8 @@ class UserSettings extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    // console.log(this.state)
-    if (!this.state.title.trim()) {
-      console.log("yo mane");
-      this.setState({ alertTitle: "show" });
-    } else if (!this.state.price.trim()) {
-      console.log("yo mane");
-      this.setState({ alertPrice: "show" });
-    } else if (!this.state.file) {
+
+    if (!this.state.file) {
       console.log("yo mane");
       this.setState({ alertImg: "show" });
     } else {
@@ -153,30 +147,37 @@ class UserSettings extends Component {
     return (
       <div className="userSettingsGrid">
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
-        <SideBar user={this.state.user} />
-        <form className="userSettingsForm">
-          {/* User Profile Pic */}
-          <div className="form-group">
-            <label htmlFor="img">Image File: </label>
-            <input
-              onChange={this.handleFileInput}
-              type="file"
-              className="form-control-file"
-              id="img"
-              name="img"
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-primary submitBtn"
-            onClick={this.handleFormSubmit}
-          >
-            Submit
-          </button>
-        </form>
-        <div className={this.state.alertImg}>
-          <h3>Please show me</h3>
-        </div>
+        <Row>
+          <Col size="sm-3 offset-'sm-11">
+            <SideBar user={this.state.user} />
+          </Col>
+          <Col size="sm-9 offset-'sm-1">
+            <img src={`${this.state.user.img}`} className="userProfilePic"></img>
+            <form className="postForm">
+              {/* User Profile Pic */}
+              <div className="form-group">
+                <label htmlFor="img">Image File: </label>
+                <input
+                  onChange={this.handleFileInput}
+                  type="file"
+                  className="form-control-file"
+                  id="img"
+                  name="img"
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary submitBtn"
+                onClick={this.handleFormSubmit}
+              >
+                Submit
+              </button>
+            </form>
+            <div className={this.state.alertImg}>
+              <h3>Please show me</h3>
+            </div>
+          </Col>
+        </Row>
       </div>
     );
   }

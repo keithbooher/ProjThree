@@ -5,7 +5,7 @@ const DeleteCard = props => (
     <img className="card-img-top" src={props.image} alt={props.productName} />
     <div className="card-body">
       <h5 className="card-title">{props.productName}</h5>
-      <p className="card-text">${props.price * 0.01}</p>
+      <p className="card-text">${props.price}</p>
     </div>
     <button
       className="submit btn"

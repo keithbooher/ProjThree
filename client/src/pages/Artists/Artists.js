@@ -15,7 +15,6 @@ import "./Artists.css";
 
 class Artists extends Component {
   state = {
-    amount: 0,
     products: [],
     user: {},
     users: [],
@@ -42,11 +41,7 @@ class Artists extends Component {
         console.log("rating", rating);
       }
 
-      var sum,
-        avg = 0;
-      let average =
-        pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
-      let firstName = this.state.users[i].firstName;
+      let average = pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
 
       let averageRounded = average.toFixed(1);
       let parsed = parseInt(averageRounded);
@@ -121,9 +116,8 @@ class Artists extends Component {
           {this.state.users.map((user, i) => (
             <ArtistListItem className="nameList" key={i}>
               <Link to={`/artist/${user._id}`} className="artistNames">
-                {`${user.firstName} ${
-                  !user.averageRating ? 5 : user.averageRating
-                }`}
+              <img className="smallImg" src={`${user.img}`}></img>
+                {`${user.firstName} ${!user.averageRating ? 5 : user.averageRating} Stars`}
               </Link>
             </ArtistListItem>
           ))}
