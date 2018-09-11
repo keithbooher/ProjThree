@@ -21,6 +21,13 @@ export default {
   saveImage: function(imageData, type) {
     return axios.post("/api/uploadImage", imageData, type);
   },
+  updateQuantity: function(id, quantity) {
+    return axios.put("/api/updatequantity/" + id, quantity);
+  },
+  updateSold: function(id) {
+    return axios.put("/api/updatesold/" + id);
+  },
+
 
   // change a user to admin
   changetoAdmin: function(_id, stripe) {

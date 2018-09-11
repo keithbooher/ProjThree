@@ -22,7 +22,7 @@
 }
 
 .sideBarListItem a {
-    color: aqua;
+    color: #00ffff;
     font-size: 1.2rem;
     font-weight: 600
 }
@@ -30,7 +30,7 @@
 .sideBarListItem a:hover {
     text-decoration: none;
     color: #ff00ff !important;
-    transition: all 1s;
+    transition: all .5s;
     text-shadow: #ffffff 1px 1px;
     -webkit-animation: glow 1.5s ease-in-out infinite alternate;
     -moz-animation: glow 1.5s ease-in-out infinite alternate;
