@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
-import { Row, Col } from "../../components/Grid";
+// import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
@@ -50,7 +50,7 @@ class UserSettings extends Component {
       this.setState({ alertImg: "show" });
     } else {
       const formData = new FormData();
-      //state file is being added upon forminput 
+      //state file is being added upon forminput
       formData.append("file", this.state.file[0]);
       API.saveImage(formData, {
         headers: {
@@ -64,14 +64,14 @@ class UserSettings extends Component {
           // console.log(query);
 
           const NewProfilePic = {
-            img: this.state.img,
+            img: this.state.img
           };
 
           API.saveProfilePic(this.state.user._id, NewProfilePic)
             .then(
               console.log("success"),
               this.setState({
-                file: null,
+                file: null
               })
             )
             .catch(err => console.log(err));
@@ -80,7 +80,7 @@ class UserSettings extends Component {
           console.log(error);
         });
     }
-  }
+  };
 
   handleFileInput = event => {
     this.setState({ file: event.target.files });
@@ -124,8 +124,7 @@ class UserSettings extends Component {
           });
           console.log("result", result);
           let currentUser = this.state.user;
-          API.createUser(currentUser)
-            .catch(err => console.log(err));
+          API.createUser(currentUser).catch(err => console.log(err));
 
           console.log("state", this.state.user);
         },
@@ -146,7 +145,7 @@ class UserSettings extends Component {
       return <Redirect to={`/artist/${this.state.user._id}`} />;
     }
     return (
-      <div>
+      <div className="userSettingsGrid">
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
         <Row>
           <Col size="sm-3 offset-'sm-11">

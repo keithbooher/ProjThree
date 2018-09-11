@@ -2,25 +2,24 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
-import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-import InventoryCard from "../../components/Card/InventoryCard";
-
+// import InventoryCard from "../../components/Card/InventoryCard";
+import "./ManageInventory.css";
 
 class ManageInventory extends Component {
-    // contructor(props) {
-    //  super(props)
-        
-    // }
+  // contructor(props) {
+  //  super(props)
+
+  // }
 
   state = {
     productIDs: [],
     products: [],
     currentUser: {},
     value: "",
-    quantity: 0,
+    quantity: 0
   };
 
   componentDidMount() {
@@ -28,35 +27,29 @@ class ManageInventory extends Component {
     this.loadCurrentUser();
   }
 
-    //  Function to handle form input
-    handleInputChange = (event) => {
-        console.log('event', event.target.value)
-        this.setState({ value: event.target.value });
-      };
-    
-    handleFormSubmit = (id) => {
-        console.log('value', this.state.value)
-        console.log('id', id)
-        
-    
-        const newQuantity = {
-            quantity: this.state.value,            
-        };
+  //  Function to handle form input
+  handleInputChange = event => {
+    console.log("event", event.target.value);
+    this.setState({ value: event.target.value });
+  };
 
+  handleFormSubmit = id => {
+    console.log("value", this.state.value);
+    console.log("id", id);
 
-        API.updateQuantity(id, newQuantity)
-        .then( dbModel => {
-            console.log(dbModel)
-            if (dbModel.data.quantity === 0) {
-                API.updateSold(id)
-                .then(console.log('success'))
-            }
-        }
-        )
-        .catch(err => console.log(err));
-
-    
+    const newQuantity = {
+      quantity: this.state.value
     };
+
+    API.updateQuantity(id, newQuantity)
+      .then(dbModel => {
+        console.log(dbModel);
+        if (dbModel.data.quantity === 0) {
+          API.updateSold(id).then(console.log("success"));
+        }
+      })
+      .catch(err => console.log(err));
+  };
 
   loadProductIds = () => {
     const userProducts = this.state.currentUser.product;
@@ -65,7 +58,10 @@ class ManageInventory extends Component {
       userProductsArray.push(userProducts[i]);
     }
     console.log("userProductsArray", userProductsArray);
-    this.setState({ productIDs: userProductsArray, quantity: this.state.currentUser.quantity });
+    this.setState({
+      productIDs: userProductsArray,
+      quantity: this.state.currentUser.quantity
+    });
     this.loadUsersProducts();
   };
 
@@ -97,7 +93,6 @@ class ManageInventory extends Component {
           });
           console.log("current user: ", this.state.currentUser);
           this.loadProductIds();
-          
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -110,8 +105,6 @@ class ManageInventory extends Component {
         }
       );
   };
-
-
 
   render() {
     return (
@@ -130,31 +123,44 @@ class ManageInventory extends Component {
               console.log("PRODUCT", i, product.data);
               return (
                 <div className="artCard">
-                    <img className="card-img-top" src={product.data.img} alt={product.data.productName} />
-                    <div className="card-body">
-                        <h5 className="card-title">{product.data.productName}</h5>
-                        <p className="card-text">${product.data.price + product.data.platformFee}</p>      
-                        <p className="card-text">{product.data.description}</p>
-                        <form className="postForm">
-                            <div className="form-group">
-                                <label htmlFor="description">Quantity: </label>
-                                <input
-                                value={this.state.value}
-                                onChange={this.handleInputChange}
-                                type="integer"
-                                className="form-control bg-white"
-                                id="quantity"
-                                name="quantity"
-                                placeholder={product.data.quantity}
-                                />
-                            </div>
-                            <div className={this.state.alertQuantity}>
-                                <p>Please enter quantity</p>
-                            </div>
-                        </form>
-                        <button onClick={() => this.handleFormSubmit(product.data._id)}>Submit</button>
-                    </div>
-              </div>
+                  <img
+                    className="card-img-top"
+                    src={product.data.img}
+                    alt={product.data.productName}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{product.data.productName}</h5>
+                    <p className="card-text">
+                      ${product.data.price + product.data.platformFee}
+                    </p>
+                    <p className="card-text">{product.data.description}</p>
+                    <form className="manageForm">
+                      <div className="form-group">
+                        <label htmlFor="description">Quantity: </label>
+                        <input
+                          value={this.state.value}
+                          onChange={this.handleInputChange}
+                          type="integer"
+                          className="form-control"
+                          id="quantity"
+                          name="quantity"
+                          placeholder={product.data.quantity}
+                        />
+                      </div>
+                      {/* <div className={this.state.alertQuantity}>
+                        <p>Please enter quantity</p>
+                      </div> */}
+                    </form>
+                    <span>
+                      <button
+                        className="submit btn"
+                        onClick={() => this.handleFormSubmit(product.data._id)}
+                      >
+                        Update
+                      </button>
+                    </span>
+                  </div>
+                </div>
               );
             })}
           </div>

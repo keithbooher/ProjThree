@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
-import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 // import Anchor from "../../components/Anchor/Anchor";
 import ArtistListItem from "../../components/List/ArtistList";
 import ArtistUnorderedList from "../../components/List/ArtistUL";
-import UnorderedList from "../../components/List/UnorderedList";
+// import UnorderedList from "../../components/List/UnorderedList";
 import { Link } from "react-router-dom";
 
 import "./Artists.css";
@@ -46,12 +45,12 @@ class Artists extends Component {
 
       let averageRounded = average.toFixed(1);
       let parsed = parseInt(averageRounded);
-      console.log('parsed', parsed)
+      console.log("parsed", parsed);
 
-      if(!parsed){
-        (console.log('parsed test'))
-        parsed=5
-        this.setState()
+      if (!parsed) {
+        console.log("parsed test");
+        parsed = 5;
+        this.setState();
       }
 
       const averageRatingObject = {

@@ -12,7 +12,7 @@ const HomeArt = props => (
         />
         <Carousel.Caption>
           <h3>Vincent Van Gogh</h3>
-          <p>"Starry Night"</p>
+          <p>"The Starry Night"</p>
         </Carousel.Caption>
       </Carousel.Item>
 

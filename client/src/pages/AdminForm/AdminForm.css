@@ -1,16 +1,31 @@
-.margin {
-    margin-left: 15%;
+.adminGrid {
+    display: grid;
+    grid-template-columns: 5% repeat(4, 1fr) 5%;
+    grid-template-rows: 10vh repeat(2, 1fr) 10vh;
+    grid-template-areas:
+    "header header header header header header"
+    ". sidebar as as as ."
+    ". sidebar as as as ."
+    "footer footer footer footer footer footer";
+    grid-gap: 2rem;
 }
 
-.content {
-    margin-top: -200px;
-}
-
-.formStyle {
-    margin-top: 100px;
+.adminMessage {
+    grid-area: as
 }
 
 .stripe {
     font-size: 20px;
     color: black;
+}
+
+.adminHeader {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.adminHeader2 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin: 2rem 0 2rem 0;
 }
