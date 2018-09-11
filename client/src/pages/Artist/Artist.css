@@ -18,3 +18,12 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+
+.checked {
+    color: orange;
+}
+
+.hover:hover {
+    cursor: pointer
+}
