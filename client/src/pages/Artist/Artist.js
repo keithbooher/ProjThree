@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import ReactDOM from "react-dom";
 import API from "../../utils/API";
 import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
@@ -170,6 +171,42 @@ class Artist extends Component {
     }
   };
 
+  enlargeImage = (i) => {
+    // Get the modal
+    let img; 
+    let modal;
+    let modalImg;
+    let captionText;
+    let node = ReactDOM.findDOMNode(this);    
+    // Get child nodes
+    if (node instanceof HTMLElement) {
+       img = node.querySelector(`.images${i}`)
+       modal = node.querySelector(`.myModal${i}`);
+       modalImg = node.querySelector(`.img${i}`);
+       captionText = node.querySelector(`.caption${i}`);
+    }
+
+    console.log('modal', modal)
+    console.log('modalImg', modalImg)
+    console.log('captionText', captionText)
+    console.log('src', img.src)
+
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    captionText.innerHTML = img.alt;
+
+  }
+
+  shrinkImage = (i) => {
+    let modal;
+    let node = ReactDOM.findDOMNode(this);    
+
+    if (node instanceof HTMLElement) {
+      modal = node.querySelector(`.myModal${i}`);
+   }
+    modal.style.display = "none";
+  }
+
   render() {
     return (
       <div className="artistGrid">
@@ -217,6 +254,7 @@ class Artist extends Component {
               return (
                 <Card
                 key={i}
+                id={i}
                 image={product.data.img}
                 price={product.data.price}
                 description={product.data.description}
@@ -229,6 +267,9 @@ class Artist extends Component {
                 productID={product.data._id}
                 sold={product.data.sold}
                 quantity={product.data.quantity}
+                enlargeImage={this.enlargeImage}
+                shrinkImage={this.shrinkImage}
+                
                 />
               );
             })}
