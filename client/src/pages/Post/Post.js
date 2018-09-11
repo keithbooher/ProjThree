@@ -14,7 +14,6 @@ class Post extends Component {
   constructor() {
     super();
     this.state = {
-      amount: 0,
       user: {},
       title: "",
       price: "",
@@ -193,95 +192,97 @@ class Post extends Component {
     return (
       <div className="postGrid">
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
-        <SideBar user={this.state.user} />
-        <form className="postForm">
-          {/* Title of Art */}
-          <div className="form-group">
-            <label htmlFor="title">Title: </label>
-            <input
-              value={this.state.title}
-              onChange={this.handleInputChange}
-              type="integer"
-              className="form-control"
-              id="title"
-              name="title"
-              placeholder="example: &quot;The Starry Night&quot;"
-            />
-          </div>
-          {/* Price of Art */}
-          <div className="form-group">
-            <label htmlFor="price">Price: </label>
-            <input
-              value={this.state.price}
-              onChange={this.handleInputChange}
-              type="integer"
-              className="form-control"
-              id="price"
-              name="price"
-              placeholder="example: 100"
-            />
-          </div>
-          {/* Description of Art */}
-          <div className="form-group">
-            <label htmlFor="description">Description: </label>
-            <textarea
-              value={this.state.description}
-              onChange={this.handleInputChange}
-              rows="10"
-              type="text"
-              className="form-control"
-              id="description"
-              name="description"
-              placeholder="example: &quot;The village is painted with dark colors but the brightly lit windows create a sense of comfort.&quot;"
-            />
-          </div>
-          {/* Quantity of Art */}
-          <div className="form-group">
-            <label htmlFor="description">Quantity: </label>
-            <input
-              value={this.state.quantity}
-              onChange={this.handleInputChange}
-              type="integer"
-              className="form-control"
-              id="quantity"
-              name="quantity"
-              placeholder="example: 1"
-            />
-          </div>
-          {/* Image file of Art */}
-          <div className="form-group">
-            <label htmlFor="img">Image File: </label>
-            <input
-              onChange={this.handleFileInput}
-              type="file"
-              className="form-control-file"
-              id="img"
-              name="img"
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-primary submitBtn"
-            onClick={this.handleFormSubmit}
-          >
-            Submit
-          </button>
-        </form>
-        <div className={this.state.alertTitle}>
-          <h3>Please title me</h3>
-        </div>
-        <div className={this.state.alertPrice}>
-          <h3>Please price me</h3>
-        </div>
-        <div className={this.state.alertDescription}>
-          <h3>Please describe me</h3>
-        </div>
-        <div className={this.state.alertQuantity}>
-          <h3>Please enter quantity</h3>
-        </div>
-        <div className={this.state.alertImg}>
-          <h3>Please show me</h3>
-        </div>
+
+            <SideBar user={this.state.user} />
+
+            <form className="postForm">
+              {/* Title of Art */}
+              <div className="form-group">
+                <label htmlFor="title">Title: </label>
+                <input
+                  value={this.state.title}
+                  onChange={this.handleInputChange}
+                  type="integer"
+                  className="form-control bg-white"
+                  id="title"
+                  name="title"
+                  placeholder="example: &quot;The Starry Night&quot;"
+                />
+              </div>
+              {/* Price of Art */}
+              <div className="form-group">
+                <label htmlFor="price">Price: </label>
+                <input
+                  value={this.state.price}
+                  onChange={this.handleInputChange}
+                  type="integer"
+                  className="form-control bg-white"
+                  id="price"
+                  name="price"
+                  placeholder="example: 100"
+                />
+              </div>
+              {/* Description of Art */}
+              <div className="form-group">
+                <label htmlFor="description">Description: </label>
+                <textarea
+                  value={this.state.description}
+                  onChange={this.handleInputChange}
+                  rows="10"
+                  type="text"
+                  className="form-control bg-white"
+                  id="description"
+                  name="description"
+                  placeholder="example: &quot;The village is painted with dark colors but the brightly lit windows create a sense of comfort.&quot;"
+                />
+              </div>
+              {/* Quantity of Art */}
+              <div className="form-group">
+                <label htmlFor="description">Quantity: </label>
+                <input
+                  value={this.state.quantity}
+                  onChange={this.handleInputChange}
+                  type="integer"
+                  className="form-control bg-white"
+                  id="quantity"
+                  name="quantity"
+                  placeholder="Enter Quantity"
+                />
+              </div>
+              {/* Image file of Art */}
+              <div className="form-group">
+                <label htmlFor="img">Image File: </label>
+                <input
+                  onChange={this.handleFileInput}
+                  type="file"
+                  className="form-control-file"
+                  id="img"
+                  name="img"
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary submitBtn"
+                onClick={this.handleFormSubmit}
+              >
+                Submit
+              </button>
+            </form>
+            <div className={this.state.alertTitle}>
+              <h3>Please title me</h3>
+            </div>
+            <div className={this.state.alertPrice}>
+              <h3>Please price me</h3>
+            </div>
+            <div className={this.state.alertDescription}>
+              <h3>Please describe me</h3>
+            </div>
+            <div className={this.state.alertQuantity}>
+              <h3>Please enter quantity</h3>
+            </div>
+            <div className={this.state.alertImg}>
+              <h3>Please show me</h3>
+            </div>
       </div>
     );
   }
