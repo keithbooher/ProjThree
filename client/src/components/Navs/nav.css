@@ -5,8 +5,8 @@
 .nav-wrapper {
     height: 110%;
     background: #4776e6;
-    background: -webkit-linear-gradient(to right, #4776e6, #8e54e9);
-    background: linear-gradient(to right, #4776e6, #8e54e9);
+    background: -webkit-linear-gradient(to right, #2b5876, #4e4376);
+    background: linear-gradient(to right, #2b5876, #4e4376);
     border-bottom: solid 2px #ffffff;
 }
 
