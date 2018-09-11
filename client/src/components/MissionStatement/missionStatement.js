@@ -8,7 +8,8 @@ const MissionStatement = props => (
       <br />
       Awesome site to locate beautiful art created by people just like you!
       <br /> If you'd like to offer your work on our page, sign up to be an
-      artist at Art Gutter.
+      artist at <br />
+      <span className="missionStatementLogo">Art Gutter</span>
     </h1>
   </div>
 );
