@@ -1,5 +1,32 @@
+.postGrid {
+    display: grid;
+    grid-template-columns: 5% repeat(4, 1fr) 5%;
+    grid-template-rows: 20vh repeat(2, 1fr) 20vh;
+    grid-template-areas:
+    "header header header header header header"
+    ". sidebar pf pf pf ."
+    ". sidebar pf pf pf ."
+    "footer footer footer footer footer footer";
+    grid-gap: 2rem
+}
+
 .postForm {
-    border: solid #000000 1px;
+    padding: 2rem;
+    background: #000000;
+    border: solid #ffffff 1px;
+    border-radius: 25px;
+    grid-area: pf;
+    margin: 0;
+}
+
+.form-control {
+    background: #212529 !important;
+    color: #8e54e9 !important;
+}
+
+textarea:focus, input:focus{
+    outline-offset: 0px !important;
+    outline: none !important;
 }
 
 .title {

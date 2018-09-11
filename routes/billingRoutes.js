@@ -4,6 +4,8 @@ const requireLogin = require("../middlewares/requireLogin");
 const { exec } = require("child_process");
 const nodemailer = require("nodemailer");
 const Order = require("../models/Order");
+const Product = require("../models/Product");
+
 
 module.exports = app => {
   app.post("/api/stripe", requireLogin, async (req, res) => {
@@ -36,6 +38,7 @@ module.exports = app => {
     let expMonth = req.body.card.exp_month;
     let expYear = req.body.card.exp_year;
     let cardDigits = req.body.card.last4;
+    let productID = req.body.productID;
 
     const productName = req.body.productName;
     const price = req.body.price;
@@ -92,6 +95,28 @@ module.exports = app => {
     Order.create(orderObject)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
+
+    Product.findOne({ _id: productID }, function (err, product) {
+      if (err) return handleError(err);
+
+      const subtractedValue= product.quantity -1;
+      console.log('subtractedValue', subtractedValue);
+      console.log('quantity', product.quantity);
+
+      Product.findOneAndUpdate({ _id: productID }, { quantity: subtractedValue })
+      .then(dbModel => {
+        console.log(dbModel.quantity)
+        if(subtractedValue === 0){
+          Product.findOneAndUpdate({ _id: productID }, { sold: true })
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+        }
+      })
+      .catch(err => res.json(err));      
+      
+    });
+
+
 
     res.send(user);
   });

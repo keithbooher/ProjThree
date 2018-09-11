@@ -1,3 +1,41 @@
 .admin {
     margin-right: 10px;
 }
+
+.nav-wrapper {
+    height: 110%;
+    background: #4776e6;
+    background: -webkit-linear-gradient(to right, #4776e6, #8e54e9);
+    background: linear-gradient(to right, #4776e6, #8e54e9);
+    border-bottom: solid 2px #ffffff;
+}
+
+.brand-logo {
+    font-family: 'Rock Salt', cursive;
+    margin-left: 2rem;
+    color: #4b0082 !important;
+    font-weight: bold;
+}
+
+.brand-logo:hover {
+    text-decoration: none;
+    color: #ff00ff !important;
+    transition: .5s;
+    text-shadow: white 1px 1px;
+    -webkit-animation: glow 1.5s ease-in-out infinite alternate;
+    -moz-animation: glow 1.5s ease-in-out infinite alternate;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+.brand-logo:focus {
+    text-decoration: none;
+}
+
+@-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #8e54e9, 0 0 70px #8e54e9, 0 0 80px #8e54e9, 0 0 100px #8e54e9, 0 0 150px #8e54e9;
+    }
+    to {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #8e54e9, 0 0 35px #8e54e9, 0 0 40px #8e54e9, 0 0 50px #8e54e9, 0 0 75px #8e54e9;
+    }
+  }

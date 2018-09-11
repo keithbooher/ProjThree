@@ -1,31 +1,26 @@
-body {
-    background-image: url(./assets/images/background.jpg);
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover cover;
-    max-width: 100%;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-
-
-.sidebarTitle{
-    margin-left: 5%;
+body {
+    background: #212121 !important;
 }
 
 .footer {
+    text-align: center;
     position: relative;
-    display: none;
     bottom:0;
+    background: #000000;
+    border-top: solid 1px #ffffff;
+}
+
+.footer h6 {
+    margin: 0;
+    padding: 1.5rem;
 }
 
 .form-group {
     margin: 0;
-}
-
-.postForm {
-    width: 45em;
-    background: white;
-    margin: 3em;
-    padding: 3em;
 }

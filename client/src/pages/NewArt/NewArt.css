@@ -1,20 +1,18 @@
-.artistGrid {
+.newArtGrid {
     display: grid;
     grid-template-columns: 5% repeat(4, 1fr) 5%;
     grid-template-rows: 20vh repeat(2, 1fr) 20vh;
     grid-template-areas:
     "header header header header header header"
-    ". sidebar cards cards cards ."
-    ". sidebar cards cards cards ."
+    ". sidebar ac ac ac ."
+    ". sidebar ac ac ac ."
     "footer footer footer footer footer footer";
     grid-gap: 2rem
 }
 
-.productContent {
-    grid-area: cards
-}
-
-.productCard {
+.allCards {
+    grid-area: ac;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }

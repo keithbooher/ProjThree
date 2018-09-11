@@ -1,8 +1,5 @@
 import React from "react";
 
-const ListItem = props =>
-  <li className={`${props.class} list-group-item`}>
-    {props.children}
-  </li>;
+const ListItem = props => <li className="sideBarListItem">{props.children}</li>;
 
-  export default ListItem;
+export default ListItem;

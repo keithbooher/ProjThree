@@ -1,13 +1,41 @@
-.artistNames {
-    font-size: 50px;
-    color: black;
+.artistsGrid {
+    display: grid;
+    grid-template-columns: 5% repeat(4, 1fr) 5%;
+    grid-template-rows: 20vh repeat(2, 1fr) 20vh;
+    grid-template-areas:
+    "header header header header header header"
+    ". sidebar maincontent maincontent maincontent ."
+    ". sidebar maincontent maincontent maincontent ."
+    "footer footer footer footer footer footer";
+    grid-gap: 2rem
 }
 
-.list-group-item.unorderedNameList {
-    margin-left: 20%; 
-    background: rgba(76, 175, 80, 0);
+.header {
+    grid-area: header
 }
 
-.list-group-item.nameList {
-    background: rgba(76, 175, 80, 0);
+.ArtistUL {
+    grid-area: maincontent;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    background-color: #000000;
+    border: solid 1px #ffffff;
+    border-radius: 25px;
+}
+
+.ArtistListItem a:hover {
+    text-decoration: none;
+}
+
+.ArtistListItem a {
+    font-size: 1.4rem;
+}
+
+.ArtistListItem {
+    margin-top: 1rem;
+}
+
+.footer {
+    grid-area: footer
 }
