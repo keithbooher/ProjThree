@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
-import { Row, Col } from "../../components/Grid";
+// import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
@@ -72,20 +72,20 @@ class Home extends Component {
             console.log("PRODUCT", i, product.data);
             return (
               <Card
-              key={i}
-              image={product.img}
-              price={product.price}
-              productName={product.productName}
-              artistEmail={product.email}
-              artistName={product.artistName}
-              artistID={product.associatedID}
-              description={product.description}
-              currentUserEmail={this.state.currentUser.email}
-              targetStripe={product.stripeAccount}
-              platformFee={product.platformFee}
-              productID={product._id}
-              sold={product.sold}
-              quantity={product.quantity}
+                key={i}
+                image={product.img}
+                price={product.price}
+                productName={product.productName}
+                artistEmail={product.email}
+                artistName={product.artistName}
+                artistID={product.associatedID}
+                description={product.description}
+                currentUserEmail={this.state.currentUser.email}
+                targetStripe={product.stripeAccount}
+                platformFee={product.platformFee}
+                productID={product._id}
+                sold={product.sold}
+                quantity={product.quantity}
               />
             );
           })}

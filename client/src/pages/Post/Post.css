@@ -64,6 +64,19 @@ textarea:focus, input:focus{
     width: 60%;
 }
 
+.postFormFlex {
+    display: flex;
+}
+
+.warning {
+    margin-left: 20px;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: normal;
+    color: #dc3545;
+    margin-bottom: 0;
+}
+
 ::-webkit-input-placeholder {
     font-style: italic;
 }

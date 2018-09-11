@@ -11,7 +11,7 @@
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    background-color: #ffffff;
     background-clip: border-box;
     /* border: 1px solid rgba(0, 0, 0, 0.125); */
     border-radius: 0.25rem;
@@ -19,9 +19,17 @@
 
 /* Our css */
 .artCard {
-    border: solid 1px #000000;
+    border: solid 2px #000000;
     max-width: 200px;
     min-width: 200px;
     margin-bottom: 3rem;
+    background: #000000;
+    color: #ffffff;
+    font-size: 1.2rem;
 }
 
+.card-img-top {
+    height: 200px;
+    width: 200px;
+    border-bottom: solid 1px #ffffff;
+}

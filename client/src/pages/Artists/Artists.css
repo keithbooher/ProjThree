@@ -17,7 +17,8 @@
 .ArtistUL {
     grid-area: maincontent;
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
     flex-wrap: wrap;
     background-color: #000000;
     border: solid 1px #ffffff;
@@ -30,6 +31,7 @@
 
 .ArtistListItem a {
     font-size: 1.4rem;
+    padding: 2rem;
 }
 
 .ArtistListItem {

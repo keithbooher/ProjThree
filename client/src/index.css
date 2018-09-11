@@ -11,12 +11,21 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100%;
+    width: 100%
+}
+
+html {
+    height: 100%;
+    width: 100%
 }
 
 .footer {
     text-align: center;
-    position: relative;
-    bottom: 0;
+    position: absolute;
+    left:0px;
+    bottom:0px;
+    width: 100%;
     background: #000000;
     border-top: solid 1px #ffffff;
 }
@@ -29,3 +38,13 @@ body {
 .form-group {
     margin: 0;
 }
+
+.submit a {
+    color: #ffffff;
+}
+
+.adminHeader {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
