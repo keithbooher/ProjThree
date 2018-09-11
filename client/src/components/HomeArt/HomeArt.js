@@ -11,8 +11,8 @@ const HomeArt = props => (
           src={props.firstImage}
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>Vincent Van Gogh</h3>
+          <p>"Starry Night"</p>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -23,8 +23,8 @@ const HomeArt = props => (
           src={props.secondImage}
         />
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>Katsushika Hokusai</h3>
+          <p>"The Great Wave off Kanagawa"</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -34,8 +34,8 @@ const HomeArt = props => (
           src={props.thirdImage}
         />
         <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>Pablo Picasso</h3>
+          <p>"Kiss"</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

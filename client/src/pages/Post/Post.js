@@ -24,7 +24,7 @@ class Post extends Component {
       alertTitle: "hide",
       alertPrice: "hide",
       alertDescription: "hide",
-      alertQuantity: "hide",      
+      alertQuantity: "hide",
       alertImg: "hide",
       toDashboard: false
     };
@@ -53,16 +53,13 @@ class Post extends Component {
     } else if (!this.state.price.trim()) {
       console.log("yo mane");
       this.setState({ alertPrice: "show" });
-    } 
-    else if (!this.state.description.trim()) {
+    } else if (!this.state.description.trim()) {
       console.log("yo mane");
       this.setState({ alertDescription: "show" });
-    }
-    else if (!this.state.quantity.trim()) {
+    } else if (!this.state.quantity.trim()) {
       console.log("yo mane");
       this.setState({ alertQuantity: "show" });
-    }
-    else if (!this.state.file) {
+    } else if (!this.state.file) {
       console.log("yo mane");
       this.setState({ alertImg: "show" });
     } else {
@@ -94,7 +91,7 @@ class Post extends Component {
             description: this.state.description,
             email: this.state.user.email,
             artistName: this.state.user.firstName,
-            quantity: this.state.quantity,            
+            quantity: this.state.quantity,
             stripeAccount: this.state.user.stripeAccount,
             associatedID: this.state.user._id,
             platformFee: platformFee,

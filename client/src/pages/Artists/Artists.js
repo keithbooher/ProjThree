@@ -7,7 +7,8 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 // import Anchor from "../../components/Anchor/Anchor";
-import List from "../../components/List/List";
+import ArtistListItem from "../../components/List/ArtistList";
+import ArtistUnorderedList from "../../components/List/ArtistUL";
 import UnorderedList from "../../components/List/UnorderedList";
 import { Link } from "react-router-dom";
 
@@ -117,15 +118,15 @@ class Artists extends Component {
           <Header key="1" amount={this.state.amount} className="header" />
         )}
         <SideBar user={this.state.user} />
-        <UnorderedList className="main">
+        <ArtistUnorderedList className="main">
           {this.state.users.map((user, i) => (
-            <List className="nameList" key={i}>
+            <ArtistListItem className="nameList" key={i}>
               <Link to={`/artist/${user._id}`} className="artistNames">
                 {`${user.firstName} ${!user.averageRating ? 5 : user.averageRating}`}
               </Link>
-            </List>
+            </ArtistListItem>
           ))}
-        </UnorderedList>
+        </ArtistUnorderedList>
       </div>
     );
   }

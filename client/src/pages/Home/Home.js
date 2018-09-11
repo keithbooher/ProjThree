@@ -8,9 +8,9 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import HomeArt from "../../components/HomeArt/HomeArt";
-import firstImage from "../../assets/images/art-1.jpeg";
-import secondImage from "../../assets/images/art-2.jpg";
-import thirdImage from "../../assets/images/art-3.jpg";
+import firstImage from "../../assets/images/art1.jpg";
+import secondImage from "../../assets/images/art2.jpg";
+import thirdImage from "../../assets/images/art3.jpg";
 import "./Home.css";
 
 class App extends Component {
