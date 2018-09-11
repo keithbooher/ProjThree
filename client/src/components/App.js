@@ -28,7 +28,7 @@ const App = () => (
         <Route exact path="/artist/:id" component={Artist} />
         <Route exact path="/product/:id" component={Product} />
         <Route exact path="/customize" component={Customize} />
-        <Route exact path="/usersettings" component={UserSettings} />        
+        <Route exact path="/usersettings" component={UserSettings} />
         <Route exact path="/post" component={Post} />
         <Route exact path="/delete" component={Delete} />
         {/* <Route exact path="/checkout/:id" component={Checkout} /> */}

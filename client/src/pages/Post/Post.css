@@ -12,10 +12,21 @@
 
 .postForm {
     padding: 2rem;
-    background: #ffffff;
-    border: solid #000000 1px;
+    background: #000000;
+    border: solid #ffffff 1px;
+    border-radius: 25px;
     grid-area: pf;
-    margin: 0
+    margin: 0;
+}
+
+.form-control {
+    background: #212529 !important;
+    color: #8e54e9 !important;
+}
+
+textarea:focus, input:focus{
+    outline-offset: 0px !important;
+    outline: none !important;
 }
 
 .title {
