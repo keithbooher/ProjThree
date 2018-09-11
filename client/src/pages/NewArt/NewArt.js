@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
@@ -57,6 +58,41 @@ class Home extends Component {
       );
   };
 
+  enlargeImage = i => {
+    // Get the modal
+    let img;
+    let modal;
+    let modalImg;
+    let captionText;
+    let node = ReactDOM.findDOMNode(this);
+    // Get child nodes
+    if (node instanceof HTMLElement) {
+      img = node.querySelector(`.images${i}`);
+      modal = node.querySelector(`.myModal${i}`);
+      modalImg = node.querySelector(`.img${i}`);
+      captionText = node.querySelector(`.caption${i}`);
+    }
+
+    console.log("modal", modal);
+    console.log("modalImg", modalImg);
+    console.log("captionText", captionText);
+    console.log("src", img.src);
+
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    captionText.innerHTML = img.alt;
+  };
+
+  shrinkImage = i => {
+    let modal;
+    let node = ReactDOM.findDOMNode(this);
+
+    if (node instanceof HTMLElement) {
+      modal = node.querySelector(`.myModal${i}`);
+    }
+    modal.style.display = "none";
+  };
+
   render() {
     return (
       <div className="newArtGrid">
@@ -73,6 +109,7 @@ class Home extends Component {
             return (
               <Card
                 key={i}
+                id={i}
                 image={product.img}
                 price={product.price}
                 productName={product.productName}
@@ -86,6 +123,8 @@ class Home extends Component {
                 productID={product._id}
                 sold={product.sold}
                 quantity={product.quantity}
+                enlargeImage={this.enlargeImage}
+                shrinkImage={this.shrinkImage}
               />
             );
           })}
