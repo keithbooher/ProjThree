@@ -44,14 +44,8 @@ class UserSettings extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    // console.log(this.state)
-    if (!this.state.title.trim()) {
-      console.log("yo mane");
-      this.setState({ alertTitle: "show" });
-    } else if (!this.state.price.trim()) {
-      console.log("yo mane");
-      this.setState({ alertPrice: "show" });
-    } else if (!this.state.file) {
+
+    if (!this.state.file) {
       console.log("yo mane");
       this.setState({ alertImg: "show" });
     } else {
@@ -159,6 +153,7 @@ class UserSettings extends Component {
             <SideBar user={this.state.user} />
           </Col>
           <Col size="sm-9 offset-'sm-1">
+            <img src={`${this.state.user.img}`} className="userProfilePic"></img>
             <form className="postForm">
               {/* User Profile Pic */}
               <div className="form-group">

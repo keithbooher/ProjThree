@@ -12,7 +12,6 @@ import "./NewArt.css";
 
 class Home extends Component {
   state = {
-    amount: 0,
     products: [],
     currentUser: {}
   };
@@ -98,9 +97,9 @@ class Home extends Component {
     return (
       <div className="newArtGrid">
         {this.state.currentUser.admin ? (
-          <AdminHeader amount={this.state.amount} />
+          <AdminHeader/>
         ) : (
-          <Header key="1" amount={this.state.amount} />
+          <Header key="1"/>
         )}
         <SideBar user={this.state.user} />
         {console.log("MAP STATE", this.state.products)}

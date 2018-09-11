@@ -11,6 +11,8 @@ import Customize from "../pages/Customize";
 import UserSettings from "../pages/UserSettings";
 import Post from "../pages/Post";
 import Delete from "../pages/Delete";
+import MostVisited from "../pages/MostVisited";
+
 // import Checkout from "../pages/Checkout";
 import Footer from "../components/Footer/Footer";
 import "./App.css";
@@ -29,7 +31,8 @@ const App = () => (
         <Route exact path="/artist/:id" component={Artist} />
         <Route exact path="/product/:id" component={Product} />
         <Route exact path="/customize" component={Customize} />
-        <Route exact path="/usersettings" component={UserSettings} />    
+        <Route exact path="/usersettings" component={UserSettings} /> 
+        <Route exact path="/mostvisited" component={MostVisited} />               
         <Route exact path="/inventory" component={ManageInventory} />                    
         <Route exact path="/post" component={Post} />
         <Route exact path="/delete" component={Delete} />

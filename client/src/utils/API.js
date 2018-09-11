@@ -37,6 +37,10 @@ export default {
   getUser: function() {
     return axios.get("/api/user");
   },
+  // Gets current user
+  getPopularUsers: function() {
+    return axios.get("/api/user/popular");
+  },
   getUserById: function(id) {
     return axios.get("/api/user/" + id);
   },
@@ -55,6 +59,9 @@ export default {
   },
   averageRating: function(userID, average) {
     return axios.put("/api/user/averageRating/" + userID, average);
+  },
+  updatePageViews: function(userID, plusOne) {
+    return axios.put("/api/user/pageview/" + userID, plusOne);
   },
 
 

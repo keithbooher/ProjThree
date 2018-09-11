@@ -80,6 +80,7 @@ class Artist extends Component {
           if (users[i]._id === targetedID) {
             this.setState({ user: users[i] });
             this.loadProductIds();
+            this.pageView();
             console.log("success");
           }
         }
@@ -205,6 +206,19 @@ class Artist extends Component {
       modal = node.querySelector(`.myModal${i}`);
    }
     modal.style.display = "none";
+  }
+
+  pageView = () => {
+    const pageViewCount = this.state.user.pageViews
+    const plusOne = pageViewCount + 1;
+    const artistPage = this.state.user._id;  
+    
+    const plusOneObject = {
+      plusOne: plusOne
+    }
+
+    API.updatePageViews(artistPage, plusOneObject)
+    .catch(err => console.log(err));
   }
 
   render() {
