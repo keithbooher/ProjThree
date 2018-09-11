@@ -18,3 +18,8 @@
     -webkit-text-fill-color: transparent;
     margin: 0 20px 0 20px;
 }
+
+.missionStatementLogo {
+    font-family: 'Rock Salt', cursive;
+    line-height: 3;
+}
