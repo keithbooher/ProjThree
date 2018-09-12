@@ -73,6 +73,16 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
     })
 
+    // Update User Profile Pic
+    app.put("/api/user/description/:id", (req, res) => {
+      console.log('req.body*******', req.body)
+      User
+      .findOneAndUpdate({ _id: req.params.id }, { aboutMe: req.body.description})
+      .then(console.log('req.body', req))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+    })
+
     // Plus one page view
     app.put("/api/user/pageview/:id", (req, res) => {
       console.log('req.body*******', req.body)

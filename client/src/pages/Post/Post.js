@@ -18,7 +18,7 @@ class Post extends Component {
       title: "",
       price: "",
       description: "",
-      quantity: 0,
+      quantity: "",
       img: "",
       file: null,
       alertTitle: "hide",
