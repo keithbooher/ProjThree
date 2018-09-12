@@ -10,6 +10,10 @@
     grid-gap: 2rem
 }
 
+.artistProfile {
+    margin-bottom: 5rem;
+}
+
 .productContent {
     grid-area: cards
 }
@@ -20,9 +24,21 @@
     justify-content: space-evenly;
 }
 
+.artistRating {
+    margin-left: 2rem;
+}
+
+.userRatingTitle {
+    color: #00ffff;
+}
+
+.rating {
+    margin-top: 1rem;
+}
+
 
 .checked {
-    color: orange;
+    color: #ffa500;
 }
 
 .hover:hover {

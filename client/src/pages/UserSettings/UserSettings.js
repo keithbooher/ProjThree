@@ -82,6 +82,28 @@ class UserSettings extends Component {
     }
   };
 
+  handleAboutMeSubmit = event => {
+    event.preventDefault();
+
+    if (!this.state.description.trim()) {
+      console.log("yo mane");
+      this.setState({ alertDescription: "show" });
+    } else {
+      const newDescription = {
+        description: this.state.description
+      };
+
+      API.saveDescription(this.state.user._id, newDescription)
+        .then(
+          console.log("success"),
+          this.setState({
+            description: " "
+          })
+        )
+        .catch(err => console.log(err));
+    }
+  };
+
   handleFileInput = event => {
     this.setState({ file: event.target.files });
   };
@@ -181,27 +203,53 @@ class UserSettings extends Component {
             </div>
           </div>
         </div>
-        <form className="userSettingsForm">
-          {/* User Profile Pic */}
-          <div className="form-group">
-            <h3 className="userSettingsHeader">Change profile picture: </h3>
-            <label htmlFor="img">Image File: </label>
-            <input
-              onChange={this.handleFileInput}
-              type="file"
-              className="form-control-file"
-              id="img"
-              name="img"
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-primary submitBtn"
-            onClick={this.handleFormSubmit}
-          >
-            Submit
-          </button>
-        </form>
+        <div className="userSettingsForm">
+          <form className="profilePicForm">
+            {/* User Profile Pic */}
+            <div className="form-group">
+              <h3 className="userSettingsHeader">Change profile picture: </h3>
+              <label htmlFor="img">Image File: </label>
+              <input
+                onChange={this.handleFileInput}
+                type="file"
+                className="form-control-file"
+                id="img"
+                name="img"
+              />
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary submitBtn"
+              onClick={this.handleFormSubmit}
+            >
+              Submit
+            </button>
+          </form>
+          <form className="aboutMeForm">
+            {/* About Me */}
+            <div className="form-group">
+              <h3 className="userSettingsHeader">Change your description: </h3>
+              <label htmlFor="description">Description: </label>
+              <textarea
+                value={this.state.description}
+                onChange={this.handleInputChange}
+                rows="3"
+                type="text"
+                className="form-control"
+                id="description"
+                name="description"
+                placeholder="example: &quot;The village is painted with dark colors but the brightly lit windows create a sense of comfort.&quot;"
+              />
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary submitBtn"
+              onClick={this.handleAboutMeSubmit}
+            >
+              Submit
+            </button>
+          </form>
+        </div>
         <div className={this.state.alertImg}>
           <h3>Please show me</h3>
         </div>

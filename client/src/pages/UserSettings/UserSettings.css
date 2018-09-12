@@ -6,6 +6,7 @@
     "header header header header header header"
     ". sidebar up up up ."
     ". sidebar pp pp pp ."
+    
     "footer footer footer footer footer footer";
     grid-gap: 2rem
 }
@@ -17,7 +18,7 @@
     border-radius: 25px;
     grid-area: pp;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 }
 
@@ -81,6 +82,14 @@
 .productForm {
     margin-top: -17%;
     width: 60%;
+}
+
+.aboutMeForm {
+    padding: 1rem;
+}
+
+.profilePicForm {
+    padding: 1rem;
 }
 
 ::-webkit-input-placeholder {

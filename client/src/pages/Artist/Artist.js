@@ -207,17 +207,18 @@ class Artist extends Component {
   };
 
   pageView = () => {
-    const pageViewCount = this.state.user.pageViews
+    const pageViewCount = this.state.user.pageViews;
     const plusOne = pageViewCount + 1;
-    const artistPage = this.state.user._id;  
-    
+    const artistPage = this.state.user._id;
+
     const plusOneObject = {
       plusOne: plusOne
-    }
+    };
 
-    API.updatePageViews(artistPage, plusOneObject)
-    .catch(err => console.log(err));
-  }
+    API.updatePageViews(artistPage, plusOneObject).catch(err =>
+      console.log(err)
+    );
+  };
 
   render() {
     return (
@@ -230,37 +231,76 @@ class Artist extends Component {
         <SideBar user={this.state.user} />
 
         <div className="container productContent">
-          {this.isThisTheCurrentUsersPage() ? (
-            " "
-          ) : (
-            <div className="artistRating">
-              {this.state.ratingSubmitted ? (
-                <h4>Thank you for submitting your feedback</h4>
-              ) : (
-                <div>
-                  <Star
-                    idOne={1}
-                    idTwo={2}
-                    idThree={3}
-                    idFour={4}
-                    idFive={5}
-                    star={this.star}
-                  />
-
-                  {this.isRateStateFilled() ? (
-                    <button onClick={() => this.submitRating()}>
-                      Submit Rating
-                    </button>
-                  ) : (
-                    " "
-                  )}
-                </div>
-              )}
+          <div className="userProfile artistProfile">
+            <img src={`${this.state.user.img}`} className="userProfilePic" />
+            <div className="userProfileFlex">
+              <div className="userInfoFlex">
+                <p className="userProfileKey">User:</p>
+                <span className="userProfileValue">
+                  {this.state.user.firstName}
+                </span>
+              </div>
+              <div className="userInfoFlex">
+                <p className="userProfileKey">Email:</p>
+                <span className="userProfileValue">
+                  {this.state.user.email}
+                </span>
+              </div>
+              <div className="userInfoFlex">
+                <p className="userProfileKey">Average Rating: </p>
+                <span className="userProfileValue">
+                  {this.state.user.averageRating}
+                </span>
+              </div>
+              <div className="userInfoFlex">
+                <p className="userProfileKey">Page Views: </p>
+                <span className="userProfileValue">
+                  {this.state.user.pageViews}
+                </span>
+              </div>
+              <div className="userInfoFlex">
+                <p className="userProfileKey">Description: </p>
+                <span className="userProfileValue">
+                  {this.state.user.aboutMe ? this.state.user.aboutMe : ""}
+                </span>
+              </div>
             </div>
-          )}
+            {this.isThisTheCurrentUsersPage() ? (
+              " "
+            ) : (
+              <div className="artistRating">
+                {this.state.ratingSubmitted ? (
+                  <h4>Thank you for submitting your feedback</h4>
+                ) : (
+                  <div>
+                    <Star
+                      // user={this.state.user}
+                      idOne={1}
+                      idTwo={2}
+                      idThree={3}
+                      idFour={4}
+                      idFive={5}
+                      star={this.star}
+                    />
+
+                    {this.isRateStateFilled() ? (
+                      <button
+                        className="rating btn"
+                        onClick={() => this.submitRating()}
+                      >
+                        Submit Rating
+                      </button>
+                    ) : (
+                      " "
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
 
           <div className="productCard">
-            {console.log("MAP STATE", this.state.products)}
+            {console.log("MAP STATE", this.state.pageArtist)}
             {this.state.products.map((product, i) => {
               console.log("PRODUCT", i, product.data);
               return (
