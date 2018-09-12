@@ -32,6 +32,10 @@ const userSchema = new Schema({
         type: Number,
         default: 0
     },
+    aboutMe: {
+        type: String,
+        default: " "
+    },
     product: [{
         type: Schema.Types.ObjectId,
         ref: "product"
