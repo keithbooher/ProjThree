@@ -10,6 +10,8 @@ import SideBar from "../../components/Sidebar/Sidebar";
 // import Payments from '../../components/Navs/Payments';
 import Card from "../../components/Card";
 import Star from "../../components/Star/Star";
+import AverageStar from "../../components/Star/AverageStar";
+
 
 import "./Artist.css";
 
@@ -80,6 +82,7 @@ class Artist extends Component {
             this.setState({ user: users[i] });
             this.loadProductIds();
             this.pageView();
+            this.averageStars();
             console.log("success");
           }
         }
@@ -138,13 +141,50 @@ class Artist extends Component {
     this.isRateStateFilled();
   };
 
+  averageStars = () => {
+    const artistAverageRating = this.state.user.averageRating
+    for (let i = 1; i <= artistAverageRating; i++) {
+      document.getElementById(`averageStar${i}`).classList.add("checked");
+    }
+
+  }
+
   submitRating = () => {
-    const currentUser = this.state.user._id;
+    const currentUser = this.state.user;
     const ratingState = this.state.rating;
 
-    API.changeRating(currentUser, ratingState)
+    API.addRating(currentUser._id, ratingState)
       .then(this.setState({ ratingSubmitted: true }))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err));  
+
+    const ratings = currentUser.rating;
+    console.log('ratings', ratings)
+    let ratingsArray = [];
+
+    if(ratings.length === 0) {
+
+    } else {
+      for (let i = 0; i < ratings.length; i++) {
+        ratingsArray.push(parseInt(ratings[i]))
+      }
+
+      let total = 0;
+
+      for (let i = 0; i < ratingsArray.length; i++) {
+        total += ratingsArray[i];        
+      }
+      
+      let avg = total / ratingsArray.length;
+      const roundedAverage = Math.round(avg);
+      const averageObject = {
+        averageRating: roundedAverage
+      }
+      
+      API.averageRating(currentUser._id, averageObject)
+      .then(this.setState({ ratingSubmitted: true }))
+      .catch(err => console.log(err)); 
+
+    }
   };
 
   isRateStateFilled = () => {
@@ -245,9 +285,9 @@ class Artist extends Component {
               <span className="userProfileValue">{this.state.user.email}</span>
             </div>
             <div className="userInfoFlex">
-              <p className="userProfileKey">Average Rating: </p>
+              <p className="userProfileKey">Community Rating: </p>
               <span className="userProfileValue">
-                {this.state.user.averageRating}
+                <AverageStar  />
               </span>
             </div>
             <div className="userInfoFlex">

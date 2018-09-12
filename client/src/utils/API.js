@@ -57,8 +57,8 @@ export default {
   saveDescription: function(userID, desc) {
     return axios.put("/api/user/description/" + userID, desc);
   },
-  changeRating: function(userID, productID) {
-    return axios.put("/api/user/rating/" + userID, productID);
+  addRating: function(userID, rating) {
+    return axios.put("/api/user/rating/" + userID, rating);
   },
   averageRating: function(userID, average) {
     return axios.put("/api/user/averageRating/" + userID, average);
