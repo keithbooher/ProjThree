@@ -54,6 +54,9 @@ export default {
   saveProfilePic: function(userID, img) {
     return axios.put("/api/user/pic/" + userID, img);
   },
+  saveDescription: function(userID, desc) {
+    return axios.put("/api/user/description/" + userID, desc);
+  },
   changeRating: function(userID, productID) {
     return axios.put("/api/user/rating/" + userID, productID);
   },
