@@ -225,8 +225,8 @@ class MostVisited extends Component {
                   <Link to={`/artist/${user._id}`} className="artistNames">
                     {`${user.firstName} ${!user.averageRating ? 5 : user.averageRating}`}
                   </Link>
-                  <div>
-                    {/* {this.renderCard(user.product[user.product.length-1], i)}
+                  {/* <div>
+                    {this.renderCard(user.product[user.product.length-1], i)}
                     <Card
                         key={i}
                         id={i}
@@ -245,8 +245,28 @@ class MostVisited extends Component {
                         quantity={this.state.quantity}
                         // enlargeImage={this.enlargeImage}
                         // shrinkImage={this.shrinkImage}
-                    /> */}
-                  </div>
+                    />
+                  </div> */}
+
+                      <Card
+                        key={i}
+                        id={i}
+                        image={this.state.productDataObjects[i].img}
+                        price={this.state.productDataObjects[i].price}
+                        productName={this.state.productDataObjects[i].productName}
+                        artistEmail={this.state.productDataObjects[i].aristEmail}
+                        artistName={this.state.productDataObjects[i].artistName}
+                        artistID={this.state.productDataObjects[i].artistID}
+                        description={this.state.productDataObjects[i].description}
+                        currentUserEmail={this.state.user.email}
+                        targetStripe={this.state.productDataObjects[i].targetStripe}
+                        platformFee={this.state.productDataObjects[i].platformFee} 
+                        productID={this.state.productDataObjects[i].productID}
+                        sold={this.state.productDataObjects[i].sold}
+                        quantity={this.state.productDataObjects[i].quantity}
+                        // enlargeImage={this.enlargeImage}
+                        // shrinkImage={this.shrinkImage}
+                    />
                 </ArtistListItem>
               )})} 
 

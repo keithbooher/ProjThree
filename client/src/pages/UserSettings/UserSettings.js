@@ -147,11 +147,7 @@ class UserSettings extends Component {
     return (
       <div className="userSettingsGrid">
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
-        <Row>
-          <Col size="sm-3 offset-'sm-11">
             <SideBar user={this.state.user} />
-          </Col>
-          <Col size="sm-9 offset-'sm-1">
             <img src={`${this.state.user.img}`} className="userProfilePic"></img>
             <form className="postForm">
               {/* User Profile Pic */}
@@ -176,8 +172,6 @@ class UserSettings extends Component {
             <div className={this.state.alertImg}>
               <h3>Please show me</h3>
             </div>
-          </Col>
-        </Row>
       </div>
     );
   }
