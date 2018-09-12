@@ -12,23 +12,7 @@ class Admin extends Component {
   state = {
     user: {},
     stripe: "",
-    borders: [
-      "dotted",
-      "dashed",
-      "solid",
-      "double",
-      "groove",
-      "ridge",
-      "inset",
-      "outset",
-      "none",
-      "hidden"
-    ],
-    borderRadius: [10, 20, 30, 40, 50, 60, 70, 80, 90],
-    borderColor: "",
-    backgroundImage: "",
-    textColor: "",
-    backGroundColor: ""
+
   };
 
   loadCurrentUser = () => {

@@ -50,3 +50,9 @@
 :-ms-input-placeholder {
     font-style: italic; 
 }
+
+.userProfilePic {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}

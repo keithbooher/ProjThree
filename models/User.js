@@ -28,6 +28,10 @@ const userSchema = new Schema({
         type: String,
         default: " "
     },
+    pageViews: {
+        type: Number,
+        default: 0
+    },
     product: [{
         type: Schema.Types.ObjectId,
         ref: "product"
