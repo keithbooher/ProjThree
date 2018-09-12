@@ -39,27 +39,6 @@ class Artists extends Component {
           .classList.add("checked");
       }
     }
-
-    let average =
-      pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
-
-    let averageRounded = average.toFixed(1);
-    let parsed = parseInt(averageRounded);
-    console.log("parsed", parsed);
-
-    if (!parsed) {
-      console.log("parsed test");
-      parsed = 5;
-      this.setState();
-    }
-
-    const averageRatingObject = {
-      averageRating: parsed
-    };
-
-    const currentUser = users[i];
-    console.log("currentUser", currentUser);
-    console.log("averageRatingObject", averageRatingObject);
   };
 
   loadUsers = () => {

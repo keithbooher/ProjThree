@@ -300,66 +300,62 @@ class Artist extends Component {
                   {this.state.user.aboutMe ? this.state.user.aboutMe : ""}
                 </span>
               </div>
-              {this.isThisTheCurrentUsersPage() ? (
-                " "
-              ) : (
-                <div className="artistRating">
-                  {this.state.ratingSubmitted ? (
-                    <h4>Thank you for submitting your feedback</h4>
-                  ) : (
-                    <div>
-                      <Star
-                        // user={this.state.user}
-                        idOne={1}
-                        idTwo={2}
-                        idThree={3}
-                        idFour={4}
-                        idFive={5}
-                        star={this.star}
-                      />
-
-                      {this.isRateStateFilled() ? (
-                        <button
-                          className="rating btn"
-                          onClick={() => this.submitRating()}
-                        >
-                          Submit Rating
-                        </button>
-                      ) : (
-                        " "
-                      )}
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
+            {this.isThisTheCurrentUsersPage() ? (
+              " "
+            ) : (
+              <div className="artistRating">
+                {this.state.ratingSubmitted ? (
+                  <h4>Thank you for submitting your feedback</h4>
+                ) : (
+                  <div>
+                    <Star
+                      idOne={1}
+                      idTwo={2}
+                      idThree={3}
+                      idFour={4}
+                      idFive={5}
+                      star={this.star}
+                    />
 
-            <div className="productCard">
-              {console.log("MAP STATE", this.state.pageArtist)}
-              {this.state.products.map((product, i) => {
-                console.log("PRODUCT", i, product.data);
-                return (
-                  <Card
-                    key={i}
-                    id={i}
-                    image={product.data.img}
-                    price={product.data.price}
-                    description={product.data.description}
-                    productName={product.data.productName}
-                    artistEmail={product.data.email}
-                    currentUserEmail={this.state.currentUser.email}
-                    currentUserName={this.state.currentUser.firstName}
-                    targetStripe={product.data.stripeAccount}
-                    platformFee={product.data.platformFee}
-                    productID={product.data._id}
-                    sold={product.data.sold}
-                    quantity={product.data.quantity}
-                    enlargeImage={this.enlargeImage}
-                    shrinkImage={this.shrinkImage}
-                  />
-                );
-              })}
-            </div>
+                    {this.isRateStateFilled() ? (
+                      <button onClick={() => this.submitRating()}>
+                        Submit Rating
+                      </button>
+                    ) : (
+                      " "
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="productCard">
+            {console.log("MAP STATE", this.state.products)}
+            {this.state.products.map((product, i) => {
+              console.log("PRODUCT", i, product.data);
+              return (
+                <Card
+                  key={i}
+                  id={i}
+                  image={product.data.img}
+                  price={product.data.price}
+                  description={product.data.description}
+                  productName={product.data.productName}
+                  artistEmail={product.data.email}
+                  currentUserEmail={this.state.currentUser.email}
+                  currentUserName={this.state.currentUser.firstName}
+                  targetStripe={product.data.stripeAccount}
+                  platformFee={product.data.platformFee}
+                  productID={product.data._id}
+                  sold={product.data.sold}
+                  quantity={product.data.quantity}
+                  enlargeImage={this.enlargeImage}
+                  shrinkImage={this.shrinkImage}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
