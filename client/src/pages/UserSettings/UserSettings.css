@@ -18,7 +18,7 @@
     border-radius: 25px;
     grid-area: pp;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 }
 
@@ -37,6 +37,7 @@
     border-radius: 25px;
     display: flex;
     align-items: center;
+    padding: 2rem;
 }
 
 .userProfileKey {
@@ -60,6 +61,7 @@
     width: 200px;
     height: 200px;
     border-radius: 100px;
+    margin-right: 2rem;
 }
 
 .postForm {
@@ -80,6 +82,14 @@
 .productForm {
     margin-top: -17%;
     width: 60%;
+}
+
+.aboutMeForm {
+    padding: 1rem;
+}
+
+.profilePicForm {
+    padding: 1rem;
 }
 
 ::-webkit-input-placeholder {
