@@ -14,6 +14,7 @@ module.exports = app => {
     app.get("/api/user/popular", (req, res) => {
       User.find(req.body)
         .sort({ pageViews: -1 })
+        .populate('product')
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     });
