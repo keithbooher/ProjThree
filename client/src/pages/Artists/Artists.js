@@ -93,6 +93,7 @@ class Artists extends Component {
         
         <ArtistUnorderedList className="main">
           {this.state.users.map((user, i) => (
+            
             <ArtistListItem className="nameList" key={i}>
               <Link to={`/artist/${user._id}`} className="artistNames">
               <img className="smallImg" src={`${user.img}`}></img>
