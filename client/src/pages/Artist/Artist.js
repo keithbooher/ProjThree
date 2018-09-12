@@ -10,6 +10,7 @@ import SideBar from "../../components/Sidebar/Sidebar";
 // import Payments from '../../components/Navs/Payments';
 import Card from "../../components/Card";
 import Star from "../../components/Star/Star";
+import AverageStar from "../../components/Star/AverageStar";
 
 import "./Artist.css";
 
@@ -80,6 +81,7 @@ class Artist extends Component {
             this.setState({ user: users[i] });
             this.loadProductIds();
             this.pageView();
+            this.averageStars();
             console.log("success");
           }
         }
@@ -138,13 +140,47 @@ class Artist extends Component {
     this.isRateStateFilled();
   };
 
+  averageStars = () => {
+    const artistAverageRating = this.state.user.averageRating;
+    for (let i = 1; i <= artistAverageRating; i++) {
+      document.getElementById(`averageStar${i}`).classList.add("checked");
+    }
+  };
+
   submitRating = () => {
-    const currentUser = this.state.user._id;
+    const currentUser = this.state.user;
     const ratingState = this.state.rating;
 
-    API.changeRating(currentUser, ratingState)
+    API.addRating(currentUser._id, ratingState)
       .then(this.setState({ ratingSubmitted: true }))
       .catch(err => console.log(err));
+
+    const ratings = currentUser.rating;
+    console.log("ratings", ratings);
+    let ratingsArray = [];
+
+    if (ratings.length === 0) {
+    } else {
+      for (let i = 0; i < ratings.length; i++) {
+        ratingsArray.push(parseInt(ratings[i]));
+      }
+
+      let total = 0;
+
+      for (let i = 0; i < ratingsArray.length; i++) {
+        total += ratingsArray[i];
+      }
+
+      let avg = total / ratingsArray.length;
+      const roundedAverage = Math.round(avg);
+      const averageObject = {
+        averageRating: roundedAverage
+      };
+
+      API.averageRating(currentUser._id, averageObject)
+        .then(this.setState({ ratingSubmitted: true }))
+        .catch(err => console.log(err));
+    }
   };
 
   isRateStateFilled = () => {
@@ -230,8 +266,8 @@ class Artist extends Component {
         )}
         <SideBar user={this.state.user} />
 
-        <div className="container productContent">
-          <div className="userProfile artistProfile">
+        <div className="productContent">
+          <div className="userProfile">
             <img src={`${this.state.user.img}`} className="userProfilePic" />
             <div className="userProfileFlex">
               <div className="userInfoFlex">
@@ -247,9 +283,9 @@ class Artist extends Component {
                 </span>
               </div>
               <div className="userInfoFlex">
-                <p className="userProfileKey">Average Rating: </p>
+                <p className="userProfileKey">Community Rating: </p>
                 <span className="userProfileValue">
-                  {this.state.user.averageRating}
+                  <AverageStar />
                 </span>
               </div>
               <div className="userInfoFlex">
@@ -264,66 +300,66 @@ class Artist extends Component {
                   {this.state.user.aboutMe ? this.state.user.aboutMe : ""}
                 </span>
               </div>
+              {this.isThisTheCurrentUsersPage() ? (
+                " "
+              ) : (
+                <div className="artistRating">
+                  {this.state.ratingSubmitted ? (
+                    <h4>Thank you for submitting your feedback</h4>
+                  ) : (
+                    <div>
+                      <Star
+                        // user={this.state.user}
+                        idOne={1}
+                        idTwo={2}
+                        idThree={3}
+                        idFour={4}
+                        idFive={5}
+                        star={this.star}
+                      />
+
+                      {this.isRateStateFilled() ? (
+                        <button
+                          className="rating btn"
+                          onClick={() => this.submitRating()}
+                        >
+                          Submit Rating
+                        </button>
+                      ) : (
+                        " "
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
-            {this.isThisTheCurrentUsersPage() ? (
-              " "
-            ) : (
-              <div className="artistRating">
-                {this.state.ratingSubmitted ? (
-                  <h4>Thank you for submitting your feedback</h4>
-                ) : (
-                  <div>
-                    <Star
-                      // user={this.state.user}
-                      idOne={1}
-                      idTwo={2}
-                      idThree={3}
-                      idFour={4}
-                      idFive={5}
-                      star={this.star}
-                    />
 
-                    {this.isRateStateFilled() ? (
-                      <button
-                        className="rating btn"
-                        onClick={() => this.submitRating()}
-                      >
-                        Submit Rating
-                      </button>
-                    ) : (
-                      " "
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className="productCard">
-            {console.log("MAP STATE", this.state.pageArtist)}
-            {this.state.products.map((product, i) => {
-              console.log("PRODUCT", i, product.data);
-              return (
-                <Card
-                  key={i}
-                  id={i}
-                  image={product.data.img}
-                  price={product.data.price}
-                  description={product.data.description}
-                  productName={product.data.productName}
-                  artistEmail={product.data.email}
-                  currentUserEmail={this.state.currentUser.email}
-                  currentUserName={this.state.currentUser.firstName}
-                  targetStripe={product.data.stripeAccount}
-                  platformFee={product.data.platformFee}
-                  productID={product.data._id}
-                  sold={product.data.sold}
-                  quantity={product.data.quantity}
-                  enlargeImage={this.enlargeImage}
-                  shrinkImage={this.shrinkImage}
-                />
-              );
-            })}
+            <div className="productCard">
+              {console.log("MAP STATE", this.state.pageArtist)}
+              {this.state.products.map((product, i) => {
+                console.log("PRODUCT", i, product.data);
+                return (
+                  <Card
+                    key={i}
+                    id={i}
+                    image={product.data.img}
+                    price={product.data.price}
+                    description={product.data.description}
+                    productName={product.data.productName}
+                    artistEmail={product.data.email}
+                    currentUserEmail={this.state.currentUser.email}
+                    currentUserName={this.state.currentUser.firstName}
+                    targetStripe={product.data.stripeAccount}
+                    platformFee={product.data.platformFee}
+                    productID={product.data._id}
+                    sold={product.data.sold}
+                    quantity={product.data.quantity}
+                    enlargeImage={this.enlargeImage}
+                    shrinkImage={this.shrinkImage}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
