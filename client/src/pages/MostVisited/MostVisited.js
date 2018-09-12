@@ -229,7 +229,8 @@ class MostVisited extends Component {
                 <ArtistListItem className="nameList" key={i}>
                   <Link to={`/artist/${user._id}`} className="artistNames">
                     {`${user.firstName} ${!user.averageRating ? 5 : user.averageRating}`}
-                    <img className="userImage" src={`${user.product[user.product.length-1].img}`}></img>
+                    {user.product.length === 0 ? " " : <img className="userImage" src={`${user.product[user.product.length-1].img}`}></img>}
+                    
                   </Link>
       
                 </ArtistListItem>

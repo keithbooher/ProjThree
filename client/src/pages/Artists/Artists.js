@@ -10,6 +10,7 @@ import ArtistListItem from "../../components/List/ArtistList";
 import ArtistUnorderedList from "../../components/List/ArtistUL";
 // import UnorderedList from "../../components/List/UnorderedList";
 import { Link } from "react-router-dom";
+import AverageStar from "../../components/Star/AverageStar";
 
 import "./Artists.css";
 
@@ -18,7 +19,6 @@ class Artists extends Component {
     products: [],
     user: {},
     users: [],
-    userRatings: []
   };
 
   componentDidMount() {
@@ -26,46 +26,21 @@ class Artists extends Component {
     this.loadCurrentUser();
   }
 
-  userRatings = () => {
-    const users = this.state.users;
 
-    for (let i = 0; i < users.length; i++) {
-      console.log("*****USER****", users[i].firstName);
-      let pushedRatings = [];
-      let userRatingsArray = users[i].rating;
-
-      for (let i = 0; i < userRatingsArray.length; i++) {
-        let rating = userRatingsArray[i];
-        let convertRating = parseInt(rating);
-        pushedRatings.push(convertRating);
-        console.log("rating", rating);
+  averageStars = () => {
+    const users = this.state.users
+    console.log('users', users)
+    const artistAverageRating = this.state.user.averageRating
+    for (let j = 0; j < users.length; j++) {
+      let thisUser = users[j].firstName
+      console.log('thisUser', thisUser)
+      for (let i = 1; i <= artistAverageRating; i++) {
+        document.getElementById(`${thisUser}averageStar${i}`).classList.add("checked");
       }
-
-      let average = pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
-
-      let averageRounded = average.toFixed(1);
-      let parsed = parseInt(averageRounded);
-      console.log("parsed", parsed);
-
-      if (!parsed) {
-        console.log("parsed test");
-        parsed = 5;
-        this.setState();
-      }
-
-      const averageRatingObject = {
-        averageRating: parsed
-      };
-
-      const currentUser = users[i];
-      console.log("currentUser", currentUser);
-      console.log("averageRatingObject", averageRatingObject);
-
-      API.averageRating(currentUser._id, averageRatingObject)
-        .then(console.log("success"))
-        .catch(err => console.log(err));
     }
-  };
+
+
+  }
 
   loadUsers = () => {
     console.log("test");
@@ -73,7 +48,7 @@ class Artists extends Component {
       .then(res => {
         console.log(this.state);
         this.setState({ users: res.data });
-        this.userRatings();
+        this.averageStars();
       })
       .catch(err => console.log(err));
   };
@@ -105,23 +80,29 @@ class Artists extends Component {
   render() {
     return (
       <div className="artistsGrid">
-        {console.log("users ratings state: ", this.state.userRatings)}
+        {console.log("users ratings state: ", this.state.users)}
         {this.state.user.admin ? (
-          <AdminHeader amount={this.state.amount} className="header" />
+          <AdminHeader  className="header" />
         ) : (
-          <Header key="1" amount={this.state.amount} className="header" />
+          <Header key="1" className="header" />
         )}
         <SideBar user={this.state.user} />
+
+
+        {!this.state.users ? "" : 
+        
         <ArtistUnorderedList className="main">
           {this.state.users.map((user, i) => (
             <ArtistListItem className="nameList" key={i}>
               <Link to={`/artist/${user._id}`} className="artistNames">
               <img className="smallImg" src={`${user.img}`}></img>
-                {`${user.firstName} ${!user.averageRating ? 5 : user.averageRating} Stars`}
+                {`${user.firstName} ${!user.averageRating ? "" : <AverageStar name={user.firstName} />} Stars`}
               </Link>
             </ArtistListItem>
           ))}
         </ArtistUnorderedList>
+      }
+        
       </div>
     );
   }

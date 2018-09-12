@@ -54,6 +54,8 @@ module.exports = app => {
     .catch(err => res.status(422).json(err));
   })
 
+  
+
     // Update User AVERAGE Rating
     app.put('/api/user/averageRating/:id', (req, res) => {
       User
