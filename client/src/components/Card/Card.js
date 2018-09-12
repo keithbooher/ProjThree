@@ -4,19 +4,25 @@ import "./Card.css";
 
 const Card = props => (
   <div className="artCard">
-    <img onClick={() => props.enlargeImage(props.id)} className={`card-img-top images${props.id} firstImage`} src={props.image} alt={props.productName} />
+    <img
+      onClick={() => props.enlargeImage(props.id)}
+      className={`card-img-top images${props.id} firstImage`}
+      src={props.image}
+      alt={props.productName}
+    />
 
-    <div className={`myModal${props.id} modal `} >
+    <div className={`myModal${props.id} modal `}>
       {/* The Close Button  */}
-      <span onClick={() => props.shrinkImage(props.id)} className="close">&times;</span>
+      <span onClick={() => props.shrinkImage(props.id)} className="close">
+        &times;
+      </span>
 
       {/* Modal Content (The Image) */}
-      <img className={`modal-content img${props.id}`} src="" />
+      <img className={`modal-content img${props.id}`} src="" alt="" />
 
       {/* Modal Caption (Image Text)  */}
-      <div className={`caption${props.id} captions`}></div>
+      <div className={`caption${props.id} captions`} />
     </div>
-
 
     <div className="card-body">
       <h5 className="card-title">{props.productName}</h5>

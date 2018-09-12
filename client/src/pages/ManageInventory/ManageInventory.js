@@ -122,7 +122,7 @@ class ManageInventory extends Component {
             {this.state.products.map((product, i) => {
               console.log("PRODUCT", i, product.data);
               return (
-                <div className="artCard">
+                <div className="artCard" key={i}>
                   <img
                     className="card-img-top"
                     src={product.data.img}
