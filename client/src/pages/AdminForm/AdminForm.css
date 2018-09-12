@@ -8,15 +8,25 @@
     ". sidebar as as as ."
     "footer footer footer footer footer footer";
     grid-gap: 2rem;
+     /* This is for pages that don't have enough content to fill the entire vh */
+     height: 100vh;
 }
 
 .adminMessage {
-    grid-area: as
+    grid-area: as;
+    background: #000000;
+    border: solid #ffffff 1px;
+    border-radius: 25px;
+    padding: 2rem;
 }
 
 .stripe {
     font-size: 20px;
     color: black;
+}
+
+#stripeBtn {
+    margin-bottom: 2rem;
 }
 
 .adminHeader {
@@ -28,4 +38,10 @@
     color: #ffffff;
     font-size: 1.2rem;
     margin: 2rem 0 2rem 0;
+    padding: 2rem;
+}
+
+.submit a:hover {
+    color: #000000;
+    text-decoration: none;
 }
