@@ -4,8 +4,8 @@
     grid-template-rows: 20vh repeat(2, 1fr) 10vh;
     grid-template-areas:
     "header header header header header header"
+    ". sidebar up up up ."
     ". sidebar pp pp pp ."
-    ". sidebar . . . ."
     "footer footer footer footer footer footer";
     grid-gap: 2rem
 }
@@ -15,7 +15,50 @@
     background: #000000;
     border: solid #ffffff 1px;
     border-radius: 25px;
-    grid-area: pp
+    grid-area: pp;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.userSettingsForm button {
+    width: fit-content;
+}
+
+.userSettingsHeader {
+    color: #ffffff;
+}
+
+.userProfile {
+    grid-area: up;
+    background: #000000;
+    border: solid 1px #ffffff;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.userProfileKey {
+    color: aqua;
+    font-size: 1.2rem;
+}
+
+.userProfileValue {
+    color: #4e4376;
+    color: #ff4500;
+    color: #ff00ff;
+    font-size: 1.2rem;
+    margin-left: 1.2rem;
+}
+
+.userInfoFlex {
+    display: flex;
+}
+
+.userProfilePic {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
 }
 
 .postForm {
@@ -49,10 +92,4 @@
 }
 :-ms-input-placeholder {
     font-style: italic; 
-}
-
-.userProfilePic {
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
 }

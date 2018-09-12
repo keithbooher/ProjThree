@@ -147,31 +147,64 @@ class UserSettings extends Component {
     return (
       <div className="userSettingsGrid">
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
-            <SideBar user={this.state.user} />
-            <img src={`${this.state.user.img}`} className="userProfilePic"></img>
-            <form className="postForm">
-              {/* User Profile Pic */}
-              <div className="form-group">
-                <label htmlFor="img">Image File: </label>
-                <input
-                  onChange={this.handleFileInput}
-                  type="file"
-                  className="form-control-file"
-                  id="img"
-                  name="img"
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn btn-primary submitBtn"
-                onClick={this.handleFormSubmit}
-              >
-                Submit
-              </button>
-            </form>
-            <div className={this.state.alertImg}>
-              <h3>Please show me</h3>
+        <SideBar user={this.state.user} />
+        <div className="userProfile">
+          <img src={`${this.state.user.img}`} className="userProfilePic" />
+          <div className="userProfileFlex">
+            <div className="userInfoFlex">
+              <p className="userProfileKey">User:</p>
+              <span className="userProfileValue">
+                {this.state.user.firstName}
+              </span>
             </div>
+            <div className="userInfoFlex">
+              <p className="userProfileKey">Email:</p>
+              <span className="userProfileValue">{this.state.user.email}</span>
+            </div>
+            <div className="userInfoFlex">
+              <p className="userProfileKey">Average Rating: </p>
+              <span className="userProfileValue">
+                {this.state.user.averageRating}
+              </span>
+            </div>
+            <div className="userInfoFlex">
+              <p className="userProfileKey">Page Views: </p>
+              <span className="userProfileValue">
+                {this.state.user.pageViews}
+              </span>
+            </div>
+            <div className="userInfoFlex">
+              <p className="userProfileKey">Products: </p>
+              <span className="userProfileValue">
+                {this.state.user.product ? this.state.user.product.length : 0}
+              </span>
+            </div>
+          </div>
+        </div>
+        <form className="userSettingsForm">
+          {/* User Profile Pic */}
+          <div className="form-group">
+            <h3 className="userSettingsHeader">Select a profile picture: </h3>
+            <label htmlFor="img">Image File: </label>
+            <input
+              onChange={this.handleFileInput}
+              type="file"
+              className="form-control-file"
+              id="img"
+              name="img"
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-primary submitBtn"
+            onClick={this.handleFormSubmit}
+          >
+            Submit
+          </button>
+        </form>
+        <div className={this.state.alertImg}>
+          <h3>Please show me</h3>
+        </div>
       </div>
     );
   }

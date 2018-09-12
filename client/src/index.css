@@ -5,7 +5,6 @@
 }
 
 body {
-    /* background: #212121 !important; */
     background: url('./assets/images/artGutter.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -42,6 +41,5 @@ html {
 .submit a {
     color: #ffffff;
 }
-
 
 
