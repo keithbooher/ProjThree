@@ -14,6 +14,7 @@ module.exports = app => {
     app.get("/api/user/popular", (req, res) => {
       User.find(req.body)
         .sort({ pageViews: -1 })
+        .populate('product')
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     });
@@ -53,6 +54,8 @@ module.exports = app => {
     .catch(err => res.status(422).json(err));
   })
 
+  
+
     // Update User AVERAGE Rating
     app.put('/api/user/averageRating/:id', (req, res) => {
       User
@@ -67,6 +70,16 @@ module.exports = app => {
       console.log('req.body*******', req.body)
       User
       .findOneAndUpdate({ _id: req.params.id }, { img: req.body.img})
+      .then(console.log('req.body', req))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+    })
+
+    // Update User Profile Pic
+    app.put("/api/user/description/:id", (req, res) => {
+      console.log('req.body*******', req.body)
+      User
+      .findOneAndUpdate({ _id: req.params.id }, { aboutMe: req.body.description})
       .then(console.log('req.body', req))
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

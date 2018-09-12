@@ -54,8 +54,11 @@ export default {
   saveProfilePic: function(userID, img) {
     return axios.put("/api/user/pic/" + userID, img);
   },
-  changeRating: function(userID, productID) {
-    return axios.put("/api/user/rating/" + userID, productID);
+  saveDescription: function(userID, desc) {
+    return axios.put("/api/user/description/" + userID, desc);
+  },
+  addRating: function(userID, rating) {
+    return axios.put("/api/user/rating/" + userID, rating);
   },
   averageRating: function(userID, average) {
     return axios.put("/api/user/averageRating/" + userID, average);

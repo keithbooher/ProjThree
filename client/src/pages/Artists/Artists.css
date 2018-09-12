@@ -7,7 +7,9 @@
     ". sidebar maincontent maincontent maincontent ."
     ". sidebar maincontent maincontent maincontent ."
     "footer footer footer footer footer footer";
-    grid-gap: 2rem
+    grid-gap: 2rem;
+    /* This is for pages that don't have enough content to fill the entire vh */
+    height: 100vh;
 }
 
 .header {

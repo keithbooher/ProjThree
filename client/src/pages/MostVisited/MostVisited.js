@@ -23,21 +23,22 @@ class MostVisited extends Component {
         productDataObjects: [],
         productObjects: [],        
         lastPostComplete: false,
+        done: false
 
-        id: 0, 
-        image: '', 
-        price: 0, 
-        productName:'',
-        artistEmail:'',
-        artistName:'',
-        artistID:'',
-        description:'',
-        currentUserEmail:'',
-        targetStripe:'',
-        platformFee:0,
-        productID:0,
-        sold:false,
-        quantity:0,
+        // id: 0, 
+        // image: '', 
+        // price: 0, 
+        // productName:'',
+        // artistEmail:'',
+        // artistName:'',
+        // artistID:'',
+        // description:'',
+        // currentUserEmail:'',
+        // targetStripe:'',
+        // platformFee:0,
+        // productID:0,
+        // sold:false,
+        // quantity:0,
       };
     
       componentDidMount() {
@@ -68,7 +69,6 @@ class MostVisited extends Component {
           console.log('parsed', parsed)
     
           if(!parsed){
-            // (console.log('parsed test'))
             parsed=5
             this.setState()
           }
@@ -78,8 +78,6 @@ class MostVisited extends Component {
           };
     
           const currentUser = users[i];
-        //   console.log("currentUser", currentUser);
-        //   console.log("averageRatingObject", averageRatingObject);
     
           API.averageRating(currentUser._id, averageRatingObject)
             .then(console.log("success"))
@@ -134,7 +132,6 @@ class MostVisited extends Component {
 
     loadUsersProducts = () => {
         const productIDs = this.state.products;
-        // const productObjectsArray = [];
         for (let i = 0; i < productIDs.length; i++) {
         API.getProduct(productIDs[i])
             .then(result => {
@@ -152,6 +149,7 @@ class MostVisited extends Component {
         for (let i = 0; i < productDataObjects.length; i++) {
             this.setState({ productDataObjects: this.state.productObjects.concat(this.state.productObjects[i].data) });
         }
+        this.consolelog()
     }
 
     consolelog = () => {
@@ -183,92 +181,61 @@ class MostVisited extends Component {
           );
       };
 
-      renderCard(product, i) {
-          console.log('i', product)
-        //   const parsedProduct = parseInt(product)
-            API.getProduct(product)
-            .then(result =>{
-                console.log('result', result.data)
-                this.setState({ id: i, 
-                    image: result.data.img, 
-                    price: result.data.price, 
-                    productName:result.data.productName,
-                    artistEmail:result.data.email,
-                    artistName:result.data.artistName,
-                    artistID:result.data.associatedID,
-                    description:result.data.description,
-                    currentUserEmail:this.state.user.email,
-                    targetStripe:result.data.stripeAccount,
-                    platformFee:result.data.platformFee,
-                    productID:result.data._id,
-                    sold:result.data.sold,
-                    quantity:result.data.quantity,
-                })
-            })
-      }
+      // renderCard(product, i) {
+      //     console.log('i', product)
+      //   //   const parsedProduct = parseInt(product)
+      //       API.getProduct(product)
+      //       .then(result =>{
+      //           console.log('result', result.data)
+      //           this.setState({ id: i, 
+      //               image: result.data.img, 
+      //               price: result.data.price, 
+      //               productName:result.data.productName,
+      //               artistEmail:result.data.email,
+      //               artistName:result.data.artistName,
+      //               artistID:result.data.associatedID,
+      //               description:result.data.description,
+      //               currentUserEmail:this.state.user.email,
+      //               targetStripe:result.data.stripeAccount,
+      //               platformFee:result.data.platformFee,
+      //               productID:result.data._id,
+      //               sold:result.data.sold,
+      //               quantity:result.data.quantity,
+      //           })
+      //       })
+      // }
     
       render() {
         return (
           <div className="artistsGrid">
-            {console.log("users ratings state: ************", this.state.productDataObjects[0])}
             {this.state.user.admin ? (
               <AdminHeader className="header" />
             ) : (
               <Header key="1" className="header" />
             )}
             <SideBar user={this.state.user} />
+
+
+
             <ArtistUnorderedList className="main">
-            {this.state.users.map((user, i) => {
-                  console.log("map", i);                  
+            {console.log(this.state.users)}            
+            {/* {console.log(this.state.users[0].product[0])} */}
+            
+            {!this.state.users ?  " " : 
+            
+            this.state.users.map((user, i) => {
+                  console.log("map", user.product[0]);                  
                   return(
                 <ArtistListItem className="nameList" key={i}>
                   <Link to={`/artist/${user._id}`} className="artistNames">
                     {`${user.firstName} ${!user.averageRating ? 5 : user.averageRating}`}
+                    {user.product.length === 0 ? " " : <img className="userImage" src={`${user.product[user.product.length-1].img}`}></img>}
+                    
                   </Link>
-                  {/* <div>
-                    {this.renderCard(user.product[user.product.length-1], i)}
-                    <Card
-                        key={i}
-                        id={i}
-                        image={this.state.img}
-                        price={this.state.price}
-                        productName={this.state.productName}
-                        artistEmail={this.state.email}
-                        artistName={this.state.artistName}
-                        artistID={this.state.associatedID}
-                        description={this.state.description}
-                        currentUserEmail={this.state.user.email}
-                        targetStripe={this.state.stripeAccount}
-                        platformFee={this.state.platformFee} 
-                        productID={this.state._id}
-                        sold={this.state.sold}
-                        quantity={this.state.quantity}
-                        // enlargeImage={this.enlargeImage}
-                        // shrinkImage={this.shrinkImage}
-                    />
-                  </div> */}
-
-                      <Card
-                        key={i}
-                        id={i}
-                        image={this.state.productDataObjects[i].img}
-                        price={this.state.productDataObjects[i].price}
-                        productName={this.state.productDataObjects[i].productName}
-                        artistEmail={this.state.productDataObjects[i].aristEmail}
-                        artistName={this.state.productDataObjects[i].artistName}
-                        artistID={this.state.productDataObjects[i].artistID}
-                        description={this.state.productDataObjects[i].description}
-                        currentUserEmail={this.state.user.email}
-                        targetStripe={this.state.productDataObjects[i].targetStripe}
-                        platformFee={this.state.productDataObjects[i].platformFee} 
-                        productID={this.state.productDataObjects[i].productID}
-                        sold={this.state.productDataObjects[i].sold}
-                        quantity={this.state.productDataObjects[i].quantity}
-                        // enlargeImage={this.enlargeImage}
-                        // shrinkImage={this.shrinkImage}
-                    />
+      
                 </ArtistListItem>
-              )})} 
+              )})}  }
+            
 
             </ArtistUnorderedList>
           </div>
