@@ -5,8 +5,6 @@ const { exec } = require("child_process");
 const nodemailer = require("nodemailer");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
-// const keys = require("../config/keys");
-
 
 
 module.exports = app => {
@@ -68,7 +66,7 @@ module.exports = app => {
       service: "gmail",
       auth: {
         user: "groupthreebootcamp@gmail.com",
-        pass: keys.EMAIL_PASSWORD
+        pass: process.env.EMAIL_PASSWORD
       }
     });
 
@@ -142,8 +140,8 @@ module.exports = app => {
       // console.log("test", req.user);
 
       res.send(
-        "Copy this ID and paste it into the admin form to start accepting payments through Art Gutter: " +
-          targetedStripeAccount
+        console.log(targetedStripeAccount)
+          // targetedStripeAccount
       );
 
       // User
