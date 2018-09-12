@@ -10,6 +10,14 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
   });
 
+    // Find All
+    app.get("/api/user/popular", (req, res) => {
+      User.find(req.body)
+        .sort({ pageViews: -1 })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    });
+
   // Find by Id
   app.get("/api/user/:id", (req, res) => {
     User.findById(req.params.id)
@@ -59,6 +67,16 @@ module.exports = app => {
       console.log('req.body*******', req.body)
       User
       .findOneAndUpdate({ _id: req.params.id }, { img: req.body.img})
+      .then(console.log('req.body', req))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+    })
+
+    // Plus one page view
+    app.put("/api/user/pageview/:id", (req, res) => {
+      console.log('req.body*******', req.body)
+      User
+      .findOneAndUpdate({ _id: req.params.id }, { pageViews: req.body.plusOne})
       .then(console.log('req.body', req))
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

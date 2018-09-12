@@ -4,7 +4,7 @@ import * as actions from "../../actions";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import Header from "../../components/Navs/Header";
-import { Row, Col } from "../../components/Grid";
+// import { Row, Col } from "../../components/Grid";
 import SideBar from "../../components/Sidebar/Sidebar";
 import "./AdminForm.css";
 
@@ -12,23 +12,7 @@ class Admin extends Component {
   state = {
     user: {},
     stripe: "",
-    borders: [
-      "dotted",
-      "dashed",
-      "solid",
-      "double",
-      "groove",
-      "ridge",
-      "inset",
-      "outset",
-      "none",
-      "hidden"
-    ],
-    borderRadius: [10, 20, 30, 40, 50, 60, 70, 80, 90],
-    borderColor: "",
-    backgroundImage: "",
-    textColor: "",
-    backGroundColor: ""
+
   };
 
   loadCurrentUser = () => {
@@ -92,31 +76,27 @@ class Admin extends Component {
 
   render() {
     return (
-      <div>
+      <div className="adminGrid">
         <Header />
-        <Row>
-          <Col size="sm-2 offset-'sm-11">
-            <SideBar user={this.state.user} />
-          </Col>
-        </Row>
-        <div className="container content">
-          <h2 className="margin">
+        <SideBar user={this.state.user} />
+        <div className="adminMessage">
+          <h2 className="adminHeader">
             Before you can get started, please sign up with stripe
           </h2>
-          <button className="margin">
+          <button className="submit btn">
             <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_DW5XNKTvUAeODU0hK38cYryqiz6QGJFF&scope=read_write">
               Connect with Stripe
             </a>
           </button>
           <form className="formStyle">
             <div className="form-group">
-              <label className="stripe" htmlFor="stripe">
+              <label className="adminHeader2" htmlFor="stripe">
                 Stripe Account ID:{" "}
               </label>
               <input
                 value={this.state.stripe}
                 onChange={this.handleInputChange}
-                type="text"
+                type="integer"
                 className="form-control titleInput"
                 id="title"
                 name="title"
@@ -125,7 +105,10 @@ class Admin extends Component {
             </div>
           </form>
           <Link to="/">
-            <button className="margin" onClick={() => this.handleFormSubmit()}>
+            <button
+              className="submit btn"
+              onClick={() => this.handleFormSubmit()}
+            >
               Become an Admin
             </button>
           </Link>

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
-import { Row, Col } from "../../components/Grid";
+// import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
@@ -12,7 +12,6 @@ import "./NewArt.css";
 
 class Home extends Component {
   state = {
-    amount: 0,
     products: [],
     currentUser: {}
   };
@@ -58,49 +57,48 @@ class Home extends Component {
       );
   };
 
-  enlargeImage = (i) => {
+  enlargeImage = i => {
     // Get the modal
-    let img; 
+    let img;
     let modal;
     let modalImg;
     let captionText;
-    let node = ReactDOM.findDOMNode(this);    
+    let node = ReactDOM.findDOMNode(this);
     // Get child nodes
     if (node instanceof HTMLElement) {
-       img = node.querySelector(`.images${i}`)
-       modal = node.querySelector(`.myModal${i}`);
-       modalImg = node.querySelector(`.img${i}`);
-       captionText = node.querySelector(`.caption${i}`);
+      img = node.querySelector(`.images${i}`);
+      modal = node.querySelector(`.myModal${i}`);
+      modalImg = node.querySelector(`.img${i}`);
+      captionText = node.querySelector(`.caption${i}`);
     }
 
-    console.log('modal', modal)
-    console.log('modalImg', modalImg)
-    console.log('captionText', captionText)
-    console.log('src', img.src)
+    console.log("modal", modal);
+    console.log("modalImg", modalImg);
+    console.log("captionText", captionText);
+    console.log("src", img.src);
 
     modal.style.display = "block";
     modalImg.src = img.src;
     captionText.innerHTML = img.alt;
+  };
 
-  }
-
-  shrinkImage = (i) => {
+  shrinkImage = i => {
     let modal;
-    let node = ReactDOM.findDOMNode(this);    
+    let node = ReactDOM.findDOMNode(this);
 
     if (node instanceof HTMLElement) {
       modal = node.querySelector(`.myModal${i}`);
-   }
+    }
     modal.style.display = "none";
-  }
+  };
 
   render() {
     return (
       <div className="newArtGrid">
         {this.state.currentUser.admin ? (
-          <AdminHeader amount={this.state.amount} />
+          <AdminHeader/>
         ) : (
-          <Header key="1" amount={this.state.amount} />
+          <Header key="1"/>
         )}
         <SideBar user={this.state.user} />
         {console.log("MAP STATE", this.state.products)}
@@ -109,24 +107,23 @@ class Home extends Component {
             console.log("PRODUCT", i, product.data);
             return (
               <Card
-              key={i}
-              id={i}
-              image={product.img}
-              price={product.price}
-              productName={product.productName}
-              artistEmail={product.email}
-              artistName={product.artistName}
-              artistID={product.associatedID}
-              description={product.description}
-              currentUserEmail={this.state.currentUser.email}
-              targetStripe={product.stripeAccount}
-              platformFee={product.platformFee}
-              productID={product._id}
-              sold={product.sold}
-              quantity={product.quantity}
-              enlargeImage={this.enlargeImage}
-              shrinkImage={this.shrinkImage}
-              
+                key={i}
+                id={i}
+                image={product.img}
+                price={product.price}
+                productName={product.productName}
+                artistEmail={product.email}
+                artistName={product.artistName}
+                artistID={product.associatedID}
+                description={product.description}
+                currentUserEmail={this.state.currentUser.email}
+                targetStripe={product.stripeAccount}
+                platformFee={product.platformFee}
+                productID={product._id}
+                sold={product.sold}
+                quantity={product.quantity}
+                enlargeImage={this.enlargeImage}
+                shrinkImage={this.shrinkImage}
               />
             );
           })}

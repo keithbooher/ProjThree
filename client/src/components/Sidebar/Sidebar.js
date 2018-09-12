@@ -76,8 +76,13 @@ class Sidebar extends Component {
             </Link>
           </List>
           <List>
-            <Link to="/artists" className="sideBarLink">
+          <Link to="/artists" className="sideBarLink">
               View All Artists
+            </Link>
+          </List>
+          <List>
+          <Link to="/mostvisited" className="sideBarLink">
+              View Our Most Popular Artists
             </Link>
           </List>
 

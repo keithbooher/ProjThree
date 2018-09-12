@@ -5,6 +5,10 @@ const { exec } = require("child_process");
 const nodemailer = require("nodemailer");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
+// const keys = require("../config/keys");
+
+const User = require("../models/User");
+
 
 
 module.exports = app => {
@@ -125,6 +129,7 @@ module.exports = app => {
 
   app.get("/api/stripe", (req, res) => {
     //  res.redirect('/')
+    console.log('req', req.user._id)
     const url = req.originalUrl;
     const splitURL = url.split("=");
     const targetQueryCode = splitURL[2];
@@ -137,22 +142,15 @@ module.exports = app => {
       const splitItUp = returnData.split('"stripe_user_id": "');
       const splitItUpAgain = splitItUp[1].split('""scope":');
       const targetedStripeAccount = splitItUpAgain[0].slice(0, 21);
-      // console.log("test", req.user);
 
-      res.send(
-        console.log(targetedStripeAccount)
-          // targetedStripeAccount
-      );
 
-      // User
-      // .findOneAndUpdate({ _id: currentuser }, {admin: true, stripeAccount: targetedStripeAccount})
-      // .then(console.log('req.body', req))
-      // .then(dbModel => res.json(dbModel))
-      // .catch(err => res.status(422).json(err));
+      User
+      .findOneAndUpdate({ _id: req.user._id }, {admin: true, stripeAccount: targetedStripeAccount})
+      .then(console.log('req.body', req))
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
 
-      //.redirect("/adminform")
-
-      //.redirect("/adminform")
+      res.redirect("/home")
     });
   });
 };

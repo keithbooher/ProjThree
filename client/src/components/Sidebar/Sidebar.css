@@ -4,9 +4,9 @@
     font-weight: bold;
     color: #000000;
     text-align: center;
-    background: #4776e6;
-    background: -webkit-linear-gradient(to right, #4776e6, #8e54e9);
-    background: linear-gradient(to right, #4776e6, #8e54e9);
+    background: #2b5876;
+    background: -webkit-linear-gradient(to right, #2b5876, #4e4376);
+    background: linear-gradient(to right, #2b5876, #4e4376);
     border: solid 2px #ffffff;
     margin-bottom: 0;
     /* text-shadow: #c0c0c0 1px 1px; */
@@ -27,21 +27,25 @@
     font-weight: 600
 }
 
+.sideBarListItem a:focus {
+    text-decoration: none;
+}
+
 .sideBarListItem a:hover {
     text-decoration: none;
     color: #ff00ff !important;
     transition: all .5s;
     text-shadow: #ffffff 1px 1px;
-    -webkit-animation: glow 1.5s ease-in-out infinite alternate;
-    -moz-animation: glow 1.5s ease-in-out infinite alternate;
-    animation: glow 1.5s ease-in-out infinite alternate;
+    -webkit-animation: glowPurple 1.5s ease-in-out infinite alternate;
+    -moz-animation: glowPurple 1.5s ease-in-out infinite alternate;
+    animation: glowPurple 1.5s ease-in-out infinite alternate;
 }
 
-@-webkit-keyframes glow {
+@-webkit-keyframes glowPurple {
     from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #8e54e9, 0 0 70px #8e54e9, 0 0 80px #8e54e9, 0 0 100px #8e54e9, 0 0 150px #8e54e9;
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #4e4376, 0 0 70px #4e4376, 0 0 80px #4e4376, 0 0 100px #4e4376, 0 0 150px #4e4376;
     }
     to {
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #8e54e9, 0 0 35px #8e54e9, 0 0 40px #8e54e9, 0 0 50px #8e54e9, 0 0 75px #8e54e9;
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #4e4376, 0 0 35px #4e4376, 0 0 40px #4e4376, 0 0 50px #4e4376, 0 0 75px #4e4376;
     }
   }

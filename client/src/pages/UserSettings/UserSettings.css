@@ -1,3 +1,23 @@
+.userSettingsGrid {
+    display: grid;
+    grid-template-columns: 5% repeat(4, 1fr) 5%;
+    grid-template-rows: 20vh repeat(2, 1fr) 10vh;
+    grid-template-areas:
+    "header header header header header header"
+    ". sidebar pp pp pp ."
+    ". sidebar . . . ."
+    "footer footer footer footer footer footer";
+    grid-gap: 2rem
+}
+
+.userSettingsForm {
+    padding: 2rem;
+    background: #000000;
+    border: solid #ffffff 1px;
+    border-radius: 25px;
+    grid-area: pp
+}
+
 .postForm {
     border: solid #000000 1px;
 }
@@ -10,7 +30,7 @@
 }
 
 .imageFileInput {
-    background-color: white;    
+    background-color: #ffffff;    
 }
 
 .productForm {
@@ -29,4 +49,10 @@
 }
 :-ms-input-placeholder {
     font-style: italic; 
+}
+
+.userProfilePic {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
 }
