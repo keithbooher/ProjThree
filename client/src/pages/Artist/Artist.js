@@ -230,6 +230,41 @@ class Artist extends Component {
         <SideBar user={this.state.user} />
 
         <div className="container productContent">
+
+        <div className="userProfile">
+          <img src={`${this.state.user.img}`} className="userProfilePic" />
+          <div className="userProfileFlex">
+            <div className="userInfoFlex">
+              <p className="userProfileKey">User:</p>
+              <span className="userProfileValue">
+                {this.state.user.firstName}
+              </span>
+            </div>
+            <div className="userInfoFlex">
+              <p className="userProfileKey">Email:</p>
+              <span className="userProfileValue">{this.state.user.email}</span>
+            </div>
+            <div className="userInfoFlex">
+              <p className="userProfileKey">Average Rating: </p>
+              <span className="userProfileValue">
+                {this.state.user.averageRating}
+              </span>
+            </div>
+            <div className="userInfoFlex">
+              <p className="userProfileKey">Page Views: </p>
+              <span className="userProfileValue">
+                {this.state.user.pageViews}
+              </span>
+            </div>
+            <div className="userInfoFlex">
+              <p className="userProfileKey">Description: </p>
+              <span className="userProfileValue">
+                {this.state.user.aboutMe ? this.state.user.aboutMe : ""}
+              </span>
+            </div>
+          </div>
+        </div>
+
           {this.isThisTheCurrentUsersPage() ? (
             " "
           ) : (
