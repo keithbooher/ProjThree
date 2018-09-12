@@ -176,7 +176,7 @@ class UserSettings extends Component {
             <div className="userInfoFlex">
               <p className="userProfileKey">Products: </p>
               <span className="userProfileValue">
-                {this.state.user.product ? this.state.user.product.length : 0}
+                {this.state.user.product ? this.state.user.product.length : ""}
               </span>
             </div>
           </div>
@@ -184,7 +184,7 @@ class UserSettings extends Component {
         <form className="userSettingsForm">
           {/* User Profile Pic */}
           <div className="form-group">
-            <h3 className="userSettingsHeader">Select a profile picture: </h3>
+            <h3 className="userSettingsHeader">Change profile picture: </h3>
             <label htmlFor="img">Image File: </label>
             <input
               onChange={this.handleFileInput}

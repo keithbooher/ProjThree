@@ -36,6 +36,7 @@
     border-radius: 25px;
     display: flex;
     align-items: center;
+    padding: 2rem;
 }
 
 .userProfileKey {
@@ -59,6 +60,7 @@
     width: 200px;
     height: 200px;
     border-radius: 100px;
+    margin-right: 2rem;
 }
 
 .postForm {

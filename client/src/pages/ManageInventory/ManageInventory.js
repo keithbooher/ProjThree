@@ -153,7 +153,7 @@ class ManageInventory extends Component {
                     </form>
                     <span>
                       <button
-                        className="submit btn"
+                        className="checkout btn"
                         onClick={() => this.handleFormSubmit(product.data._id)}
                       >
                         Update

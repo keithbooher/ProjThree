@@ -41,7 +41,8 @@ class Artists extends Component {
         console.log("rating", rating);
       }
 
-      let average = pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
+      let average =
+        pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
 
       let averageRounded = average.toFixed(1);
       let parsed = parseInt(averageRounded);
@@ -116,8 +117,14 @@ class Artists extends Component {
           {this.state.users.map((user, i) => (
             <ArtistListItem className="nameList" key={i}>
               <Link to={`/artist/${user._id}`} className="artistNames">
-              <img className="smallImg" src={`${user.img}`}></img>
-                {`${user.firstName} ${!user.averageRating ? 5 : user.averageRating} Stars`}
+                <img id="smallImg" className="smallImg" src={`${user.img}`} />
+                {`${user.firstName} ${
+                  !user.averageRating ? (
+                    <span className="fa fa-star" />
+                  ) : (
+                    user.averageRating
+                  )
+                } Stars`}
               </Link>
             </ArtistListItem>
           ))}
