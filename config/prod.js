@@ -8,5 +8,6 @@ module.exports = {
   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
   AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
   AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+  clientID: process.env.clientID,
   EMAIL_PASSWORD: process.env.EMAIL_PASSWORD
 };
