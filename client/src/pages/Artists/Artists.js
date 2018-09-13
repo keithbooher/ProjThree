@@ -18,7 +18,7 @@ class Artists extends Component {
   state = {
     products: [],
     user: {},
-    users: [],
+    users: []
   };
 
   componentDidMount() {
@@ -26,21 +26,20 @@ class Artists extends Component {
     this.loadCurrentUser();
   }
 
-
   averageStars = () => {
-    const users = this.state.users
-    console.log('users', users)
-    const artistAverageRating = this.state.user.averageRating
+    const users = this.state.users;
+    console.log("users", users);
+    const artistAverageRating = this.state.user.averageRating;
     for (let j = 0; j < users.length; j++) {
-      let thisUser = users[j].firstName
-      console.log('thisUser', thisUser)
+      let thisUser = users[j].firstName;
+      console.log("thisUser", thisUser);
       for (let i = 1; i <= artistAverageRating; i++) {
-        document.getElementById(`${thisUser}averageStar${i}`).classList.add("checked");
+        document
+          .getElementById(`${thisUser}averageStar${i}`)
+          .classList.add("checked");
       }
     }
-
-
-  }
+  };
 
   loadUsers = () => {
     console.log("test");
@@ -82,27 +81,26 @@ class Artists extends Component {
       <div className="artistsGrid">
         {console.log("users ratings state: ", this.state.users)}
         {this.state.user.admin ? (
-          <AdminHeader  className="header" />
+          <AdminHeader className="header" />
         ) : (
           <Header key="1" className="header" />
         )}
         <SideBar user={this.state.user} />
 
-
-        {!this.state.users ? "" : 
-        
-        <ArtistUnorderedList className="main">
-          {this.state.users.map((user, i) => (
-            <ArtistListItem className="nameList" key={i}>
-              <Link to={`/artist/${user._id}`} className="artistNames">
-              <img className="smallImg" src={`${user.img}`}></img>
-                {`${user.firstName} ${!user.averageRating ? "" : <AverageStar name={user.firstName} />} Stars`}
-              </Link>
-            </ArtistListItem>
-          ))}
-        </ArtistUnorderedList>
-      }
-        
+        {!this.state.users ? (
+          ""
+        ) : (
+          <ArtistUnorderedList className="maincontent">
+            {this.state.users.map((user, i) => (
+              <ArtistListItem className="nameList" key={i}>
+                <Link to={`/artist/${user._id}`} className="artistNames">
+                  <img className="smallImg" src={`${user.img}`} />
+                  {`${user.firstName}`}
+                </Link>
+              </ArtistListItem>
+            ))}
+          </ArtistUnorderedList>
+        )}
       </div>
     );
   }

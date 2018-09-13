@@ -9,7 +9,26 @@
     background: linear-gradient(to right, #2b5876, #4e4376);
     border: solid 2px #ffffff;
     margin-bottom: 0;
+    padding: 1rem;
     /* text-shadow: #c0c0c0 1px 1px; */
+}
+
+.header li {
+    font-size: 1.3rem;
+}
+
+.header li a {
+    font-size: 1.3rem;
+}
+
+.header li a:hover {
+    text-decoration: none;
+    color: #ff00ff;
+    transition: all .5s;
+    text-shadow: #ffffff 1px 1px;
+    -webkit-animation: glowPurple 1.5s ease-in-out infinite alternate;
+    -moz-animation: glowPurple 1.5s ease-in-out infinite alternate;
+    animation: glowPurple 1.5s ease-in-out infinite alternate;
 }
 
 .sideBarListItem {

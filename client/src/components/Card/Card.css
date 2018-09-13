@@ -22,6 +22,7 @@
     border: solid 2px #000000;
     max-width: 200px;
     min-width: 200px;
+    height: fit-content;
     margin-bottom: 3rem;
     background: #000000;
     color: #ffffff;
@@ -32,4 +33,9 @@
     height: 200px;
     width: 200px;
     border-bottom: solid 1px #ffffff;
+}
+
+.max {
+    max-height: 500px;
+    max-width: 500px;
 }

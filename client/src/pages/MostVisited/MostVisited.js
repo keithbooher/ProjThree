@@ -24,21 +24,6 @@ class MostVisited extends Component {
         productObjects: [],        
         lastPostComplete: false,
         done: false
-
-        // id: 0, 
-        // image: '', 
-        // price: 0, 
-        // productName:'',
-        // artistEmail:'',
-        // artistName:'',
-        // artistID:'',
-        // description:'',
-        // currentUserEmail:'',
-        // targetStripe:'',
-        // platformFee:0,
-        // productID:0,
-        // sold:false,
-        // quantity:0,
       };
     
       componentDidMount() {
@@ -51,7 +36,6 @@ class MostVisited extends Component {
         const users = this.state.users;
     
         for (let i = 0; i < users.length; i++) {
-        //   console.log("*****USER****", users[i].firstName);
           let pushedRatings = [];
           let userRatingsArray = users[i].rating;
     
@@ -59,7 +43,6 @@ class MostVisited extends Component {
             let rating = userRatingsArray[i];
             let convertRating = parseInt(rating);
             pushedRatings.push(convertRating);
-            // console.log("rating", rating);
           }
     
           let average = pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
@@ -106,11 +89,9 @@ class MostVisited extends Component {
                 const userProducts = users[i].product
                 for (let i = 0; i < userProducts.length; i++) {
                     const product = userProducts[userProducts.length-1]
-                    // console.log('product', product)
                     let productsArray = this.state.products
                     productsArray.push(product)
                     this.setState({ products: productsArray });
-                    // console.log('***state of products***', this.state.products)
                 }
             }
             this.setState({ lastPostComplete: true })
@@ -181,29 +162,6 @@ class MostVisited extends Component {
           );
       };
 
-      // renderCard(product, i) {
-      //     console.log('i', product)
-      //   //   const parsedProduct = parseInt(product)
-      //       API.getProduct(product)
-      //       .then(result =>{
-      //           console.log('result', result.data)
-      //           this.setState({ id: i, 
-      //               image: result.data.img, 
-      //               price: result.data.price, 
-      //               productName:result.data.productName,
-      //               artistEmail:result.data.email,
-      //               artistName:result.data.artistName,
-      //               artistID:result.data.associatedID,
-      //               description:result.data.description,
-      //               currentUserEmail:this.state.user.email,
-      //               targetStripe:result.data.stripeAccount,
-      //               platformFee:result.data.platformFee,
-      //               productID:result.data._id,
-      //               sold:result.data.sold,
-      //               quantity:result.data.quantity,
-      //           })
-      //       })
-      // }
     
       render() {
         return (
@@ -217,10 +175,7 @@ class MostVisited extends Component {
 
 
 
-            <ArtistUnorderedList className="main">
-            {console.log(this.state.users)}            
-            {/* {console.log(this.state.users[0].product[0])} */}
-            
+            <ArtistUnorderedList className="main">            
             {!this.state.users ?  " " : 
             
             this.state.users.map((user, i) => {
@@ -228,7 +183,7 @@ class MostVisited extends Component {
                   return(
                 <ArtistListItem className="nameList" key={i}>
                   <Link to={`/artist/${user._id}`} className="artistNames">
-                    {`${user.firstName} ${!user.averageRating ? 5 : user.averageRating}`}
+                    {`${user.firstName}`}
                     {user.product.length === 0 ? " " : <img className="userImage" src={`${user.product[user.product.length-1].img}`}></img>}
                     
                   </Link>

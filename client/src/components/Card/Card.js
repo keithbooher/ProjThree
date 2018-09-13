@@ -18,7 +18,7 @@ const Card = props => (
       </span>
 
       {/* Modal Content (The Image) */}
-      <img className={`modal-content img${props.id}`} src="" alt="" />
+      <img className={`modal-content img${props.id} max`} src="" alt="" />
 
       {/* Modal Caption (Image Text)  */}
       <div className={`caption${props.id} captions`} />
@@ -26,7 +26,7 @@ const Card = props => (
 
     <div className="card-body">
       <h5 className="card-title">{props.productName}</h5>
-      <p className="card-text">${props.price + props.platformFee}</p>
+      <p className="card-text">${props.price}</p>
       <p className="card-text">{props.description}</p>
       <a href={`/artist/${props.artistID}`}>{props.artistName}</a>
       <p className="card-text">Stock: {props.quantity}</p>
