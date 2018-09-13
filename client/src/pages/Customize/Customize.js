@@ -56,6 +56,20 @@ class Customize extends Component {
       );
   };
 
+  handleStyleChange = input => {
+    console.log("well, this is good?")
+    const currentUser = this.state.user._id;
+    const styleData = {
+      UID : currentUser,
+      border: "dashed"
+    }
+    API.changeStyle(currentUser, styleData)
+      .then(console.log("success"))
+      .catch(err => console.log(err));
+
+    
+  }
+
   render() {
     return (
       <div className="customizeGrid">
@@ -65,6 +79,9 @@ class Customize extends Component {
           <Header key="1" amount={this.state.amount} />
         )}
         <SideBar user={this.state.user} />
+
+        <h2>Choose a Style</h2>
+        <button onClick={this.handleStyleChange}>Dash those borders B</button>
       </div>
     );
   }

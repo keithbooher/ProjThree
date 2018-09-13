@@ -70,7 +70,7 @@ module.exports = app => {
       service: "gmail",
       auth: {
         user: "groupthreebootcamp@gmail.com",
-        pass: keys.EMAIL_PASSWORD
+        pass: process.env.EMAIL_PASSWORD
       }
     });
 
