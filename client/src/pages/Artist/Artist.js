@@ -12,7 +12,6 @@ import Card from "../../components/Card";
 import Star from "../../components/Star/Star";
 import AverageStar from "../../components/Star/AverageStar";
 
-
 import "./Artist.css";
 
 class Artist extends Component {
@@ -142,12 +141,11 @@ class Artist extends Component {
   };
 
   averageStars = () => {
-    const artistAverageRating = this.state.user.averageRating
+    const artistAverageRating = this.state.user.averageRating;
     for (let i = 1; i <= artistAverageRating; i++) {
       document.getElementById(`averageStar${i}`).classList.add("checked");
     }
-
-  }
+  };
 
   submitRating = () => {
     const currentUser = this.state.user;
@@ -155,35 +153,33 @@ class Artist extends Component {
 
     API.addRating(currentUser._id, ratingState)
       .then(this.setState({ ratingSubmitted: true }))
-      .catch(err => console.log(err));  
+      .catch(err => console.log(err));
 
     const ratings = currentUser.rating;
-    console.log('ratings', ratings)
+    console.log("ratings", ratings);
     let ratingsArray = [];
 
-    if(ratings.length === 0) {
-
+    if (ratings.length === 0) {
     } else {
       for (let i = 0; i < ratings.length; i++) {
-        ratingsArray.push(parseInt(ratings[i]))
+        ratingsArray.push(parseInt(ratings[i]));
       }
 
       let total = 0;
 
       for (let i = 0; i < ratingsArray.length; i++) {
-        total += ratingsArray[i];        
+        total += ratingsArray[i];
       }
-      
+
       let avg = total / ratingsArray.length;
       const roundedAverage = Math.round(avg);
       const averageObject = {
         averageRating: roundedAverage
-      }
-      
-      API.averageRating(currentUser._id, averageObject)
-      .then(this.setState({ ratingSubmitted: true }))
-      .catch(err => console.log(err)); 
+      };
 
+      API.averageRating(currentUser._id, averageObject)
+        .then(this.setState({ ratingSubmitted: true }))
+        .catch(err => console.log(err));
     }
   };
 
@@ -247,17 +243,18 @@ class Artist extends Component {
   };
 
   pageView = () => {
-    const pageViewCount = this.state.user.pageViews
+    const pageViewCount = this.state.user.pageViews;
     const plusOne = pageViewCount + 1;
-    const artistPage = this.state.user._id;  
-    
+    const artistPage = this.state.user._id;
+
     const plusOneObject = {
       plusOne: plusOne
-    }
+    };
 
-    API.updatePageViews(artistPage, plusOneObject)
-    .catch(err => console.log(err));
-  }
+    API.updatePageViews(artistPage, plusOneObject).catch(err =>
+      console.log(err)
+    );
+  };
 
   render() {
     return (
@@ -269,70 +266,70 @@ class Artist extends Component {
         )}
         <SideBar user={this.state.user} />
 
-        <div className="container productContent">
+        <div className="productContent">
+          <div className="userProfile">
+            <img src={`${this.state.user.img}`} className="userProfilePic" />
+            <div className="userProfileFlex">
+              <div className="userInfoFlex">
+                <p className="userProfileKey">User:</p>
+                <span className="userProfileValue">
+                  {this.state.user.firstName}
+                </span>
+              </div>
+              <div className="userInfoFlex">
+                <p className="userProfileKey">Email:</p>
+                <span className="userProfileValue">
+                  {this.state.user.email}
+                </span>
+              </div>
+              <div className="userInfoFlex">
+                <p className="userProfileKey">Community Rating: </p>
+                <span className="userProfileValue">
+                  <AverageStar />
+                </span>
+              </div>
+              <div className="userInfoFlex">
+                <p className="userProfileKey">Page Views: </p>
+                <span className="userProfileValue">
+                  {this.state.user.pageViews}
+                </span>
+              </div>
+              <div className="userInfoFlex">
+                <p className="userProfileKey">Description: </p>
+                <span className="userProfileValue">
+                  {this.state.user.aboutMe ? this.state.user.aboutMe : ""}
+                </span>
+              </div>
+            </div>
+            {this.isThisTheCurrentUsersPage() ? (
+              " "
+            ) : (
+              <div className="artistRating">
+                {this.state.ratingSubmitted ? (
+                  <h4>Thank you for submitting your feedback</h4>
+                ) : (
+                  <div>
+                    <Star
+                      idOne={1}
+                      idTwo={2}
+                      idThree={3}
+                      idFour={4}
+                      idFive={5}
+                      star={this.star}
+                    />
 
-        <div className="userProfile">
-          <img src={`${this.state.user.img}`} className="userProfilePic" />
-          <div className="userProfileFlex">
-            <div className="userInfoFlex">
-              <p className="userProfileKey">User:</p>
-              <span className="userProfileValue">
-                {this.state.user.firstName}
-              </span>
-            </div>
-            <div className="userInfoFlex">
-              <p className="userProfileKey">Email:</p>
-              <span className="userProfileValue">{this.state.user.email}</span>
-            </div>
-            <div className="userInfoFlex">
-              <p className="userProfileKey">Community Rating: </p>
-              <span className="userProfileValue">
-                <AverageStar  />
-              </span>
-            </div>
-            <div className="userInfoFlex">
-              <p className="userProfileKey">Page Views: </p>
-              <span className="userProfileValue">
-                {this.state.user.pageViews}
-              </span>
-            </div>
-            <div className="userInfoFlex">
-              <p className="userProfileKey">Description: </p>
-              <span className="userProfileValue">
-                {this.state.user.aboutMe ? this.state.user.aboutMe : ""}
-              </span>
-            </div>
+                    {this.isRateStateFilled() ? (
+                      <button onClick={() => this.submitRating()}>
+                        Submit Rating
+                      </button>
+                    ) : (
+                      " "
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
-        </div>
-
-          {this.isThisTheCurrentUsersPage() ? (
-            " "
-          ) : (
-            <div className="artistRating">
-              {this.state.ratingSubmitted ? (
-                <h4>Thank you for submitting your feedback</h4>
-              ) : (
-                <div>
-                  <Star
-                    idOne={1}
-                    idTwo={2}
-                    idThree={3}
-                    idFour={4}
-                    idFive={5}
-                    star={this.star}
-                  />
-
-                  {this.isRateStateFilled() ? (
-                    <button onClick={() => this.submitRating()}>
-                      Submit Rating
-                    </button>
-                  ) : (
-                    " "
-                  )}
-                </div>
-              )}
-            </div>
-          )}
 
           <div className="productCard">
             {console.log("MAP STATE", this.state.products)}
