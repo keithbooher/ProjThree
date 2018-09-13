@@ -252,6 +252,7 @@ class Post extends Component {
           {/* Image file of Art */}
           <div className="form-group">
             <label htmlFor="img">Image File: </label>
+            <label htmlFor="img">(Please Use Square images)</label>            
             <input
               onChange={this.handleFileInput}
               type="file"

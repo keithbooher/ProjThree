@@ -18,7 +18,7 @@ const Card = props => (
       </span>
 
       {/* Modal Content (The Image) */}
-      <img className={`modal-content img${props.id}`} src="" alt="" />
+      <img className={`modal-content img${props.id} max`} src="" alt="" />
 
       {/* Modal Caption (Image Text)  */}
       <div className={`caption${props.id} captions`} />

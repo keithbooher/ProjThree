@@ -80,7 +80,7 @@ module.exports = app => {
       to: `${artistEmail}, ${currentUserEmail}`, // List of receivers
       subject: `Art Gutter order for ${name}`, // Subject line
       text: "Hello world?", // Plain text body
-      html: `<b>Hello ${name},<br>Thanks for shopping with Art Gutter!<br>Your order will be shipped to:<br>${addressLine}<br>${addressCity} ${addressState}, ${addressZip}<br>If you have any Questions about your order contact the artist here: ${artistEmail}<br> If problems persist, feel free to reach out to us at ArtGutter@gmail.com</b>` // html body
+      html: `<b>Hello ${name},<br>Thanks for shopping with Art Gutter!<br>Your order will be shipped to:<br>${addressLine}<br>${addressCity} ${addressState}<br>$${price}, ${addressZip}<br>If you have any Questions about your order contact the artist here: ${artistEmail}<br> If problems persist, feel free to reach out to us at ArtGutter@gmail.com</b>` // html body
     };
 
     // Send mail with defined transport object
