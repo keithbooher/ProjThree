@@ -131,10 +131,11 @@ module.exports = app => {
     //  res.redirect('/')
     console.log('req', req.user._id)
     const url = req.originalUrl;
+    console.log('url', url)
     const splitURL = url.split("=");
     const targetQueryCode = splitURL[2];
 
-    var cmd = `curl https://connect.stripe.com/oauth/token -d client_secret=sk_test_uDaKbfwMIWARk54H2UiKxeIv -d code="${targetQueryCode}" -d grant_type=authorization_code`;
+    var cmd = `curl https://connect.stripe.com/oauth/token -d client_secret=sk_live_gG4L92nBnEuXiRPXTc73zgAk -d code="${targetQueryCode}" -d grant_type=authorization_code`;
 
     exec(cmd, function(error, stdout, stderr) {
       // console.log(`stdout: ${stdout}`);

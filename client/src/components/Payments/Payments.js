@@ -13,7 +13,7 @@ class Payments extends Component {
     // }
     const targetStripeAccount = {
       stripe_account: this.props.targetStripe,
-      platform_fee: this.props.platformFee * 100,
+      platform_fee: this.props.price * 5,
       price: this.props.price * 100,
       artistEmail: this.props.artistEmail,
       currentUserEmail: this.props.currentUserEmail,
