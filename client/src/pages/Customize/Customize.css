@@ -9,3 +9,7 @@
     "footer footer footer footer footer footer";
     grid-gap: 2rem
 }
+
+.dashed {
+  border-style: dashed
+}

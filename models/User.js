@@ -39,7 +39,12 @@ const userSchema = new Schema({
     product: [{
         type: Schema.Types.ObjectId,
         ref: "product"
-      }]
+      }],
+    style: [{
+      type: Schema.Types.ObjectId,
+      ref: "style"
+    }],
+  
 
 });
 
