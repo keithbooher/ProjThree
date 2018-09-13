@@ -131,6 +131,7 @@ module.exports = app => {
     //  res.redirect('/')
     console.log('req', req.user._id)
     const url = req.originalUrl;
+    console.log('url', url)
     const splitURL = url.split("=");
     const targetQueryCode = splitURL[2];
 
