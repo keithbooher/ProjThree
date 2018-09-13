@@ -34,3 +34,8 @@
     width: 200px;
     border-bottom: solid 1px #ffffff;
 }
+
+.max {
+    max-height: 500px;
+    max-width: 500px;
+}

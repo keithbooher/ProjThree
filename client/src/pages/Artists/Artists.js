@@ -90,18 +90,12 @@ class Artists extends Component {
         {!this.state.users ? (
           ""
         ) : (
-          <ArtistUnorderedList className="main">
+          <ArtistUnorderedList className="maincontent">
             {this.state.users.map((user, i) => (
               <ArtistListItem className="nameList" key={i}>
                 <Link to={`/artist/${user._id}`} className="artistNames">
                   <img className="smallImg" src={`${user.img}`} />
-                  {`${user.firstName} ${
-                    !user.averageRating ? (
-                      ""
-                    ) : (
-                      <AverageStar name={user.firstName} />
-                    )
-                  } Stars`}
+                  {`${user.firstName}`}
                 </Link>
               </ArtistListItem>
             ))}
