@@ -32,6 +32,9 @@ export default {
   changeStyle: function(id, styleData) {
     return axios.post("/api/style/" + id, styleData);
   },
+  getStyle: function(id) {
+    return axios.get("/api/style/" + id);
+  },
   // change a user to admin
   changetoAdmin: function(_id, stripe) {
     return axios.put("/api/user/" + _id, stripe);

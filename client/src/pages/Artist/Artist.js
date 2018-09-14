@@ -23,13 +23,16 @@ class Artist extends Component {
     user: {},
     currentUser: {},
     rating: 0,
-    ratingSubmitted: false
+    ratingSubmitted: false,
+    styles: {},
+    border: "dashed"
   };
 
   componentDidMount() {
     this.props.fetchUser();
     this.loadCurrentUser();
     this.loadThispageArtist();
+    this.loadStyles();
   }
 
   loadProductIds = () => {
@@ -41,6 +44,18 @@ class Artist extends Component {
     console.log("userProductsArray", userProductsArray);
     this.setState({ productIDs: userProductsArray });
     this.loadUsersProducts();
+  };
+
+  loadStyles = () => {
+    console.log(this.state.user)
+    // API.getStyle(this.state.user._id)
+    // .then(
+    //   console.log(result))
+      // result => {
+      // this.setState({ styles: result });
+      // this.isThisTheCurrentUsersPage();
+    // })
+    // .catch(err => console.log(err));
   };
 
   loadUsersProducts = () => {
