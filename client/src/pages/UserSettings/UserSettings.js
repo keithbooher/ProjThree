@@ -250,9 +250,9 @@ class UserSettings extends Component {
             </button>
           </form>
         </div>
-        <div className={this.state.alertImg}>
-          <h3>Please show me</h3>
-        </div>
+        {/* <div className={this.state.alertImg}>
+          <h3 className="warning">Enter a picture</h3>
+        </div> */}
       </div>
     );
   }
