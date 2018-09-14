@@ -55,7 +55,7 @@ const ContactForm = props => (
     </form>
     <button
       onClick={() => props.submit()}
-      className="btn btn-primary submitBtn"
+      className="btn btn-info submitBtn"
       id="submit-btn"
     >
       Submit

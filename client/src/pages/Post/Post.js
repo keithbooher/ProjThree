@@ -251,8 +251,7 @@ class Post extends Component {
           </div>
           {/* Image file of Art */}
           <div className="form-group">
-            <label htmlFor="img">Image File: </label>
-            <label htmlFor="img">(Please Use Square images)</label>            
+            <label htmlFor="img">Image File: (Please Use Square images)</label>
             <input
               onChange={this.handleFileInput}
               type="file"
@@ -264,7 +263,7 @@ class Post extends Component {
           <div className="postFormFlex">
             <button
               type="submit"
-              className="btn btn-primary submitBtn"
+              className="btn btn-info submitBtn"
               onClick={this.handleFormSubmit}
             >
               Submit

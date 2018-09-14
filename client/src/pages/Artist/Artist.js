@@ -284,7 +284,7 @@ class Artist extends Component {
               </div>
               <div className="userInfoFlex">
                 <p className="userProfileKey">Community Rating: </p>
-                <span className="userProfileValue">
+                <span className="userProfileStars">
                   <AverageStar />
                 </span>
               </div>
