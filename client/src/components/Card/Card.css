@@ -17,6 +17,19 @@
     border-radius: 0.25rem;
 }
 
+.modal {
+    overflow: scroll !important;
+}
+
+.modal-content {
+    padding: 0 !important;
+    border: solid #4b0082 .5rem !important;
+}
+
+.close {
+    color: #ffffff !important
+}
+
 /* Our css */
 .artCard {
     border: solid 2px #000000;
@@ -33,9 +46,4 @@
     height: 200px;
     width: 200px;
     border-bottom: solid 1px #ffffff;
-}
-
-.max {
-    max-height: 500px;
-    max-width: 500px;
 }
