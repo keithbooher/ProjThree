@@ -267,7 +267,7 @@ class Artist extends Component {
         <SideBar user={this.state.user} />
 
         <div className="productContent">
-          <div className="userProfile">
+          <div className="userProfile artistProfile">
             <img src={`${this.state.user.img}`} className="userProfilePic" />
             <div className="userProfileFlex">
               <div className="userInfoFlex">
@@ -284,7 +284,7 @@ class Artist extends Component {
               </div>
               <div className="userInfoFlex">
                 <p className="userProfileKey">Community Rating: </p>
-                <span className="userProfileValue">
+                <span className="userProfileStars">
                   <AverageStar />
                 </span>
               </div>

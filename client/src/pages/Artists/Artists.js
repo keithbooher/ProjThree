@@ -18,7 +18,8 @@ class Artists extends Component {
   state = {
     products: [],
     user: {},
-    users: []
+    users: [],
+    admins: []
   };
 
   componentDidMount() {
@@ -48,9 +49,20 @@ class Artists extends Component {
       .then(res => {
         console.log(this.state);
         this.setState({ users: res.data });
-        this.averageStars();
+        this.filterAdmin();
+        console.log("NEWEST STATE: ", this.state);
       })
       .catch(err => console.log(err));
+  };
+
+  filterAdmin = () => {
+    let users = this.state.users;
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].admin) {
+        this.setState({ admins: this.state.admins.concat(users[i]) });
+      }
+    }
+    console.log("NEWEST STATE: ", this.state);
   };
 
   loadCurrentUser = () => {
@@ -88,11 +100,9 @@ class Artists extends Component {
         )}
         <SideBar user={this.state.user} />
 
-        {!this.state.users ? (
-          ""
-        ) : (
+        {this.state.admins ? (
           <ArtistUnorderedList className="maincontent">
-            {this.state.users.map((user, i) => (
+            {this.state.admins.map((user, i) => (
               <ArtistListItem className="nameList" key={i}>
                 <Link to={`/artist/${user._id}`} className="artistNames">
                   <img className="smallImg" src={`${user.img}`} />
@@ -101,6 +111,8 @@ class Artists extends Component {
               </ArtistListItem>
             ))}
           </ArtistUnorderedList>
+        ) : (
+          ""
         )}
       </div>
     );
