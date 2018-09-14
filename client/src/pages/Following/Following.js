@@ -30,23 +30,25 @@ class Artists extends Component {
   }
 
   loadFollowedArtists = () => {
+    console.log('following', this.state.following)    
     const following = this.state.following
       for (let i = 0; i < following.length; i++) {
         console.log(following[i])
         let followedUser = following[i]
         API.getUserById(followedUser)
-        .then(res =>{
+        .then(res => {
             console.log('users res', res)
-            this.setState({ followingObjects: this.state.followingObjects.concat(res) })
+            this.setState({ followingObjects: this.state.followingObjects.concat(res.data) })
+            this.consolelog();
+            
         } )
         .catch(err => console.log(err));
       }
-      this.consolelog();
       
   }
 
   consolelog = () => {
-      console.log('following', this.state.following)
+      console.log('following', this.state.followingObjects)
   }
 
 
@@ -85,9 +87,9 @@ class Artists extends Component {
         )}
         <SideBar user={this.state.user} />
 
-        {/* {this.state.admins ? (
+        {this.state.followingObjects ? (
           <ArtistUnorderedList className="maincontent">
-            {this.state.admins.map((user, i) => (
+            {this.state.followingObjects.map((user, i) => (
               <ArtistListItem className="nameList" key={i}>
                 <Link to={`/artist/${user._id}`} className="artistNames">
                   <img className="smallImg" src={`${user.img}`} />
@@ -98,7 +100,7 @@ class Artists extends Component {
           </ArtistUnorderedList>
         ) : (
           ""
-        )} */}
+        )}
       </div>
     );
   }
