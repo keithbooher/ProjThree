@@ -216,7 +216,7 @@ class Post extends Component {
               value={this.state.price}
               onChange={this.handleInputChange}
               type="integer"
-              className="form-control "
+              className="form-control"
               id="price"
               name="price"
               placeholder="example: 100"
@@ -228,7 +228,7 @@ class Post extends Component {
             <textarea
               value={this.state.description}
               onChange={this.handleInputChange}
-              rows="10"
+              rows="5"
               type="text"
               className="form-control "
               id="description"
@@ -251,7 +251,7 @@ class Post extends Component {
           </div>
           {/* Image file of Art */}
           <div className="form-group">
-            <label htmlFor="img">Image File: (Please Use Square images)</label>
+            <label htmlFor="img">Image File:</label>
             <input
               onChange={this.handleFileInput}
               type="file"
