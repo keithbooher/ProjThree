@@ -22,13 +22,14 @@ class MostVisited extends Component {
         userRatings: [],
         productDataObjects: [],
         productObjects: [],        
+        admins: [],
         lastPostComplete: false,
         done: false
       };
     
       componentDidMount() {
         this.props.fetchUser();
-        this.loadCurrentUser();
+        this.loadUsers();
         
       }
     
@@ -78,8 +79,22 @@ class MostVisited extends Component {
             console.log(this.state);
             this.setState({ users: res.data });
             this.userRatings();
+            this.loadCurrentUser();
+            this.filterAdmin();
+            
           })
           .catch(err => console.log(err));
+      };
+
+
+      filterAdmin = () => {
+        let users = this.state.users;
+        for (let i = 0; i < users.length; i++) {
+          if (users[i].admin) {
+            this.setState({ admins: this.state.admins.concat(users[i]) });
+          }
+        }
+        console.log("NEWEST STATE: ", this.state);
       };
 
       loadUsersLastPost = () => {
@@ -148,7 +163,7 @@ class MostVisited extends Component {
                 user: result
               });
               console.log("result", result);
-              this.loadUsers();
+              // this.loadUsers();
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -178,7 +193,7 @@ class MostVisited extends Component {
             <ArtistUnorderedList className="main">            
             {!this.state.users ?  " " : 
             
-            this.state.users.map((user, i) => {
+            this.state.admins.map((user, i) => {
                   console.log("map", user.product[0]);                  
                   return(
                 <ArtistListItem className="nameList" key={i}>
