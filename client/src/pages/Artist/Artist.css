@@ -10,8 +10,22 @@
     grid-gap: 2rem
 }
 
+.userProfileStars {
+    color: unset;
+    margin-left: 1rem;
+}
+
+.fa-star {
+    display: inline !important;
+}
+
 .artistProfile {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.ratingSubmitMessage {
+    color: #00ffff;
 }
 
 .productContent {

@@ -10,25 +10,22 @@ class Header extends Component {
         return;
       case false:
         return [
-          <li key="5">
+          <li key="1">
             <a href="/auth/google">Login With Google</a>
-          </li>,
-          <li key="6">
-            <a href="/gallery">Visit Gallery</a>
           </li>
         ];
       default:
         return [
-          <li className="admin" key="1">
+          <li className="admin" key="2">
             Admin!
           </li>,
-          <li key="4" style={{ margin: "0 10px" }}>
+          <li key="3" style={{ margin: "0 10px" }}>
             <a href="/usersettings">Settings</a>
           </li>,
-          <li key="3" style={{ margin: "0 10px" }}>
+          <li key="4" style={{ margin: "0 10px" }}>
             {this.props.auth.firstName}
           </li>,
-          <li key="8">
+          <li key="5">
             <a href="/api/logout">Logout</a>
           </li>
         ];

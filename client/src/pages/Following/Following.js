@@ -12,45 +12,45 @@ import ArtistUnorderedList from "../../components/List/ArtistUL";
 import { Link } from "react-router-dom";
 import AverageStar from "../../components/Star/AverageStar";
 
-import "./Artists.css";
+import "./Following.css";
 
 class Artists extends Component {
   state = {
     products: [],
     user: {},
     users: [],
-    admins: []
+    admins: [],
+    following: [],
+    followingObjects: []
   };
 
   componentDidMount() {
     this.props.fetchUser();
-    this.loadUsers();
+    this.loadCurrentUser();
   }
 
-
-  loadUsers = () => {
-    console.log("test");
-    API.getUser()
-      .then(res => {
-        console.log(this.state);
-        this.setState({ users: res.data });
-        this.filterAdmin();
-        this.loadCurrentUser();
-        
-        console.log("NEWEST STATE: ", this.state);
-      })
-      .catch(err => console.log(err));
-  };
-
-  filterAdmin = () => {
-    let users = this.state.users;
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].admin) {
-        this.setState({ admins: this.state.admins.concat(users[i]) });
+  loadFollowedArtists = () => {
+    console.log('following', this.state.following)    
+    const following = this.state.following
+      for (let i = 0; i < following.length; i++) {
+        console.log(following[i])
+        let followedUser = following[i]
+        API.getUserById(followedUser)
+        .then(res => {
+            console.log('users res', res)
+            this.setState({ followingObjects: this.state.followingObjects.concat(res.data) })
+            this.consolelog();
+            
+        } )
+        .catch(err => console.log(err));
       }
-    }
-    console.log("NEWEST STATE: ", this.state);
-  };
+      
+  }
+
+  consolelog = () => {
+      console.log('following', this.state.followingObjects)
+  }
+
 
   loadCurrentUser = () => {
     fetch("/api/current_user")
@@ -59,10 +59,11 @@ class Artists extends Component {
         result => {
           this.setState({
             isLoaded: true,
-            user: result
+            user: result,
+            following: result.following
           });
           console.log("result", result);
-          // this.loadUsers();
+          this.loadFollowedArtists()        
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -79,7 +80,6 @@ class Artists extends Component {
   render() {
     return (
       <div className="artistsGrid">
-        {console.log("users ratings state: ", this.state.users)}
         {this.state.user.admin ? (
           <AdminHeader className="header" />
         ) : (
@@ -87,9 +87,9 @@ class Artists extends Component {
         )}
         <SideBar user={this.state.user} />
 
-        {this.state.admins ? (
+        {this.state.followingObjects ? (
           <ArtistUnorderedList className="maincontent">
-            {this.state.admins.map((user, i) => (
+            {this.state.followingObjects.map((user, i) => (
               <ArtistListItem className="nameList" key={i}>
                 <Link to={`/artist/${user._id}`} className="artistNames">
                   <img className="smallImg" src={`${user.img}`} />

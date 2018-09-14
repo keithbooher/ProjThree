@@ -18,6 +18,9 @@
     border: solid #ffffff 1px;
     border-radius: 25px;
     padding: 2rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: center
 }
 
 .stripe {
@@ -27,6 +30,7 @@
 
 #stripeBtn {
     margin-bottom: 2rem;
+    max-width: fit-content;
 }
 
 .adminHeader {

@@ -25,7 +25,9 @@ class Artist extends Component {
     rating: 0,
     ratingSubmitted: false,
     styles: {},
-    border: "dashed"
+    border: "dashed",
+    alreadyFollowing: false,
+    followrefresh: false,
   };
 
   componentDidMount() {
@@ -115,6 +117,8 @@ class Artist extends Component {
             currentUser: result
           });
           console.log("current user: ", this.state.currentUser);
+          this.doYouFollowThisArtistAlready();
+          
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -272,6 +276,46 @@ class Artist extends Component {
     );
   };
 
+  followArtist = () => {
+    const url = window.location.href;
+    console.log('url', url)
+    const splitURL = url.split("/");
+    console.log(splitURL[4]);
+    const targetedID = splitURL[4];
+    console.log(splitURL[4]);
+    const thisUser = this.state.currentUser._id;
+    
+
+    const targetIDObect = {
+      follow : targetedID
+    }
+
+    API.followArtist(thisUser, targetIDObect)
+    .then(this.setState({ followrefresh: true}))
+    .catch(err =>
+      console.log(err)
+    );
+  }
+
+  doYouFollowThisArtistAlready = () => {
+    const currentUser = this.state.currentUser;
+
+    const url = window.location.href;
+    console.log('url', url)
+    const splitURL = url.split("/");
+    console.log(splitURL[4]);
+    const targetedID = splitURL[4];
+    console.log(splitURL[4]);
+    const thisArtist = this.state.currentUser._id;
+
+    for (let i = 0; i < currentUser.following.length; i++) {
+      if(currentUser.following[i] === targetedID) {
+        this.setState({ alreadyFollowing: true })
+      }
+    }
+
+  }
+
   render() {
     return (
       <div className="artistGrid">
@@ -283,7 +327,7 @@ class Artist extends Component {
         <SideBar user={this.state.user} />
 
         <div className="productContent">
-          <div className="userProfile">
+          <div className="userProfile artistProfile">
             <img src={`${this.state.user.img}`} className="userProfilePic" />
             <div className="userProfileFlex">
               <div className="userInfoFlex">
@@ -300,7 +344,7 @@ class Artist extends Component {
               </div>
               <div className="userInfoFlex">
                 <p className="userProfileKey">Community Rating: </p>
-                <span className="userProfileValue">
+                <span className="userProfileStars">
                   <AverageStar />
                 </span>
               </div>
@@ -322,7 +366,9 @@ class Artist extends Component {
             ) : (
               <div className="artistRating">
                 {this.state.ratingSubmitted ? (
-                  <h4>Thank you for submitting your feedback</h4>
+                  <h4 className="ratingSubmitMessage">
+                    Thank you for submitting your feedback
+                  </h4>
                 ) : (
                   <div>
                     <Star
@@ -335,7 +381,10 @@ class Artist extends Component {
                     />
 
                     {this.isRateStateFilled() ? (
-                      <button onClick={() => this.submitRating()}>
+                      <button
+                        className="checkout btn"
+                        onClick={() => this.submitRating()}
+                      >
                         Submit Rating
                       </button>
                     ) : (
@@ -343,6 +392,9 @@ class Artist extends Component {
                     )}
                   </div>
                 )}
+                <br/>
+                {this.state.alreadyFollowing ? "Thank you for following me!" :                 
+                <button className="btn-info btn" onClick={() => this.followArtist()}>Follow Artist</button>}
               </div>
             )}
           </div>

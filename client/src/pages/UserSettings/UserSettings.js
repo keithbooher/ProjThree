@@ -219,7 +219,7 @@ class UserSettings extends Component {
             </div>
             <button
               type="submit"
-              className="btn btn-primary submitBtn"
+              className="btn btn-info submitBtn"
               onClick={this.handleFormSubmit}
             >
               Submit
@@ -238,21 +238,21 @@ class UserSettings extends Component {
                 className="form-control"
                 id="description"
                 name="description"
-                placeholder="example: &quot;The village is painted with dark colors but the brightly lit windows create a sense of comfort.&quot;"
+                placeholder="Tell us something about yourself."
               />
             </div>
             <button
               type="submit"
-              className="btn btn-primary submitBtn"
+              className="btn btn-info submitBtn"
               onClick={this.handleAboutMeSubmit}
             >
               Submit
             </button>
           </form>
         </div>
-        <div className={this.state.alertImg}>
-          <h3>Please show me</h3>
-        </div>
+        {/* <div className={this.state.alertImg}>
+          <h3 className="warning">Enter a picture</h3>
+        </div> */}
       </div>
     );
   }

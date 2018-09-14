@@ -85,6 +85,13 @@ class Sidebar extends Component {
               View Popular Artists
             </Link>
           </List>
+          {this.loggedIn() ?           
+          <List>
+            <Link to="/following" className="sideBarLink">
+              Artists You Follow
+            </Link>
+          </List> : " "}
+
 
           {this.adminStatus() ? <AdminList /> : ""}
           {this.adminStatus() ? (

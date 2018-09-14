@@ -48,6 +48,10 @@ module.exports = app => {
     const price = req.body.price;
     const firstName = req.body.firstName;
 
+
+    const l = price.toString().length-1;
+    const priceWithDecimal = price/Math.pow(10, l);
+
     const orderObject = {
       productName: productName,
       price: price,
@@ -80,7 +84,7 @@ module.exports = app => {
       to: `${artistEmail}, ${currentUserEmail}`, // List of receivers
       subject: `Art Gutter order for ${name}`, // Subject line
       text: "Hello world?", // Plain text body
-      html: `<b>Hello ${name},<br>Thanks for shopping with Art Gutter!<br>Your order will be shipped to:<br>${addressLine}<br>${addressCity} ${addressState}<br>$${price}, ${addressZip}<br>If you have any Questions about your order contact the artist here: ${artistEmail}<br> If problems persist, feel free to reach out to us at ArtGutter@gmail.com</b>` // html body
+      html: `<b>Hello ${name},<br>Thanks for shopping with Art Gutter!<br>Your order will be shipped to:<br>${addressLine}<br>${addressCity} ${addressState}<br>$${priceWithDecimal}, ${addressZip}<br>If you have any Questions about your order contact the artist here: ${artistEmail}<br> If problems persist, feel free to reach out to us at ArtGutter@gmail.com</b>` // html body
     };
 
     // Send mail with defined transport object

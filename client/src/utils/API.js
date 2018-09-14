@@ -78,6 +78,12 @@ export default {
   updatePageViews: function(userID, plusOne) {
     return axios.put("/api/user/pageview/" + userID, plusOne);
   },
+  followArtist: function(userID, follow) {
+    return axios.put("/api/user/follow/" + userID, follow);
+  },
+  // artistsFollowed: function(userID, follow) {
+  //   return axios.put("/api/user/following/" + userID, follow);
+  // },
 
 
 
