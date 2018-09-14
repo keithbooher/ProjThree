@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const User = require("../../models/User");
+const Style = require("../../models/Styles");
 
 module.exports = app => {
   // Find All
@@ -30,6 +31,20 @@ module.exports = app => {
   // Create User
   app.post("/api/user", (req, res) => {
     User.create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.json(err));
+  });
+
+  app.post("/api/style/:id", (req, res) => {
+    console.log(req.body)
+    Style.update({UID: req.params.id }, {border: "solid"}, {upsert: "true"})
+      .then(dbModel => {
+        return User.findOneAndUpdate(
+          { _id: req.params.id },
+          { $push: { style: dbModel } },
+          { new: true }
+        );
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
   });

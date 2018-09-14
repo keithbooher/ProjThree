@@ -31,7 +31,10 @@ export default {
     return axios.put("/api/updatesoldtrue/" + id);
   },
 
-
+  // change user styles
+  changeStyle: function(id, styleData) {
+    return axios.post("/api/style/" + id, styleData);
+  },
   // change a user to admin
   changetoAdmin: function(_id, stripe) {
     return axios.put("/api/user/" + _id, stripe);
