@@ -228,7 +228,7 @@ class Post extends Component {
             <textarea
               value={this.state.description}
               onChange={this.handleInputChange}
-              rows="5"
+              rows="7"
               type="text"
               className="form-control "
               id="description"
