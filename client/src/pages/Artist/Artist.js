@@ -32,7 +32,6 @@ class Artist extends Component {
     this.props.fetchUser();
     this.loadCurrentUser();
     this.loadThispageArtist();
-    this.loadStyles();
   }
 
   loadProductIds = () => {
@@ -47,10 +46,9 @@ class Artist extends Component {
   };
 
   loadStyles = () => {
-    console.log(this.state.user)
-    // API.getStyle(this.state.user._id)
-    // .then(
-    //   console.log(result))
+    console.log(this.state.user._id)
+    API.getStyle(this.state.user._id)
+    .then(result => console.log("THE THING IM LOOKING FOR", result.data))
       // result => {
       // this.setState({ styles: result });
       // this.isThisTheCurrentUsersPage();
@@ -98,10 +96,13 @@ class Artist extends Component {
             this.pageView();
             this.averageStars();
             console.log("success");
+            this.loadStyles();
           }
         }
       })
       .catch(err => console.log(err));
+    
+      
   };
 
   loadCurrentUser = () => {

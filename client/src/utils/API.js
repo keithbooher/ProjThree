@@ -31,6 +31,9 @@ export default {
     return axios.put("/api/updatesoldtrue/" + id);
   },
 
+  setStyle: function(id) {
+    return axios.post("/api/styleSet/" + id);
+  },
   // change user styles
   changeStyle: function(id, styleData) {
     return axios.post("/api/style/" + id, styleData);

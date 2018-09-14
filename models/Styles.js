@@ -13,6 +13,6 @@ const styleSchema = new Schema({
 
 //creating model class
 
-const Style = mongoose.model("styles", styleSchema);
+const Style = mongoose.model("style", styleSchema);
 
 module.exports = Style;
