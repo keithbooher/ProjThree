@@ -24,6 +24,7 @@ class Artists extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.loadCurrentUser();
+    this.loadUsers();
   }
 
   averageStars = () => {
