@@ -27,6 +27,9 @@ export default {
   updateSold: function(id) {
     return axios.put("/api/updatesold/" + id);
   },
+  updateSoldTrue: function(id) {
+    return axios.put("/api/updatesoldtrue/" + id);
+  },
 
 
   // change a user to admin

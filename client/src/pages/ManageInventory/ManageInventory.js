@@ -41,12 +41,22 @@ class ManageInventory extends Component {
       quantity: this.state.value
     };
 
+      console.log('id', id)
+
+    if (!this.state.quantity){
+      API.updateSoldTrue(id).then(result => { console.log(result)})
+    }
+
     API.updateQuantity(id, newQuantity)
       .then(dbModel => {
         console.log(dbModel);
-        // if (dbModel.data.quantity === 0) {
-          API.updateSold(id).then(result => console.log("result", dbModel));
-        // }
+        
+        if (dbModel.data.quantity === 0) {
+          API.updateSold(id).then(result => {
+            console.log("result", result)
+
+          });
+        }
       })
       .catch(err => console.log(err));
   };
