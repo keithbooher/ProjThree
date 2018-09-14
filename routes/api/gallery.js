@@ -87,6 +87,13 @@ module.exports = app => {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     })
+
+    // Change sold value back to false
+    app.put("/api/updatesoldtrue/:id", (req, res) => {
+      Product.findOneAndUpdate({ _id: req.params.id }, { sold: true })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    })
           
 
   app.delete("/api/product/:id", (req, res) => {
