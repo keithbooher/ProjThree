@@ -45,7 +45,7 @@ class ManageInventory extends Component {
       .then(dbModel => {
         console.log(dbModel);
         // if (dbModel.data.quantity === 0) {
-          API.updateSold(id).then(result => console.log("success"));
+          API.updateSold(id).then(result => console.log("result", dbModel));
         // }
       })
       .catch(err => console.log(err));
