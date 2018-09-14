@@ -15,8 +15,7 @@ const BUCKET_NAME = "artgutter";
 const IAM_USER_KEY = process.env.AWS_ACCESS_KEY_ID;
 const IAM_USER_SECRET = process.env.AWS_SECRET_ACCESS_KEY;
 const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
-const STRIPE_SECRET = process.env.STRIPE_SECRET_KEY;
-
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 
 mongoose.connect(keys.mongoURI);
 
