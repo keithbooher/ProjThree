@@ -36,6 +36,7 @@ const userSchema = new Schema({
         type: String,
         default: " "
     },
+    following: [String],
     product: [{
         type: Schema.Types.ObjectId,
         ref: "product"
@@ -46,46 +47,7 @@ const userSchema = new Schema({
     }],
   
 
-  googleId: {
-    type: String,
-    unique: true
-  },
-  firstName: String,
-  admin: {
-    type: Boolean,
-    default: false
-  },
-  stripeAccount: {
-    type: String,
-    default: " "
-  },
-  email: {
-    type: String,
-    default: " "
-  },
-  rating: [String],
-  averageRating: {
-    type: Number,
-    default: 5
-  },
-  img: {
-    type: String,
-    default: "https://artgutter.s3.amazonaws.com/1536724317740"
-  },
-  pageViews: {
-    type: Number,
-    default: 0
-  },
-  product: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "product"
-    }
-  ],
-  style: [{
-    type: Schema.Types.ObjectId,
-    ref: "style"
-  }],
+
 });
 
 //creating model class
