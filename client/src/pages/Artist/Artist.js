@@ -325,7 +325,9 @@ class Artist extends Component {
             ) : (
               <div className="artistRating">
                 {this.state.ratingSubmitted ? (
-                  <h4>Thank you for submitting your feedback</h4>
+                  <h4 className="ratingSubmitMessage">
+                    Thank you for submitting your feedback
+                  </h4>
                 ) : (
                   <div>
                     <Star
@@ -338,7 +340,10 @@ class Artist extends Component {
                     />
 
                     {this.isRateStateFilled() ? (
-                      <button onClick={() => this.submitRating()}>
+                      <button
+                        className="checkout btn"
+                        onClick={() => this.submitRating()}
+                      >
                         Submit Rating
                       </button>
                     ) : (

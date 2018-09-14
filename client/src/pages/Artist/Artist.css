@@ -22,7 +22,10 @@
 .artistProfile {
     margin-bottom: 2rem;
     flex-wrap: wrap;
+}
 
+.ratingSubmitMessage {
+    color: #00ffff;
 }
 
 .productContent {
