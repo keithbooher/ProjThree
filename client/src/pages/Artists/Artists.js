@@ -24,23 +24,9 @@ class Artists extends Component {
 
   componentDidMount() {
     this.props.fetchUser();
-    this.loadCurrentUser();
+    this.loadUsers();
   }
 
-  averageStars = () => {
-    const users = this.state.users;
-    console.log("users", users);
-    const artistAverageRating = this.state.user.averageRating;
-    for (let j = 0; j < users.length; j++) {
-      let thisUser = users[j].firstName;
-      console.log("thisUser", thisUser);
-      for (let i = 1; i <= artistAverageRating; i++) {
-        document
-          .getElementById(`${thisUser}averageStar${i}`)
-          .classList.add("checked");
-      }
-    }
-  };
 
   loadUsers = () => {
     console.log("test");
@@ -49,6 +35,8 @@ class Artists extends Component {
         console.log(this.state);
         this.setState({ users: res.data });
         this.filterAdmin();
+        this.loadCurrentUser();
+        
         console.log("NEWEST STATE: ", this.state);
       })
       .catch(err => console.log(err));
@@ -74,7 +62,7 @@ class Artists extends Component {
             user: result
           });
           console.log("result", result);
-          this.loadUsers();
+          // this.loadUsers();
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
