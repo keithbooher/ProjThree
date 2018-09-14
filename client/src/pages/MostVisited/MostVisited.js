@@ -35,41 +35,80 @@ class MostVisited extends Component {
     
       userRatings = () => {
         const users = this.state.users;
-    
-        for (let i = 0; i < users.length; i++) {
-          let pushedRatings = [];
-          let userRatingsArray = users[i].rating;
-    
-          for (let i = 0; i < userRatingsArray.length; i++) {
-            let rating = userRatingsArray[i];
-            let convertRating = parseInt(rating);
-            pushedRatings.push(convertRating);
+        
+        if(users.length <= 3) {
+          for (let i = 0; i <users.length; i++) {
+            let pushedRatings = [];
+            let userRatingsArray = users[i].rating;
+      
+            for (let i = 0; i < userRatingsArray.length; i++) {
+              let rating = userRatingsArray[i];
+              let convertRating = parseInt(rating);
+              pushedRatings.push(convertRating);
+            }
+      
+            let average = pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
+      
+            let averageRounded = average.toFixed(1);
+            let parsed = parseInt(averageRounded);
+            console.log('parsed', parsed)
+      
+            if(!parsed){
+              parsed=5
+              this.setState()
+            }
+      
+            const averageRatingObject = {
+              averageRating: parsed
+            };
+      
+            const currentUser = users[i];
+      
+            API.averageRating(currentUser._id, averageRatingObject)
+              .then(console.log("success"))
+              .catch(err => console.log(err));
+  
+            this.loadUsersLastPost();
+              
           }
-    
-          let average = pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
-    
-          let averageRounded = average.toFixed(1);
-          let parsed = parseInt(averageRounded);
-          console.log('parsed', parsed)
-    
-          if(!parsed){
-            parsed=5
-            this.setState()
-          }
-    
-          const averageRatingObject = {
-            averageRating: parsed
-          };
-    
-          const currentUser = users[i];
-    
-          API.averageRating(currentUser._id, averageRatingObject)
-            .then(console.log("success"))
-            .catch(err => console.log(err));
+        } else {
+            // stop at 3
+            for (let i = 0; i <3; i++) {
+              let pushedRatings = [];
+              let userRatingsArray = users[i].rating;
 
-          this.loadUsersLastPost();
-            
+              for (let i = 0; i < userRatingsArray.length; i++) {
+                let rating = userRatingsArray[i];
+                let convertRating = parseInt(rating);
+                pushedRatings.push(convertRating);
+              }
+
+              let average = pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
+
+              let averageRounded = average.toFixed(1);
+              let parsed = parseInt(averageRounded);
+              console.log('parsed', parsed)
+
+              if(!parsed){
+                parsed=5
+                this.setState()
+              }
+
+              const averageRatingObject = {
+                averageRating: parsed
+              };
+
+              const currentUser = users[i];
+
+              API.averageRating(currentUser._id, averageRatingObject)
+                .then(console.log("success"))
+                .catch(err => console.log(err));
+
+              this.loadUsersLastPost();
+                
+            }
         }
+        
       };
     
       loadUsers = () => {
