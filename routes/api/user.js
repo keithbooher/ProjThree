@@ -11,19 +11,19 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
   });
 
-    // Find All
-    app.get("/api/user/popular", (req, res) => {
-      User.find(req.body)
-        .sort({ pageViews: -1 })
-        .populate('product')
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-    });
+  // Find All
+  app.get("/api/user/popular", (req, res) => {
+    User.find(req.body)
+      .sort({ pageViews: -1 })
+      .populate('product')
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  });
 
   // Find by Id
   app.get("/api/user/:id", (req, res) => {
     User.findById(req.params.id)
-      .then(dbModel => console.log(dbModel))
+      .then(dbModel => console.log("****LOOK HERE******",dbModel))
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
   });
@@ -60,6 +60,16 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
   });
 
+
+  // Follow Artist
+  app.put('/api/user/follow/:id', (req, res) => {
+    User
+    .findOneAndUpdate({ _id: req.params.id }, { $push: {following: req.body.follow}})
+    .then(console.log('req.body', req))
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  })
+
   // Update User Rating
   app.put('/api/user/rating/:id', (req, res) => {
     User
@@ -67,9 +77,7 @@ module.exports = app => {
     .then(console.log('req.body', req))
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
-  })
-
-  
+  }) 
 
     // Update User AVERAGE Rating
     app.put('/api/user/averageRating/:id', (req, res) => {

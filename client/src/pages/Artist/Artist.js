@@ -256,6 +256,25 @@ class Artist extends Component {
     );
   };
 
+  followArtist = () => {
+    const url = window.location.href;
+    console.log('url', url)
+    const splitURL = url.split("/");
+    console.log(splitURL[4]);
+    const targetedID = splitURL[4];
+    console.log(splitURL[4]);
+    const thisUser = this.state.currentUser._id;
+    
+
+    const targetIDObect = {
+      follow : targetedID
+    }
+
+    API.followArtist(thisUser, targetIDObect).catch(err =>
+      console.log(err)
+    );
+  }
+
   render() {
     return (
       <div className="artistGrid">
@@ -332,6 +351,8 @@ class Artist extends Component {
                     )}
                   </div>
                 )}
+                <br/>
+                <button className="btn-info btn" onClick={() => this.followArtist()}>Follow Artist</button>
               </div>
             )}
           </div>

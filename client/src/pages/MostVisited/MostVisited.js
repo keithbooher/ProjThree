@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-// import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
-// import { Row, Col } from "../../components/Grid";
+import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-// import Card from "../../components/Card";
+import Card from "../../components/Card";
 import "./MostVisited.css";
 
 import ArtistListItem from "../../components/List/ArtistList";
@@ -35,39 +35,77 @@ class MostVisited extends Component {
   userRatings = () => {
     const users = this.state.users;
 
-    for (let i = 0; i < users.length; i++) {
-      let pushedRatings = [];
-      let userRatingsArray = users[i].rating;
+    if (users.length <= 3) {
+      for (let i = 0; i < users.length; i++) {
+        let pushedRatings = [];
+        let userRatingsArray = users[i].rating;
 
-      for (let i = 0; i < userRatingsArray.length; i++) {
-        let rating = userRatingsArray[i];
-        let convertRating = parseInt(rating);
-        pushedRatings.push(convertRating);
+        for (let i = 0; i < userRatingsArray.length; i++) {
+          let rating = userRatingsArray[i];
+          let convertRating = parseInt(rating);
+          pushedRatings.push(convertRating);
+        }
+
+        let average =
+          pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
+
+        let averageRounded = average.toFixed(1);
+        let parsed = parseInt(averageRounded);
+        console.log("parsed", parsed);
+
+        if (!parsed) {
+          parsed = 5;
+          this.setState();
+        }
+
+        const averageRatingObject = {
+          averageRating: parsed
+        };
+
+        const currentUser = users[i];
+
+        API.averageRating(currentUser._id, averageRatingObject)
+          .then(console.log("success"))
+          .catch(err => console.log(err));
+
+        this.loadUsersLastPost();
       }
+    } else {
+      // stop at 3
+      for (let i = 0; i < 3; i++) {
+        let pushedRatings = [];
+        let userRatingsArray = users[i].rating;
 
-      let average =
-        pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
+        for (let i = 0; i < userRatingsArray.length; i++) {
+          let rating = userRatingsArray[i];
+          let convertRating = parseInt(rating);
+          pushedRatings.push(convertRating);
+        }
 
-      let averageRounded = average.toFixed(1);
-      let parsed = parseInt(averageRounded);
-      console.log("parsed", parsed);
+        let average =
+          pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
 
-      if (!parsed) {
-        parsed = 5;
-        this.setState();
+        let averageRounded = average.toFixed(1);
+        let parsed = parseInt(averageRounded);
+        console.log("parsed", parsed);
+
+        if (!parsed) {
+          parsed = 5;
+          this.setState();
+        }
+
+        const averageRatingObject = {
+          averageRating: parsed
+        };
+
+        const currentUser = users[i];
+
+        API.averageRating(currentUser._id, averageRatingObject)
+          .then(console.log("success"))
+          .catch(err => console.log(err));
+
+        this.loadUsersLastPost();
       }
-
-      const averageRatingObject = {
-        averageRating: parsed
-      };
-
-      const currentUser = users[i];
-
-      API.averageRating(currentUser._id, averageRatingObject)
-        .then(console.log("success"))
-        .catch(err => console.log(err));
-
-      this.loadUsersLastPost();
     }
   };
 
@@ -77,7 +115,6 @@ class MostVisited extends Component {
       .then(res => {
         console.log(this.state);
         this.setState({ users: res.data });
-        this.userRatings();
         this.loadCurrentUser();
         this.filterAdmin();
       })
@@ -92,6 +129,7 @@ class MostVisited extends Component {
       }
     }
     console.log("NEWEST STATE: ", this.state);
+    this.userRatings();
   };
 
   loadUsersLastPost = () => {
