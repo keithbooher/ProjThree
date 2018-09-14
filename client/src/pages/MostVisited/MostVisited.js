@@ -190,8 +190,7 @@ class MostVisited extends Component {
       
                 </ArtistListItem>
               )})}  }
-            
-
+              
             </ArtistUnorderedList>
           </div>
         );
