@@ -84,7 +84,7 @@ class Admin extends Component {
             After doing so, hit the button below and go through the sign up flow to start receiving payments through Art Gutter
           </h2>
           <button className="submit btn" id="stripeBtn">
-            <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_DW5Xd0GO8hOufsopcOMTAcAL2FbGD4Ni&scope=read_write">
+            <a href={`https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${process.env.REACT_APP_STRIPE_CLIENT_KEY}&scope=read_write`}>
               Connect with Stripe
             </a>
           </button>

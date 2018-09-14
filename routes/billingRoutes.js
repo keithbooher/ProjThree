@@ -135,7 +135,7 @@ module.exports = app => {
     const splitURL = url.split("=");
     const targetQueryCode = splitURL[2];
 
-    var cmd = `curl https://connect.stripe.com/oauth/token -d client_secret=sk_live_gG4L92nBnEuXiRPXTc73zgAk -d code="${targetQueryCode}" -d grant_type=authorization_code`;
+    let cmd = `curl https://connect.stripe.com/oauth/token -d client_secret=${ keys.stripeSecretKey || process.env.STRIPE_SECRET_KEY } -d code="${targetQueryCode}" -d grant_type=authorization_code`;
 
     exec(cmd, function(error, stdout, stderr) {
       // console.log(`stdout: ${stdout}`);
