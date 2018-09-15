@@ -283,7 +283,7 @@ class Post extends Component {
             <div className={this.state.alertImg}>
               <h3 className="warning">Image required</h3>
             </div>
-          </div>
+           </div>
         </form>
       </div>
     );

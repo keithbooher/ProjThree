@@ -41,10 +41,12 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "product"
       }],
-    style: [{
-      type: Schema.Types.ObjectId,
-      ref: "style"
-    }],
+    style: {
+      border: {
+        type: String,
+        default: "dashed"
+      }
+    }
   
 
 
