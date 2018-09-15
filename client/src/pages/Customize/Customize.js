@@ -6,6 +6,8 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import "./Customize.css";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
 
 class Customize extends Component {
   state = {
@@ -79,6 +81,41 @@ class Customize extends Component {
           <Header key="1" amount={this.state.amount} />
         )}
         <SideBar user={this.state.user} />
+
+        <Dropdown isOpen={isOpen} toggle={toggle}>
+          <DropdownToggle>
+            Dropdown
+          </DropdownToggle>
+          <DropdownMenu
+            modifiers={{
+              setMaxHeight: {
+                enabled: true,
+                order: 890,
+                fn: (data) => {
+                  return {
+                    ...data,
+                    styles: {
+                      ...data.styles,
+                      overflow: 'auto',
+                      maxHeight: 100,
+                    },
+                  };
+                },
+              },
+            }}
+          >
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
 
         <div className="menu">
           <h2>Choose a Style</h2>
