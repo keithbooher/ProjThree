@@ -94,7 +94,7 @@ class Sidebar extends Component {
 
 
           {this.adminStatus() ? <AdminList /> : ""}
-          {this.loggedIn() ? (
+          {!this.loggedIn() ? (
             ""
           ) : (
             <List className="sideBarLink">
