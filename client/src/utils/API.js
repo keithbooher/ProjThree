@@ -32,11 +32,11 @@ export default {
   },
 
   setStyle: function(id) {
-    return axios.post("/api/styleSet/" + id);
+    return axios.post("/api/styleSet/" + id, "dashed");
   },
   // change user styles
   changeStyle: function(id, styleData) {
-    return axios.post("/api/style/" + id, styleData);
+    return axios.put("/api/style/" + id, styleData);
   },
   getStyle: function(id) {
     return axios.get("/api/style/" + id);

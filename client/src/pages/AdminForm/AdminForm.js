@@ -70,9 +70,6 @@ class Admin extends Component {
 
     API.changetoAdmin(currentUser, stripeAccount)
       .then(console.log("success"))
-      .then(API.setStyle(currentUser)
-      .then(console.log("success2"))
-      .catch(err => console.log(err)))
       .catch(err => console.log(err));
   };
 

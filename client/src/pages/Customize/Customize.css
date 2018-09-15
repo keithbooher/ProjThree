@@ -13,3 +13,7 @@
 .dashed {
   border-style: dashed
 }
+
+.menu{
+  grid-area: "stuff"
+}

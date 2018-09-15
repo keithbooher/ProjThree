@@ -43,29 +43,14 @@ module.exports = app => {
       .catch(err => res.json(err));
   });
 
-  app.post("/api/styleSet/:id", (req, res) => {
-    Style.create({UID: req.params.id})
-    .then(dbModel => {
-      return User.findOneAndUpdate(
-        { _id: req.params.id },
-        { $push: { style: dbModel } },
-        { new: true }
-      );
-    })
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.json(err));
-  })
-
-  app.post("/api/style/:id", (req, res) => {
+  app.put("/api/style/:id", (req, res) => {
     console.log(req.body)
-    Style.update({UID: req.params.id }, {border: "solid"})
-      .then(dbModel => {
-        return User.findOneAndUpdate(
-          { _id: req.params.id },
-          { $push: { style: dbModel } },
-          { new: true }
-        );
-      })
+    styles = {
+      border: "dotted",
+      color: "#ccc"
+    }
+    console.log(req.params.id)
+    User.findOneAndUpdate({_id: req.params.id }, {style: styles})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
   });
