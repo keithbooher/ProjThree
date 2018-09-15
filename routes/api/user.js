@@ -23,7 +23,7 @@ module.exports = app => {
   // Find by Id
   app.get("/api/user/:id", (req, res) => {
     User.findById(req.params.id)
-      .then(dbModel => console.log("****LOOK HERE******",dbModel))
+      // .then(dbModel => console.log("****LOOK HERE******",dbModel))
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
   });

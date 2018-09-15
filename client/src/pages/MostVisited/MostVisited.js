@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
-import { Row, Col } from "../../components/Grid";
+// import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-import Card from "../../components/Card";
+// import Card from "../../components/Card";
 import "./MostVisited.css";
 
 import ArtistListItem from "../../components/List/ArtistList";
@@ -32,83 +32,6 @@ class MostVisited extends Component {
     this.loadUsers();
   }
 
-  userRatings = () => {
-    const users = this.state.users;
-
-    if (users.length <= 3) {
-      for (let i = 0; i < users.length; i++) {
-        let pushedRatings = [];
-        let userRatingsArray = users[i].rating;
-
-        for (let i = 0; i < userRatingsArray.length; i++) {
-          let rating = userRatingsArray[i];
-          let convertRating = parseInt(rating);
-          pushedRatings.push(convertRating);
-        }
-
-        let average =
-          pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
-
-        let averageRounded = average.toFixed(1);
-        let parsed = parseInt(averageRounded);
-        console.log("parsed", parsed);
-
-        if (!parsed) {
-          parsed = 5;
-          this.setState();
-        }
-
-        const averageRatingObject = {
-          averageRating: parsed
-        };
-
-        const currentUser = users[i];
-
-        API.averageRating(currentUser._id, averageRatingObject)
-          .then(console.log("success"))
-          .catch(err => console.log(err));
-
-        this.loadUsersLastPost();
-      }
-    } else {
-      // stop at 3
-      for (let i = 0; i < 3; i++) {
-        let pushedRatings = [];
-        let userRatingsArray = users[i].rating;
-
-        for (let i = 0; i < userRatingsArray.length; i++) {
-          let rating = userRatingsArray[i];
-          let convertRating = parseInt(rating);
-          pushedRatings.push(convertRating);
-        }
-
-        let average =
-          pushedRatings.reduce((a, b) => a + b, 0) / pushedRatings.length;
-
-        let averageRounded = average.toFixed(1);
-        let parsed = parseInt(averageRounded);
-        console.log("parsed", parsed);
-
-        if (!parsed) {
-          parsed = 5;
-          this.setState();
-        }
-
-        const averageRatingObject = {
-          averageRating: parsed
-        };
-
-        const currentUser = users[i];
-
-        API.averageRating(currentUser._id, averageRatingObject)
-          .then(console.log("success"))
-          .catch(err => console.log(err));
-
-        this.loadUsersLastPost();
-      }
-    }
-  };
-
   loadUsers = () => {
     console.log("test");
     API.getPopularUsers()
@@ -123,11 +46,20 @@ class MostVisited extends Component {
 
   filterAdmin = () => {
     let users = this.state.users;
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].admin) {
-        this.setState({ admins: this.state.admins.concat(users[i]) });
+    if (users.length <= 3) {
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].admin) {
+          this.setState({ admins: this.state.admins.concat(users[i]) });
+        }
+      }
+    } else {
+      for (let i = 0; i < 3; i++) {
+        if (users[i].admin) {
+          this.setState({ admins: this.state.admins.concat(users[i]) });
+        }
       }
     }
+
     console.log("NEWEST STATE: ", this.state);
     this.userRatings();
   };

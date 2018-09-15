@@ -23,10 +23,13 @@ class Artist extends Component {
     user: {},
     currentUser: {},
     rating: 0,
-    ratingSubmitted: false
+    ratingSubmitted: false,
+    alreadyFollowing: false,
+    followrefresh: false
   };
 
   componentDidMount() {
+    console.log(this);
     this.props.fetchUser();
     this.loadCurrentUser();
     this.loadThispageArtist();
@@ -99,6 +102,7 @@ class Artist extends Component {
             currentUser: result
           });
           console.log("current user: ", this.state.currentUser);
+          this.doYouFollowThisArtistAlready();
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -258,22 +262,39 @@ class Artist extends Component {
 
   followArtist = () => {
     const url = window.location.href;
-    console.log('url', url)
+    console.log("url", url);
     const splitURL = url.split("/");
     console.log(splitURL[4]);
     const targetedID = splitURL[4];
     console.log(splitURL[4]);
     const thisUser = this.state.currentUser._id;
-    
 
     const targetIDObect = {
-      follow : targetedID
-    }
+      follow: targetedID
+    };
 
-    API.followArtist(thisUser, targetIDObect).catch(err =>
-      console.log(err)
-    );
-  }
+    API.followArtist(thisUser, targetIDObect)
+      .then(this.setState({ followrefresh: true }))
+      .catch(err => console.log(err));
+  };
+
+  doYouFollowThisArtistAlready = () => {
+    const currentUser = this.state.currentUser;
+
+    const url = window.location.href;
+    console.log("url", url);
+    const splitURL = url.split("/");
+    console.log(splitURL[4]);
+    const targetedID = splitURL[4];
+    console.log(splitURL[4]);
+    const thisArtist = this.state.currentUser._id;
+
+    for (let i = 0; i < currentUser.following.length; i++) {
+      if (currentUser.following[i] === targetedID) {
+        this.setState({ alreadyFollowing: true });
+      }
+    }
+  };
 
   render() {
     return (
@@ -351,8 +372,17 @@ class Artist extends Component {
                     )}
                   </div>
                 )}
-                <br/>
-                <button className="btn-info btn" onClick={() => this.followArtist()}>Follow Artist</button>
+                <br />
+                {this.state.alreadyFollowing ? (
+                  "Thank you for following me!"
+                ) : (
+                  <button
+                    className="btn-info btn"
+                    onClick={() => this.followArtist()}
+                  >
+                    Follow Artist
+                  </button>
+                )}
               </div>
             )}
           </div>
