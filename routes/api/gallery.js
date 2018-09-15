@@ -5,7 +5,6 @@ const User = require("../../models/User");
 
 const keys = require("../../config/keys");
 
-
 const BUCKET_NAME = "artgutter";
 // const IAM_USER_KEY = process.env.AWS_ACCESS_KEY_ID;
 // const IAM_USER_SECRET = process.env.AWS_SECRET_ACCESS_KEY;
@@ -46,6 +45,15 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
   });
 
+  app.get("/api/product", (req, res) => {
+    console.log(req);
+    Product.find(req.body)
+      .sort({ datePosted: -1 })
+      .limit(6)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  });
+
   app.get("/api/product/:id", (req, res) => {
     Product.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
@@ -71,30 +79,31 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
   });
 
-    // Update User Profile Pic
-    app.put("/api/updatequantity/:id", (req, res) => {
-      console.log('req.body*******', req.body)
-      Product
-      .findOneAndUpdate({ _id: req.params.id }, { quantity: req.body.quantity})
-      .then(console.log('req.body', req))
+  // Update User Profile Pic
+  app.put("/api/updatequantity/:id", (req, res) => {
+    console.log("req.body*******", req.body);
+    Product.findOneAndUpdate(
+      { _id: req.params.id },
+      { quantity: req.body.quantity }
+    )
+      .then(console.log("req.body", req))
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-    })
+  });
 
-    // Change sold value back to false
-    app.put("/api/updatesold/:id", (req, res) => {
-      Product.findOneAndUpdate({ _id: req.params.id }, { sold: false })
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    })
+  // Change sold value back to false
+  app.put("/api/updatesold/:id", (req, res) => {
+    Product.findOneAndUpdate({ _id: req.params.id }, { sold: false })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  });
 
-    // Change sold value back to false
-    app.put("/api/updatesoldtrue/:id", (req, res) => {
-      Product.findOneAndUpdate({ _id: req.params.id }, { sold: true })
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-    })
-          
+  // Change sold value back to false
+  app.put("/api/updatesoldtrue/:id", (req, res) => {
+    Product.findOneAndUpdate({ _id: req.params.id }, { sold: true })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  });
 
   app.delete("/api/product/:id", (req, res) => {
     Product.deleteOne({ _id: req.params.id })

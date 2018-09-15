@@ -15,7 +15,7 @@ import "./Home.css";
 class App extends Component {
   state = {
     amount: 0,
-    products: [],
+    carousel: [],
     user: {},
     firstImage,
     secondImage,
@@ -28,11 +28,11 @@ class App extends Component {
     this.loadCurrentUser();
   }
 
-  // loadProducts = () => {
-  //     API.getProducts()
-  //         .then(res => this.setState({ products: res.data }))
-  //         .catch(err => console.log(err));
-  // };
+  loadCarouselProducts = () => {
+    API.getCarouselProduct()
+      .then(res => this.setState({ carousel: res.data }))
+      .catch(err => console.log(err));
+  };
 
   loadCurrentUser = () => {
     fetch("/api/current_user")
@@ -49,7 +49,7 @@ class App extends Component {
           API.createUser(currentUser)
             .then(console.log("success"))
             .catch(err => console.log(err));
-
+          this.loadCarouselProducts();
           console.log("state", this.state.user);
         },
         // Note: it's important to handle errors here

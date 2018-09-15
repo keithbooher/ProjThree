@@ -9,6 +9,10 @@ export default {
   getProduct: function(id) {
     return axios.get("/api/product/" + id);
   },
+  // Gets the book with the given id
+  getCarouselProduct: function(id) {
+    return axios.get("/api/product/" + id);
+  },
   // Deletes the book with the given id
   deleteProduct: function(id) {
     console.log("id", id);
@@ -85,9 +89,7 @@ export default {
   //   return axios.put("/api/user/following/" + userID, follow);
   // },
 
-
-
-  contactUsForm: function(data){
+  contactUsForm: function(data) {
     return axios.post("/api/contactus", data);
   }
 };
