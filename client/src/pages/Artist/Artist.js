@@ -26,6 +26,7 @@ class Artist extends Component {
     ratingSubmitted: false,
     alreadyFollowing: false,
     followrefresh: false,
+    change: false
   };
 
   componentDidMount() {
@@ -261,28 +262,38 @@ class Artist extends Component {
   };
 
   followArtist = () => {
-    const url = window.location.href;
-    console.log('url', url)
-    const splitURL = url.split("/");
-    console.log(splitURL[4]);
-    const targetedID = splitURL[4];
-    console.log(splitURL[4]);
-    const thisUser = this.state.currentUser._id;
-    
+      const url = window.location.href;
+      console.log('url', url)
+      const splitURL = url.split("/");
+      console.log(splitURL[4]);
+      const targetedID = splitURL[4];
+      console.log(splitURL[4]);
+      const thisUser = this.state.currentUser._id;
+      
+  
+      const targetIDObect = {
+        follow : targetedID
+      }
+  
+      API.followArtist(thisUser, targetIDObect)
+      .then(result => {
+        if(result) {
+          this.setState({ followrefresh: true}, function () {
+            this.doYouFollowThisArtistAlready()
+            this.setState({ change: true })
+          })
+        }        
+      })
+      .catch(err =>
+        console.log(err)
+      );
+  
 
-    const targetIDObect = {
-      follow : targetedID
-    }
-
-    API.followArtist(thisUser, targetIDObect)
-    .then(this.setState({ followrefresh: true}))
-    .catch(err =>
-      console.log(err)
-    );
   }
 
   doYouFollowThisArtistAlready = () => {
     const currentUser = this.state.currentUser;
+    console.log(currentUser.following)
 
     const url = window.location.href;
     console.log('url', url)
@@ -293,11 +304,12 @@ class Artist extends Component {
     const thisArtist = this.state.currentUser._id;
 
     for (let i = 0; i < currentUser.following.length; i++) {
-      if(currentUser.following[i] === targetedID) {
+      console.log('currentUser.following[i]', currentUser.following[i])
+      if(currentUser.following[i] == targetedID) {
         this.setState({ alreadyFollowing: true })
+        console.log('working????????????????')
       }
     }
-
   }
 
   render() {
@@ -377,8 +389,9 @@ class Artist extends Component {
                   </div>
                 )}
                 <br/>
-                {this.state.alreadyFollowing ? "Thank you for following me!" :                 
-                <button className="btn-info btn" onClick={() => this.followArtist()}>Follow Artist</button>}
+                {this.state.alreadyFollowing ? "Thank you for following me!" :
+                !this.state.change ?                
+                <button className="btn-info btn" onClick={() => this.followArtist()}>Follow Artist</button> : "Thank you for following me!"}
               </div>
             )}
           </div>
