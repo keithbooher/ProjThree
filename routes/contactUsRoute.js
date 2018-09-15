@@ -17,9 +17,9 @@ module.exports = app => {
     });
 
     let mailOptions = {
-      from: '"Art Gutter" <groupthreebootcamp@gmail.com>',
+      from: "groupthreebootcamp@gmail.com",
       to: "groupthreebootcamp@gmail.com",
-      subject: `ART GUTTER: Customer Contact Us ${req.body.name}`,
+      subject: `Customer Contact Us ${req.body.name}`,
       text: "Contact Us help",
       html: `<b> Contact Us <br>
                 ${name} <br>
