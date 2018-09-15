@@ -71,8 +71,10 @@ class UserSettings extends Component {
             .then(
               console.log("success"),
               this.setState({
-                file: null
-              })
+                file: null,
+                img: NewProfilePic
+              }),
+              window.location.reload()
             )
             .catch(err => console.log(err));
         })

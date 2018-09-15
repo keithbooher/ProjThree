@@ -18,16 +18,22 @@ class Customize extends Component {
     amount: 0,
     products: [],
     user: {},
-    dropdownBordersOpen: false,
-    dropdownOpen: false
+    dropdownBordersOpen: true,
+    dropdownOpen: true
     
   };
 
   }
 
-  toggle(type) {
+  toggleBorders() {
     this.setState(prevState => ({
-      type: !prevState.dropdownOpen
+      dropdownBordersOpen: !prevState.dropdownBordersOpen
+    }));
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
     }));
   }
 
@@ -114,64 +120,23 @@ class Customize extends Component {
         )}
         <SideBar user={this.state.user} />
 
-        <div className="stuff">
-        {/* <div className="dropdown">
-          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Borders
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" onClick={this.handleStyleInput('dotted')} id='dotted' value='dotted' href="#">dotted</a>
-            <a className="dropdown-item" onClick={this.handleStyleInput('dashed')} id='dashed' value='dashed' href="#">dashed action</a>
-            <a className="dropdown-item" onClick={this.handleStyleInput('solid')} id='solid'value='solid' href="#">Something else here</a>
-          </div>
-        </div> */}
 
+        <div className="menu">
         <select>
+          <option disabled selected value> borders </option>
           <option onClick={this.handleBorderInput} id='dotted' value='dotted' >dotted</option>
           <option onClick={this.handleBorderInput} id='dashed' value='dashed' >dashed</option>
           <option onClick={this.handleBorderInput} id='solid'value='solid'>solid</option>
         </select>
 
         <select>
+          <option disabled selected value> colors </option>
           <option onClick={this.handleTextColorInput} id='blue' value='blue' >blue</option>
           <option onClick={this.handleTextColorInput} id='red' value='red' >red</option>
           <option onClick={this.handleTextColorInput} id='green'value='green'>green</option>
         </select>
-
-        
-          <Dropdown isOpen={this.state.dropdownBorderOpen} toggle={this.toggleBorders}>
-            <DropdownToggle caret>
-              Borders
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem onClick={this.handleBorderInput} id='dotted' value='dotted' >dotted</DropdownItem>
-              <DropdownItem onClick={this.handleBorderInput} id='dashed' value='dashed' >dashed</DropdownItem>
-              <DropdownItem onClick={this.handleBorderInput} id='solid'value='solid'>solid</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-
-          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <DropdownToggle caret>
-              Text Color
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem onClick={this.handleTextColorInput} id='blue' value='blue' >blue</DropdownItem>
-              <DropdownItem onClick={this.handleTextColorInput} id='red' value='red' >red</DropdownItem>
-              <DropdownItem onClick={this.handleTextColorInput} id='green'value='green'>green</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-          <select>
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-</select>
-
-        </div>
-
-        <div className="menu">
-          <h2>Choose a Style</h2>
-          <button onClick={this.handleStyleSubmit} >dashed</button>
+          {/* <h2>Choose a Style</h2>
+          <button onClick={this.handleStyleSubmit} >dashed</button> */}
         </div>
       </div>
     );
