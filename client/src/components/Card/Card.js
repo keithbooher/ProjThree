@@ -24,7 +24,7 @@ const Card = props => (
       <div className={`caption${props.id} captions`} />
     </div>
 
-    <div className="card-body">
+    <div className={`card-body ${props.style.border}`}>
       <h5 className="card-title">{props.productName}</h5>
       <p className="card-text">${props.price}</p>
       <p className="card-text">{props.description}</p>

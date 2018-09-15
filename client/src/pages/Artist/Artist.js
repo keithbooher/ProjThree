@@ -19,7 +19,6 @@ class Artist extends Component {
     amount: 0,
     productIDs: [],
     products: [],
-    pageArtist: {},
     user: {},
     currentUser: {},
     rating: 0,
@@ -390,6 +389,7 @@ class Artist extends Component {
                   quantity={product.data.quantity}
                   enlargeImage={this.enlargeImage}
                   shrinkImage={this.shrinkImage}
+                  style= {this.state.user.style}
                 />
               );
             })}
