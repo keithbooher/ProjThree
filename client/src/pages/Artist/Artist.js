@@ -29,6 +29,7 @@ class Artist extends Component {
   };
 
   componentDidMount() {
+    console.log(this);
     this.props.fetchUser();
     this.loadCurrentUser();
     this.loadThispageArtist();
@@ -45,14 +46,10 @@ class Artist extends Component {
   };
 
   loadStyles = () => {
-    console.log(this.state.user._id)
-    API.getStyle(this.state.user._id)
-    .then(result => console.log("THE THING IM LOOKING FOR", result.data))
-      // result => {
-      // this.setState({ styles: result });
-      // this.isThisTheCurrentUsersPage();
-    // })
-    // .catch(err => console.log(err));
+    console.log(this.state.user._id);
+    API.getStyle(this.state.user._id).then(result =>
+      console.log("THE THING IM LOOKING FOR", result.data)
+    );
   };
 
   loadUsersProducts = () => {
@@ -79,8 +76,6 @@ class Artist extends Component {
       .then(res => {
         users = res.data;
         for (let i = 0; i < users.length; i++) {
-          // console.log('userID', users[i])
-          // console.log('targetedID', targetedID)
           if (users[i]._id === targetedID) {
             this.setState({ user: users[i] });
             this.loadProductIds();
@@ -90,8 +85,6 @@ class Artist extends Component {
         }
       })
       .catch(err => console.log(err));
-    
-      
   };
 
   loadCurrentUser = () => {
@@ -104,7 +97,6 @@ class Artist extends Component {
             currentUser: result
           });
           this.doYouFollowThisArtistAlready();
-          
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -246,31 +238,26 @@ class Artist extends Component {
   };
 
   followArtist = () => {
-      const url = window.location.href;
-      const splitURL = url.split("/");
-      const targetedID = splitURL[4];
-      const thisUser = this.state.currentUser._id;
-      
-  
-      const targetIDObect = {
-        follow : targetedID
-      }
-  
-      API.followArtist(thisUser, targetIDObect)
-      .then(result => {
-        if(result) {
-          this.setState({ followrefresh: true}, function () {
-            this.doYouFollowThisArtistAlready()
-            this.setState({ change: true })
-          })
-        }        
-      })
-      .catch(err =>
-        console.log(err)
-      );
-  
+    const url = window.location.href;
+    const splitURL = url.split("/");
+    const targetedID = splitURL[4];
+    const thisUser = this.state.currentUser._id;
 
-  }
+    const targetIDObect = {
+      follow: targetedID
+    };
+
+    API.followArtist(thisUser, targetIDObect)
+      .then(result => {
+        if (result) {
+          this.setState({ followrefresh: true }, function() {
+            this.doYouFollowThisArtistAlready();
+            this.setState({ change: true });
+          });
+        }
+      })
+      .catch(err => console.log(err));
+  };
 
   doYouFollowThisArtistAlready = () => {
     const currentUser = this.state.currentUser;
@@ -279,25 +266,25 @@ class Artist extends Component {
     const targetedID = splitURL[4];
 
     for (let i = 0; i < currentUser.following.length; i++) {
-      if(currentUser.following[i] === targetedID) {
-        this.setState({ alreadyFollowing: true })
+      if (currentUser.following[i] === targetedID) {
+        this.setState({ alreadyFollowing: true });
       }
     }
-  }
+  };
 
   render() {
     return (
       <div className="artistGrid">
-        {this.state.currentUser.admin ? (
-          <AdminHeader  />
-        ) : (
-          <Header key="1" />
-        )}
+        {this.state.currentUser.admin ? <AdminHeader /> : <Header key="1" />}
         <SideBar user={this.state.user} />
 
         <div className="productContent">
           <div className="userProfile artistProfile">
-            <img alt={this.state.user.img} src={this.state.user.img} className="userProfilePic" />
+            <img
+              alt={this.state.user.img}
+              src={this.state.user.img}
+              className="userProfilePic"
+            />
             <div className="userProfileFlex">
               <div className="userInfoFlex">
                 <p className="userProfileKey">User:</p>
@@ -361,10 +348,19 @@ class Artist extends Component {
                     )}
                   </div>
                 )}
-                <br/>
-                {this.state.alreadyFollowing ? "Thank you for following me!" :
-                !this.state.change ?                
-                <button className="btn-info btn" onClick={() => this.followArtist()}>Follow Artist</button> : "Thank you for following me!"}
+                <br />
+                {this.state.alreadyFollowing ? (
+                  "Thank you for following me!"
+                ) : !this.state.change ? (
+                  <button
+                    className="btn-info btn"
+                    onClick={() => this.followArtist()}
+                  >
+                    Follow Artist
+                  </button>
+                ) : (
+                  "Thank you for following me!"
+                )}
               </div>
             )}
           </div>
@@ -389,7 +385,7 @@ class Artist extends Component {
                   quantity={product.data.quantity}
                   enlargeImage={this.enlargeImage}
                   shrinkImage={this.shrinkImage}
-                  style= {this.state.user.style}
+                  style={this.state.user.style}
                 />
               );
             })}

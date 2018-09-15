@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
+import { Redirect } from "react-router-dom";
 // import InventoryCard from "../../components/Card/InventoryCard";
 import "./ManageInventory.css";
 
@@ -15,11 +16,13 @@ class ManageInventory extends Component {
   // }
 
   state = {
+    user: {},
     productIDs: [],
     products: [],
     currentUser: {},
-    value: "",
-    quantity: 0
+    value: [],
+    quantity: 0,
+    toDashboard: false
   };
 
   componentDidMount() {
@@ -29,35 +32,41 @@ class ManageInventory extends Component {
 
   //  Function to handle form input
   handleInputChange = event => {
-    console.log("event", event.target.value);
-    this.setState({ value: event.target.value });
+    console.log(this.state);
+    // console.log(`i: ${i}`);
+    console.log("event", event);
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    // let tempVar = this.state.value;
+    // tempVar[i] = event.target.value;
+    // this.setState({ value: tempVar });
+    this.setState({ [name]: value });
   };
 
   handleFormSubmit = id => {
     console.log("value", this.state.value);
     console.log("id", id);
-
+    const value = this.state[id];
+    console.log("value: ", value);
     const newQuantity = {
-      quantity: this.state.value
+      quantity: value
     };
 
-      console.log('id', id)
+    console.log("id", id);
 
-    if (!this.state.quantity){
-      API.updateSoldTrue(id).then(result => { console.log(result)})
+    if (value < 1) {
+      API.updateSoldTrue(id).then(result => {
+        console.log("SOLD", result);
+      });
+    } else {
+      API.updateSold(id).then(result => {
+        console.log("SOLD", result);
+      });
     }
 
     API.updateQuantity(id, newQuantity)
-      .then(dbModel => {
-        console.log(dbModel);
-        
-        if (dbModel.data.quantity === 0) {
-          API.updateSold(id).then(result => {
-            console.log("result", result)
-
-          });
-        }
-      })
+      .then(dbModel => this.setState({ toDashboard: true }))
       .catch(err => console.log(err));
   };
 
@@ -117,6 +126,17 @@ class ManageInventory extends Component {
   };
 
   render() {
+    if (this.state.toDashboard === true) {
+      return (
+        // <Redirect to={`/artist/${this.state.currentUser._id}`} test={"hello"} />
+        <Redirect
+          to={{
+            pathname: `/artist/${this.state.currentUser._id}`,
+            state: { hello: "test" }
+          }}
+        />
+      );
+    }
     return (
       <div className="artistGrid">
         {this.state.currentUser.admin ? (
@@ -148,12 +168,16 @@ class ManageInventory extends Component {
                       <div className="form-group">
                         <label htmlFor="description">Quantity: </label>
                         <input
-                          value={this.state.value}
-                          onChange={this.handleInputChange}
+                          name={product.data._id}
+                          value={this.state.value[i]}
+                          onChange={e => {
+                            console.log(e);
+                            this.handleInputChange(e);
+                            //this.handleInputChange(i, e);
+                          }}
                           type="integer"
                           className="form-control"
                           id="quantity"
-                          name="quantity"
                           placeholder={product.data.quantity}
                         />
                       </div>

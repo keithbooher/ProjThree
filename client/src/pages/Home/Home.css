@@ -21,7 +21,8 @@
 }
 
 .missionStatement {
-    grid-area: ms
+    grid-area: ms;
+    opacity: .9;
 }
 
 .carousel {

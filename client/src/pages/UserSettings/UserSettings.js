@@ -6,6 +6,7 @@ import API from "../../utils/API";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
+import AverageStar from "../../components/Star/AverageStar";
 
 import "./UserSettings.css";
 import { Redirect } from "react-router-dom";
@@ -71,8 +72,10 @@ class UserSettings extends Component {
             .then(
               console.log("success"),
               this.setState({
-                file: null
-              })
+                file: null,
+                img: NewProfilePic
+              }),
+              window.location.reload()
             )
             .catch(err => console.log(err));
         })
@@ -147,7 +150,7 @@ class UserSettings extends Component {
           console.log("result", result);
           let currentUser = this.state.user;
           API.createUser(currentUser).catch(err => console.log(err));
-
+          this.averageStars();
           console.log("state", this.state.user);
         },
         // Note: it's important to handle errors here
@@ -162,6 +165,13 @@ class UserSettings extends Component {
       );
   };
 
+  averageStars = () => {
+    const artistAverageRating = this.state.user.averageRating;
+    for (let i = 1; i <= artistAverageRating; i++) {
+      document.getElementById(`averageStar${i}`).classList.add("checked");
+    }
+  };
+
   render() {
     if (this.state.toDashboard === true) {
       return <Redirect to={`/artist/${this.state.user._id}`} />;
@@ -171,7 +181,11 @@ class UserSettings extends Component {
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
         <SideBar user={this.state.user} />
         <div className="userProfile">
-          <img alt={this.state.user.img} src={`${this.state.user.img}`} className="userProfilePic" />
+          <img
+            alt={this.state.user.img}
+            src={`${this.state.user.img}`}
+            className="userProfilePic"
+          />
           <div className="userProfileFlex">
             <div className="userInfoFlex">
               <p className="userProfileKey">User:</p>
@@ -185,8 +199,8 @@ class UserSettings extends Component {
             </div>
             <div className="userInfoFlex">
               <p className="userProfileKey">Average Rating: </p>
-              <span className="userProfileValue">
-                {this.state.user.averageRating}
+              <span className="userProfileStars">
+                <AverageStar />
               </span>
             </div>
             <div className="userInfoFlex">
