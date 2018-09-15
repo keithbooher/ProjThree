@@ -45,6 +45,17 @@ class Artist extends Component {
     this.loadUsersProducts();
   };
 
+  loadStyles = () => {
+    console.log(this.state.user._id)
+    API.getStyle(this.state.user._id)
+    .then(result => console.log("THE THING IM LOOKING FOR", result.data))
+      // result => {
+      // this.setState({ styles: result });
+      // this.isThisTheCurrentUsersPage();
+    // })
+    // .catch(err => console.log(err));
+  };
+
   loadUsersProducts = () => {
     const productIDs = this.state.productIDs;
     // const productObjectsArray = [];
@@ -80,6 +91,8 @@ class Artist extends Component {
         }
       })
       .catch(err => console.log(err));
+    
+      
   };
 
   loadCurrentUser = () => {

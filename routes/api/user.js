@@ -28,6 +28,14 @@ module.exports = app => {
       .catch(err => res.json(err));
   });
 
+  // Get user styles
+  app.get("/api/style/:id", (req, res) => {
+    Style.findOne({ UID : req.params.id})
+    .then(dbModel => console.log(dbModel))
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.json(err));
+  })
+
   // Create User
   app.post("/api/user", (req, res) => {
     User.create(req.body)
@@ -35,16 +43,14 @@ module.exports = app => {
       .catch(err => res.json(err));
   });
 
-  app.post("/api/style/:id", (req, res) => {
+  app.put("/api/style/:id", (req, res) => {
     console.log(req.body)
-    Style.update({UID: req.params.id }, {border: "solid"}, {upsert: "true"})
-      .then(dbModel => {
-        return User.findOneAndUpdate(
-          { _id: req.params.id },
-          { $push: { style: dbModel } },
-          { new: true }
-        );
-      })
+    styles = {
+      border: "dotted",
+      color: "#ccc"
+    }
+    console.log(req.params.id)
+    User.findOneAndUpdate({_id: req.params.id }, {style: styles})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.json(err));
   });

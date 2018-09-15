@@ -31,9 +31,15 @@ export default {
     return axios.put("/api/updatesoldtrue/" + id);
   },
 
+  setStyle: function(id) {
+    return axios.post("/api/styleSet/" + id, "dashed");
+  },
   // change user styles
   changeStyle: function(id, styleData) {
-    return axios.post("/api/style/" + id, styleData);
+    return axios.put("/api/style/" + id, styleData);
+  },
+  getStyle: function(id) {
+    return axios.get("/api/style/" + id);
   },
   // change a user to admin
   changetoAdmin: function(_id, stripe) {

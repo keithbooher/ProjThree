@@ -60,15 +60,15 @@ class Customize extends Component {
     console.log("well, this is good?")
     const currentUser = this.state.user._id;
     const styleData = {
-      UID : currentUser,
-      border: "dashed"
+      border: input.target.value
     }
-    API.changeStyle(currentUser, styleData)
-      .then(console.log("success"))
-      .catch(err => console.log(err));
-
+    // API.changeStyle(currentUser, styleData)
+    //   .then(console.log("success"))
+    //   .catch(err => console.log(err));
+    console.log(styleData)
     
   }
+
 
   render() {
     return (
@@ -80,8 +80,10 @@ class Customize extends Component {
         )}
         <SideBar user={this.state.user} />
 
-        <h2>Choose a Style</h2>
-        <button onClick={this.handleStyleChange}>Dash those borders B</button>
+        <div className="menu">
+          <h2>Choose a Style</h2>
+          <button onClick={this.handleStyleChange} data-style="dashed">dashed</button>
+        </div>
       </div>
     );
   }
