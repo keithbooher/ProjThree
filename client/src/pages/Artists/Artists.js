@@ -26,7 +26,6 @@ class Artists extends Component {
     this.loadUsers();
   }
 
-
   loadUsers = () => {
     console.log("test");
     API.getUser()
@@ -35,7 +34,7 @@ class Artists extends Component {
         this.setState({ users: res.data });
         this.filterAdmin();
         this.loadCurrentUser();
-        
+
         console.log("NEWEST STATE: ", this.state);
       })
       .catch(err => console.log(err));
@@ -91,7 +90,11 @@ class Artists extends Component {
             {this.state.admins.map((user, i) => (
               <ArtistListItem className="nameList" key={i}>
                 <Link to={`/artist/${user._id}`} className="artistNames">
-                  <img alt={user.img} className="smallImg" src={`${user.img}`} />
+                  <img
+                    alt={user.img}
+                    className="smallImg"
+                    src={`${user.img}`}
+                  />
                   {`${user.firstName}`}
                 </Link>
               </ArtistListItem>
