@@ -6,6 +6,8 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import "./Customize.css";
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
 
 class Customize extends Component {
   state = {
@@ -60,15 +62,15 @@ class Customize extends Component {
     console.log("well, this is good?")
     const currentUser = this.state.user._id;
     const styleData = {
-      UID : currentUser,
-      border: "dashed"
+      border: input.target.value
     }
-    API.changeStyle(currentUser, styleData)
-      .then(console.log("success"))
-      .catch(err => console.log(err));
-
+    // API.changeStyle(currentUser, styleData)
+    //   .then(console.log("success"))
+    //   .catch(err => console.log(err));
+    console.log(styleData)
     
   }
+
 
   render() {
     return (
@@ -80,8 +82,25 @@ class Customize extends Component {
         )}
         <SideBar user={this.state.user} />
 
-        <h2>Choose a Style</h2>
-        <button onClick={this.handleStyleChange}>Dash those borders B</button>
+        <div className="stuff">
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <DropdownToggle caret>
+            Dropdown
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Action</DropdownItem>
+            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem divider />
+            <DropdownItem>Another Action</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+        </div>
+
+        <div className="menu">
+          <h2>Choose a Style</h2>
+          <button onClick={this.handleStyleChange} data-style="dashed">dashed</button>
+        </div>
       </div>
     );
   }

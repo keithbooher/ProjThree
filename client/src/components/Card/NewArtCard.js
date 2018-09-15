@@ -2,11 +2,11 @@ import React from "react";
 import Payments from "../Payments/Payments";
 import "./Card.css";
 
-const Card = props => (
+const NewArtCard = props => (
   <div className="artCard">
     <img
       onClick={() => props.enlargeImage(props.id)}
-      className={`card-img-top images${props.id} firstImage`}
+      className={`card-img-top  firstImage`}
       src={props.image}
       alt={props.productName}
     />
@@ -24,7 +24,7 @@ const Card = props => (
       <div className={`caption${props.id} captions`} />
     </div>
 
-    <div className={`card-body ${props.style.border}`}>
+    <div className="card-body">
       <h5 className="card-title">{props.productName}</h5>
       <p className="card-text">${props.price}</p>
       <p className="card-text">{props.description}</p>
@@ -49,4 +49,4 @@ const Card = props => (
   </div>
 );
 
-export default Card;
+export default NewArtCard;

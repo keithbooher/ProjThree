@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
-import { Link } from "react-router-dom";
 import Header from "../../components/Navs/Header";
 // import { Row, Col } from "../../components/Grid";
 import SideBar from "../../components/Sidebar/Sidebar";

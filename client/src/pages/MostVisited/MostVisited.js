@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-// import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
-// import { Row, Col } from "../../components/Grid";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-// import Card from "../../components/Card";
 import "./MostVisited.css";
 
 import ArtistListItem from "../../components/List/ArtistList";
@@ -85,7 +82,7 @@ class MostVisited extends Component {
     let unique_array = [];
     let productsArray = this.state.products;
     for (let i = 0; i < productsArray.length; i++) {
-      if (unique_array.indexOf(productsArray[i]) == -1) {
+      if (unique_array.indexOf(productsArray[i]) === -1) {
         unique_array.push(productsArray[i]);
       }
     }
@@ -177,6 +174,7 @@ class MostVisited extends Component {
                         " "
                       ) : (
                         <img
+                          alt={user.product[user.product.length - 1].img}
                           className="userImage"
                           src={`${user.product[user.product.length - 1].img}`}
                         />

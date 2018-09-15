@@ -10,7 +10,6 @@ import ArtistListItem from "../../components/List/ArtistList";
 import ArtistUnorderedList from "../../components/List/ArtistUL";
 // import UnorderedList from "../../components/List/UnorderedList";
 import { Link } from "react-router-dom";
-// import AverageStar from "../../components/Star/AverageStar";
 
 import "./Artists.css";
 
@@ -82,7 +81,7 @@ class Artists extends Component {
         {this.state.user.admin ? (
           <AdminHeader className="header" />
         ) : (
-          <Header key="1" className="header" />
+          <Header className="header" />
         )}
         <SideBar user={this.state.user} />
 
@@ -91,8 +90,12 @@ class Artists extends Component {
             {this.state.admins.map((user, i) => (
               <ArtistListItem className="nameList" key={i}>
                 <Link to={`/artist/${user._id}`} className="artistNames">
-                  <img className="smallImg" alt={user.img} src={user.img} />
-                  {user.firstName}
+                  <img
+                    alt={user.img}
+                    className="smallImg"
+                    src={`${user.img}`}
+                  />
+                  {`${user.firstName}`}
                 </Link>
               </ArtistListItem>
             ))}

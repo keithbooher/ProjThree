@@ -36,15 +36,17 @@ const userSchema = new Schema({
         type: String,
         default: " "
     },
-    following: [String],
+    following: [{type:String, unique: true}],
     product: [{
         type: Schema.Types.ObjectId,
         ref: "product"
       }],
-    style: [{
-      type: Schema.Types.ObjectId,
-      ref: "style"
-    }],
+    style: {
+      border: {
+        type: String,
+        default: "dashed"
+      }
+    }
   
 
 
