@@ -46,8 +46,7 @@ module.exports = app => {
   app.put("/api/style/:id", (req, res) => {
     console.log(req.body)
     styles = {
-      border: "dotted",
-      color: "#ccc"
+      border: "dotted"
     }
     console.log(req.params.id)
     User.findOneAndUpdate({_id: req.params.id }, {style: styles})
