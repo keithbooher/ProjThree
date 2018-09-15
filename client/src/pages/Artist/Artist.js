@@ -41,7 +41,6 @@ class Artist extends Component {
     for (let i = 0; i < userProducts.length; i++) {
       userProductsArray.push(userProducts[i]);
     }
-    console.log("userProductsArray", userProductsArray);
     this.setState({ productIDs: userProductsArray });
     this.loadUsersProducts();
   };
@@ -59,16 +58,9 @@ class Artist extends Component {
     }
   };
 
-  consolelog = () => {
-    console.log("productIDs", this.state.productIDs);
-    console.log("products", this.state.products);
-  };
-
   loadThispageArtist = () => {
     const url = window.location.href;
-    console.log("url", url);
     const splitURL = url.split("/");
-    console.log(splitURL[4]);
     const targetedID = splitURL[4];
 
     let users;
@@ -76,7 +68,6 @@ class Artist extends Component {
     API.getUser()
       .then(res => {
         users = res.data;
-        console.log("users", users);
         for (let i = 0; i < users.length; i++) {
           // console.log('userID', users[i])
           // console.log('targetedID', targetedID)
@@ -85,7 +76,6 @@ class Artist extends Component {
             this.loadProductIds();
             this.pageView();
             this.averageStars();
-            console.log("success");
           }
         }
       })
@@ -101,7 +91,6 @@ class Artist extends Component {
             isLoaded: true,
             currentUser: result
           });
-          console.log("current user: ", this.state.currentUser);
           this.doYouFollowThisArtistAlready();
           
         },
@@ -119,7 +108,6 @@ class Artist extends Component {
 
   star = id => {
     let rating = 0;
-    console.log("id", id);
     const starInQuestion = document.getElementById(`star${id}`);
     if (starInQuestion.classList.contains("checked")) {
       for (let i = id + 1; i <= 5; i++) {
@@ -132,16 +120,11 @@ class Artist extends Component {
         rating = i;
       }
     }
-    console.log("rating", rating);
-
     const ratingObject = {
       rating: rating
     };
 
     this.setState({ rating: ratingObject });
-
-    console.log("rating state", ratingObject);
-
     this.isRateStateFilled();
   };
 
@@ -161,17 +144,15 @@ class Artist extends Component {
       .catch(err => console.log(err));
 
     const ratings = currentUser.rating;
-    console.log("ratings", ratings);
     let ratingsArray = [];
 
     if (ratings.length === 0) {
     } else {
       for (let i = 0; i < ratings.length; i++) {
-        ratingsArray.push(parseInt(ratings[i]));
+        ratingsArray.push(ratings[i]);
       }
 
       let total = 0;
-
       for (let i = 0; i < ratingsArray.length; i++) {
         total += ratingsArray[i];
       }
@@ -190,7 +171,6 @@ class Artist extends Component {
 
   isRateStateFilled = () => {
     if (this.state.rating) {
-      console.log("YOOOOOOOOOOOOOOOO", this.state.rating);
       return true;
     } else {
       return false;
@@ -199,11 +179,8 @@ class Artist extends Component {
 
   isThisTheCurrentUsersPage = () => {
     const url = window.location.href;
-    console.log("url", url);
     const splitURL = url.split("/");
-    console.log(splitURL[4]);
     const targetedID = splitURL[4];
-    console.log(splitURL[4]);
 
     if (targetedID === this.state.currentUser._id) {
       return true;
@@ -226,11 +203,6 @@ class Artist extends Component {
       modalImg = node.querySelector(`.img${i}`);
       captionText = node.querySelector(`.caption${i}`);
     }
-
-    console.log("modal", modal);
-    console.log("modalImg", modalImg);
-    console.log("captionText", captionText);
-    console.log("src", img.src);
 
     modal.style.display = "block";
     modalImg.src = img.src;
@@ -263,11 +235,8 @@ class Artist extends Component {
 
   followArtist = () => {
       const url = window.location.href;
-      console.log('url', url)
       const splitURL = url.split("/");
-      console.log(splitURL[4]);
       const targetedID = splitURL[4];
-      console.log(splitURL[4]);
       const thisUser = this.state.currentUser._id;
       
   
@@ -293,21 +262,13 @@ class Artist extends Component {
 
   doYouFollowThisArtistAlready = () => {
     const currentUser = this.state.currentUser;
-    console.log(currentUser.following)
-
     const url = window.location.href;
-    console.log('url', url)
     const splitURL = url.split("/");
-    console.log(splitURL[4]);
     const targetedID = splitURL[4];
-    console.log(splitURL[4]);
-    const thisArtist = this.state.currentUser._id;
 
     for (let i = 0; i < currentUser.following.length; i++) {
-      console.log('currentUser.following[i]', currentUser.following[i])
-      if(currentUser.following[i] == targetedID) {
+      if(currentUser.following[i] === targetedID) {
         this.setState({ alreadyFollowing: true })
-        console.log('working????????????????')
       }
     }
   }
@@ -324,7 +285,7 @@ class Artist extends Component {
 
         <div className="productContent">
           <div className="userProfile artistProfile">
-            <img src={`${this.state.user.img}`} className="userProfilePic" />
+            <img alt={this.state.user.img} src={this.state.user.img} className="userProfilePic" />
             <div className="userProfileFlex">
               <div className="userInfoFlex">
                 <p className="userProfileKey">User:</p>
@@ -397,9 +358,7 @@ class Artist extends Component {
           </div>
 
           <div className="productCard">
-            {console.log("MAP STATE", this.state.products)}
             {this.state.products.map((product, i) => {
-              console.log("PRODUCT", i, product.data);
               return (
                 <Card
                   key={i}
