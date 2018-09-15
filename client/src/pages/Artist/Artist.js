@@ -24,8 +24,6 @@ class Artist extends Component {
     currentUser: {},
     rating: 0,
     ratingSubmitted: false,
-    styles: {},
-    border: "dashed",
     alreadyFollowing: false,
     followrefresh: false,
   };
