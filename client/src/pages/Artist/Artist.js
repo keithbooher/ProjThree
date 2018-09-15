@@ -288,10 +288,10 @@ class Artist extends Component {
   render() {
     return (
       <div className="artistGrid">
-        {this.state.user.admin ? (
-          <AdminHeader amount={this.state.amount} />
+        {this.state.currentUser.admin ? (
+          <AdminHeader  />
         ) : (
-          <Header key="1" amount={this.state.amount} />
+          <Header key="1" />
         )}
         <SideBar user={this.state.user} />
 

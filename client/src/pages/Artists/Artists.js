@@ -82,7 +82,7 @@ class Artists extends Component {
         {this.state.user.admin ? (
           <AdminHeader className="header" />
         ) : (
-          <Header key="1" className="header" />
+          <Header className="header" />
         )}
         <SideBar user={this.state.user} />
 

@@ -28,13 +28,13 @@ module.exports = app => {
       .catch(err => res.json(err));
   });
 
-  // Get user styles
-  app.get("/api/style/:id", (req, res) => {
-    Style.findOne({ UID : req.params.id})
-    .then(dbModel => console.log(dbModel))
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.json(err));
-  })
+  // // Get user styles
+  // app.get("/api/style/:id", (req, res) => {
+  //   Style.findOne({ UID : req.params.id})
+  //   // .then(dbModel => console.log(dbModel))
+  //   .then(dbModel => res.json(dbModel))
+  //   .catch(err => res.json(err));
+  // })
 
   // Create User
   app.post("/api/user", (req, res) => {
