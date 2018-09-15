@@ -171,7 +171,7 @@ class UserSettings extends Component {
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
         <SideBar user={this.state.user} />
         <div className="userProfile">
-          <img src={`${this.state.user.img}`} className="userProfilePic" />
+          <img alt={this.state.user.img} src={`${this.state.user.img}`} className="userProfilePic" />
           <div className="userProfileFlex">
             <div className="userInfoFlex">
               <p className="userProfileKey">User:</p>

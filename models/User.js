@@ -36,7 +36,7 @@ const userSchema = new Schema({
         type: String,
         default: " "
     },
-    following: [String],
+    following: [{type:String, unique: true}],
     product: [{
         type: Schema.Types.ObjectId,
         ref: "product"
