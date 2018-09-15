@@ -7,7 +7,7 @@ import API from "../../utils/API";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-import Card from "../../components/Card";
+import NewArtCard from "../../components/Card/NewArtCard";
 import "./NewArt.css";
 
 class Home extends Component {
@@ -106,7 +106,7 @@ class Home extends Component {
           {this.state.products.map((product, i) => {
             console.log("PRODUCT", i, product.data);
             return (
-              <Card
+              <NewArtCard
                 key={i}
                 id={i}
                 image={product.img}

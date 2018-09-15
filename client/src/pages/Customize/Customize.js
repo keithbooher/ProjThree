@@ -82,40 +82,20 @@ class Customize extends Component {
         )}
         <SideBar user={this.state.user} />
 
-        <Dropdown isOpen={isOpen} toggle={toggle}>
-          <DropdownToggle>
+        <div className="stuff">
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <DropdownToggle caret>
             Dropdown
           </DropdownToggle>
-          <DropdownMenu
-            modifiers={{
-              setMaxHeight: {
-                enabled: true,
-                order: 890,
-                fn: (data) => {
-                  return {
-                    ...data,
-                    styles: {
-                      ...data.styles,
-                      overflow: 'auto',
-                      maxHeight: 100,
-                    },
-                  };
-                },
-              },
-            }}
-          >
+          <DropdownMenu>
+            <DropdownItem header>Header</DropdownItem>
+            <DropdownItem disabled>Action</DropdownItem>
             <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem divider />
             <DropdownItem>Another Action</DropdownItem>
           </DropdownMenu>
         </Dropdown>
+        </div>
 
         <div className="menu">
           <h2>Choose a Style</h2>

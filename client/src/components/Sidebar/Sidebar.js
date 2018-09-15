@@ -93,11 +93,12 @@ class Sidebar extends Component {
           </List> : " "}
 
           {this.loggedIn() ? 
+              !this.adminStatus() ?
                         <List className="sideBarLink">
                         <Link to="/adminform">
                           Become Admin
                         </Link>
-                      </List> : " "}
+                      </List> : " " : " "}
 
 
           {this.adminStatus() ? <AdminList /> : ""}
