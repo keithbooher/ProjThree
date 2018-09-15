@@ -79,7 +79,7 @@ class Admin extends Component {
         <SideBar user={this.state.user} />
         <div className="adminMessage">
           <h2 className="adminHeader">
-            Before you can get started, please make an account with Stripe at <a href="stripe.com">Stripe.com</a><br></br>
+            Before you can get started, please make an account with Stripe at <a href="https://stripe.com/" target="_blank">Stripe.com</a><br></br>
             After doing so, hit the button below and go through the sign up flow to start receiving payments through Art Gutter
           </h2>
           <button className="submit btn" id="stripeBtn">
