@@ -10,11 +10,32 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 
 
 class Customize extends Component {
-  state = {
+  constructor(props) {
+    super(props)
+    this.toggle = this.toggle.bind(this);
+
+  this.state = {
     amount: 0,
     products: [],
-    user: {}
+    user: {},
+    dropdownBordersOpen: true,
+    dropdownOpen: true
+    
   };
+
+  }
+
+  toggleBorders() {
+    this.setState(prevState => ({
+      dropdownBordersOpen: !prevState.dropdownBordersOpen
+    }));
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
+  }
 
   componentDidMount() {
     // this.loadProducts();
@@ -58,15 +79,32 @@ class Customize extends Component {
       );
   };
 
-  handleStyleChange = input => {
+  handleBorderInput = event => {
+    this.setState({
+      dropdownBorderOpen: !this.state.dropdownBorderOpen,
+      value: event.target.innerText
+    });  
+    console.log(event.target.innerText)
+  }
+
+  handleTextColorInput = event => {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen,
+      value: event.target.innerText
+    });  
+    console.log(event.target.innerText)
+  }
+  
+
+  handleStyleSubmit = input => {
     console.log("well, this is good?")
     const currentUser = this.state.user._id;
     const styleData = {
       border: input.target.value
     }
-    // API.changeStyle(currentUser, styleData)
-    //   .then(console.log("success"))
-    //   .catch(err => console.log(err));
+    API.changeStyle(currentUser, styleData)
+      .then(console.log("success"))
+      .catch(err => console.log(err));
     console.log(styleData)
     
   }
@@ -82,24 +120,23 @@ class Customize extends Component {
         )}
         <SideBar user={this.state.user} />
 
-        <div className="stuff">
-          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle caret>
-            Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-        </div>
 
         <div className="menu">
-          <h2>Choose a Style</h2>
-          <button onClick={this.handleStyleChange} data-style="dashed">dashed</button>
+        <select>
+          <option disabled selected value> borders </option>
+          <option onClick={this.handleBorderInput} id='dotted' value='dotted' >dotted</option>
+          <option onClick={this.handleBorderInput} id='dashed' value='dashed' >dashed</option>
+          <option onClick={this.handleBorderInput} id='solid'value='solid'>solid</option>
+        </select>
+
+        <select>
+          <option disabled selected value> colors </option>
+          <option onClick={this.handleTextColorInput} id='blue' value='blue' >blue</option>
+          <option onClick={this.handleTextColorInput} id='red' value='red' >red</option>
+          <option onClick={this.handleTextColorInput} id='green'value='green'>green</option>
+        </select>
+          {/* <h2>Choose a Style</h2>
+          <button onClick={this.handleStyleSubmit} >dashed</button> */}
         </div>
       </div>
     );
