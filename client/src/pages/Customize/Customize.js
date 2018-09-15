@@ -25,15 +25,9 @@ class Customize extends Component {
 
   }
 
-  toggleBorders() {
+  toggle(type) {
     this.setState(prevState => ({
-      dropdownBordersOpen: !prevState.dropdownBordersOpen
-    }));
-  }
-
-  toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
+      type: !prevState.dropdownOpen
     }));
   }
 
