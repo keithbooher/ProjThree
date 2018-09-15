@@ -104,3 +104,18 @@
 :-ms-input-placeholder {
     font-style: italic; 
 }
+
+
+.userProfileStars {
+    color: unset;
+    margin-left: 1rem;
+}
+
+.checked {
+    color: #ffa500;
+}
+
+.userProfileStars {
+    color: unset;
+    margin-left: 1rem;
+}
