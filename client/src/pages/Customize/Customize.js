@@ -10,11 +10,24 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 
 
 class Customize extends Component {
-  state = {
+  constructor(props) {
+    super(props)
+    this.toggle = this.toggle.bind(this);
+
+  this.state = {
     amount: 0,
     products: [],
-    user: {}
+    user: {},
+    dropdownOpen: true
   };
+
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
+  }
 
   componentDidMount() {
     // this.loadProducts();
@@ -58,15 +71,23 @@ class Customize extends Component {
       );
   };
 
-  handleStyleChange = input => {
+  handleStyleInput = event => {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen,
+      value: event.target.innerText
+    });  
+    console.log(event.target.innerText)
+  }
+
+  handleStyleSubmit = input => {
     console.log("well, this is good?")
     const currentUser = this.state.user._id;
     const styleData = {
       border: input.target.value
     }
-    // API.changeStyle(currentUser, styleData)
-    //   .then(console.log("success"))
-    //   .catch(err => console.log(err));
+    API.changeStyle(currentUser, styleData)
+      .then(console.log("success"))
+      .catch(err => console.log(err));
     console.log(styleData)
     
   }
@@ -83,23 +104,31 @@ class Customize extends Component {
         <SideBar user={this.state.user} />
 
         <div className="stuff">
+        {/* <div className="dropdown">
+          <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Borders
+          </button>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a className="dropdown-item" onClick={this.handleStyleInput('dotted')} id='dotted' value='dotted' href="#">dotted</a>
+            <a className="dropdown-item" onClick={this.handleStyleInput('dashed')} id='dashed' value='dashed' href="#">dashed action</a>
+            <a className="dropdown-item" onClick={this.handleStyleInput('solid')} id='solid'value='solid' href="#">Something else here</a>
+          </div>
+        </div> */}
           <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
           <DropdownToggle caret>
-            Dropdown
+            Borders
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
+            <DropdownItem onClick={this.handleStyleInput} id='dotted' value='dotted' >dotted</DropdownItem>
+            <DropdownItem onClick={this.handleStyleInput} id='dashed' value='dashed' >dashed</DropdownItem>
+            <DropdownItem onClick={this.handleStyleInput} id='solid'value='solid'>solid</DropdownItem>
           </DropdownMenu>
         </Dropdown>
         </div>
 
         <div className="menu">
           <h2>Choose a Style</h2>
-          <button onClick={this.handleStyleChange} data-style="dashed">dashed</button>
+          <button onClick={this.handleStyleSubmit} >dashed</button>
         </div>
       </div>
     );

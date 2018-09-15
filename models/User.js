@@ -26,7 +26,7 @@ const userSchema = new Schema({
     },
     img: {
         type: String,
-        default: " "
+        default: ""
     },
     pageViews: {
         type: Number,
