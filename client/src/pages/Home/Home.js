@@ -19,6 +19,7 @@ class App extends Component {
     carouselImageURLs: [],
     carouselImageProduct: [],
     carouselImageArtist: [],
+    carouselArtistIDs: [],
     user: {}
   };
 
@@ -81,6 +82,21 @@ class App extends Component {
       });
       console.log("*****LOOK HERE**********", this.state.carouselImageArtist);
     }
+    this.getArtistIDs();
+  };
+
+  getArtistIDs = () => {
+    const carouselObjects = this.state.carousel;
+
+    for (let i = 0; i < carouselObjects.length; i++) {
+      console.log("artist Name", carouselObjects[i].associatedID);
+      this.setState({
+        carouselArtistIDs: this.state.carouselArtistIDs.concat(
+          carouselObjects[i].associatedID
+        )
+      });
+      console.log("*****LOOK HERE**********", this.state.carouselArtistIDs);
+    }
   };
 
   loadCurrentUser = () => {
@@ -129,7 +145,7 @@ class App extends Component {
         ) : (
           <Header key="1" amount={this.state.amount} />
         )}
-        {this.state.carouselImageArtist ? (
+        {this.state.carouselArtistIDs ? (
           <HomeArt
             imagePlaceholder={this.state.imagePlaceholder}
             firstImage={this.state.carouselImageURLs[0]}
@@ -152,6 +168,13 @@ class App extends Component {
             fourthArtistName={this.state.carouselImageArtist[3]}
             fifthArtistName={this.state.carouselImageArtist[4]}
             sixthArtistName={this.state.carouselImageArtist[5]}
+            ///////////////////////////////////////////////
+            firstArtistIDs={this.state.carouselArtistIDs[0]}
+            secondArtistIDs={this.state.carouselArtistIDs[1]}
+            thirdArtistIDs={this.state.carouselArtistIDs[2]}
+            fourthArtistIDs={this.state.carouselArtistIDs[3]}
+            fifthArtistIDs={this.state.carouselArtistIDs[4]}
+            sixthArtistIDs={this.state.carouselArtistIDs[5]}
           />
         ) : (
           ""
