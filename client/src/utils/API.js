@@ -11,7 +11,7 @@ export default {
   },
   // Gets the book with the given id
   getCarouselProduct: function(id) {
-    return axios.get("/api/product/" + id);
+    return axios.get("/api/carousel/");
   },
   // Deletes the book with the given id
   deleteProduct: function(id) {

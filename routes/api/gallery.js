@@ -45,7 +45,7 @@ module.exports = app => {
       .catch(err => res.status(422).json(err));
   });
 
-  app.get("/api/product", (req, res) => {
+  app.get("/api/carousel", (req, res) => {
     console.log(req);
     Product.find(req.body)
       .sort({ datePosted: -1 })
