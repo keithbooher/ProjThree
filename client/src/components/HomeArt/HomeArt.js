@@ -15,7 +15,9 @@ const HomeArt = props => (
         />
         <Carousel.Caption>
           <h3>{props.firstProductName}</h3>
-          <p>{props.firstArtistName}</p>
+          <Link to={`/artist/${props.firstArtistIDs}`}>
+            <p>{props.firstArtistName}</p>
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -27,7 +29,9 @@ const HomeArt = props => (
         />
         <Carousel.Caption>
           <h3>{props.secondProductName}</h3>
-          <p>{props.secondArtistName}</p>
+          <Link to={`/artist/${props.secondArtistIDs}`}>
+            <p>{props.secondArtistName}</p>
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -39,7 +43,9 @@ const HomeArt = props => (
         />
         <Carousel.Caption>
           <h3>{props.thirdProductName}</h3>
-          <p>{props.thirdArtistName}</p>
+          <Link to={`/artist/${props.thirdArtistIDs}`}>
+            <p>{props.thirdArtistName}</p>
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -51,7 +57,9 @@ const HomeArt = props => (
         />
         <Carousel.Caption>
           <h3>{props.fourthProductName}</h3>
-          <p>{props.fourthArtistName}</p>
+          <Link to={`/artist/${props.fourthArtistIDs}`}>
+            <p>{props.fourthArtistName}</p>
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -63,7 +71,9 @@ const HomeArt = props => (
         />
         <Carousel.Caption>
           <h3>{props.fifthProductName}</h3>
-          <p>{props.fifthArtistName}</p>
+          <Link to={`/artist/${props.fifthArtistIDs}`}>
+            <p>{props.fifthArtistName}</p>
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -75,7 +85,9 @@ const HomeArt = props => (
         />
         <Carousel.Caption>
           <h3>{props.sixthProductName}</h3>
-          <p>{props.sixthArtistName}</p>
+          <Link to={`/artist/${props.sixthArtistIDs}`}>
+            <p>{props.sixthArtistName}</p>
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
