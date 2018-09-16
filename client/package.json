@@ -12,6 +12,7 @@
     }
   },
   "dependencies": {
+    "3d-react-carousal": "^2.0.1",
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "is-buffer": "^2.0.3",
