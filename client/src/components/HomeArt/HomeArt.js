@@ -1,6 +1,9 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
 import "./HomeArt.css";
+
+import { Link } from "react-router-dom";
+
 const HomeArt = props => (
   <div className="carousel">
     <Carousel>
@@ -11,8 +14,8 @@ const HomeArt = props => (
           src={props.firstImage}
         />
         <Carousel.Caption>
-          <h3>Vincent Van Gogh</h3>
-          <p>"The Starry Night"</p>
+          <h3>{props.firstProductName}</h3>
+          <p>{props.firstArtistName}</p>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -23,10 +26,11 @@ const HomeArt = props => (
           src={props.secondImage}
         />
         <Carousel.Caption>
-          <h3>Katsushika Hokusai</h3>
-          <p>"The Great Wave off Kanagawa"</p>
+          <h3>{props.secondProductName}</h3>
+          <p>{props.secondArtistName}</p>
         </Carousel.Caption>
       </Carousel.Item>
+
       <Carousel.Item>
         <img
           className="carouselImage"
@@ -34,8 +38,44 @@ const HomeArt = props => (
           src={props.thirdImage}
         />
         <Carousel.Caption>
-          <h3>Pablo Picasso</h3>
-          <p>"Kiss"</p>
+          <h3>{props.thirdProductName}</h3>
+          <p>{props.thirdArtistName}</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+
+      <Carousel.Item>
+        <img
+          className="carouselImage"
+          alt={props.fourthImage}
+          src={props.fourthImage}
+        />
+        <Carousel.Caption>
+          <h3>{props.fourthProductName}</h3>
+          <p>{props.fourthArtistName}</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+
+      <Carousel.Item>
+        <img
+          className="carouselImage"
+          alt={props.fifthImage}
+          src={props.fifthImage}
+        />
+        <Carousel.Caption>
+          <h3>{props.fifthProductName}</h3>
+          <p>{props.fifthArtistName}</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+
+      <Carousel.Item>
+        <img
+          className="carouselImage"
+          alt={props.sixthImage}
+          src={props.sixthImage}
+        />
+        <Carousel.Caption>
+          <h3>{props.sixthProductName}</h3>
+          <p>{props.sixthArtistName}</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
