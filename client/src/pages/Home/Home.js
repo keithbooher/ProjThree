@@ -7,9 +7,8 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import HomeArt from "../../components/HomeArt/HomeArt";
-// import firstImage from "../../assets/images/art1.jpg";
-// import secondImage from "../../assets/images/art2.jpg";
-// import thirdImage from "../../assets/images/art3.jpg";
+// import { Carousel } from '3d-react-carousal';
+
 import "./Home.css";
 
 class App extends Component {
@@ -97,7 +96,24 @@ class App extends Component {
       });
       console.log("*****LOOK HERE**********", this.state.carouselArtistIDs);
     }
+
   };
+
+  // slides = () => {
+  //   let urls = this.state.carouselImageURLs
+  //   console.log(urls)
+
+  //   let slides = [
+  //     <img className="carouselImage" src={urls[0]} alt="1" />,
+  //     <img className="carouselImage" src={urls[1]} alt="2" />,
+  //     <img className="carouselImage" src={urls[2]} alt="3" />,
+  //     <img className="carouselImage" src={urls[3]} alt="4" />,
+  //     <img className="carouselImage" src={urls[4]} alt="5" />,
+  //     <img className="carouselImage" src={urls[5]} alt="6" />
+  //   ];
+
+  //   return slides
+  // }
 
   loadCurrentUser = () => {
     fetch("/api/current_user")
@@ -129,13 +145,6 @@ class App extends Component {
       );
   };
 
-  clicked = name => {
-    console.log("test");
-    console.log("name", name); // trying to return the name of the product name
-
-    const updatedAmount = this.state.amount + 1;
-    this.setState({ amount: updatedAmount });
-  };
 
   render() {
     return (
@@ -143,9 +152,13 @@ class App extends Component {
         {this.state.user.admin ? (
           <AdminHeader amount={this.state.amount} />
         ) : (
-          <Header key="1" amount={this.state.amount} />
-        )}
+            <Header key="1" amount={this.state.amount} />
+          )}
         {this.state.carouselArtistIDs ? (
+          // <div className="carouselStuff">
+          //   <Carousel slides={this.slides()} />
+          // </div>
+
           <HomeArt
             imagePlaceholder={this.state.imagePlaceholder}
             firstImage={this.state.carouselImageURLs[0]}
@@ -177,8 +190,8 @@ class App extends Component {
             sixthArtistIDs={this.state.carouselArtistIDs[5]}
           />
         ) : (
-          ""
-        )}
+            ""
+          )}
         <SideBar user={this.state.user} />
         <MissionStatement />
         {/* <HomeArt
