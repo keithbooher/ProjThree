@@ -29,6 +29,10 @@
     grid-area: cs
 }
 
+.carouselLag {
+    grid-area: csl
+}
+
 .footer {
     grid-area: footer
 }

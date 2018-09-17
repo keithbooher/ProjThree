@@ -7,6 +7,8 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import HomeArt from "../../components/HomeArt/HomeArt";
+import HomeArtLag from "../../components/HomeArt/HomeArtLag";
+
 // import { Carousel } from '3d-react-carousal';
 
 import "./Home.css";
@@ -189,6 +191,38 @@ class App extends Component {
             fifthArtistIDs={this.state.carouselArtistIDs[4]}
             sixthArtistIDs={this.state.carouselArtistIDs[5]}
           />
+
+          /* <HomeArtLag
+            imagePlaceholder={this.state.imagePlaceholder}
+            firstImage={this.state.carouselImageURLs[0]}
+            secondImage={this.state.carouselImageURLs[1]}
+            thirdImage={this.state.carouselImageURLs[2]}
+            fourthImage={this.state.carouselImageURLs[3]}
+            fifthImage={this.state.carouselImageURLs[4]}
+            sixthImage={this.state.carouselImageURLs[5]}
+            ///////////////////////////////////////////////
+            firstProductName={this.state.carouselImageProduct[0]}
+            secondProductName={this.state.carouselImageProduct[1]}
+            thirdProductName={this.state.carouselImageProduct[2]}
+            fourthProductName={this.state.carouselImageProduct[3]}
+            fifthProductName={this.state.carouselImageProduct[4]}
+            sixthProductName={this.state.carouselImageProduct[5]}
+            ///////////////////////////////////////////////
+            firstArtistName={this.state.carouselImageArtist[0]}
+            secondArtistName={this.state.carouselImageArtist[1]}
+            thirdArtistName={this.state.carouselImageArtist[2]}
+            fourthArtistName={this.state.carouselImageArtist[3]}
+            fifthArtistName={this.state.carouselImageArtist[4]}
+            sixthArtistName={this.state.carouselImageArtist[5]}
+            ///////////////////////////////////////////////
+            firstArtistIDs={this.state.carouselArtistIDs[0]}
+            secondArtistIDs={this.state.carouselArtistIDs[1]}
+            thirdArtistIDs={this.state.carouselArtistIDs[2]}
+            fourthArtistIDs={this.state.carouselArtistIDs[3]}
+            fifthArtistIDs={this.state.carouselArtistIDs[4]}
+            sixthArtistIDs={this.state.carouselArtistIDs[5]}
+          /> */
+
         ) : (
             ""
           )}

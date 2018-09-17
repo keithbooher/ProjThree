@@ -6,7 +6,7 @@ const NewArtCard = props => (
   <div className="artCard">
     <img
       onClick={() => props.enlargeImage(props.id)}
-      className={`card-img-top  firstImage`}
+      className={`card-img-top images${props.id} firstImage`}
       src={props.image}
       alt={props.productName}
     />
@@ -34,18 +34,18 @@ const NewArtCard = props => (
     {props.sold ? (
       <div className="checkout btn"> Sold Out </div>
     ) : (
-      <Payments
-        price={props.price}
-        targetStripe={props.targetStripe}
-        platformFee={props.platformFee}
-        currentUserEmail={props.currentUserEmail}
-        artistEmail={props.artistEmail}
-        productName={props.productName}
-        productID={props.productID}
-        image={props.image}
-        firstName={props.currentUserName}
-      />
-    )}
+        <Payments
+          price={props.price}
+          targetStripe={props.targetStripe}
+          platformFee={props.platformFee}
+          currentUserEmail={props.currentUserEmail}
+          artistEmail={props.artistEmail}
+          productName={props.productName}
+          productID={props.productID}
+          image={props.image}
+          firstName={props.currentUserName}
+        />
+      )}
   </div>
 );
 
