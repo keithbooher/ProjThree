@@ -50,11 +50,6 @@ class Artist extends Component {
     API.getStyle(this.state.user._id).then(result =>
       console.log("THE THING IM LOOKING FOR", result.data)
     );
-    // result => {
-    // this.setState({ styles: result });
-    // this.isThisTheCurrentUsersPage();
-    // })
-    // .catch(err => console.log(err));
   };
 
   loadUsersProducts = () => {
@@ -81,8 +76,6 @@ class Artist extends Component {
       .then(res => {
         users = res.data;
         for (let i = 0; i < users.length; i++) {
-          // console.log('userID', users[i])
-          // console.log('targetedID', targetedID)
           if (users[i]._id === targetedID) {
             this.setState({ user: users[i] });
             this.loadProductIds();
