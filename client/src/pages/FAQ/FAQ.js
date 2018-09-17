@@ -53,15 +53,15 @@ class FAQ extends Component {
                     )}
 
                 <div className="FAQ">
-                    <h2>Does are there any fees?</h2>
+                    <h2>Are there any fees?</h2>
                     <p>Art Gutter Takes a competitive 5% of sale price</p>
                     <br />
                     <h2>How can I change my user name?</h2>
                     <p>ArtGutter uses your Gmail first Name. You can either change your settings in your gmail, or make a Gmail specific to your artist brand.</p>
-                    <br/>
+                    <br />
                     <h2>GUIDE TO BECOME ADMIN</h2>
                     <h4>Here at ArtGutter artists are able to sell art after becoming an admin</h4>
-                    <p>Art Gutter uses world trusted 3rd party payment prcessor, Stripe</p>                    
+                    <p>Art Gutter uses world trusted 3rd party payment prcessor, Stripe</p>
                     <ul>
                         <li>Sign in</li>
                         <li>Go to "Become Admin" located in the sidebar</li>
