@@ -13,6 +13,8 @@ import Post from "../pages/Post";
 import Delete from "../pages/Delete";
 import MostVisited from "../pages/MostVisited";
 import Following from "../pages/Following";
+import FAQ from "../pages/FAQ";
+
 
 
 // import Checkout from "../pages/Checkout";
@@ -30,13 +32,14 @@ const App = () => (
         <Route exact path="/new" component={NewArt} />
         <Route exact path="/adminform" component={AdminForm} />
         <Route exact path="/artists" component={Artists} />
+        <Route exact path="/faq" component={FAQ} />
         <Route exact path="/artist/:id" component={Artist} />
         <Route exact path="/product/:id" component={Product} />
         <Route exact path="/customize" component={Customize} />
-        <Route exact path="/usersettings" component={UserSettings} /> 
-        <Route exact path="/mostvisited" component={MostVisited} />               
-        <Route exact path="/inventory" component={ManageInventory} />  
-        <Route exact path="/following" component={Following} />                                              
+        <Route exact path="/usersettings" component={UserSettings} />
+        <Route exact path="/mostvisited" component={MostVisited} />
+        <Route exact path="/inventory" component={ManageInventory} />
+        <Route exact path="/following" component={Following} />
         <Route exact path="/post" component={Post} />
         <Route exact path="/delete" component={Delete} />
         {/* <Route exact path="/checkout/:id" component={Checkout} /> */}
