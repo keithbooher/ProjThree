@@ -19,8 +19,9 @@ class Customize extends Component {
     products: [],
     user: {},
     dropdownBordersOpen: true,
-    dropdownOpen: true
-    
+    dropdownOpen: true,
+    border: "none",
+    color: ""
   };
 
   }
@@ -96,7 +97,8 @@ class Customize extends Component {
   }
   
 
-  handleStyleSubmit = input => {
+  handleStyleSubmit = event => {
+    event.preventDefault();
     console.log("well, this is good?")
     const currentUser = this.state.user._id;
     const styleData = {
@@ -127,15 +129,17 @@ class Customize extends Component {
           <option onClick={this.handleBorderInput} id='dotted' value='dotted' >dotted</option>
           <option onClick={this.handleBorderInput} id='dashed' value='dashed' >dashed</option>
           <option onClick={this.handleBorderInput} id='solid'value='solid'>solid</option>
-          <option onClick={this.handleBorderInput} id='none'value='none'>solid</option>
+          <option onClick={this.handleBorderInput} id='none'value='none'>none</option>
         </select>
-
+        <br/>
         <select>
           <option disabled selected value> colors </option>
           <option onClick={this.handleTextColorInput} id='blue' value='blue' >blue</option>
           <option onClick={this.handleTextColorInput} id='red' value='red' >red</option>
           <option onClick={this.handleTextColorInput} id='green'value='green'>green</option>
         </select>
+        <br/>
+        <button onClick={handleStyleSubmit}>Submit</button>
           {/* <h2>Choose a Style</h2>
           <button onClick={this.handleStyleSubmit} >dashed</button> */}
         </div>
