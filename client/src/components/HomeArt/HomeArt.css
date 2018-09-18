@@ -1,6 +1,6 @@
 .carouselImage {
     height: -webkit-fill-available !important;
-    width: 100%;
+    margin:auto;
 }
 
 .carousel-caption {

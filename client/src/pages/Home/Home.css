@@ -29,7 +29,16 @@
     grid-area: cs
 }
 
+.carouselLag {
+    grid-area: csl
+}
+
 .footer {
     grid-area: footer
 }
+
+/* .carouselImage {
+    height: 100% !important;
+    width: 100%;
+} */
 

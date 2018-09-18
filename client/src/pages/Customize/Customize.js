@@ -127,6 +127,7 @@ class Customize extends Component {
           <option onClick={this.handleBorderInput} id='dotted' value='dotted' >dotted</option>
           <option onClick={this.handleBorderInput} id='dashed' value='dashed' >dashed</option>
           <option onClick={this.handleBorderInput} id='solid'value='solid'>solid</option>
+          <option onClick={this.handleBorderInput} id='none'value='none'>solid</option>
         </select>
 
         <select>
