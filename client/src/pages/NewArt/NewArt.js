@@ -72,10 +72,10 @@ class Home extends Component {
       captionText = node.querySelector(`.caption${i}`);
     }
 
-    console.log("modal", modal);
-    console.log("modalImg", modalImg);
-    console.log("captionText", captionText);
-    console.log("src", img.src);
+    // console.log("modal", modal);
+    // console.log("modalImg", modalImg);
+    // console.log("captionText", captionText);
+    // console.log("src", img.src);
 
     modal.style.display = "block";
     modalImg.src = img.src;
@@ -96,10 +96,10 @@ class Home extends Component {
     return (
       <div className="newArtGrid">
         {this.state.currentUser.admin ? (
-          <AdminHeader/>
+          <AdminHeader />
         ) : (
-          <Header key="1"/>
-        )}
+            <Header key="1" />
+          )}
         <SideBar user={this.state.user} />
         {console.log("MAP STATE", this.state.products)}
         <div className="allCards">

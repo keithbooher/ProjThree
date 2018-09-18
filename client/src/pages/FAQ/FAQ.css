@@ -1,0 +1,17 @@
+.FAQGrid {
+    display: grid;
+    grid-template-columns: 5% repeat(4, 1fr) 5%;
+    grid-template-rows: 20vh repeat(2, 1fr) 10vh;
+    grid-template-areas:
+    "header header header header header header"
+    ". sidebar FAQ FAQ FAQ ."
+    ". sidebar FAQ FAQ FAQ ."
+    "footer footer footer footer footer footer";
+    grid-gap: 2rem   
+}
+
+.FAQ {
+    grid-area: FAQ;
+    margin: 0;
+    color: white;
+}
