@@ -38,7 +38,7 @@
     height: fit-content;
     margin-bottom: 3rem;
     background: #000000;
-    color: #ffffff;
+    /* color: #ffffff; */
     font-size: 1.2rem;
 }
 
@@ -48,8 +48,3 @@
     border-bottom: solid 1px #ffffff;
 }
 
-.dotted{
-  border-width: 5px;
-  border-color: chartreuse;
-  border-style: dotted
-}
