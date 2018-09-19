@@ -28,7 +28,7 @@ class Artist extends Component {
     change: false
   };
 
-  
+
 
   componentDidMount() {
     console.log(this);
@@ -47,12 +47,12 @@ class Artist extends Component {
     this.loadUsersProducts();
   };
 
-  loadStyles = () => {
-    console.log(this.state.user._id);
-    API.getStyle(this.state.user._id).then(result =>
-      console.log("THE THING IM LOOKING FOR", result.data)
-    );
-  };
+  // loadStyles = () => {
+  //   console.log(this.state.user._id);
+  //   API.getStyle(this.state.user._id).then(result =>
+  //     console.log("THE THING IM LOOKING FOR", result.data)
+  //   );
+  // };
 
   loadUsersProducts = () => {
     const productIDs = this.state.productIDs;
@@ -252,7 +252,7 @@ class Artist extends Component {
     API.followArtist(thisUser, targetIDObect)
       .then(result => {
         if (result) {
-          this.setState({ followrefresh: true }, function() {
+          this.setState({ followrefresh: true }, function () {
             this.doYouFollowThisArtistAlready();
             this.setState({ change: true });
           });
@@ -322,49 +322,49 @@ class Artist extends Component {
             {this.isThisTheCurrentUsersPage() ? (
               " "
             ) : (
-              <div className="artistRating">
-                {this.state.ratingSubmitted ? (
-                  <h4 className="ratingSubmitMessage">
-                    Thank you for submitting your feedback
+                <div className="artistRating">
+                  {this.state.ratingSubmitted ? (
+                    <h4 className="ratingSubmitMessage">
+                      Thank you for submitting your feedback
                   </h4>
-                ) : (
-                  <div>
-                    <Star
-                      idOne={1}
-                      idTwo={2}
-                      idThree={3}
-                      idFour={4}
-                      idFive={5}
-                      star={this.star}
-                    />
+                  ) : (
+                      <div>
+                        <Star
+                          idOne={1}
+                          idTwo={2}
+                          idThree={3}
+                          idFour={4}
+                          idFive={5}
+                          star={this.star}
+                        />
 
-                    {this.isRateStateFilled() ? (
-                      <button
-                        className="checkout btn"
-                        onClick={() => this.submitRating()}
-                      >
-                        Submit Rating
+                        {this.isRateStateFilled() ? (
+                          <button
+                            className="checkout btn"
+                            onClick={() => this.submitRating()}
+                          >
+                            Submit Rating
                       </button>
-                    ) : (
-                      " "
+                        ) : (
+                            " "
+                          )}
+                      </div>
                     )}
-                  </div>
-                )}
-                <br />
-                {this.state.alreadyFollowing ? (
-                  "Thank you for following me!"
-                ) : !this.state.change ? (
-                  <button
-                    className="btn-info btn"
-                    onClick={() => this.followArtist()}
-                  >
-                    Follow Artist
+                  <br />
+                  {this.state.alreadyFollowing ? (
+                    "Thank you for following me!"
+                  ) : !this.state.change ? (
+                    <button
+                      className="btn-info btn"
+                      onClick={() => this.followArtist()}
+                    >
+                      Follow Artist
                   </button>
-                ) : (
-                  "Thank you for following me!"
-                )}
-              </div>
-            )}
+                  ) : (
+                        "Thank you for following me!"
+                      )}
+                </div>
+              )}
           </div>
 
           <div className="productCard">
@@ -387,7 +387,7 @@ class Artist extends Component {
                   quantity={product.data.quantity}
                   enlargeImage={this.enlargeImage}
                   shrinkImage={this.shrinkImage}
-                  style={this.state.user.style}
+                // style={this.state.user.style}
                 />
               );
             })}

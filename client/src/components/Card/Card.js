@@ -27,7 +27,7 @@ const Card = props => (
       <div className={`caption${props.id} captions`} />
     </div>
 
-    <div className={`card-body`} style={props.style.fontColor}>
+    <div className={`card-body`}>
       <h5 className="card-title">{props.productName}</h5>
       <p className="card-text">${props.price}</p>
       <p className="card-text">{props.description}</p>
@@ -37,18 +37,18 @@ const Card = props => (
     {props.sold ? (
       <div className="checkout btn"> Sold Out </div>
     ) : (
-      <Payments
-        price={props.price}
-        targetStripe={props.targetStripe}
-        platformFee={props.platformFee}
-        currentUserEmail={props.currentUserEmail}
-        artistEmail={props.artistEmail}
-        productName={props.productName}
-        productID={props.productID}
-        image={props.image}
-        firstName={props.currentUserName}
-      />
-    )}
+        <Payments
+          price={props.price}
+          targetStripe={props.targetStripe}
+          platformFee={props.platformFee}
+          currentUserEmail={props.currentUserEmail}
+          artistEmail={props.artistEmail}
+          productName={props.productName}
+          productID={props.productID}
+          image={props.image}
+          firstName={props.currentUserName}
+        />
+      )}
   </div>
 );
 
