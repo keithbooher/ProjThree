@@ -368,31 +368,33 @@ class Artist extends Component {
               )}
           </div>
 
-          <div className="productCard">
-            {this.state.products.map((product, i) => {
-              return (
-                <Card
-                  key={i}
-                  id={i}
-                  image={product.data.img}
-                  price={product.data.price}
-                  description={product.data.description}
-                  productName={product.data.productName}
-                  artistEmail={product.data.email}
-                  currentUserEmail={this.state.currentUser.email}
-                  currentUserName={this.state.currentUser.firstName}
-                  targetStripe={product.data.stripeAccount}
-                  platformFee={product.data.platformFee}
-                  productID={product.data._id}
-                  sold={product.data.sold}
-                  quantity={product.data.quantity}
-                  enlargeImage={this.enlargeImage}
-                  shrinkImage={this.shrinkImage}
-                // style={this.state.user.style}
-                />
-              );
-            })}
-          </div>
+          {this.state.user ?
+            <div className="productCard">
+              {this.state.products.map((product, i) => {
+                return (
+                  <Card
+                    key={i}
+                    id={i}
+                    image={product.data.img}
+                    price={product.data.price}
+                    description={product.data.description}
+                    productName={product.data.productName}
+                    artistEmail={product.data.email}
+                    currentUserEmail={this.state.currentUser.email}
+                    currentUserName={this.state.currentUser.firstName}
+                    targetStripe={product.data.stripeAccount}
+                    platformFee={product.data.platformFee}
+                    productID={product.data._id}
+                    sold={product.data.sold}
+                    quantity={product.data.quantity}
+                    enlargeImage={this.enlargeImage}
+                    shrinkImage={this.shrinkImage}
+                    style={this.state.user.style}
+                  />
+                );
+              })}
+            </div> : " "}
+
         </div>
       </div>
     );
