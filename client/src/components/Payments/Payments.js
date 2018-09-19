@@ -38,7 +38,7 @@ class Payments extends Component {
         billingAddress={true}
         email={this.props.currentUserEmail}
       >
-        <button className="checkout btn">Buy</button>
+        <button className="checkout btn">Buy Now</button>
       </StripeCheckout>
     );
   }
