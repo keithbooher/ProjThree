@@ -44,9 +44,49 @@ const userSchema = new Schema({
     }
   ],
   style: {
-    border: {
+    borderStyle: {
       type: String,
       default: "none"
+    },
+    borderColor: {
+      type: String,
+      default: ""
+    },
+    borderColor2: {
+      type: String,
+      default: ""
+    },
+    borderWidth: {
+      type: String,
+      default: "0px"
+    },
+    borderRadius: {
+      type: String,
+      default: ""
+    },
+    borderAnimantion: {
+      type: String,
+      default: ""
+    },
+    fontColor: {
+      type: String,
+      default: "#ffffff"
+    },
+    fontFamily: {
+      type: String,
+      default: ""
+    },
+    cardBackground: {
+      type: String,
+      default: ""
+    },
+    pageLayout: {
+      type: String,
+      default: ""
+    },
+    pageBackground: {
+      type: String,
+      default: ""
     }
   }
 });
