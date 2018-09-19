@@ -6,7 +6,7 @@ import "./Card.css";
 
 const Card = props => (
 
-  <div className="artCard" style={props.style}>
+  <div className="artCard" style={props.borderStyle}>
     <img
       onClick={() => props.enlargeImage(props.id)}
       className={`card-img-top images${props.id} firstImage`}
@@ -28,11 +28,11 @@ const Card = props => (
     </div>
 
     <div className={`card-body`}>
-      <h5 className="card-title">{props.productName}</h5>
-      <p className="card-text">${props.price}</p>
-      <p className="card-text">{props.description}</p>
+      <h5 className="card-title" style={props.textStyle}>{props.productName}</h5>
+      <p className="card-text" style={props.textStyle}>${props.price}</p>
+      <p className="card-text" style={props.textStyle}>{props.description}</p>
       <a href={`/artist/${props.artistID}`}>{props.artistName}</a>
-      <p className="card-text">Stock: {props.quantity}</p>
+      <p className="card-text" style={props.textStyle}>Stock: {props.quantity}</p>
     </div>
     {props.sold ? (
       <div className="checkout btn"> Sold Out </div>
