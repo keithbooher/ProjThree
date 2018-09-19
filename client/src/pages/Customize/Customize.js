@@ -12,31 +12,43 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 class Customize extends Component {
   constructor(props) {
     super(props)
-    this.toggle = this.toggle.bind(this);
-
   this.state = {
     amount: 0,
     products: [],
     user: {},
     dropdownBordersOpen: true,
     dropdownOpen: true,
-    border: "none",
-    color: ""
+    borderStyle: "none",
+    fontColor: "red"
   };
 
   }
 
-  toggleBorders() {
-    this.setState(prevState => ({
-      dropdownBordersOpen: !prevState.dropdownBordersOpen
-    }));
+  handleBorderInput = event => {
+    this.setState({border: event.target.value}) 
+    console.log(event.target.value)
   }
 
-  toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen
-    }));
+  handleTextColorInput = event => {
+    this.setState({color: event.target.value});
   }
+
+  handleStyleSubmit = event => {
+    event.preventDefault();
+    console.log("well, this is good?")
+    console.log(this.state.border)
+    const currentUser = this.state.user._id;
+    const styleData = {
+       borderStyle: this.state.border,
+       fontColor: this.state.color
+    }
+    API.changeStyle(currentUser, styleData)
+      .then(console.log("success"))
+      .catch(err => console.log(err));
+    console.log(styleData)
+    
+  }
+  
 
   componentDidMount() {
     // this.loadProducts();
@@ -79,39 +91,7 @@ class Customize extends Component {
         }
       );
   };
-
-  handleBorderInput = event => {
-    this.setState({
-      dropdownBorderOpen: !this.state.dropdownBorderOpen,
-      value: event.target.innerText
-    });  
-    console.log(event.target.innerText)
-  }
-
-  handleTextColorInput = event => {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen,
-      value: event.target.innerText
-    });  
-    console.log(event.target.innerText)
-  }
-  
-
-  handleStyleSubmit = event => {
-    event.preventDefault();
-    console.log("well, this is good?")
-    const currentUser = this.state.user._id;
-    const styleData = {
-      border: input.target.value
-    }
-    API.changeStyle(currentUser, styleData)
-      .then(console.log("success"))
-      .catch(err => console.log(err));
-    console.log(styleData)
-    
-  }
-
-
+ 
   render() {
     return (
       <div className="customizeGrid">
@@ -124,22 +104,55 @@ class Customize extends Component {
 
 
         <div className="menu">
-        <select>
-          <option disabled selected value> borders </option>
-          <option onClick={this.handleBorderInput} id='dotted' value='dotted' >dotted</option>
-          <option onClick={this.handleBorderInput} id='dashed' value='dashed' >dashed</option>
-          <option onClick={this.handleBorderInput} id='solid'value='solid'>solid</option>
-          <option onClick={this.handleBorderInput} id='none'value='none'>none</option>
+        <select value={this.state.border} onChange={this.handleBorderInput}>
+          <option disabled selected value>Set Border Style</option>
+          <option id='dotted' value='dotted' >Dotted</option>
+          <option id='dashed' value='dashed' >Dashed</option>
+          <option id='solid'value='solid'>Solid</option>
+          <option id='none'value='none'>None</option>
         </select>
         <br/>
-        <select>
-          <option disabled selected value> colors </option>
-          <option onClick={this.handleTextColorInput} id='blue' value='blue' >blue</option>
-          <option onClick={this.handleTextColorInput} id='red' value='red' >red</option>
-          <option onClick={this.handleTextColorInput} id='green'value='green'>green</option>
+        <br/>
+        <br/>
+        <select onChange={this.handleTextColorInput} value={this.state.color}>
+          <option disabled selected value>Set Border Color</option>
+          <option id='blue' value='blue' >Blue</option>
+          <option id='red' value='red' >Red</option>
+          <option id='green'value='green'>Green</option>
+          <option id='green'value='#ffffff'>Default</option>
         </select>
         <br/>
-        <button onClick={handleStyleSubmit}>Submit</button>
+        <br/>
+        <br/>
+        <select onChange={this.handleTextColorInput} value={this.state.color}>
+          <option disabled selected value>Set Border Width</option>
+          <option id='blue' value='blue' >Blue</option>
+          <option id='red' value='red' >Red</option>
+          <option id='green'value='green'>Green</option>
+          <option id='green'value='#ffffff'>Default</option>
+        </select>
+        <br/>
+        <br/>
+        <br/>
+        <select onChange={this.handleTextColorInput} value={this.state.color}>
+          <option disabled selected value>Set Text Color</option>
+          <option id='blue' value='blue' >Blue</option>
+          <option id='red' value='red' >Red</option>
+          <option id='green'value='green'>Green</option>
+          <option id='green'value='#ffffff'>Default</option>
+        </select>
+        <br/>
+        <br/>
+        <br/>
+        <select onChange={this.handleTextColorInput} value={this.state.color}>
+          <option disabled selected value>Set Text Style</option>
+          <option id='blue' value='blue' >Blue</option>
+          <option id='red' value='red' >Red</option>
+          <option id='green'value='green'>Green</option>
+          <option id='green'value='#ffffff'>Default</option>
+        </select>
+        <br/>
+        <button onClick={this.handleStyleSubmit}>Submit</button>
           {/* <h2>Choose a Style</h2>
           <button onClick={this.handleStyleSubmit} >dashed</button> */}
         </div>
