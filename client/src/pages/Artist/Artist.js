@@ -195,6 +195,7 @@ class Artist extends Component {
     }
   };
 
+
   enlargeImage = i => {
     // Get the modal
     let img;
