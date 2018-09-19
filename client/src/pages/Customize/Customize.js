@@ -7,6 +7,7 @@ import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import "./Customize.css";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import Footer from "../../components/Footer/Footer";
 
 
 class Customize extends Component {
@@ -176,6 +177,7 @@ class Customize extends Component {
           {/* <h2>Choose a Style</h2>
           <button onClick={this.handleStyleSubmit} >dashed</button> */}
         </div>
+        < Footer/>
       </div>
     );
   }

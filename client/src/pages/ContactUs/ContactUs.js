@@ -7,6 +7,7 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import API from "../../utils/API";
 import "./Contact.css";
+import Footer from "../../components/Footer/Footer";
 
 class ContactUs extends Component {
   state = {
@@ -111,6 +112,7 @@ class ContactUs extends Component {
           submit={this.submitContactForm}
           onChange={this.handleInputChange}
         />
+        < Footer/>
       </div>
     );
   }

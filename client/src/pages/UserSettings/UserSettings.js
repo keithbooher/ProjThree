@@ -7,7 +7,7 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import AverageStar from "../../components/Star/AverageStar";
-
+import Footer from "../../components/Footer/Footer";
 import "./UserSettings.css";
 import { Redirect } from "react-router-dom";
 
@@ -264,6 +264,7 @@ class UserSettings extends Component {
             </button>
           </form>
         </div>
+        < Footer />
         {/* <div className={this.state.alertImg}>
           <h3 className="warning">Enter a picture</h3>
         </div> */}

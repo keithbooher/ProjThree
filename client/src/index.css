@@ -53,6 +53,14 @@ html {
     padding: 1.5rem;
 }
 
+.footerLinks {
+    padding-top: 1rem;
+}
+
+.footerLinks a {
+    padding: 1rem;
+}
+
 .form-group {
     margin: 0;
 }

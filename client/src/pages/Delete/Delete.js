@@ -6,6 +6,7 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import DeleteCard from "../../components/Card/DeleteCard";
+import Footer from "../../components/Footer/Footer";
 import "./Delete.css";
 
 class Delete extends Component {
@@ -129,6 +130,7 @@ class Delete extends Component {
               : ""}
           </div>
         </div>
+        < Footer/>
       </div>
     );
   }
