@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import API from "../../utils/API";
 import Header from "../../components/Navs/Header";
-// import { Row, Col } from "../../components/Grid";
 import SideBar from "../../components/Sidebar/Sidebar";
 import "./AdminForm.css";
 import Footer from "../../components/Footer/Footer";
