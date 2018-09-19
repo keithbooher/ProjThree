@@ -123,7 +123,7 @@ class Customize extends Component {
 
         <div className="menu">
         <select value={this.state.borderStyle} onChange={this.handleBorderStyleInput}>
-          <option disabled selected value>Set Border Style</option>
+          <option disabled>Set Border Style</option>
           <option id='dotted' value='dotted' >Dotted</option>
           <option id='dashed' value='dashed' >Dashed</option>
           <option id='solid'value='solid'>Solid</option>
@@ -173,8 +173,6 @@ class Customize extends Component {
         </select>
         <br/>
         <button onClick={this.handleStyleSubmit}>Submit</button>
-          {/* <h2>Choose a Style</h2>
-          <button onClick={this.handleStyleSubmit} >dashed</button> */}
         </div>
       </div>
     );

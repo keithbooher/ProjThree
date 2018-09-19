@@ -48,8 +48,3 @@
     border-bottom: solid 1px #ffffff;
 }
 
-.dotted{
-  border-width: 5px;
-  border-color: chartreuse;
-  border-style: dotted
-}

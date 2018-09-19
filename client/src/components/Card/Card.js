@@ -2,8 +2,11 @@ import React from "react";
 import Payments from "../Payments/Payments";
 import "./Card.css";
 
+
+
 const Card = props => (
-  <div className="artCard">
+
+  <div className="artCard" style={props.style}>
     <img
       onClick={() => props.enlargeImage(props.id)}
       className={`card-img-top images${props.id} firstImage`}
@@ -24,7 +27,7 @@ const Card = props => (
       <div className={`caption${props.id} captions`} />
     </div>
 
-    <div className={`card-body ${props.style.border}`}>
+    <div className={`card-body`} style={props.style.fontColor}>
       <h5 className="card-title">{props.productName}</h5>
       <p className="card-text">${props.price}</p>
       <p className="card-text">{props.description}</p>

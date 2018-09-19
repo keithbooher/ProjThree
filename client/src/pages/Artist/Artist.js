@@ -28,6 +28,8 @@ class Artist extends Component {
     change: false
   };
 
+  
+
   componentDidMount() {
     console.log(this);
     this.props.fetchUser();
