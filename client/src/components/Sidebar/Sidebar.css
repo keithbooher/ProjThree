@@ -13,6 +13,10 @@
     /* text-shadow: #c0c0c0 1px 1px; */
 }
 
+.sideBar {
+    overflow: overlay;
+}
+
 .header li {
     font-size: 1.3rem;
 }
@@ -36,7 +40,7 @@
     padding: 1rem;
     border-left: solid 2px #ffffff;
     border-right: solid 2px #ffffff;
-    border-bottom: solid 2px #ffffff;
+    border-bottom: solid 1px rgba(255, 255, 255, .2);
     background-color: #000000;
 }
 
@@ -67,4 +71,4 @@
     to {
       text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #4e4376, 0 0 35px #4e4376, 0 0 40px #4e4376, 0 0 50px #4e4376, 0 0 75px #4e4376;
     }
-  }
+}
