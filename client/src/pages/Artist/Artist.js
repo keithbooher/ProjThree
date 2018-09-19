@@ -25,7 +25,10 @@ class Artist extends Component {
     ratingSubmitted: false,
     alreadyFollowing: false,
     followrefresh: false,
-    change: false
+    change: false,
+    borderStyles: {},
+    textStyles: {}
+
   };
 
 
@@ -47,12 +50,28 @@ class Artist extends Component {
     this.loadUsersProducts();
   };
 
-  // loadStyles = () => {
-  //   console.log(this.state.user._id);
-  //   API.getStyle(this.state.user._id).then(result =>
-  //     console.log("THE THING IM LOOKING FOR", result.data)
-  //   );
-  // };
+  loadBorderStyles = () => {
+    let user = this.state.user.style
+    let borderStyles = {
+      borderStyle: user.borderStyle,
+      borderWidth: user.borderWidth,
+      borderColor: user.borderColor
+    }
+
+    this.setState({ borderStyles: borderStyles })
+    this.loadTextStyles();
+  };
+
+  loadTextStyles = () => {
+    let user = this.state.user.style
+    let textStyles = {
+      fontFamily: user.fontFamily,
+      color: user.fontColor
+    }
+
+    this.setState({ textStyles: textStyles })
+
+  };
 
   loadUsersProducts = () => {
     const productIDs = this.state.productIDs;
@@ -83,6 +102,8 @@ class Artist extends Component {
             this.loadProductIds();
             this.pageView();
             this.averageStars();
+            this.loadBorderStyles();
+            this.loadTextStyles();
           }
         }
       })
@@ -368,7 +389,7 @@ class Artist extends Component {
               )}
           </div>
 
-          {this.state.user ?
+          {this.state.textStyles ?
             <div className="productCard">
               {this.state.products.map((product, i) => {
                 return (
@@ -389,7 +410,9 @@ class Artist extends Component {
                     quantity={product.data.quantity}
                     enlargeImage={this.enlargeImage}
                     shrinkImage={this.shrinkImage}
-                    style={this.state.user.style}
+                    borderStyle={this.state.borderStyles}
+                    textStyle={this.state.textStyles}
+
                   />
                 );
               })}
