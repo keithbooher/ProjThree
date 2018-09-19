@@ -6,7 +6,7 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import "./MostVisited.css";
-
+import Footer from "../../components/Footer/Footer";
 import ArtistListItem from "../../components/List/ArtistList";
 import ArtistUnorderedList from "../../components/List/ArtistUL";
 import { Link } from "react-router-dom";
@@ -185,6 +185,7 @@ class MostVisited extends Component {
               })}{" "}
           }
         </ArtistUnorderedList>
+        < Footer/>
       </div>
     );
   }

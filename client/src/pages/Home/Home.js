@@ -8,6 +8,7 @@ import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import HomeArt from "../../components/HomeArt/HomeArt";
 import HomeArtLag from "../../components/HomeArt/HomeArtLag";
+import Footer from "../../components/Footer/Footer";
 
 // import { Carousel } from '3d-react-carousal';
 
@@ -237,6 +238,7 @@ class App extends Component {
           // fifthImage={this.state.carousel[4].img}
           // sixthImage={this.state.carousel[5].img}
         /> */}
+        <Footer />
       </div>
     );
   }

@@ -8,6 +8,7 @@ import SideBar from "../../components/Sidebar/Sidebar";
 import { Redirect } from "react-router-dom";
 // import InventoryCard from "../../components/Card/InventoryCard";
 import "./ManageInventory.css";
+import Footer from "../../components/Footer/Footer";
 
 class ManageInventory extends Component {
   // contructor(props) {
@@ -199,6 +200,7 @@ class ManageInventory extends Component {
             })}
           </div>
         </div>
+        < Footer/>
       </div>
     );
   }

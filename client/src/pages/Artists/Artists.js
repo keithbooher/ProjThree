@@ -8,8 +8,10 @@ import SideBar from "../../components/Sidebar/Sidebar";
 // import Anchor from "../../components/Anchor/Anchor";
 import ArtistListItem from "../../components/List/ArtistList";
 import ArtistUnorderedList from "../../components/List/ArtistUL";
+import Footer from "../../components/Footer/Footer";
 // import UnorderedList from "../../components/List/UnorderedList";
 import { Link } from "react-router-dom";
+
 
 import "./Artists.css";
 
@@ -103,6 +105,7 @@ class Artists extends Component {
         ) : (
           ""
         )}
+        < Footer/>
       </div>
     );
   }

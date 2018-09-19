@@ -11,6 +11,7 @@ import SideBar from "../../components/Sidebar/Sidebar";
 import Card from "../../components/Card";
 import Star from "../../components/Star/Star";
 import AverageStar from "../../components/Star/AverageStar";
+import Footer from "../../components/Footer/Footer";
 
 import "./Artist.css";
 
@@ -301,7 +302,6 @@ class Artist extends Component {
       <div className="artistGrid">
         {this.state.currentUser.admin ? <AdminHeader /> : <Header key="1" />}
         <SideBar user={this.state.user} />
-
         <div className="productContent">
           <div className="userProfile artistProfile">
             <img
@@ -419,6 +419,7 @@ class Artist extends Component {
             </div> : " "}
 
         </div>
+        < Footer/>
       </div>
     );
   }

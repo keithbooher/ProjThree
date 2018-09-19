@@ -6,7 +6,9 @@ import ContactForm from "../../components/ContactForm/ContactForm";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import API from "../../utils/API";
+import Footer from "../../components/Footer/Footer";
 import "./FAQ.css";
+
 
 class FAQ extends Component {
     state = {
@@ -76,7 +78,7 @@ class FAQ extends Component {
                     <br />
                 </div>
                 <SideBar user={this.state.user} />
-
+                < Footer />
             </div>
         );
     }
