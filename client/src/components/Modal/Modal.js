@@ -1,5 +1,6 @@
 import React from 'react';
 import Payments from '../../components/Navs/Payments';
+import './Modal.css';
 
 
 const Modal = props => (
