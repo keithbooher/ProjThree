@@ -96,7 +96,7 @@ class Sidebar extends Component {
             !this.adminStatus() ?
               <List className="sideBarLink">
                 <Link to="/adminform">
-                  Become Admin
+                  Become Vendor
                         </Link>
               </List> : " " : " "}
 
