@@ -6,6 +6,7 @@ import Header from "../../components/Navs/Header";
 // import { Row, Col } from "../../components/Grid";
 import SideBar from "../../components/Sidebar/Sidebar";
 import "./AdminForm.css";
+import Footer from "../../components/Footer/Footer";
 
 class Admin extends Component {
   state = {
@@ -88,6 +89,7 @@ class Admin extends Component {
             </a>
           </button>
         </div>
+        < Footer/>
       </div>
     );
   }

@@ -8,6 +8,7 @@ import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
 import NewArtCard from "../../components/Card/NewArtCard";
+import Footer from "../../components/Footer/Footer";
 import "./NewArt.css";
 
 class Home extends Component {
@@ -128,6 +129,7 @@ class Home extends Component {
             );
           })}
         </div>
+        < Footer/>
       </div>
     );
   }

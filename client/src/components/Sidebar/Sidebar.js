@@ -102,12 +102,12 @@ class Sidebar extends Component {
 
 
           {this.adminStatus() ? <AdminList /> : ""}
-          <List className="sideBarLink">
+          {/* <List className="sideBarLink">
             <Link to="/faq">FAQ</Link>
           </List>
           <List className="sideBarLink">
             <Link to="/contactUs">Contact Us</Link>
-          </List>
+          </List> */}
         </UnorderedList>
       </div>
     );

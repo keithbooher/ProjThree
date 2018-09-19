@@ -15,7 +15,7 @@
 
 .sideBar {
     overflow: overlay;
-    border-bottom: solid 2px #ffffff;
+    /* border-bottom: solid 2px #ffffff; */
 }
 
 .header li {
@@ -45,11 +45,7 @@
     background-color: #000000;
 }
 
-/* .sideBarListItem:last-child {
-    border-bottom: solid 2px #ffffff;
-} */
-
-#lastChild {
+.sideBarListItem:last-child {
     border-bottom: solid 2px #ffffff;
 }
 

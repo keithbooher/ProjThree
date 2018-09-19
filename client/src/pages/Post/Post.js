@@ -6,7 +6,7 @@ import API from "../../utils/API";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-
+import Footer from "../../components/Footer/Footer";
 import "./Post.css";
 import { Redirect } from "react-router-dom";
 
@@ -293,6 +293,7 @@ class Post extends Component {
             </div>
           </div>
         </form>
+        < Footer/>
       </div>
     );
   }

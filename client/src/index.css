@@ -50,7 +50,15 @@ html {
 
 .footer h6 {
     margin: 0;
-    padding: 1.5rem;
+    padding: 1rem;
+}
+
+.footerLinks {
+    padding-top: 1rem;
+}
+
+.footerLinks a {
+    padding: 1rem;
 }
 
 .form-group {
