@@ -28,7 +28,7 @@ class Artist extends Component {
     change: false
   };
 
-  
+
 
   componentDidMount() {
     console.log(this);
@@ -47,12 +47,12 @@ class Artist extends Component {
     this.loadUsersProducts();
   };
 
-  loadStyles = () => {
-    console.log(this.state.user._id);
-    API.getStyle(this.state.user._id).then(result =>
-      console.log("THE THING IM LOOKING FOR", result.data)
-    );
-  };
+  // loadStyles = () => {
+  //   console.log(this.state.user._id);
+  //   API.getStyle(this.state.user._id).then(result =>
+  //     console.log("THE THING IM LOOKING FOR", result.data)
+  //   );
+  // };
 
   loadUsersProducts = () => {
     const productIDs = this.state.productIDs;
@@ -388,7 +388,7 @@ class Artist extends Component {
                   quantity={product.data.quantity}
                   enlargeImage={this.enlargeImage}
                   shrinkImage={this.shrinkImage}
-                  style={this.state.user.style}
+                // style={this.state.user.style}
                 />
               );
             })}
