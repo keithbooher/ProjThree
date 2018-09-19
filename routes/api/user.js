@@ -44,8 +44,8 @@ module.exports = app => {
   });
 
   app.put("/api/style/:id", (req, res) => {
-    console.log(req.body)
     data = req.body
+    console.log(data)
     styles = data
     console.log(req.params.id)
     User.findOneAndUpdate({_id: req.params.id }, {style: styles})
