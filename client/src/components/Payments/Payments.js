@@ -6,11 +6,7 @@ import "./Payments.css";
 
 class Payments extends Component {
   render() {
-    // const targetStripeAccount = {
-    //     stripe_account:"acct_1D570wLWgPyrropm",
-    //     platform_fee: 1000,
-    //     price: this.props.price
-    // }
+
     const targetStripeAccount = {
       stripe_account: this.props.targetStripe,
       platform_fee: this.props.price * 5,
@@ -29,7 +25,7 @@ class Payments extends Component {
         //somehow am going to have to set this equal to a variable that equals the total of a shopping cart of a customer in future projects
         name="Gallery"
         description="Money For Art"
-        amount={(this.props.price + this.props.platformFee) * 100}
+        amount={this.props.price * 100}
         token={token =>
           this.props.handleToken(Object.assign(targetStripeAccount, token))
         }
@@ -38,7 +34,7 @@ class Payments extends Component {
         billingAddress={true}
         email={this.props.currentUserEmail}
       >
-        <button className="checkout btn">Buy</button>
+        <button className="checkout btn">Buy Now</button>
       </StripeCheckout>
     );
   }
