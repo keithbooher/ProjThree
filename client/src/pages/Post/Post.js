@@ -83,6 +83,12 @@ class Post extends Component {
           const convertedPrice = this.state.price;
           const prePlatformFee = this.state.price * 0.05;
           const platformFee = Math.round(prePlatformFee);
+          let sold = false;
+
+
+          if (this.state.quantity < 1) {
+            sold = true
+          }
 
           const newProduct = {
             productName: this.state.title,
@@ -90,6 +96,7 @@ class Post extends Component {
             img: this.state.img,
             description: this.state.description,
             email: this.state.user.email,
+            sold: sold,
             artistName: this.state.user.firstName,
             quantity: this.state.quantity,
             stripeAccount: this.state.user.stripeAccount,
@@ -97,6 +104,7 @@ class Post extends Component {
             platformFee: platformFee,
             date: Date.now()
           };
+
 
           API.saveProduct(this.state.user._id, newProduct)
             .then(
