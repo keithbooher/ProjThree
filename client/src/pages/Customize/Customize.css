@@ -28,3 +28,7 @@
 select {
   display: unset;
 }
+
+.head {
+  color: white;
+}

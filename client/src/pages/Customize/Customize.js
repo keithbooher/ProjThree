@@ -177,7 +177,7 @@ class Customize extends Component {
           {/* <h2>Choose a Style</h2>
           <button onClick={this.handleStyleSubmit} >dashed</button> */}
         </div>
-        < Footer/>
+        < Footer />
       </div>
     );
   }
