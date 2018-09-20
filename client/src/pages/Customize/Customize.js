@@ -123,6 +123,9 @@ class Customize extends Component {
 
 
         <div className="menu">
+          <h2 className="customizeTitle">Customize your product cards!</h2>
+          <br/>
+          <h3 className="customizeHeader">Set Border Style</h3>
           <select value={this.state.borderStyle} onChange={this.handleBorderStyleInput}>
             <option disabled>Set Border Style</option>
             <option id='dotted' value='dotted' >Dotted</option>
@@ -133,6 +136,7 @@ class Customize extends Component {
           <br />
           <br />
           <br />
+          <h3 className="customizeHeader">Set Border Color</h3>
           <select onChange={this.handleBorderColorInput} value={this.state.borderColor}>
             <option disabled>Set Border Color</option>
             <option id='blue' value='blue' >Blue</option>
@@ -143,6 +147,7 @@ class Customize extends Component {
           <br />
           <br />
           <br />
+          <h3 className="customizeHeader">Set Border Width</h3>
           <select onChange={this.handleBorderWidthInput} value={this.state.borderWidth}>
             <option disabled>Set Border Width</option>
             <option id='blue' value='1px' >1</option>
@@ -155,6 +160,7 @@ class Customize extends Component {
           <br />
           <br />
           <br />
+          <h3 className="customizeHeader">Set Text Color</h3>
           <select onChange={this.handleTextColorInput} value={this.state.fontColor}>
             <option disabled>Set Text Color</option>
             <option id='blue' value='blue' >Blue</option>
@@ -165,6 +171,7 @@ class Customize extends Component {
           <br />
           <br />
           <br />
+          <h3 className="customizeHeader">Set Text Style</h3>
           <select onChange={this.handleTextStyleInput} value={this.state.fontStyle}>
             <option disabled>Set Text Style</option>
             <option id='Courier' value="Courier New', Courier, monospace">Courier</option>
@@ -173,7 +180,7 @@ class Customize extends Component {
             <option id='default' value="'Times New Roman', Times, serif">Default</option>
           </select>
           <br />
-          <button onClick={this.handleStyleSubmit}>Submit</button>
+          <button className="submitBtn btn btn-info" onClick={this.handleStyleSubmit}>Submit</button>
           {/* <h2>Choose a Style</h2>
           <button onClick={this.handleStyleSubmit} >dashed</button> */}
         </div>
