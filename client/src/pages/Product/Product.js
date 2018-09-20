@@ -6,6 +6,7 @@ import {Row, Col} from "../../components/Grid"
 import Header from '../../components/Navs/Header';
 import AdminHeader from '../../components/Navs/AdminHeader';
 import SideBar from "../../components/Sidebar/Sidebar";
+import Footer from "../../components/Footer/Footer";
 
 class Product extends Component {
     state = {
@@ -66,10 +67,8 @@ class Product extends Component {
                     <Col size="sm-2 offset-'sm-11">
                         <SideBar user={this.state.user}/>
                     </Col>
-                </Row> 
-                <div className="container">
-                 
-                </div>
+                </Row>
+                < Footer/>
             </div>
         );
     };
