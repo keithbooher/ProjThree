@@ -7,7 +7,7 @@ const Footer = props => (
       <Link to="/faq">FAQ</Link>
       <Link to="/contactUs">Contact Us</Link>
     </div>
-      <h6>Copyright@ Art Gutter</h6>
+      <h6 className="copyright">Copyright@ Art Gutter</h6>
   </div>
 );
 

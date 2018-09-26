@@ -1,7 +1,7 @@
 .contactGrid {
     display: grid;
     grid-template-columns: 5% repeat(4, 1fr) 5%;
-    grid-template-rows: 10vh repeat(2, 1fr) 10vh;
+    grid-template-rows: 10vh repeat(2, 1fr) auto;
     grid-template-areas:
     "header header header header header header"
     ". sidebar contact contact contact ."

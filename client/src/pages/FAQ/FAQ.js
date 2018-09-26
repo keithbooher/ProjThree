@@ -61,6 +61,12 @@ class FAQ extends Component {
                     <h2>How can I change my user name?</h2>
                     <p>ArtGutter uses your Gmail first Name. You can either change your settings in your gmail, or make a Gmail specific to your artist brand.</p>
                     <br />
+                    <h2>How long until I recieve payment?</h2>
+                    <p>Artists! payment upon purchase of your product may take up to 5 business days</p>
+                    <br />
+                    <h2>What is the shipping time?</h2>
+                    <p>Shipping Time is up to the artist, so communication with the artist will be your best bet on ETA. Email is provided on user profile and purchase confirmation email.</p>
+                    <br />
                     <h2>GUIDE TO BECOME ADMIN</h2>
                     <h4>Here at ArtGutter artists are able to sell art after becoming an admin</h4>
                     <p>Art Gutter uses world trusted 3rd party payment prcessor, Stripe</p>
