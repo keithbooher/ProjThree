@@ -32,8 +32,6 @@ class Header extends Component {
     }
   }
 
-  renderAdminContent() {}
-
   render() {
     return (
       <nav className="header">

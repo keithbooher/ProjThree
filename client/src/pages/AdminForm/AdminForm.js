@@ -14,26 +14,10 @@ class Admin extends Component {
   };
 
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          console.log("result", result);
-          this.setState({
-            isLoaded: true,
-            user: result
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.setState({
+      isLoaded: true,
+      user: this.props.auth
+    });
   };
 
   componentDidMount() {
@@ -88,13 +72,18 @@ class Admin extends Component {
             </a>
           </button>
         </div>
-        < Footer/>
+        < Footer />
       </div>
     );
   }
 }
 
+// Telling this component if we are logged in or not and what to show occordingly
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(Admin);

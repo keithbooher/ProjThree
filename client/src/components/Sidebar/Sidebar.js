@@ -9,17 +9,18 @@ import AdminList from "../List/AdminList";
 import { Link } from "react-router-dom";
 
 class Sidebar extends Component {
+
+
   state = {
     user: {}
   };
 
   componentDidMount() {
-    this.loggedIn();
     this.loadCurrentUser();
   }
 
   loggedIn = () => {
-    if (Object.keys(this.state.user).length === 0) {
+    if (!this.props.auth) {
       // console.log("not logged in")
       return false;
     } else {
@@ -30,7 +31,7 @@ class Sidebar extends Component {
 
   adminStatus = () => {
     if (this.loggedIn() === true) {
-      if (this.state.user.admin === false || null) {
+      if (this.props.auth.admin === false || null) {
         // console.log("not an admin")
         return false;
       } else {
@@ -43,26 +44,10 @@ class Sidebar extends Component {
   };
 
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            user: result
-          });
-          // console.log("state", this.state.user)
-          this.loggedIn();
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.setState({
+      isLoaded: true,
+      user: this.props.auth
+    });
   };
 
   render() {

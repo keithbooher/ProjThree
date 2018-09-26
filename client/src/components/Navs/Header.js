@@ -3,18 +3,41 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class Header extends Component {
+  // renderContent() {
+  //   switch (this.props.auth) {
+  //     case null:
+  //       return;
+  //     case false:
+  //       return [
+  //         <li key="5">
+  //           <a href="/auth/google">Login With Google</a>
+  //         </li>
+  //         // console.log('this.props.auth', this.props.auth)
+  //       ];
+  //     default:
+  //       return [
+  //         <li key="4" style={{ margin: "0 10px" }}>
+  //           {this.props.auth.firstName}
+  //         </li>,
+  //         <li key="8">
+  //           <a href="/api/logout">Logout</a>
+  //         </li>,
+
+  //         console.log("this.props.auth", this.props.auth)
+  //       ];
+  //   }
+  // }
+
   renderContent() {
-    switch (this.props.auth) {
-      case null:
-        return;
-      case false:
-        return [
-          <li key="5">
-            <a href="/auth/google">Login With Google</a>
-          </li>
-          // console.log('this.props.auth', this.props.auth)
-        ];
-      default:
+    if (!this.props.auth) {
+      return [
+        <li key="5">
+          <a href="/auth/google">Login With Google</a>
+        </li>
+        // console.log('this.props.auth', this.props.auth)
+      ];
+    } else {
+      if (this.props.auth.admin === false) {
         return [
           <li key="4" style={{ margin: "0 10px" }}>
             {this.props.auth.firstName}
@@ -25,10 +48,24 @@ class Header extends Component {
 
           console.log("this.props.auth", this.props.auth)
         ];
+      } else if (this.props.auth.admin === true) {
+        return [
+          <li className="admin" key="2">
+            Admin!
+          </li>,
+          <li key="3" style={{ margin: "0 10px" }}>
+            <a href="/usersettings">Settings</a>
+          </li>,
+          <li key="4" style={{ margin: "0 10px" }}>
+            {this.props.auth.firstName}
+          </li>,
+          <li key="5">
+            <a href="/api/logout">Logout</a>
+          </li>
+        ];
+      }
     }
   }
-
-  renderAdminContent() {}
 
   render() {
     return (

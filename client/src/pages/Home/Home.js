@@ -92,53 +92,25 @@ class App extends Component {
       });
     }
 
+    console.log(this.props.auth)
+
   };
 
 
   loadCurrentUser = () => {
-
     this.setState({
       isLoaded: true,
       user: this.props.auth
     });
-    // fetch("/api/current_user")
-    //   .then(res => res.json())
-    //   .then(
-    //     result => {
-    //       this.setState({
-    //         isLoaded: true,
-    //         user: result
-    //       });
-
-    //       // console.log('result', result)
-    //       let currentUser = this.state.user;
-    //       API.createUser(currentUser)
-    //         .then(console.log("success"))
-    //         .catch(err => console.log(err));
-
-    //       console.log("AUTH", this.props.auth.admin);
-    //     },
-    //     // Note: it's important to handle errors here
-    //     // instead of a catch() block so that we don't swallow
-    //     // exceptions from actual bugs in components.
-    //     error => {
-    //       this.setState({
-    //         isLoaded: true,
-    //         error
-    //       });
-    //     }
-    //   );
   };
 
 
   render() {
     return (
       <div className="homeGrid">
-        {this.state.user.admin ? (
-          <AdminHeader amount={this.state.amount} />
-        ) : (
-            <Header key="1" amount={this.state.amount} />
-          )}
+
+        <Header key="1" />
+
         {this.state.carouselArtistIDs ? (
           // <div className="carouselStuff">
           //   <Carousel slides={this.slides()} />
