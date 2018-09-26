@@ -46,7 +46,7 @@ const App = () => (
         <Route exact path="/contactus" component={ContactUs} />
       </div>
     </BrowserRouter>
-  
+
   </div>
 );
 
