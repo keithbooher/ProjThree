@@ -6,7 +6,7 @@ const keys = require("../config/keys");
 // Pulling a schema out of mongoose
 const User = mongoose.model("users");
 
-//user st argument ---------done second argument
+//user 1st argument ---------done second argument
 //same user model instance that we just pulled out of the database from the .then functions below
 passport.serializeUser((user, done) => {
   // User.id is not the same as profile.id below

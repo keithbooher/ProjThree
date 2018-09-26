@@ -49,8 +49,8 @@ module.exports = app => {
     const firstName = req.body.firstName;
 
 
-    const l = price.toString().length-1;
-    const priceWithDecimal = price/Math.pow(10, l);
+    const l = price.toString().length - 1;
+    const priceWithDecimal = price / Math.pow(10, l);
 
     const orderObject = {
       productName: productName,
@@ -107,21 +107,21 @@ module.exports = app => {
     Product.findOne({ _id: productID }, function (err, product) {
       if (err) return handleError(err);
 
-      const subtractedValue= product.quantity -1;
+      const subtractedValue = product.quantity - 1;
       console.log('subtractedValue', subtractedValue);
       console.log('quantity', product.quantity);
 
       Product.findOneAndUpdate({ _id: productID }, { quantity: subtractedValue })
-      .then(dbModel => {
-        console.log(dbModel.quantity)
-        if(subtractedValue === 0){
-          Product.findOneAndUpdate({ _id: productID }, { sold: true })
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err));
-        }
-      })
-      .catch(err => res.json(err));      
-      
+        .then(dbModel => {
+          console.log(dbModel.quantity)
+          if (subtractedValue === 0) {
+            Product.findOneAndUpdate({ _id: productID }, { sold: true })
+              .then(dbModel => res.json(dbModel))
+              .catch(err => res.status(422).json(err));
+          }
+        })
+        .catch(err => res.json(err));
+
     });
 
 
@@ -139,9 +139,9 @@ module.exports = app => {
     const splitURL = url.split("=");
     const targetQueryCode = splitURL[2];
 
-    let cmd = `curl https://connect.stripe.com/oauth/token -d client_secret=${ keys.stripeSecretKey || process.env.STRIPE_SECRET_KEY } -d code="${targetQueryCode}" -d grant_type=authorization_code`;
+    let cmd = `curl https://connect.stripe.com/oauth/token -d client_secret=${keys.stripeSecretKey || process.env.STRIPE_SECRET_KEY} -d code="${targetQueryCode}" -d grant_type=authorization_code`;
 
-    exec(cmd, function(error, stdout, stderr) {
+    exec(cmd, function (error, stdout, stderr) {
       // console.log(`stdout: ${stdout}`);
       const returnData = stdout;
       const splitItUp = returnData.split('"stripe_user_id": "');
@@ -150,10 +150,10 @@ module.exports = app => {
 
 
       User
-      .findOneAndUpdate({ _id: req.user._id }, {admin: true, stripeAccount: targetedStripeAccount})
-      .then(console.log('req.body', req))
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+        .findOneAndUpdate({ _id: req.user._id }, { admin: true, stripeAccount: targetedStripeAccount })
+        .then(console.log('req.body', req))
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
 
       res.redirect("/home")
     });
