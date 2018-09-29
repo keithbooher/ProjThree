@@ -59,7 +59,7 @@
     .sideBarMobile {
         position: fixed !important;
         left: 0px !important;
-        top: 120px !important;
+        top: 100px !important;
         z-index: 1 !important;
         width: 250px !important;
         /* animation-name: slide;
@@ -69,7 +69,7 @@
     #close {
         position: fixed !important;
         left: -250px !important;
-        top: 120px !important;
+        top: 100px !important;
         z-index: 1 !important;
         width: 250px !important;
     }
@@ -77,14 +77,14 @@
     #moveTogglerClose {
         position: fixed  !important;
         left: 5px  !important;
-        top: 120px  !important;
+        top: 100px  !important;
     }
 
     .toggle {
         position: fixed !important;
         z-index: 2 !important;
         left: 255px !important;
-        top: 120px !important;
+        top: 100px !important;
         font-size: 25px !important;
         cursor: pointer !important;
     }
