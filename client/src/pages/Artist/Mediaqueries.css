@@ -7,7 +7,7 @@
         "header header header header header header"
         ". cards cards cards cards ."
         ". cards cards cards cards ."
-        "footer footer footer footer footer footer";
+        "footer footer footer footer footer footer" !important;
         grid-gap: 2rem
     }
 

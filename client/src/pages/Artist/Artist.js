@@ -42,7 +42,6 @@ class Artist extends Component {
   componentDidMount() {
     console.log(this);
     this.props.fetchUser();
-    this.doYouFollowThisArtistAlready();
 
     this.loadThispageArtist();
   }
@@ -130,11 +129,19 @@ class Artist extends Component {
   };
 
   loadCurrentUser = () => {
-    this.setState({
-      isLoaded: true,
-      currentUser: this.props.auth
-    });
-    console.log(this.props.auth)
+    API.getCurrentUser()
+      .then(result => {
+        console.log(result.data),
+          this.setState({
+            currentUser: result.data
+          })
+        this.averageStars();
+        this.doYouFollowThisArtistAlready();
+
+      }
+
+      )
+      .catch(err => console.log(err));
   };
 
   star = id => {
