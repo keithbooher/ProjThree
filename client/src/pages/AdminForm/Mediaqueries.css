@@ -53,3 +53,10 @@
         top: 64px !important;
     }
 }
+
+
+@media only screen and (max-width: 610px) { 
+    .toggle {
+        top: 100px;
+    }
+}
