@@ -23,7 +23,7 @@ class Payments extends Component {
     return (
       <StripeCheckout
         //somehow am going to have to set this equal to a variable that equals the total of a shopping cart of a customer in future projects
-        name="Gallery"
+        name="Art Gutter"
         description="Money For Art"
         amount={this.props.price * 100}
         token={token =>
