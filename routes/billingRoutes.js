@@ -18,7 +18,7 @@ module.exports = app => {
       {
         amount: req.body.price,
         currency: "usd",
-        description: "Art Transaction",
+        description: req.body.productName,
         source: req.body.id,
         application_fee: req.body.platform_fee
       },

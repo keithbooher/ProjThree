@@ -24,7 +24,7 @@ class Payments extends Component {
       <StripeCheckout
         //somehow am going to have to set this equal to a variable that equals the total of a shopping cart of a customer in future projects
         name="Art Gutter"
-        description="Money For Art"
+        description={this.props.productName}
         amount={this.props.price * 100}
         token={token =>
           this.props.handleToken(Object.assign(targetStripeAccount, token))
