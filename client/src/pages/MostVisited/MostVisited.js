@@ -10,6 +10,8 @@ import Footer from "../../components/Footer/Footer";
 import ArtistListItem from "../../components/List/ArtistList";
 import ArtistUnorderedList from "../../components/List/ArtistUL";
 import { Link } from "react-router-dom";
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
+import "./Mediaqueries.css";
 
 class MostVisited extends Component {
   state = {
@@ -21,12 +23,34 @@ class MostVisited extends Component {
     productObjects: [],
     admins: [],
     lastPostComplete: false,
-    done: false
+    done: false,
+    sidebarOpen: true,
+    toggleID: " ",
+    moveToggler: " ",
   };
 
   componentDidMount() {
     this.props.fetchUser();
     this.loadUsers();
+  }
+
+
+  componentWillMount() {
+    this.checkToggle();
+
+  }
+
+  checkToggle = () => {
+    this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+
+  }
+
+  toggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
   }
 
   loadUsers = () => {
@@ -128,27 +152,10 @@ class MostVisited extends Component {
   };
 
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            user: result
-          });
-          console.log("result", result);
-          // this.loadUsers();
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.setState({
+      isLoaded: true,
+      user: this.props.auth
+    });
   };
 
   render() {
@@ -157,41 +164,47 @@ class MostVisited extends Component {
         {this.state.user.admin ? (
           <AdminHeader className="header" />
         ) : (
-          <Header key="1" className="header" />
-        )}
+            <Header key="1" className="header" />
+          )}
         <SideBar user={this.state.user} />
+        <div className="sidebarContainer" id={this.state.toggleID}>
+          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+        </div>
 
         <ArtistUnorderedList className="main">
           {!this.state.users
             ? " "
             : this.state.admins.map((user, i) => {
-                console.log("map", user.product[0]);
-                return (
-                  <ArtistListItem className="nameList" key={i}>
-                    <Link to={`/artist/${user._id}`} className="artistNames">
-                      {`${user.firstName}`}
-                      {user.product.length === 0 ? (
-                        " "
-                      ) : (
+              console.log("map", user.product[0]);
+              return (
+                <ArtistListItem className="nameList" key={i}>
+                  <Link to={`/artist/${user._id}`} className="artistNames">
+                    {`${user.firstName}`}
+                    {user.product.length === 0 ? (
+                      " "
+                    ) : (
                         <img
                           alt={user.product[user.product.length - 1].img}
                           className="userImage"
                           src={`${user.product[user.product.length - 1].img}`}
                         />
                       )}
-                    </Link>
-                  </ArtistListItem>
-                );
-              })}{" "}
-          }
+                  </Link>
+                </ArtistListItem>
+              );
+            })}{" "}
+
         </ArtistUnorderedList>
-        < Footer/>
+        < Footer />
       </div>
     );
   }
 }
-
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(MostVisited);

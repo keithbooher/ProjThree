@@ -1,0 +1,13 @@
+@media only screen and (max-width: 610px) { 
+    .right {
+        position: absolute;
+        top: 40px;
+        left: 10px;
+        
+    }
+
+    nav .nav-wrapper {
+        position: relative;
+        height: 160%;
+    }
+}

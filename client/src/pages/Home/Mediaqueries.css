@@ -1,0 +1,55 @@
+@media only screen and (max-width: 760px) { 
+    .homeGrid {
+        display: grid;
+        grid-template-columns: 2% repeat(4, 1fr) 2%;
+        grid-template-rows: 10vh repeat(3, 1fr) auto;
+        grid-template-areas:
+        "header header header header header header"
+        ". ms ms ms ms ."
+        ". ms ms ms ms ."
+        ". cs cs cs cs ."
+        ". cs cs cs cs ."
+        "footer footer footer footer footer footer";
+        grid-gap: 2rem
+    }
+
+    .sideBar {
+        display: none;
+    }
+
+    .sidebarContainer {
+        display: inline;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        width: 250px;
+        background: rgb(0, 0, 0, .8);
+        z-index: 3
+    }
+
+    .sideBarMobile {
+        position: fixed;
+        left: 0px;
+        top: 64px;
+        z-index: 1;
+        width: 250px;
+        /* animation-name: slide;
+        animation-duration: .5s; */
+
+    }
+
+    #close {
+        position: fixed !important;
+        left: -250px !important;
+        top: 64px !important;
+        z-index: 1 !important;
+        width: 250px !important;
+    }
+
+    #moveTogglerClose {
+        position: fixed !important;
+        left: 5px !important;
+        top: 64px !important;
+    }
+}

@@ -10,29 +10,51 @@ import AverageStar from "../../components/Star/AverageStar";
 import Footer from "../../components/Footer/Footer";
 import "./UserSettings.css";
 import { Redirect } from "react-router-dom";
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
+import "./Mediaqueries.css";
 
 class UserSettings extends Component {
-  constructor() {
-    super();
-    this.state = {
-      amount: 0,
-      user: {},
-      title: "",
-      price: "",
-      description: "",
-      img: "",
-      file: null,
-      alertTitle: "hide",
-      alertPrice: "hide",
-      alertImg: "hide",
-      toDashboard: false
-    };
-  }
+
+  state = {
+    user: {},
+    title: "",
+    price: "",
+    description: "",
+    img: "",
+    file: null,
+    alertTitle: "hide",
+    alertPrice: "hide",
+    alertImg: "hide",
+    toDashboard: false,
+    sidebarOpen: true,
+    toggleID: " ",
+    moveToggler: " ",
+  };
+
 
   componentDidMount() {
-    // this.loadProducts();
+  }
+
+  componentWillMount() {
     this.props.fetchUser();
+
+    this.checkToggle();
     this.loadCurrentUser();
+    console.log("result", this.props.auth);
+
+  }
+
+  checkToggle = () => {
+    this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+
+  }
+
+  toggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
   }
 
   //  Function to handle form input
@@ -111,58 +133,23 @@ class UserSettings extends Component {
     this.setState({ file: event.target.files });
   };
 
-  loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            user: result
-          });
-          console.log("result", result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
-  };
-
   handleFileInput = event => {
     this.setState({ file: event.target.files });
   };
 
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
+    API.getCurrentUser()
+      .then(result => {
+        console.log(result.data),
           this.setState({
-            isLoaded: true,
-            user: result
-          });
-          console.log("result", result);
-          let currentUser = this.state.user;
-          API.createUser(currentUser).catch(err => console.log(err));
-          this.averageStars();
-          console.log("state", this.state.user);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+            user: result.data
+          })
+        this.averageStars();
+
+      }
+
+      )
+      .catch(err => console.log(err));
   };
 
   averageStars = () => {
@@ -173,13 +160,18 @@ class UserSettings extends Component {
   };
 
   render() {
-    if (this.state.toDashboard === true) {
-      return <Redirect to={`/artist/${this.state.user._id}`} />;
-    }
+    // if (this.state.toDashboard === true) {
+    //   return <Redirect to={`/artist/${this.state.user._id}`} />;
+    // }
     return (
       <div className="userSettingsGrid">
-        {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
+        <Header key="1" />
         <SideBar user={this.state.user} />
+        <div className="sidebarContainer" id={this.state.toggleID}>
+          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+        </div>
+
         <div className="userProfile">
           <img
             alt={this.state.user.img}
@@ -265,15 +257,14 @@ class UserSettings extends Component {
           </form>
         </div>
         < Footer />
-        {/* <div className={this.state.alertImg}>
-          <h3 className="warning">Enter a picture</h3>
-        </div> */}
       </div>
     );
   }
 }
-
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(UserSettings);

@@ -11,7 +11,8 @@ import ArtistUnorderedList from "../../components/List/ArtistUL";
 import Footer from "../../components/Footer/Footer";
 // import UnorderedList from "../../components/List/UnorderedList";
 import { Link } from "react-router-dom";
-
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
+import "./Mediaqueries.css";
 
 import "./Artists.css";
 
@@ -20,12 +21,33 @@ class Artists extends Component {
     products: [],
     user: {},
     users: [],
-    admins: []
+    admins: [],
+    sidebarOpen: true,
+    toggleID: " ",
+    moveToggler: " ",
   };
 
+  componentWillMount() {
+    this.checkToggle();
+
+  }
   componentDidMount() {
     this.props.fetchUser();
     this.loadUsers();
+  }
+
+
+  checkToggle = () => {
+    this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+
+  }
+
+  toggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
   }
 
   loadUsers = () => {
@@ -53,39 +75,23 @@ class Artists extends Component {
   };
 
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            user: result
-          });
-          console.log("result", result);
-          // this.loadUsers();
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.setState({
+      isLoaded: true,
+      user: this.props.auth
+    });
+    console.log(this.props.auth)
   };
 
   render() {
     return (
       <div className="artistsGrid">
         {console.log("users ratings state: ", this.state.users)}
-        {this.state.user.admin ? (
-          <AdminHeader className="header" />
-        ) : (
-          <Header className="header" />
-        )}
+        <Header className="header" />
         <SideBar user={this.state.user} />
+        <div className="sidebarContainer" id={this.state.toggleID}>
+          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+        </div>
 
         {this.state.admins ? (
           <ArtistUnorderedList className="maincontent">
@@ -103,15 +109,17 @@ class Artists extends Component {
             ))}
           </ArtistUnorderedList>
         ) : (
-          ""
-        )}
-        < Footer/>
+            ""
+          )}
+        < Footer />
       </div>
     );
   }
 }
-
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(Artists);

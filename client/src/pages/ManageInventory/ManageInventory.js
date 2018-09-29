@@ -9,6 +9,8 @@ import { Redirect } from "react-router-dom";
 // import InventoryCard from "../../components/Card/InventoryCard";
 import "./ManageInventory.css";
 import Footer from "../../components/Footer/Footer";
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
+import "./Mediaqueries.css";
 
 class ManageInventory extends Component {
   // contructor(props) {
@@ -29,6 +31,24 @@ class ManageInventory extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.loadCurrentUser();
+  }
+
+  componentWillMount() {
+    this.checkToggle();
+
+  }
+
+  checkToggle = () => {
+    this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+
+  }
+
+  toggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
   }
 
   //  Function to handle form input
@@ -71,22 +91,15 @@ class ManageInventory extends Component {
       .catch(err => console.log(err));
   };
 
-  loadProductIds = () => {
-    const userProducts = this.state.currentUser.product;
-    const userProductsArray = [];
-    for (let i = 0; i < userProducts.length; i++) {
-      userProductsArray.push(userProducts[i]);
+  onKeyPress(event) {
+    if (event.which === 13 /* Enter */) {
+      event.preventDefault();
     }
-    console.log("userProductsArray", userProductsArray);
-    this.setState({
-      productIDs: userProductsArray,
-      quantity: this.state.currentUser.quantity
-    });
-    this.loadUsersProducts();
-  };
+  }
+
 
   loadUsersProducts = () => {
-    const productIDs = this.state.productIDs;
+    const productIDs = this.props.auth.product;
     // const productObjectsArray = [];
     for (let i = 0; i < productIDs.length; i++) {
       API.getProduct(productIDs[i])
@@ -103,28 +116,17 @@ class ManageInventory extends Component {
   };
 
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            currentUser: result
-          });
-          console.log("current user: ", this.state.currentUser);
-          this.loadProductIds();
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.setState({
+      isLoaded: true,
+      currentUser: this.props.auth,
+      productIDs: this.props.auth.product,
+      quantity: this.props.auth.quantity
+    });
+    console.log("current user: ", this.props);
+    this.loadUsersProducts();
   };
+
+
 
   render() {
     if (this.state.toDashboard === true) {
@@ -140,12 +142,14 @@ class ManageInventory extends Component {
     }
     return (
       <div className="artistGrid">
-        {this.state.currentUser.admin ? (
-          <AdminHeader amount={this.state.amount} />
-        ) : (
-          <Header key="1" amount={this.state.amount} />
-        )}
+
+        <Header key="1" amount={this.state.amount} />
+
         <SideBar user={this.state.user} />
+        <div className="sidebarContainer" id={this.state.toggleID}>
+          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+        </div>
 
         <div className="container productContent">
           <div className="productCard">
@@ -165,7 +169,7 @@ class ManageInventory extends Component {
                       ${product.data.price + product.data.platformFee}
                     </p>
                     <p className="card-text">{product.data.description}</p>
-                    <form className="manageForm">
+                    <form onKeyPress={this.onKeyPress} className="manageForm">
                       <div className="form-group">
                         <label htmlFor="description">Quantity: </label>
                         <input
@@ -200,13 +204,17 @@ class ManageInventory extends Component {
             })}
           </div>
         </div>
-        < Footer/>
+        < Footer />
       </div>
     );
   }
 }
+function mapStateToProps({ auth }) {
+  console.log(auth)
 
+  return { auth };
+}
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(ManageInventory);

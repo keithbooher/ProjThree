@@ -89,3 +89,16 @@ textarea:focus, input:focus{
 :-ms-input-placeholder {
     font-style: italic; 
 }
+
+.toggle {
+    position: fixed;
+    z-index: 2;
+    left: 255px;
+    top: 64px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  .sidebarContainer {
+    display: none;    
+  }

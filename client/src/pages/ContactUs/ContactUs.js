@@ -8,6 +8,8 @@ import AdminHeader from "../../components/Navs/AdminHeader";
 import API from "../../utils/API";
 import "./Contact.css";
 import Footer from "../../components/Footer/Footer";
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
+import "./Mediaqueries.css";
 
 class ContactUs extends Component {
   state = {
@@ -16,36 +18,44 @@ class ContactUs extends Component {
     name: "",
     email: "",
     subject: "",
-    textBody: ""
+    textBody: "",
+    sidebarOpen: true,
+    toggleID: " ",
+    moveToggler: " ",
   };
+
+  componentWillMount() {
+    this.checkToggle();
+
+  }
+
   componentDidMount() {
     this.props.fetchUser();
     this.loadCurrentUser();
     // this.loadThispageArtist();
   }
 
+
+  checkToggle = () => {
+    this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+
+  }
+
+  toggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
+  }
+
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            currentUser: result,
-            user: result
-          });
-          console.log("current user: ", this.state.currentUser);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.setState({
+      isLoaded: true,
+      currentUser: this.props.auth,
+      user: this.props.auth
+    });
+    console.log(this.props.auth)
   };
 
   handleInputChange = event => {
@@ -98,12 +108,12 @@ class ContactUs extends Component {
   render() {
     return (
       <div className="contactGrid">
-        {this.state.user.admin ? (
-          <AdminHeader amount={this.state.amount} />
-        ) : (
-          <Header key="1" amount={this.state.amount} />
-        )}
+        <Header key="1" amount={this.state.amount} />
         <SideBar user={this.state.user} />
+        <div className="sidebarContainer" id={this.state.toggleID}>
+          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+        </div>
         <ContactForm
           name={this.state.name}
           email={this.state.email}
@@ -112,13 +122,15 @@ class ContactUs extends Component {
           submit={this.submitContactForm}
           onChange={this.handleInputChange}
         />
-        < Footer/>
+        < Footer />
       </div>
     );
   }
 }
-
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(ContactUs);

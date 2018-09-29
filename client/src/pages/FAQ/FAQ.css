@@ -19,3 +19,16 @@
     border: solid 1px #ffffff;
     border-radius: 25px;
 }
+
+.toggle {
+    position: fixed;
+    z-index: 2;
+    left: 255px;
+    top: 64px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  .sidebarContainer {
+    display: none;    
+  }

@@ -6,13 +6,12 @@ import API from "../../utils/API";
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
-// import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
-// import Payments from '../../components/Navs/Payments';
 import Card from "../../components/Card";
 import Star from "../../components/Star/Star";
 import AverageStar from "../../components/Star/AverageStar";
 import Footer from "../../components/Footer/Footer";
-
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
+import "./Mediaqueries.css";
 import "./Artist.css";
 
 class Artist extends Component {
@@ -28,14 +27,37 @@ class Artist extends Component {
     followrefresh: false,
     change: false,
     borderStyles: {},
-    textStyles: {}
+    textStyles: {},
+    sidebarOpen: true,
+    toggleID: " ",
+    moveToggler: " ",
   };
+
+  componentWillMount() {
+    this.checkToggle();
+    this.loadCurrentUser();
+
+  }
 
   componentDidMount() {
     console.log(this);
     this.props.fetchUser();
-    this.loadCurrentUser();
+    this.doYouFollowThisArtistAlready();
+
     this.loadThispageArtist();
+  }
+
+  checkToggle = () => {
+    this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+
+  }
+
+  toggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
   }
 
   loadProductIds = () => {
@@ -108,26 +130,11 @@ class Artist extends Component {
   };
 
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            currentUser: result
-          });
-          this.doYouFollowThisArtistAlready();
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.setState({
+      isLoaded: true,
+      currentUser: this.props.auth
+    });
+    console.log(this.props.auth)
   };
 
   star = id => {
@@ -205,12 +212,17 @@ class Artist extends Component {
     const url = window.location.href;
     const splitURL = url.split("/");
     const targetedID = splitURL[4];
-
-    if (targetedID === this.state.currentUser._id) {
-      return true;
+    console.log(this.props.auth)
+    if (!this.props.auth) {
+      return true
     } else {
-      return false;
+      if (targetedID === this.props.auth._id) {
+        return true;
+      } else {
+        return false;
+      }
     }
+
   };
 
   enlargeImage = i => {
@@ -270,7 +282,7 @@ class Artist extends Component {
     API.followArtist(thisUser, targetIDObect)
       .then(result => {
         if (result) {
-          this.setState({ followrefresh: true }, function() {
+          this.setState({ followrefresh: true }, function () {
             this.doYouFollowThisArtistAlready();
             this.setState({ change: true });
           });
@@ -285,18 +297,27 @@ class Artist extends Component {
     const splitURL = url.split("/");
     const targetedID = splitURL[4];
 
-    for (let i = 0; i < currentUser.following.length; i++) {
-      if (currentUser.following[i] === targetedID) {
-        this.setState({ alreadyFollowing: true });
+    if (!this.state.currentUser) {
+      this.setState({ alreadyFollowing: true });
+    } else {
+      for (let i = 0; i < currentUser.following.length; i++) {
+        if (currentUser.following[i] === targetedID) {
+          this.setState({ alreadyFollowing: true });
+        }
       }
     }
+
   };
 
   render() {
     return (
       <div className="artistGrid">
-        {this.state.currentUser.admin ? <AdminHeader /> : <Header key="1" />}
+        <Header key="1" />
         <SideBar user={this.state.user} />
+        <div className="sidebarContainer" id={this.state.toggleID}>
+          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+        </div>
         <div className="productContent">
           <div className="userProfile artistProfile">
             <img
@@ -339,89 +360,123 @@ class Artist extends Component {
             {this.isThisTheCurrentUsersPage() ? (
               " "
             ) : (
-              <div className="artistRating">
-                {this.state.ratingSubmitted ? (
-                  <h4 className="ratingSubmitMessage">
-                    Thank you for submitting your feedback
+                <div className="artistRating">
+                  {this.state.ratingSubmitted ? (
+                    <h4 className="ratingSubmitMessage">
+                      Thank you for submitting your feedback
                   </h4>
-                ) : (
-                  <div>
-                    <Star
-                      idOne={1}
-                      idTwo={2}
-                      idThree={3}
-                      idFour={4}
-                      idFive={5}
-                      star={this.star}
-                    />
+                  ) : (
+                      <div>
+                        <Star
+                          idOne={1}
+                          idTwo={2}
+                          idThree={3}
+                          idFour={4}
+                          idFive={5}
+                          star={this.star}
+                        />
 
-                    {this.isRateStateFilled() ? (
-                      <button
-                        className="checkout btn"
-                        onClick={() => this.submitRating()}
-                      >
-                        Submit Rating
+                        {this.isRateStateFilled() ? (
+                          <button
+                            className="checkout btn"
+                            onClick={() => this.submitRating()}
+                          >
+                            Submit Rating
                       </button>
-                    ) : (
-                      " "
+                        ) : (
+                            " "
+                          )}
+                      </div>
                     )}
-                  </div>
-                )}
-                <br />
-                {this.state.alreadyFollowing ? (
-                  "Thank you for following me!"
-                ) : !this.state.change ? (
-                  <button
-                    className="checkout btn"
-                    onClick={() => this.followArtist()}
-                  >
-                    Follow Artist
+                  <br />
+                  {this.state.alreadyFollowing ? (
+                    "Thank you for following me!"
+                  ) : !this.state.change ? (
+                    <button
+                      className="checkout btn"
+                      onClick={() => this.followArtist()}
+                    >
+                      Follow Artist
                   </button>
-                ) : (
-                  "Thank you for following me!"
-                )}
-              </div>
-            )}
+                  ) : (
+                        "Thank you for following me!"
+                      )}
+                </div>
+              )}
           </div>
 
-          {this.state.textStyles ? (
-            <div className="productCard">
-              {this.state.products.map((product, i) => {
-                return (
-                  <Card
-                    key={i}
-                    id={i}
-                    image={product.data.img}
-                    price={product.data.price}
-                    description={product.data.description}
-                    productName={product.data.productName}
-                    artistEmail={product.data.email}
-                    currentUserEmail={this.state.currentUser.email}
-                    currentUserName={this.state.currentUser.firstName}
-                    targetStripe={product.data.stripeAccount}
-                    platformFee={product.data.platformFee}
-                    productID={product.data._id}
-                    sold={product.data.sold}
-                    quantity={product.data.quantity}
-                    enlargeImage={this.enlargeImage}
-                    shrinkImage={this.shrinkImage}
-                    borderStyle={this.state.borderStyles}
-                    textStyle={this.state.textStyles}
-                  />
-                );
-              })}
-            </div>
-          ) : (
-            " "
-          )}
+          {!this.state.currentUser ?
+            this.state.textStyles ? (
+              <div className="productCard">
+                {this.state.products.map((product, i) => {
+                  return (
+                    <Card
+                      key={i}
+                      id={i}
+                      image={product.data.img}
+                      price={product.data.price}
+                      description={product.data.description}
+                      productName={product.data.productName}
+                      artistEmail={product.data.email}
+                      currentUserEmail={' '}
+                      currentUserName={' '}
+                      targetStripe={product.data.stripeAccount}
+                      platformFee={product.data.platformFee}
+                      productID={product.data._id}
+                      sold={product.data.sold}
+                      quantity={product.data.quantity}
+                      enlargeImage={this.enlargeImage}
+                      shrinkImage={this.shrinkImage}
+                      borderStyle={this.state.borderStyles}
+                      textStyle={this.state.textStyles}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+                " "
+              ) :
+            this.state.textStyles ? (
+              <div className="productCard">
+                {this.state.products.map((product, i) => {
+                  return (
+                    <Card
+                      key={i}
+                      id={i}
+                      image={product.data.img}
+                      price={product.data.price}
+                      description={product.data.description}
+                      productName={product.data.productName}
+                      artistEmail={product.data.email}
+                      currentUserEmail={this.state.currentUser.email}
+                      currentUserName={this.state.currentUser.firstName}
+                      targetStripe={product.data.stripeAccount}
+                      platformFee={product.data.platformFee}
+                      productID={product.data._id}
+                      sold={product.data.sold}
+                      quantity={product.data.quantity}
+                      enlargeImage={this.enlargeImage}
+                      shrinkImage={this.shrinkImage}
+                      borderStyle={this.state.borderStyles}
+                      textStyle={this.state.textStyles}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+                " "
+              )}
+
         </div>
         <Footer />
       </div>
     );
   }
 }
-
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(Artist);

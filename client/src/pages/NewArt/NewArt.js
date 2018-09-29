@@ -10,17 +10,40 @@ import SideBar from "../../components/Sidebar/Sidebar";
 import NewArtCard from "../../components/Card/NewArtCard";
 import Footer from "../../components/Footer/Footer";
 import "./NewArt.css";
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
+import "./Mediaqueries.css";
 
 class Home extends Component {
   state = {
     products: [],
-    currentUser: {}
+    currentUser: {},
+    sidebarOpen: true,
+    toggleID: " ",
+    moveToggler: " ",
   };
 
   componentDidMount() {
     // this.loadProducts();
     this.props.fetchUser();
     this.loadProducts();
+  }
+
+  componentWillMount() {
+    this.checkToggle();
+
+  }
+
+  checkToggle = () => {
+    this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+
+  }
+
+  toggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
   }
 
   loadProducts = () => {
@@ -36,26 +59,10 @@ class Home extends Component {
   };
 
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            currentUser: result
-          });
-          console.log("current user: ", this.state.currentUser);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.setState({
+      isLoaded: true,
+      currentUser: this.props.auth
+    });
   };
 
   enlargeImage = i => {
@@ -72,11 +79,6 @@ class Home extends Component {
       modalImg = node.querySelector(`.img${i}`);
       captionText = node.querySelector(`.caption${i}`);
     }
-
-    // console.log("modal", modal);
-    // console.log("modalImg", modalImg);
-    // console.log("captionText", captionText);
-    // console.log("src", img.src);
 
     modal.style.display = "block";
     modalImg.src = img.src;
@@ -102,40 +104,49 @@ class Home extends Component {
             <Header key="1" />
           )}
         <SideBar user={this.state.user} />
+        <div className="sidebarContainer" id={this.state.toggleID}>
+          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+        </div>
+
         {console.log("MAP STATE", this.state.products)}
         <div className="allCards">
-          {this.state.products.map((product, i) => {
-            console.log("PRODUCT", i, product.data);
-            return (
-              <NewArtCard
-                key={i}
-                id={i}
-                image={product.img}
-                price={product.price}
-                productName={product.productName}
-                artistEmail={product.email}
-                artistName={product.artistName}
-                artistID={product.associatedID}
-                description={product.description}
-                currentUserEmail={this.state.currentUser.email}
-                targetStripe={product.stripeAccount}
-                platformFee={product.platformFee}
-                productID={product._id}
-                sold={product.sold}
-                quantity={product.quantity}
-                enlargeImage={this.enlargeImage}
-                shrinkImage={this.shrinkImage}
-              />
-            );
-          })}
+          {this.state.products ?
+            this.state.products.map((product, i) => {
+              console.log("PRODUCT", i, product.productName);
+              return (
+                <NewArtCard
+                  key={i}
+                  id={i}
+                  image={product.img}
+                  price={product.price}
+                  productName={product.productName}
+                  artistEmail={product.email}
+                  artistName={product.artistName}
+                  artistID={product.associatedID}
+                  description={product.description}
+                  currentUserEmail={this.state.currentUser.email}
+                  targetStripe={product.stripeAccount}
+                  platformFee={product.platformFee}
+                  productID={product._id}
+                  sold={product.sold}
+                  quantity={product.quantity}
+                  enlargeImage={this.enlargeImage}
+                  shrinkImage={this.shrinkImage}
+                />
+              );
+            }) : " "}
+
         </div>
-        < Footer/>
+        < Footer />
       </div>
     );
   }
 }
-
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(Home);

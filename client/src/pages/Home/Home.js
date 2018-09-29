@@ -6,15 +6,18 @@ import MissionStatement from "../../components/MissionStatement/missionStatement
 import Header from "../../components/Navs/Header";
 import AdminHeader from "../../components/Navs/AdminHeader";
 import SideBar from "../../components/Sidebar/Sidebar";
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
 import HomeArt from "../../components/HomeArt/HomeArt";
-import HomeArtLag from "../../components/HomeArt/HomeArtLag";
+// import HomeArtLag from "../../components/HomeArt/HomeArtLag";
 import Footer from "../../components/Footer/Footer";
 
 // import { Carousel } from '3d-react-carousal';
 
 import "./Home.css";
+import "./Mediaqueries.css";
 
 class App extends Component {
+
   state = {
     amount: 0,
     carousel: [],
@@ -22,13 +25,28 @@ class App extends Component {
     carouselImageProduct: [],
     carouselImageArtist: [],
     carouselArtistIDs: [],
+    sidebarOpen: true,
+    toggleID: " ",
+    moveToggler: " ",
     user: {}
   };
+
+  componentWillMount() {
+    this.checkToggle();
+  }
 
   componentDidMount() {
     // this.loadProducts();
     this.props.fetchUser();
     this.loadCarouselProducts();
+  }
+
+  checkToggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
   }
 
   loadCarouselProducts = () => {
@@ -104,6 +122,13 @@ class App extends Component {
     });
   };
 
+  toggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
+  }
 
   render() {
     return (
@@ -112,9 +137,6 @@ class App extends Component {
         <Header key="1" />
 
         {this.state.carouselArtistIDs ? (
-          // <div className="carouselStuff">
-          //   <Carousel slides={this.slides()} />
-          // </div>
 
           <HomeArt
             imagePlaceholder={this.state.imagePlaceholder}
@@ -150,10 +172,15 @@ class App extends Component {
         ) : (
             ""
           )}
-        <SideBar user={this.state.user} />
         <MissionStatement />
         <Footer />
-      </div>
+        <SideBar user={this.state.user} />
+        <div className="sidebarContainer" id={this.state.toggleID}>
+          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+        </div>
+
+      </div >
     );
   }
 }

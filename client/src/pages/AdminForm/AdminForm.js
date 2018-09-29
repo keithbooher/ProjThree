@@ -6,11 +6,17 @@ import Header from "../../components/Navs/Header";
 import SideBar from "../../components/Sidebar/Sidebar";
 import "./AdminForm.css";
 import Footer from "../../components/Footer/Footer";
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
+import "./Mediaqueries.css";
+
 
 class Admin extends Component {
   state = {
     user: {},
-    stripe: ""
+    stripe: "",
+    sidebarOpen: true,
+    toggleID: " ",
+    moveToggler: " ",
   };
 
   loadCurrentUser = () => {
@@ -18,6 +24,8 @@ class Admin extends Component {
       isLoaded: true,
       user: this.props.auth
     });
+    this.checkToggle();
+
   };
 
   componentDidMount() {
@@ -25,6 +33,22 @@ class Admin extends Component {
     this.props.fetchUser();
     this.loadCurrentUser();
     console.log("user", this.state.user);
+  }
+
+  checkToggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
+  }
+
+  toggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
   }
 
   changeUserStatus = () => {
@@ -61,6 +85,10 @@ class Admin extends Component {
       <div className="adminGrid">
         <Header />
         <SideBar user={this.state.user} />
+        <div className="sidebarContainer" id={this.state.toggleID}>
+          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+        </div>
         <div className="adminMessage">
           <h2 className="adminHeader">
             Before you can get started, please make an account with Stripe at <a href="https://stripe.com/" target="_blank">Stripe.com</a><br></br>

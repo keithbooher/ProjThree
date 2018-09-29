@@ -1,6 +1,6 @@
 .homeGrid {
     display: grid;
-    grid-template-columns: 5% repeat(4, 1fr) 5%;
+    grid-template-columns: 2% repeat(4, 1fr) 2%;
     grid-template-rows: 10vh repeat(3, 1fr) auto;
     grid-template-areas:
     "header header header header header header"
@@ -13,7 +13,8 @@
 }
 
 .header {
-    grid-area: header
+    grid-area: header;
+    z-index: 5;
 }
 
 .sideBar {
@@ -29,16 +30,24 @@
     grid-area: cs
 }
 
-.carouselLag {
+/* .carouselLag {
     grid-area: csl
-}
+} */
 
 .footer {
     grid-area: footer
 }
 
-/* .carouselImage {
-    height: 100% !important;
-    width: 100%;
-} */
+.toggle {
+    position: fixed;
+    z-index: 2;
+    left: 255px;
+    top: 64px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.sidebarContainer {
+    display: none;    
+}
 

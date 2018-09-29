@@ -9,6 +9,8 @@ import SideBar from "../../components/Sidebar/Sidebar";
 import Footer from "../../components/Footer/Footer";
 import "./Post.css";
 import { Redirect } from "react-router-dom";
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
+import "./Mediaqueries.css";
 
 class Post extends Component {
   constructor() {
@@ -26,7 +28,10 @@ class Post extends Component {
       alertDescription: "hide",
       alertQuantity: "hide",
       alertImg: "hide",
-      toDashboard: false
+      toDashboard: false,
+      sidebarOpen: true,
+      toggleID: " ",
+      moveToggler: " ",
     };
   }
 
@@ -34,6 +39,24 @@ class Post extends Component {
     // this.loadProducts();
     this.props.fetchUser();
     this.loadCurrentUser();
+  }
+
+  componentWillMount() {
+    this.checkToggle();
+
+  }
+
+  checkToggle = () => {
+    this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+
+  }
+
+  toggle = () => {
+    if (this.state.sidebarOpen) {
+      this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+    } else {
+      this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+    }
   }
 
   //  Function to handle form input
@@ -132,32 +155,14 @@ class Post extends Component {
   };
 
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            user: result
-          });
-          console.log("result", result);
-          let currentUser = this.state.user;
-          API.createUser(currentUser)
-            .then(console.log("success"))
-            .catch(err => console.log(err));
-
-          console.log("state", this.state.user);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    this.setState({
+      isLoaded: true,
+      user: this.props.auth
+    });
+    let currentUser = this.state.user;
+    API.createUser(currentUser)
+      .then(console.log("success"))
+      .catch(err => console.log(err));
   };
 
   handleFileInput = event => {
@@ -202,6 +207,10 @@ class Post extends Component {
         {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
 
         <SideBar user={this.state.user} />
+        <div className="sidebarContainer" id={this.state.toggleID}>
+          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+        </div>
 
         <form className="postForm">
           {/* Title of Art */}
@@ -293,13 +302,15 @@ class Post extends Component {
             </div>
           </div>
         </form>
-        < Footer/>
+        < Footer />
       </div>
     );
   }
 }
-
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(Post);

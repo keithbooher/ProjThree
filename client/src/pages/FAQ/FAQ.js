@@ -8,11 +8,15 @@ import AdminHeader from "../../components/Navs/AdminHeader";
 import API from "../../utils/API";
 import Footer from "../../components/Footer/Footer";
 import "./FAQ.css";
-
+import SideBarMobile from "../../components/Sidebar/SidebarMobile";
+import "./Mediaqueries.css";
 
 class FAQ extends Component {
     state = {
-        user: {}
+        user: {},
+        sidebarOpen: true,
+        toggleID: " ",
+        moveToggler: " ",
     };
     componentDidMount() {
         this.props.fetchUser();
@@ -20,40 +24,38 @@ class FAQ extends Component {
         // this.loadThispageArtist();
     }
 
+    componentWillMount() {
+        this.checkToggle();
+
+    }
+
+    checkToggle = () => {
+        this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+
+    }
+
+    toggle = () => {
+        if (this.state.sidebarOpen) {
+            this.setState({ sidebarOpen: false, toggleID: "close", moveToggler: "moveTogglerClose" })
+        } else {
+            this.setState({ sidebarOpen: true, toggleID: " ", moveToggler: " " })
+        }
+    }
+
     loadCurrentUser = () => {
-        fetch("/api/current_user")
-            .then(res => res.json())
-            .then(
-                result => {
-                    this.setState({
-                        isLoaded: true,
-                        user: result,
-                        user: result
-                    });
-                    console.log("current user: ", this.state.currentUser);
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                error => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            );
+        this.setState({
+            isLoaded: true,
+            user: this.props.auth
+        });
+        console.log("current user: ", this.props.auth);
     };
 
 
     render() {
         return (
             <div className="FAQGrid">
-                {this.state.user.admin ? (
-                    <AdminHeader amount={this.state.amount} />
-                ) : (
-                        <Header key="1" amount={this.state.amount} />
-                    )}
 
+                <Header key="1" amount={this.state.amount} />
                 <div className="FAQ">
                     <h2>Are there any fees?</h2>
                     <p>Art Gutter Takes a competitive 5% of sale price</p>
@@ -84,13 +86,19 @@ class FAQ extends Component {
                     <br />
                 </div>
                 <SideBar user={this.state.user} />
+                <div className="sidebarContainer" id={this.state.toggleID}>
+                    <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
+                    <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+                </div>
                 < Footer />
             </div>
         );
     }
 }
-
+function mapStateToProps({ auth }) {
+    return { auth };
+}
 export default connect(
-    null,
+    mapStateToProps,
     actions
 )(FAQ);

@@ -1,40 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import "./Mediaqueries.css"
 
 class Header extends Component {
-  // renderContent() {
-  //   switch (this.props.auth) {
-  //     case null:
-  //       return;
-  //     case false:
-  //       return [
-  //         <li key="5">
-  //           <a href="/auth/google">Login With Google</a>
-  //         </li>
-  //         // console.log('this.props.auth', this.props.auth)
-  //       ];
-  //     default:
-  //       return [
-  //         <li key="4" style={{ margin: "0 10px" }}>
-  //           {this.props.auth.firstName}
-  //         </li>,
-  //         <li key="8">
-  //           <a href="/api/logout">Logout</a>
-  //         </li>,
-
-  //         console.log("this.props.auth", this.props.auth)
-  //       ];
-  //   }
-  // }
-
   renderContent() {
     if (!this.props.auth) {
       return [
         <li key="5">
           <a href="/auth/google">Login With Google</a>
         </li>
-        // console.log('this.props.auth', this.props.auth)
       ];
     } else {
       if (this.props.auth.admin === false) {
@@ -45,7 +20,6 @@ class Header extends Component {
           <li key="8">
             <a href="/api/logout">Logout</a>
           </li>,
-
           console.log("this.props.auth", this.props.auth)
         ];
       } else if (this.props.auth.admin === true) {

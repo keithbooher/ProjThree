@@ -34,13 +34,16 @@ class Payments extends Component {
         billingAddress={true}
         email={this.props.currentUserEmail}
       >
-        <button className="checkout btn">Buy Now</button>
+        {!this.props.auth ? <button className="login btn"><a href="/auth/google">Buy Now</a></button> : <button className="checkout btn">Buy Now</button>}
+
       </StripeCheckout>
     );
   }
 }
-
+function mapStateToProps({ auth }) {
+  return { auth };
+}
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(Payments);
