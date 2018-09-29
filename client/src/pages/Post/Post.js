@@ -159,44 +159,41 @@ class Post extends Component {
       isLoaded: true,
       user: this.props.auth
     });
-    let currentUser = this.state.user;
-    API.createUser(currentUser)
-      .then(console.log("success"))
-      .catch(err => console.log(err));
+
   };
 
   handleFileInput = event => {
     this.setState({ file: event.target.files });
   };
 
-  loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoaded: true,
-            user: result
-          });
-          console.log("result", result);
-          let currentUser = this.state.user;
-          API.createUser(currentUser)
-            .then(console.log("success"))
-            .catch(err => console.log(err));
+  // loadCurrentUser = () => {
+  //   fetch("/api/current_user")
+  //     .then(res => res.json())
+  //     .then(
+  //       result => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           user: result
+  //         });
+  //         console.log("result", result);
+  //         let currentUser = this.state.user;
+  //         API.createUser(currentUser)
+  //           .then(console.log("success"))
+  //           .catch(err => console.log(err));
 
-          console.log("state", this.state.user);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
-  };
+  //         console.log("state", this.state.user);
+  //       },
+  //       // Note: it's important to handle errors here
+  //       // instead of a catch() block so that we don't swallow
+  //       // exceptions from actual bugs in components.
+  //       error => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           error
+  //         });
+  //       }
+  //     );
+  // };
 
   render() {
     if (this.state.toDashboard === true) {
