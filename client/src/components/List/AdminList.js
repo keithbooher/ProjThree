@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import API from "../../utils/API";
 
 import List from "../List/List";
 // import Anchor from "../Anchor/Anchor";
@@ -17,28 +18,15 @@ class AdminList extends Component {
   }
 
   loadCurrentUser = () => {
-    fetch("/api/current_user")
-      .then(res => res.json())
-      .then(
-        result => {
+    API.getCurrentUser()
+      .then(result => {
+        console.log(result.data),
           this.setState({
-            isLoaded: true,
-            user: result
-          });
-
-          // console.log('result', result)
-          // let currentUser = this.state.user;
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+            user: result.data
+          })
+      }
+      )
+      .catch(err => console.log(err));
   };
 
   render() {
