@@ -166,34 +166,6 @@ class Post extends Component {
     this.setState({ file: event.target.files });
   };
 
-  // loadCurrentUser = () => {
-  //   fetch("/api/current_user")
-  //     .then(res => res.json())
-  //     .then(
-  //       result => {
-  //         this.setState({
-  //           isLoaded: true,
-  //           user: result
-  //         });
-  //         console.log("result", result);
-  //         let currentUser = this.state.user;
-  //         API.createUser(currentUser)
-  //           .then(console.log("success"))
-  //           .catch(err => console.log(err));
-
-  //         console.log("state", this.state.user);
-  //       },
-  //       // Note: it's important to handle errors here
-  //       // instead of a catch() block so that we don't swallow
-  //       // exceptions from actual bugs in components.
-  //       error => {
-  //         this.setState({
-  //           isLoaded: true,
-  //           error
-  //         });
-  //       }
-  //     );
-  // };
 
   render() {
     if (this.state.toDashboard === true) {
@@ -201,7 +173,7 @@ class Post extends Component {
     }
     return (
       <div className="postGrid">
-        {this.state.user.admin ? <AdminHeader /> : <Header key="1" />}
+        <Header key="1" />
 
         <SideBar user={this.state.user} />
         <div className="sidebarContainer" id={this.state.toggleID}>

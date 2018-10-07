@@ -18,7 +18,7 @@ class Payments extends Component {
       firstName: this.props.firstName,
       productID: this.props.productID
     };
-    console.log(targetStripeAccount);
+    // console.log(targetStripeAccount);
 
     return (
       <StripeCheckout

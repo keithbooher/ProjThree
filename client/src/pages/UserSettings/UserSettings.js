@@ -31,16 +31,13 @@ class UserSettings extends Component {
     moveToggler: " ",
   };
 
-
-  componentDidMount() {
-  }
-
   componentWillMount() {
     this.props.fetchUser();
-
     this.checkToggle();
+  }
+
+  componentDidMount() {
     this.loadCurrentUser();
-    console.log("result", this.props.auth);
 
   }
 
@@ -138,9 +135,10 @@ class UserSettings extends Component {
   };
 
   loadCurrentUser = () => {
+    console.log(this.props.auth)
     API.getCurrentUser()
       .then(result => {
-        console.log(result.data),
+        console.log(this.props.auth),
           this.setState({
             user: result.data
           })

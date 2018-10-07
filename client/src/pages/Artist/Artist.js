@@ -35,13 +35,14 @@ class Artist extends Component {
 
   componentWillMount() {
     this.checkToggle();
-    this.loadCurrentUser();
+    this.props.fetchUser();
+
 
   }
 
   componentDidMount() {
     console.log(this);
-    this.props.fetchUser();
+    this.loadCurrentUser();
 
     this.loadThispageArtist();
   }
@@ -131,9 +132,9 @@ class Artist extends Component {
   loadCurrentUser = () => {
     API.getCurrentUser()
       .then(result => {
-        console.log(result.data),
+        console.log(this.props.auth),
           this.setState({
-            currentUser: result.data
+            currentUser: this.props.auth
           })
         this.averageStars();
         this.doYouFollowThisArtistAlready();
@@ -219,7 +220,7 @@ class Artist extends Component {
     const url = window.location.href;
     const splitURL = url.split("/");
     const targetedID = splitURL[4];
-    console.log(this.props.auth)
+    // console.log(this.props.auth)
     if (!this.props.auth) {
       return true
     } else {

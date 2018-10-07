@@ -97,18 +97,30 @@ class Customize extends Component {
     this.loadCurrentUser();
   }
 
+  // loadCurrentUser = () => {
+  //   this.setState({
+  //     isLoaded: true,
+  //     currentUser: this.props.auth
+  //   });
+  //   console.log(this.props.auth)
+  // };
+
   loadCurrentUser = () => {
-    this.setState({
-      isLoaded: true,
-      currentUser: this.props.auth
-    });
-    console.log(this.props.auth)
+    // console.log(this.props.auth)
+    API.getCurrentUser()
+      .then(result => {
+        this.setState({
+          user: result.data
+        })
+      })
+      .catch(err => console.log(err));
   };
+
 
   render() {
     return (
       <div className="customizeGrid">
-        <Header key="1" amount={this.state.amount} />
+        <Header key="1" />
         <SideBar user={this.state.user} />
         <div className="sidebarContainer" id={this.state.toggleID}>
           <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
