@@ -187,6 +187,8 @@ class UserSettings extends Component {
         </div>
 
         <div className="userProfile userProfileGrid">
+          <br />
+          <br />
           <img
             alt={this.state.user.img}
             src={`${this.state.user.img}`}

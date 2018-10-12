@@ -120,13 +120,13 @@
     
     .userProfilePic {
         grid-area: profPic;
-        margin-top: 20px;
+        margin-top: 30px;
         margin-left: 33%; 
     }
     
     .userProfileFlex {
         grid-area: profInfo;
-        margin-top: 20px;
+        margin-top: 30px;
         margin-left: 19%;
     }
 }
@@ -134,13 +134,13 @@
 @media only screen and (max-width: 440px) { 
     .userProfilePic {
         grid-area: profPic;
-        margin-top: 20px;
+        margin-top: 30px;
         margin-left: 20%; 
     }
     
     .userProfileFlex {
         grid-area: profInfo;
-        margin-top: 20px;
+        margin-top: 30px;
         margin-left: 10%;
     }
 }
@@ -155,7 +155,7 @@
     
     .userProfileFlex {
         grid-area: profInfo;
-        margin-top: 20px;
+        margin-top: 30px;
         margin-left: 2%;
     }
 }
