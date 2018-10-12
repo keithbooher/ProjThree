@@ -22,6 +22,8 @@ class ContactUs extends Component {
     sidebarOpen: true,
     toggleID: " ",
     moveToggler: " ",
+    top: "toggle",
+    sidebarMobile: "sideBarMobile"
   };
 
   componentWillMount() {
@@ -32,7 +34,21 @@ class ContactUs extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.loadCurrentUser();
-    // this.loadThispageArtist();
+    this.checkTop();
+  }
+
+  componentWillUnmount() {
+    window.onscroll = null;
+  }
+
+  checkTop = () => {
+    window.onscroll = function () {
+      if (window.pageYOffset === 0) {
+        this.setState({ top: "toggle", sidebarMobile: "sideBarMobile" })
+      } else {
+        this.setState({ top: "notTopToggle", sidebarMobile: "sideBarMobileNotTop" })
+      }
+    }.bind(this);
   }
 
 
@@ -111,8 +127,8 @@ class ContactUs extends Component {
         <Header key="1" amount={this.state.amount} />
         <SideBar user={this.state.user} />
         <div className="sidebarContainer" id={this.state.toggleID}>
-          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
-          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+          <div onClick={this.toggle} id={this.state.moveToggler} className={this.state.top}>☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} sidebarMobile={this.state.sidebarMobile} />
         </div>
         <ContactForm
           name={this.state.name}

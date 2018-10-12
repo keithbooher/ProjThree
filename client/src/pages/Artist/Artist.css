@@ -151,10 +151,35 @@
     cursor: pointer;
 }
 
+.notTopToggle {
+    position: fixed;
+    z-index: 2;
+    left: 255px;
+    top: 5px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
 .sidebarContainer {
     display: none;    
 }
 
+.loading {
+    position: fixed;
+    left:50%;
+    top: 40%;  
+    height: 200px;
+    width: 200px;
+    z-index: 10;
+}
+
+#hide {
+    display: none;
+}
+
+#show {
+    display: inline;
+}
 
 /* .cardSlide {
     animation-duration: 3s;

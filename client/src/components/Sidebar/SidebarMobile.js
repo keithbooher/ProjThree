@@ -52,7 +52,7 @@ class SidebarMobile extends Component {
 
     render() {
         return (
-            <div className="sideBarMobile" id={this.props.id}>
+            <div className={this.props.sidebarMobile} id={this.props.id}>
                 <h5 className="sideBarTitle">Explore the Gutter</h5>
                 <UnorderedList>
                     <List>

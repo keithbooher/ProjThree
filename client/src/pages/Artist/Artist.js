@@ -13,6 +13,7 @@ import Footer from "../../components/Footer/Footer";
 import SideBarMobile from "../../components/Sidebar/SidebarMobile";
 import "./Mediaqueries.css";
 import "./Artist.css";
+import gif from '../../assets/images/loading.gif'
 
 class Artist extends Component {
   state = {
@@ -31,20 +32,36 @@ class Artist extends Component {
     sidebarOpen: true,
     toggleID: " ",
     moveToggler: " ",
+    gif: "hide",
+    top: "toggle",
+    sidebarMobile: "sideBarMobile"
   };
 
   componentWillMount() {
     this.checkToggle();
     this.props.fetchUser();
-
-
   }
 
   componentDidMount() {
     console.log(this);
     this.loadCurrentUser();
-
     this.loadThispageArtist();
+    this.checkTop();
+
+  }
+
+  componentWillUnmount() {
+    window.onscroll = null;
+  }
+
+  checkTop = () => {
+    window.onscroll = function () {
+      if (window.pageYOffset === 0) {
+        this.setState({ top: "toggle", sidebarMobile: "sideBarMobile" })
+      } else {
+        this.setState({ top: "notTopToggle", sidebarMobile: "sideBarMobileNotTop" })
+      }
+    }.bind(this);
   }
 
   checkToggle = () => {
@@ -263,6 +280,16 @@ class Artist extends Component {
     modal.style.display = "none";
   };
 
+  loadingGif = () => {
+    setTimeout(function () { this.setState({ gif: "show" }) }, 3000);
+    this.hideGif();
+  };
+
+  hideGif = () => {
+    this.setState({ gif: "hide" })
+    this.hideGif();
+  };
+
   pageView = () => {
     const pageViewCount = this.state.user.pageViews;
     const plusOne = pageViewCount + 1;
@@ -323,8 +350,8 @@ class Artist extends Component {
         <Header key="1" />
         <SideBar user={this.state.user} />
         <div className="sidebarContainer" id={this.state.toggleID}>
-          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
-          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+          <div onClick={this.toggle} id={this.state.moveToggler} className={this.state.top}>☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} sidebarMobile={this.state.sidebarMobile} />
         </div>
         <div className="productContent">
           <div className="userProfile artistProfile">
@@ -437,6 +464,7 @@ class Artist extends Component {
                       shrinkImage={this.shrinkImage}
                       borderStyle={this.state.borderStyles}
                       textStyle={this.state.textStyles}
+                    // loadingGif={this.loadingGif}
                     />
                   );
                 })}

@@ -32,18 +32,33 @@ class Post extends Component {
       sidebarOpen: true,
       toggleID: " ",
       moveToggler: " ",
+      top: "toggle",
+      sidebarMobile: "sideBarMobile",
     };
   }
 
   componentDidMount() {
-    // this.loadProducts();
     this.props.fetchUser();
     this.loadCurrentUser();
+    this.checkTop();
   }
 
   componentWillMount() {
     this.checkToggle();
+  }
 
+  componentWillUnmount() {
+    window.onscroll = null;
+  }
+
+  checkTop = () => {
+    window.onscroll = function () {
+      if (window.pageYOffset === 0) {
+        this.setState({ top: "toggle", sidebarMobile: "sideBarMobile" })
+      } else {
+        this.setState({ top: "notTopToggle", sidebarMobile: "sideBarMobileNotTop" })
+      }
+    }.bind(this);
   }
 
   checkToggle = () => {
@@ -177,8 +192,8 @@ class Post extends Component {
 
         <SideBar user={this.state.user} />
         <div className="sidebarContainer" id={this.state.toggleID}>
-          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
-          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+          <div onClick={this.toggle} id={this.state.moveToggler} className={this.state.top}>☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} sidebarMobile={this.state.sidebarMobile} />
         </div>
 
         <form className="postForm">

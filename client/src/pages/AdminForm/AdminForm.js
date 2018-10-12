@@ -17,6 +17,8 @@ class Admin extends Component {
     sidebarOpen: true,
     toggleID: " ",
     moveToggler: " ",
+    top: "toggle",
+    sidebarMobile: "sideBarMobile"
   };
 
   loadCurrentUser = () => {
@@ -29,10 +31,23 @@ class Admin extends Component {
   };
 
   componentDidMount() {
-    console.log("COMPONENT MOUNTED");
     this.props.fetchUser();
     this.loadCurrentUser();
-    console.log("user", this.state.user);
+    this.checkTop();
+  }
+
+  componentWillUnmount() {
+    window.onscroll = null;
+  }
+
+  checkTop = () => {
+    window.onscroll = function () {
+      if (window.pageYOffset === 0) {
+        this.setState({ top: "toggle", sidebarMobile: "sideBarMobile" })
+      } else {
+        this.setState({ top: "notTopToggle", sidebarMobile: "sideBarMobileNotTop" })
+      }
+    }.bind(this);
   }
 
   checkToggle = () => {
@@ -86,8 +101,8 @@ class Admin extends Component {
         <Header />
         <SideBar user={this.state.user} />
         <div className="sidebarContainer" id={this.state.toggleID}>
-          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
-          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+          <div onClick={this.toggle} id={this.state.moveToggler} className={this.state.top}>☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} sidebarMobile={this.state.sidebarMobile} />
         </div>
         <div className="adminMessage">
           <h2 className="adminHeader">
@@ -101,7 +116,7 @@ class Admin extends Component {
           </button>
         </div>
         < Footer />
-      </div>
+      </div >
     );
   }
 }

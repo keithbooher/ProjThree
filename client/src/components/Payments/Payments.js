@@ -34,7 +34,7 @@ class Payments extends Component {
         billingAddress={true}
         email={this.props.currentUserEmail}
       >
-        {!this.props.auth ? <button className="login btn"><a href="/auth/google">Buy Now</a></button> : <button className="checkout btn">Buy Now</button>}
+        {!this.props.auth ? <button className="login btn"><a href="/auth/google">Buy Now</a></button> : <button className="checkout buyNow btn">Buy Now</button>}
 
       </StripeCheckout>
     );

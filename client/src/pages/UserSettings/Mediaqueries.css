@@ -1,4 +1,14 @@
+@media only screen and (max-width: 812px) { 
+   .userProfilePic {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+
 @media only screen and (max-width: 760px) { 
+
+
     .userSettingsGrid {
         display: grid;
         grid-template-columns: 5% repeat(4, 1fr) 5%;
@@ -11,7 +21,6 @@
         grid-gap: 2rem
     }
     
-
     .sideBar {
         display: none;
     }
@@ -33,15 +42,19 @@
         top: 64px;
         z-index: 1;
         width: 250px;
-        /* animation-name: slide;
-        animation-duration: .5s; */
+    }
 
+    .sideBarMobileNotTop {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        z-index: 1;
+        width: 250px;
     }
 
     #close {
         position: fixed ;
         left: -250px ;
-        top: 64px ;
         z-index: 1 ;
         width: 250px ;
     }
@@ -49,10 +62,8 @@
     #moveTogglerClose {
         position: fixed ;
         left: 5px ;
-        top: 64px ;
     }
 }
-
 
 @media only screen and (max-width: 610px) { 
     .sideBarMobile {
@@ -61,14 +72,19 @@
         top: 100px !important;
         z-index: 1 !important;
         width: 250px !important;
-        /* animation-name: slide;
-        animation-duration: .5s; */
+    }
+
+    .sideBarMobileNotTop {
+        position: fixed !important;
+        left: 0px !important;
+        top: 0px !important;
+        z-index: 1 !important;
+        width: 250px !important;
     }
 
     #close {
         position: fixed !important;
         left: -250px !important;
-        top: 100px !important;
         z-index: 1 !important;
         width: 250px !important;
     }
@@ -76,16 +92,70 @@
     #moveTogglerClose {
         position: fixed  !important;
         left: 5px  !important;
-        top: 100px  !important;
     }
 
     .toggle {
         position: fixed !important;
         z-index: 2 !important;
         left: 255px !important;
-        top: 100px !important;
         font-size: 25px !important;
+        top: 90px !important;                                                        
         cursor: pointer !important;
     }
     
+}
+
+@media only screen and (max-width: 560px) { 
+    .userProfileGrid {
+        display: grid;
+        grid-template-columns: 5% repeat(4, 1fr) 5%;
+        grid-template-rows: 10vh repeat(2, 1fr) auto;
+        grid-template-areas:
+        "profPic profPic profPic profPic profPic ."
+        "profInfo profInfo profInfo profInfo profInfo profInfo"
+        "profInfo profInfo profInfo profInfo profInfo profInfo"
+        "profInfo profInfo profInfo profInfo profInfo profInfo";
+        grid-gap: 2rem
+    }
+    
+    .userProfilePic {
+        grid-area: profPic;
+        margin-top: 20px;
+        margin-left: 33%; 
+    }
+    
+    .userProfileFlex {
+        grid-area: profInfo;
+        margin-top: 20px;
+        margin-left: 19%;
+    }
+}
+
+@media only screen and (max-width: 440px) { 
+    .userProfilePic {
+        grid-area: profPic;
+        margin-top: 20px;
+        margin-left: 20%; 
+    }
+    
+    .userProfileFlex {
+        grid-area: profInfo;
+        margin-top: 20px;
+        margin-left: 10%;
+    }
+}
+
+
+@media only screen and (max-width: 400px) { 
+    .userProfilePic {
+        grid-area: profPic;
+        margin-top: 20px;
+        margin-left: 15%; 
+    }
+    
+    .userProfileFlex {
+        grid-area: profInfo;
+        margin-top: 20px;
+        margin-left: 2%;
+    }
 }

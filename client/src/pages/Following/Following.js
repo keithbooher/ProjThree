@@ -22,7 +22,10 @@ class Artists extends Component {
     users: [],
     admins: [],
     following: [],
-    followingObjects: []
+    followingObjects: [],
+    moveToggler: " ",
+    top: "toggle",
+    sidebarMobile: "sideBarMobile",
   };
 
   componentDidMount() {
@@ -33,6 +36,20 @@ class Artists extends Component {
   componentWillMount() {
     this.checkToggle();
 
+  }
+
+  componentWillUnmount() {
+    window.onscroll = null;
+  }
+
+  checkTop = () => {
+    window.onscroll = function () {
+      if (window.pageYOffset === 0) {
+        this.setState({ top: "toggle", sidebarMobile: "sideBarMobile" })
+      } else {
+        this.setState({ top: "notTopToggle", sidebarMobile: "sideBarMobileNotTop" })
+      }
+    }.bind(this);
   }
 
   checkToggle = () => {
@@ -92,8 +109,8 @@ class Artists extends Component {
         <Header key="1" className="header" />
         <SideBar user={this.state.user} />
         <div className="sidebarContainer" id={this.state.toggleID}>
-          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
-          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+          <div onClick={this.toggle} id={this.state.moveToggler} className={this.state.top}>☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} sidebarMobile={this.state.sidebarMobile} />
         </div>
 
         {this.state.followingObjects ? (

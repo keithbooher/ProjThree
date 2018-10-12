@@ -127,6 +127,15 @@
     font-size: 25px;
     cursor: pointer;
   }
+
+  .notTopToggle {
+    position: fixed;
+    z-index: 2;
+    left: 255px;
+    top: 5px;
+    font-size: 25px;
+    cursor: pointer;
+}
   
   .sidebarContainer {
     display: none;    

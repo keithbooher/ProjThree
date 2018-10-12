@@ -28,13 +28,36 @@ class Customize extends Component {
       sidebarOpen: true,
       toggleID: " ",
       moveToggler: " ",
+      top: "toggle",
+      sidebarMobile: "sideBarMobile"
     };
 
   }
 
   componentWillMount() {
     this.checkToggle();
+  }
 
+  componentDidMount() {
+    // this.loadProducts();
+    this.props.fetchUser();
+    this.loadCurrentUser();
+    this.checkTop();
+
+  }
+
+  componentWillUnmount() {
+    window.onscroll = null;
+  }
+
+  checkTop = () => {
+    window.onscroll = function () {
+      if (window.pageYOffset === 0) {
+        this.setState({ top: "toggle", sidebarMobile: "sideBarMobile" })
+      } else {
+        this.setState({ top: "notTopToggle", sidebarMobile: "sideBarMobileNotTop" })
+      }
+    }.bind(this);
   }
 
   checkToggle = () => {
@@ -91,11 +114,7 @@ class Customize extends Component {
   }
 
 
-  componentDidMount() {
-    // this.loadProducts();
-    this.props.fetchUser();
-    this.loadCurrentUser();
-  }
+
 
   // loadCurrentUser = () => {
   //   this.setState({
@@ -123,8 +142,8 @@ class Customize extends Component {
         <Header key="1" />
         <SideBar user={this.state.user} />
         <div className="sidebarContainer" id={this.state.toggleID}>
-          <div onClick={this.toggle} id={this.state.moveToggler} className="toggle">☰</div>
-          <SideBarMobile user={this.state.user} id={this.state.toggleID} />
+          <div onClick={this.toggle} id={this.state.moveToggler} className={this.state.top}>☰</div>
+          <SideBarMobile user={this.state.user} id={this.state.toggleID} sidebarMobile={this.state.sidebarMobile} />
         </div>
 
         <div className="menu">

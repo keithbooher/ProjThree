@@ -14,6 +14,8 @@ import Delete from "../pages/Delete";
 import MostVisited from "../pages/MostVisited";
 import Following from "../pages/Following";
 import FAQ from "../pages/FAQ";
+import PostPurchase from "../pages/PostPurchase";
+
 
 
 
@@ -33,6 +35,7 @@ const App = () => (
         <Route exact path="/adminform" component={AdminForm} />
         <Route exact path="/artists" component={Artists} />
         <Route exact path="/faq" component={FAQ} />
+        <Route exact path="/postpurchase" component={PostPurchase} />
         <Route exact path="/artist/:id" component={Artist} />
         <Route exact path="/product/:id" component={Product} />
         <Route exact path="/customize" component={Customize} />
