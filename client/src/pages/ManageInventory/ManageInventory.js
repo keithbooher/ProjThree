@@ -13,11 +13,6 @@ import SideBarMobile from "../../components/Sidebar/SidebarMobile";
 import "./Mediaqueries.css";
 
 class ManageInventory extends Component {
-  // contructor(props) {
-  //  super(props)
-
-  // }
-
   state = {
     user: {},
     productIDs: [],
@@ -70,9 +65,6 @@ class ManageInventory extends Component {
 
   //  Function to handle form input
   handleInputChange = event => {
-    console.log(this.state);
-    // console.log(`i: ${i}`);
-    console.log("event", event);
     const target = event.target;
     const name = target.name;
     const value = target.value;
@@ -83,23 +75,16 @@ class ManageInventory extends Component {
   };
 
   handleFormSubmit = id => {
-    console.log("value", this.state.value);
-    console.log("id", id);
     const value = this.state[id];
-    console.log("value: ", value);
     const newQuantity = {
       quantity: value
     };
 
-    console.log("id", id);
-
     if (value < 1) {
       API.updateSoldTrue(id).then(result => {
-        console.log("SOLD", result);
       });
     } else {
       API.updateSold(id).then(result => {
-        console.log("SOLD", result);
       });
     }
 
@@ -128,19 +113,35 @@ class ManageInventory extends Component {
   };
 
   consolelog = () => {
-    console.log("productIDs", this.state.productIDs);
-    console.log("products", this.state.products);
+
   };
 
+  // ??????????????????????????????????????????????????????????????
+  // ????? ANOTHER INSTANCE OF REDUX ACTING REALLY WEIRD ??????????
+  // ??????????????????????????????????????????????????????????????  
+  // loadCurrentUser = () => {
+  //   this.setState({
+  //     isLoaded: true,
+  //     currentUser: this.props.auth,
+  //     productIDs: this.props.auth.product,
+  //     quantity: this.props.auth.quantity
+  //   });
+  //   console.log("current user: ", this.props);
+  //   this.loadUsersProducts();
+  // };
+
   loadCurrentUser = () => {
-    this.setState({
-      isLoaded: true,
-      currentUser: this.props.auth,
-      productIDs: this.props.auth.product,
-      quantity: this.props.auth.quantity
-    });
-    console.log("current user: ", this.props);
-    this.loadUsersProducts();
+    API.getCurrentUser()
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          currentUser: result.data,
+          productIDs: result.data.product,
+          quantity: result.data.quantity
+        })
+        this.loadUsersProducts();
+      })
+      .catch(err => console.log(err));
   };
 
 
