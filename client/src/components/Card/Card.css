@@ -36,23 +36,28 @@
     max-width: 200px;
     min-width: 200px;
     height: 450px;
-    overflow: overlay;
+    /* overflow: overlay; */
     margin-bottom: 3rem;
     background: #000000;
     /* color: #ffffff; */
     font-size: 1.2rem;
 }
 
-.artCard::-webkit-scrollbar {
+.description {
+    overflow: auto;
+    height: 55px;
+}
+
+.description::-webkit-scrollbar {
     width: .4rem;
     border-left: solid 2px #ffffff;
 }
  
-.artCard::-webkit-scrollbar-track {
+.description::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
  
-.artCard::-webkit-scrollbar-thumb {
+.description::-webkit-scrollbar-thumb {
   background-color: #ff00ff;
   outline: 1px solid #4b0082;
   border-radius: 25px;

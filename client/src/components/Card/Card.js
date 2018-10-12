@@ -30,7 +30,7 @@ const Card = props => (
     <div className={`card-body`}>
       <h5 className="card-title" style={props.textStyle}>{props.productName}</h5>
       <p className="card-text" style={props.textStyle}>${props.price}</p>
-      <p className="card-text" style={props.textStyle}>{props.description}</p>
+      <p className="card-text description" style={props.textStyle}>{props.description}</p>
       <a href={`/artist/${props.artistID}`}>{props.artistName}</a>
       <p className="card-text" style={props.textStyle}>Stock: {props.quantity}</p>
     </div>
