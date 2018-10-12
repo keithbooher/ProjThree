@@ -40,3 +40,8 @@
       text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #8e54e9, 0 0 35px #8e54e9, 0 0 40px #8e54e9, 0 0 50px #8e54e9, 0 0 75px #8e54e9;
     }
   }
+
+
+  .loginBtn {
+      padding: 0px;
+  }

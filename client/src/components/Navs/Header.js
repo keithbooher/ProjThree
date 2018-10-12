@@ -8,7 +8,7 @@ class Header extends Component {
     if (!this.props.auth) {
       return [
         <li key="5">
-          <a href="/auth/google">Login With Google</a>
+          <a href="/auth/google" className="loginBtn">Login With Google</a>
         </li>
       ];
     } else {
