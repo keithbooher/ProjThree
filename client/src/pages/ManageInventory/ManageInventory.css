@@ -1,0 +1,31 @@
+.artCard {
+    height: 465px !important;
+}
+
+
+
+.description {
+    overflow: auto;
+    height: 55px;
+}
+
+.description::-webkit-scrollbar {
+    width: .4rem;
+    border-left: solid 2px #ffffff;
+}
+ 
+.description::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.description::-webkit-scrollbar-thumb {
+  background-color: #ff00ff;
+  outline: 1px solid #4b0082;
+  border-radius: 25px;
+}
+
+.card-img-top {
+    height: 200px;
+    width: 200px;
+    border-bottom: solid 1px #ffffff;
+}
