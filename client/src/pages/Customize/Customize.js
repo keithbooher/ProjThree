@@ -111,7 +111,7 @@ class Customize extends Component {
       borderColor: this.state.borderColor
     }
     API.changeStyle(currentUser, styleData)
-      .then(console.log("success"))
+      .then(window.location.replace(`/artist/${this.state.user._id}`))
       .catch(err => console.log(err));
     console.log(styleData)
 
