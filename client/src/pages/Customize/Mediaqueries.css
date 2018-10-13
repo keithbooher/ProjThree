@@ -12,13 +12,18 @@
         grid-gap: 2rem
     }
     
-    .sampleCard {
+    .sampleCard1 {
+        display: inline !important;
         position: absolute;
         width: 250px;
         height: 450px;
-        bottom: -250px;
-        left: 10%;
+        bottom: 200px;        
+        left: 30%;
     }
+
+    .sampleCard {
+        display: none;
+      }
 
     .custBtn {
         margin-top: 500px;
@@ -110,8 +115,8 @@
 
 
 @media only screen and (max-width: 575px) { 
-    .sampleCard {
-        bottom: -270px;
+    .sampleCard1 {
+        bottom: 200px;
     }
 
     .custBtn {
@@ -120,25 +125,25 @@
 }
 
 @media only screen and (max-width: 550px) { 
-    .sampleCard {
-        left: 5%;        
+    .sampleCard1 {
+        left: 25%;        
     }
 }
 
 
 @media only screen and (max-width: 480px) { 
-    .sampleCard {
-        left: 2%;        
+    .sampleCard1 {
+        left: 20%;        
     }
 }
 
 
 @media only screen and (max-width: 430px) { 
-    .sampleCard {
-        left: 0%;  
+    .sampleCard1 {
+        left: 25%;  
         width: 200px;
         height: 400px;      
-        bottom: -220px;        
+        bottom: 200px;        
     }
 
     .custBtn {

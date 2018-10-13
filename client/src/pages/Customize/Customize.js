@@ -208,8 +208,26 @@ class Customize extends Component {
           </select>
           <br />
           <button className="submitBtn btn btn-info custBtn" onClick={this.handleStyleSubmit}>Submit</button>
+
+          <div className="sampleCard1" style={{ border: styles.border, borderColor: styles.bordercolor, borderWidth: styles.borderwidth, display: 'none' }}>
+            <img
+              className="card-img-top"
+              src='https://artgutter.s3.amazonaws.com/1537045224351'
+              alt='artgutter'
+            />
+            <div className="card-body">
+              <h5 className="card-title" style={{ color: styles.fontColor, fontFamily: styles.fontFamily }}>Test</h5>
+              <p className="card-text" style={{ color: styles.fontColor, fontFamily: styles.fontFamily }}>
+                $---
+              </p>
+              <p className="card-text description" style={{ color: styles.fontColor, fontFamily: styles.fontFamily }}>Test Description</p>
+              <span>
+                <button className="checkout btn">Buy</button>
+              </span>
+            </div>
+          </div>
+
         </div>
-        {console.log(styles.border)}
 
         <div className="sampleCard" style={{ border: styles.border, borderColor: styles.bordercolor, borderWidth: styles.borderwidth }}>
           <img
