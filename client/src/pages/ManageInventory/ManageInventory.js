@@ -184,7 +184,7 @@ class ManageInventory extends Component {
                   <div className="card-body">
                     <h5 className="card-title">{product.data.productName}</h5>
                     <p className="card-text">
-                      ${product.data.price + product.data.platformFee}
+                      ${product.data.price}
                     </p>
                     <p className="card-text description">{product.data.description}</p>
                     <form onKeyPress={this.onKeyPress} className="manageForm">

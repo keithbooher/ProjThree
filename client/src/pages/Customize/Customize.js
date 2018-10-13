@@ -20,11 +20,11 @@ class Customize extends Component {
       user: {},
       dropdownBordersOpen: true,
       dropdownOpen: true,
-      borderStyle: "none",
+      borderStyle: "dashed",
       borderColor: "blue",
-      borderWidth: "",
+      borderWidth: "1",
       fontColor: "red",
-      fontFamily: "",
+      fontFamily: "Courier",
       sidebarOpen: true,
       toggleID: " ",
       moveToggler: " ",
@@ -33,6 +33,8 @@ class Customize extends Component {
     };
 
   }
+
+  //https://artgutter.s3.amazonaws.com/1537045224351
 
   componentWillMount() {
     this.checkToggle();
@@ -49,6 +51,8 @@ class Customize extends Component {
   componentWillUnmount() {
     window.onscroll = null;
   }
+
+
 
   checkTop = () => {
     window.onscroll = function () {
@@ -113,17 +117,6 @@ class Customize extends Component {
 
   }
 
-
-
-
-  // loadCurrentUser = () => {
-  //   this.setState({
-  //     isLoaded: true,
-  //     currentUser: this.props.auth
-  //   });
-  //   console.log(this.props.auth)
-  // };
-
   loadCurrentUser = () => {
     // console.log(this.props.auth)
     API.getCurrentUser()
@@ -136,7 +129,17 @@ class Customize extends Component {
   };
 
 
+
+
   render() {
+
+    let styles = {
+      border: this.state.borderStyle,
+      bordercolor: this.state.borderColor,
+      borderwidth: this.state.borderWidth,
+      fontColor: this.state.fontColor,
+      fontFamily: this.state.fontFamily
+    }
     return (
       <div className="customizeGrid">
         <Header key="1" />
@@ -204,10 +207,28 @@ class Customize extends Component {
             <option id='default' value="'Times New Roman', Times, serif">Default</option>
           </select>
           <br />
-          <button className="submitBtn btn btn-info" onClick={this.handleStyleSubmit}>Submit</button>
-          {/* <h2>Choose a Style</h2>
-          <button onClick={this.handleStyleSubmit} >dashed</button> */}
+          <button className="submitBtn btn btn-info custBtn" onClick={this.handleStyleSubmit}>Submit</button>
         </div>
+        {console.log(styles.border)}
+
+        <div className="sampleCard" style={{ border: styles.border, borderColor: styles.bordercolor, borderWidth: styles.borderwidth }}>
+          <img
+            className="card-img-top"
+            src='https://artgutter.s3.amazonaws.com/1537045224351'
+            alt='artgutter'
+          />
+          <div className="card-body">
+            <h5 className="card-title" style={{ color: styles.fontColor, fontFamily: styles.fontFamily }}>Test</h5>
+            <p className="card-text" style={{ color: styles.fontColor, fontFamily: styles.fontFamily }}>
+              $---
+              </p>
+            <p className="card-text description" style={{ color: styles.fontColor, fontFamily: styles.fontFamily }}>Test Description</p>
+            <span>
+              <button className="checkout btn">Buy</button>
+            </span>
+          </div>
+        </div>
+
         < Footer />
       </div>
     );

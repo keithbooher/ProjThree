@@ -2,15 +2,27 @@
     .customizeGrid {
         display: grid;
         grid-template-columns: 5% repeat(4, 1fr) 5%;
-        grid-template-rows: 10vh repeat(2, 1fr) auto;
+        grid-template-rows: 10vh repeat(3, 1fr) auto;
         grid-template-areas:
         "header header header header header header"
         ". stuff stuff stuff stuff ."
         ". stuff stuff stuff stuff ."
+        ". stuff stuff stuff stuff ."        
         "footer footer footer footer footer footer";
         grid-gap: 2rem
     }
     
+    .sampleCard {
+        position: absolute;
+        width: 250px;
+        height: 450px;
+        bottom: -250px;
+        left: 10%;
+    }
+
+    .custBtn {
+        margin-top: 500px;
+    }
 
     .sideBar {
         display: none;
@@ -94,4 +106,42 @@
         cursor: pointer !important;
     }
     
+}
+
+
+@media only screen and (max-width: 575px) { 
+    .sampleCard {
+        bottom: -270px;
+    }
+
+    .custBtn {
+        margin-top: 500px;
+    }
+}
+
+@media only screen and (max-width: 550px) { 
+    .sampleCard {
+        left: 5%;        
+    }
+}
+
+
+@media only screen and (max-width: 480px) { 
+    .sampleCard {
+        left: 2%;        
+    }
+}
+
+
+@media only screen and (max-width: 430px) { 
+    .sampleCard {
+        left: 0%;  
+        width: 200px;
+        height: 400px;      
+        bottom: -220px;        
+    }
+
+    .custBtn {
+        margin-top: 440px;
+    }
 }

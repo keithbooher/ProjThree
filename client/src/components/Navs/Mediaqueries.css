@@ -22,5 +22,9 @@
         position: relative;
         height: 160%;
     }
+
+    .loginBtn {
+        padding: 0px;
+    }
 }
 

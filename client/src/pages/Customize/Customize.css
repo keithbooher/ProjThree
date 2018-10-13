@@ -4,8 +4,8 @@
     grid-template-rows: 10vh repeat(2, 1fr) auto;
     grid-template-areas:
     "header header header header header header"
-    ". sidebar stuff stuff stuff ."
-    ". sidebar stuff stuff stuff ."
+    ". sidebar stuff stuff card ."
+    ". sidebar stuff stuff card ."
     "footer footer footer footer footer footer";
     grid-gap: 2rem
 }
@@ -71,4 +71,18 @@ select {
 
 .sidebarContainer {
   display: none;    
+}
+
+/* .sampleCard {
+  grid-area: card;
+  margin-top: 20%;
+  margin-left:20%;
+} */
+
+.sampleCard {
+  grid-area: card;
+  margin-top: 20%;
+  margin-left:20%;
+  background: black;
+  height: 405px;
 }
