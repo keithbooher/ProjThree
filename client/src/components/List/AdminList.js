@@ -20,10 +20,9 @@ class AdminList extends Component {
   loadCurrentUser = () => {
     API.getCurrentUser()
       .then(result => {
-        console.log(result.data),
-          this.setState({
-            user: result.data
-          })
+        this.setState({
+          user: result.data
+        })
       }
       )
       .catch(err => console.log(err));

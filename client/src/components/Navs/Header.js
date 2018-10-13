@@ -25,7 +25,7 @@ class Header extends Component {
       } else if (this.props.auth.admin === true) {
         return [
           <li className="admin" key="2">
-            Admin!
+            Vendor!
           </li>,
           <li key="3" style={{ margin: "0 10px" }}>
             <a href="/usersettings">Settings</a>

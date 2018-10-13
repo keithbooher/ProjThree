@@ -1,0 +1,134 @@
+
+@media only screen and (max-width: 1160px) { 
+    .productGrid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 10px repeat(2, 1fr) auto;
+        grid-template-areas:
+        ". . . . ."
+        "pi pi pi pi pi"
+        "pd pd pd pd pd";
+        grid-gap: 2rem;
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+    #productImg {
+        /* max-height: 500px; */
+        max-width: 100%;
+    }
+    
+}
+
+@media only screen and (max-width: 760px) { 
+    .productContentGrid {
+        display: grid;
+        grid-template-columns: 5% repeat(4, 1fr) 5%;
+        grid-template-rows: 10vh repeat(2, 1fr) auto;
+        grid-template-areas:
+        "header header header header header header"
+        ". pi pi pi pi ."
+        ". pi pi pi pi ."
+        "footer footer footer footer footer footer";
+        grid-gap: 2rem
+    }
+
+    .productGrid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 10px repeat(2, 1fr) auto;
+        grid-template-areas:
+        ". . . . ."
+        "pi pi pi pi pi"
+        "pd pd pd pd pd"    
+        "pd pd pd pd pd"
+        "pd pd pd pd pd";
+        grid-gap: 2rem;
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    .sideBar {
+        display: none;
+    }
+
+    .sidebarContainer {
+        display: inline !important;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        width: 250px;
+        background: rgb(0, 0, 0, .8);
+        z-index: 3
+    }
+
+    .sideBarMobile {
+        position: fixed;
+        left: 0px;
+        top: 64px;
+        z-index: 1;
+        width: 250px;
+    }
+
+    .sideBarMobileNotTop {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        z-index: 1;
+        width: 250px;
+    }
+
+    #close {
+        position: fixed ;
+        left: -250px ;
+        z-index: 1 ;
+        width: 250px ;
+    }
+
+    #moveTogglerClose {
+        position: fixed ;
+        left: 5px ;
+    }
+}
+
+@media only screen and (max-width: 610px) { 
+    .sideBarMobile {
+        position: fixed !important;
+        left: 0px !important;
+        top: 100px !important;
+        z-index: 1 !important;
+        width: 250px !important;
+    }
+
+    .sideBarMobileNotTop {
+        position: fixed !important;
+        left: 0px !important;
+        top: 0px !important;
+        z-index: 1 !important;
+        width: 250px !important;
+    }
+
+    #close {
+        position: fixed !important;
+        left: -250px !important;
+        z-index: 1 !important;
+        width: 250px !important;
+    }
+
+    #moveTogglerClose {
+        position: fixed  !important;
+        left: 5px  !important;
+    }
+
+    .toggle {
+        position: fixed !important;
+        z-index: 2 !important;
+        left: 255px !important;
+        font-size: 25px !important;
+        top: 90px !important;                                
+        cursor: pointer !important;
+    }
+    
+}

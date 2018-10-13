@@ -1,0 +1,100 @@
+.productContentGrid {
+    display: grid;
+    grid-template-columns: 5% repeat(4, 1fr) 5%;
+    grid-template-rows: 10vh repeat(2, 1fr) auto;
+    grid-template-areas:
+    "header header header header header header"
+    ". sidebar pi pi pi ."
+    ". sidebar pi pi pi ."
+    "footer footer footer footer footer footer";
+    grid-gap: 2rem
+}
+
+.productInfo {
+    grid-area: pi;
+    background: #000000;
+    border: solid 1px #ffffff;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+}
+
+.productGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 10px 600px repeat(2, 1fr) auto;
+    grid-template-areas:
+    ". . . . ."
+    ". . pi . ."
+    ". pd pd pd ."    
+    ". pd pd pd ."
+    ". pd pd pd .";
+    grid-gap: 2rem;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.backLink {
+    position: absolute;
+    top: 0px;
+}
+
+#productImg {
+    grid-area: pi;  
+    max-height: 600px;
+    border-radius: 10px;
+}
+
+.productDetails {
+    grid-area: pd;    
+}
+
+.desc {
+    overflow: auto;
+    height: 50px;
+}
+
+.desc::-webkit-scrollbar {
+    width: .4rem;
+    border-left: solid 2px #ffffff;
+}
+ 
+.desc::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.desc::-webkit-scrollbar-thumb {
+  background-color: #ff00ff;
+  outline: 1px solid #4b0082;
+  border-radius: 25px;
+}
+
+.payments {
+    width: 100px;
+    color: white;
+}
+
+
+.toggle {
+    position: fixed;
+    z-index: 2;
+    left: 255px;
+    top: 64px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.notTopToggle {
+    position: fixed;
+    z-index: 2;
+    left: 255px;
+    top: 5px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.sidebarContainer {
+    display: none;    
+}

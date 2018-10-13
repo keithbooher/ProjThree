@@ -1,6 +1,8 @@
 import React from "react";
 import Payments from "../Payments/Payments";
 import "./Card.css";
+import { Link } from "react-router-dom";
+
 
 const NewArtCard = props => (
   <div className="artCard">
@@ -25,7 +27,7 @@ const NewArtCard = props => (
     </div>
 
     <div className="card-body">
-      <h5 className="card-title">{props.productName}</h5>
+      <h5 className="card-title"><Link to={`/product/${props.productID}`}>{props.productName}</Link></h5>
       <p className="card-text">${props.price}</p>
       <p className="card-text description">{props.description}</p>
       <a href={`/artist/${props.artistID}`}>{props.artistName}</a>
