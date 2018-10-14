@@ -94,7 +94,7 @@
     .homeGrid {
         display: grid;
         grid-template-columns: 2% 15% repeat(3, 1fr) 2%;
-        grid-template-rows: 8vh repeat(3, 1fr) auto;
+        grid-template-rows: 10vh repeat(3, 1fr) auto;
         grid-template-areas:
         "header header header header header header"
         ". ms ms ms ms ."
