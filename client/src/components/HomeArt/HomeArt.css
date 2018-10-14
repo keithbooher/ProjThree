@@ -26,3 +26,7 @@
 .carousel-inner {
     background: #000000;
 }
+
+.carousel {
+    border-radius: 10px;
+}
