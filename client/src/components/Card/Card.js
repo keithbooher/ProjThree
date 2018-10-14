@@ -32,7 +32,7 @@ const Card = props => (
 
     <div className={`card-body`}>
 
-      <h5 className="card-title" ><Link style={props.textStyle} to={`/product/${props.productID}`}>{props.productName}</Link></h5>
+      <h4 className="card-title" ><Link style={props.textStyle} to={`/product/${props.productID}`}>{props.productName}</Link></h4>
       <p className="card-text" style={props.textStyle}>${props.price}</p>
       <p className="card-text description" style={props.textStyle}>{props.description}</p>
       <a href={`/artist/${props.artistID}`}>{props.artistName}</a>

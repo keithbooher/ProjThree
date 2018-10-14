@@ -15,6 +15,7 @@ import "./Mediaqueries.css";
 import "./Artist.css";
 import gif from '../../assets/images/loading.gif'
 
+
 class Artist extends Component {
   state = {
     amount: 0,
@@ -464,7 +465,6 @@ class Artist extends Component {
                       shrinkImage={this.shrinkImage}
                       borderStyle={this.state.borderStyles}
                       textStyle={this.state.textStyles}
-                    // loadingGif={this.loadingGif}
                     />
                   );
                 })}
@@ -502,7 +502,6 @@ class Artist extends Component {
             ) : (
                 " "
               )}
-
         </div>
         <Footer />
       </div>

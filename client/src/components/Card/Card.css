@@ -13,7 +13,6 @@
     word-wrap: break-word;
     background-color: #ffffff;
     background-clip: border-box;
-    /* border: 1px solid rgba(0, 0, 0, 0.125); */
     border-radius: 0.25rem;
 }
 
@@ -69,3 +68,6 @@
     border-bottom: solid 1px #ffffff;
 }
 
+.card-text {
+    margin-top: 15px;
+}

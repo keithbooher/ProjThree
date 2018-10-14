@@ -1,0 +1,48 @@
+
+@media only screen and (max-width: 1440px) { 
+    .missionStatement {
+        font-size: 30px;
+    }
+    
+}
+
+
+@media only screen and (max-width: 815px) { 
+    .missionStatement {
+        font-size: 20px;
+        height: 100%;            
+    }
+    
+}
+
+@media only screen and (max-width: 760px) { 
+    .missionStatement {
+        height: 100%;    
+    }
+    
+}
+
+@media only screen and (max-width: 450px) { 
+    .missionStatement {
+        font-size: 20px;
+    }
+
+    .missionStatementLogo {
+        font-size: 20px;
+    }
+    
+}
+
+@media only screen and (max-width: 395px) { 
+    .missionStatement {
+        font-size: 20px;
+    }
+
+}
+
+@media only screen and (max-width: 365px) { 
+    .missionStatement {
+        font-size: 20px;
+    }
+
+}

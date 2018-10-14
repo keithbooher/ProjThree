@@ -11,7 +11,7 @@ import HomeArt from "../../components/HomeArt/HomeArt";
 // import HomeArtLag from "../../components/HomeArt/HomeArtLag";
 import Footer from "../../components/Footer/Footer";
 
-// import { Carousel } from '3d-react-carousal';
+import { Carousel } from '3d-react-carousal';
 
 import "./Home.css";
 import "./Mediaqueries.css";
@@ -34,12 +34,13 @@ class App extends Component {
   };
 
   componentWillMount() {
+    this.props.fetchUser();
+    this.loadCarouselProducts();
     this.checkToggle();
   }
 
   componentDidMount() {
-    this.props.fetchUser();
-    this.loadCarouselProducts();
+
     this.checkTop();
   }
 
@@ -125,11 +126,7 @@ class App extends Component {
         )
       });
     }
-
-    console.log(this.props.auth)
-
   };
-
 
   loadCurrentUser = () => {
     this.setState({
@@ -147,13 +144,24 @@ class App extends Component {
   }
 
   render() {
+    // let divStyle = {
+    //   maxHeight: '300px',
+    //   maxWidth: '300px',
+    //   marginLeft: '25%'
+    // };
+
+    // let slides = [
+    //   <img style={divStyle} src={this.state.carouselImageURLs[0]} alt="1" />,
+    //   <img style={divStyle} src={this.state.carouselImageURLs[1]} alt="2" />,
+    //   <img style={divStyle} src={this.state.carouselImageURLs[2]} alt="3" />,
+    //   <img style={divStyle} src={this.state.carouselImageURLs[3]} alt="4" />,
+    //   <img style={divStyle} src={this.state.carouselImageURLs[4]} alt="5" />];
     return (
       <div className="homeGrid">
 
         <Header key="1" />
 
-        {this.state.carouselArtistIDs ? (
-
+        {this.state.carouselImageURLs ? (
           <HomeArt
             imagePlaceholder={this.state.imagePlaceholder}
             firstImage={this.state.carouselImageURLs[0]}
@@ -184,6 +192,8 @@ class App extends Component {
             fifthArtistIDs={this.state.carouselArtistIDs[4]}
             sixthArtistIDs={this.state.carouselArtistIDs[5]}
           />
+
+          // <Carousel slides={slides} />
 
         ) : (
             ""

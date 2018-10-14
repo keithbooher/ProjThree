@@ -1,16 +1,15 @@
 import React from "react";
 import "./missionStatement.css";
+import "./Mediaqueries.css";
+
 
 const MissionStatement = props => (
   <div className="missionStatement">
-    <h1 className="missionStatmentText">
-      Welcome to Art Gutter!
-      <br />
-      Bringing you all things creative and beautiful.
-      <br /> <br /> If you'd like to offer your work on our page, sign up to be
-      an vendor at <br />
-      <span className="missionStatementLogo">Art Gutter</span>
-    </h1>
+    <p className="missionStatmentText">
+      Welcome to Art Gutter! Bringing you all things creative and beautiful.
+      <br /> If you'd like to offer your work on our page, sign up to be
+      an vendor at <span className="missionStatementLogo">Art Gutter</span>
+    </p>
   </div>
 );
 

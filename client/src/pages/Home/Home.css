@@ -1,13 +1,12 @@
 .homeGrid {
     display: grid;
-    grid-template-columns: 2% repeat(4, 1fr) 2%;
-    grid-template-rows: 10vh repeat(3, 1fr) auto;
+    grid-template-columns: 2% 20% repeat(2, 1fr) 2%;
+    grid-template-rows: 8vh 300px repeat(2, 1fr) auto;
     grid-template-areas:
     "header header header header header header"
     ". sidebar ms ms ms ."
-    ". sidebar ms ms ms ."
-    ". cs cs cs cs ."
-    ". cs cs cs cs ."
+    ". sidebar cs cs cs ."
+    ". sidebar cs cs cs ."
     "footer footer footer footer footer footer";
     grid-gap: 2rem
 }
@@ -27,12 +26,10 @@
 }
 
 .carousel {
-    grid-area: cs
+    grid-area: cs;
+    width: 100% !important;
 }
 
-/* .carouselLag {
-    grid-area: csl
-} */
 
 .footer {
     grid-area: footer
@@ -60,3 +57,8 @@
     display: none;    
 }
 
+/* .react-3d-carousel {
+    grid-area: cs;
+    width: 100% !important;
+    width: 110%;
+} */

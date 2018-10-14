@@ -1,11 +1,44 @@
+
+@media only screen and (max-width: 1440px) { 
+    .homeGrid {
+        display: grid;
+        grid-template-columns: 2% 20% repeat(2, 1fr) 2%;        
+        grid-template-rows: 8vh repeat(3, 1fr) auto;
+        grid-template-areas:
+        "header header header header header header"
+        ". sidebar ms ms ms ."
+        ". sidebar cs cs cs ."
+        ". sidebar cs cs cs ."
+        "footer footer footer footer footer footer";
+        grid-gap: 2rem
+    }
+    
+}
+
+
+@media only screen and (max-width: 815px) { 
+    .homeGrid {
+        display: grid;
+        grid-template-columns: 2% 20% repeat(2, 1fr) 2%;        
+        grid-template-rows: 8vh repeat(3, 1fr) auto;
+        grid-template-areas:
+        "header header header header header header"
+        ". sidebar ms ms ms ."
+        ". sidebar cs cs cs ."
+        ". sidebar cs cs cs ."
+        "footer footer footer footer footer footer";
+        grid-gap: 2rem
+    }
+    
+}
+
 @media only screen and (max-width: 760px) { 
     .homeGrid {
         display: grid;
-        grid-template-columns: 2% repeat(4, 1fr) 2%;
-        grid-template-rows: 10vh repeat(3, 1fr) auto;
+        grid-template-columns: 2% 20% repeat(3, 1fr) 2%;
+        grid-template-rows: 8vh repeat(3, 1fr) auto;
         grid-template-areas:
         "header header header header header header"
-        ". ms ms ms ms ."
         ". ms ms ms ms ."
         ". cs cs cs cs ."
         ". cs cs cs cs ."
@@ -58,6 +91,19 @@
 }
 
 @media only screen and (max-width: 610px) { 
+    .homeGrid {
+        display: grid;
+        grid-template-columns: 2% 15% repeat(3, 1fr) 2%;
+        grid-template-rows: 8vh repeat(3, 1fr) auto;
+        grid-template-areas:
+        "header header header header header header"
+        ". ms ms ms ms ."
+        ". cs cs cs cs ."
+        ". cs cs cs cs ."
+        "footer footer footer footer footer footer";
+        grid-gap: 2rem
+    }
+
     .sideBarMobile {
         position: fixed !important;
         left: 0px !important;

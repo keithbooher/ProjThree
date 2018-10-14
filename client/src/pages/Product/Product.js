@@ -123,9 +123,9 @@ class Product extends Component {
                                         targetStripe={this.state.product.stripeAccount}
                                         platformFee={this.state.product.platformFee}
                                         currentUserEmail={this.state.user.email}
-                                        artistEmail={this.state.product.artistEmail}
+                                        artistEmail={this.state.product.email}
                                         productName={this.state.product.productName}
-                                        productID={this.state.product.productID}
+                                        productID={this.state.product._id}
                                         image={this.state.product.image}
                                         firstName={this.state.user.firstName}
                                     />
